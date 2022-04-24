@@ -40,7 +40,7 @@ function line_pp(x1,y1,x2,y2,linewidth,linecap,color){//(real,real,real,real,rea
 	ctx.lineTo(_real2pix_x(x2),_real2pix_y(y2));       
 	ctx.stroke();                          
 }
-function dot_line_pp(x1,y1,x2,y2,linewidth,linecap,color,dash,space){//(real,real,real,real,real,string,string,real,real) Draw dotted line segment between two points [USER FUNC] 
+function dotline_pp(x1,y1,x2,y2,linewidth,linecap,color,dash,space){//(real,real,real,real,real,string,string,real,real) Draw dotted line segment between two points [USER FUNC] 
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
 	ctx.strokeStyle = color;
@@ -165,21 +165,50 @@ function circle(x,y,radius,width,color,fill){ //Draw a hollow or filled circle (
 		ctx.stroke();
 	}
 }
-function ez_init(xmax){ // Easy initializng for newbies (real)[USER FUNC][NEWBIE FUNC]
-	if(xmax <= 10){
+function auto_init(xmax){ // Automatically initialize the system (real)[USER FUNC][NEWBIE FUNC]
+	if(xmax <= 0){
+		alert("Canvas size invalid!!");
+	}
+	else if(xmax <= 10){
 		clear();
 		setcanvas(600,600,"white");
 		ezsetgrid(xmax,3,"gray",1,1);
 	}
 	else if(xmax > 10 && xmax <= 50){
 		clear();
-		setcanvas(600+10*(xmax-10),600+10*(xmax-10),"white");
+		setcanvas(600+5*(xmax-10),600+5*(xmax-10),"white");
 		ezsetgrid(xmax,3,"gray",1,1);
 	}
 	else if(xmax >= 50){
 		clear();
-		setcanvas(600+10*(xmax-5),600+10*(xmax-5),"white");
+		setcanvas(600+3*(xmax-10),600+3*(xmax-10),"white");
 		ezsetgrid(xmax,3,"gray",1,1);
+		if(xmax >= 210){           //big canvas notification
+			alert("Beware of canvas size(>1200x1200)");
+		}
+	}
+}
+function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic univariate functions ("string",real,real,real,"string",nat,nat,nat)[USER FUNC]
+	//----process input function argument----------
+	func = func.replace(/x/g, "x[i]");  // x -> x[i]
+	func = func.replace(/y/g, "y[i]");  // y -> y[i]
+	func = func+';';   //add ';' at the end
+	//---------------------------------------------
+	var x = new Array((end-start)/increment+1);
+	var y = new Array((end-start)/increment+1);
+	for(var i = 0;i<(end-start)/increment+1;i++){
+		x[i] = start+increment*i;  //generate x coord list
+		eval(func);                //generate y coord list (y[i] = f(x[i]))
+	}
+	if(dash == null || space == null){  //solid line mode
+		for(var i = 0;i<(end-start)/increment+1;i++){
+			line_pp(x[i],y[i],x[i+1],y[i+1],width,"round",color);
+		}
+	}
+	else{ //dotted line mode
+		for(var i = 0;i<(end-start)/increment+1;i++){
+			dotline_pp(x[i],y[i],x[i+1],y[i+1],width,"round",color,dash,space);
+		}
 	}
 }
 //------↓↓↓↓↓↓↓↓Global variable declare zone↓↓↓↓↓↓↓↓-------------------
@@ -200,6 +229,7 @@ window.onload = function(){
 		
 		document.getElementById("Run").addEventListener("click", function(){ 
 			program = document.getElementById("input").value;
+			document.getElementById('display1').innerHTML = '';
 			eval(program);
 		}); 
 		document.getElementById('fileselect').addEventListener('input', function(){
@@ -222,4 +252,7 @@ window.onload = function(){
 		document.getElementById("saveimage").addEventListener("click", function(){
 			downloadcanvas(document.getElementById('imagename').value);
 		});
+}
+window.onerror = function(e){
+  document.getElementById('display1').innerHTML = "Script Error. Press F12 for more details";
 }

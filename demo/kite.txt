@@ -1,0 +1,15 @@
+clear();  //清空畫布
+setcanvas(600,600,"white"); //設定600x600的白色畫布
+ezsetgrid(10,3,"gray",0,1); //初始化坐標軸
+label("x",9.4,-0.6,"gray","italic 20px serif");  //x
+label("y",-0.6,9.4,"gray","italic 20px serif");  //y
+label("O",-0.9,-0.9,"gray","italic 25px serif"); //O
+//------------------------------------------------
+line_pp(0,3,3,0,3,"round","black");
+line_pp(0,3,-3,0,3,"round","black");
+line_pp(3,0,0,-8,3,"round","black");
+line_pp(-3,0,0,-8,3,"round","black");
+label("A",0.4,3.1,"black","italic 25px serif");
+label("B",-3.6,-1,"black","italic 25px serif");
+label("C",-1,-8.6,"black","italic 25px serif");
+label("D",3,-1.1,"black","italic 25px serif");

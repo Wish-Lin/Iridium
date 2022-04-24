@@ -1,5 +1,6 @@
+<!DOCTYPE html>
 <html>
-<head><title>Math Image Generator Help/Manual v0.9.2</title>
+<head><title>Math Image Generator Help/Manual v0.9.3</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon" / >
 </head>
 <body>
@@ -34,17 +35,30 @@ window.onload = function(){
     <td><a href="#setcanvas(w,h,c)">setcanvas</a></td>
     <td><a href="#ezsetgrid(xmax,w,c,st,s)">ezsetgrid</a></td>
 	<td><a href="#line_pp(x,y,x,y,w,cap,c)">line_pp</a></td>
-	<td><a href="#dot_line_pp(x,y,x,y,w,cap,c,d,s)">dot_line_pp</a></td>
+	<td><a href="#dotline_pp(x,y,x,y,w,cap,c,d,s)">dotline_pp</a></td>
 	</tr>
 	<tr>
 	<td><a href="#label(s,x,y,c,f)">label</a></td>
 	<td><a href="#point(x,y,s,c)">point</a></td>
 	<td><a href="#circle(x,y,r,w,c,f)">circle</a></td>
-	<td><a href="#point(x,y,s,c)">empty</a></td>
+	<td><a href="#auto_init(xmax)">auto_init</a></td>
+	</tr>
+	<tr>
+	<td><a href="#ezplot(func,s,e,w,c,i,d,s)">ezplot</a></td>
 	</tr>
 	</table>
 	<!-- hyperlinks-->
 	</center>
+	<hr>
+	<div class = "function" id="auto_init(xmax)">
+		<b>auto_init(xmax): a function for new users. Automatically sets up a standard canvas and coordinate system</b><br>
+		<br>
+		<b>Format: (Real)</b><br>
+		<br>
+		xmax: maximum value of x shown on canvas.<br>
+		<br>
+		Example: auto_init(20);
+	</div>
 	<hr>
 	<div class = "function" id="circle(x,y,r,w,c,f)">
 		<b>circle(x,y,radius,width,color,fill): Draw a circle with center and radius</b><br>
@@ -70,8 +84,8 @@ window.onload = function(){
 		Example: clear();
 	</div>
 	<hr>
-	<div class = "function" id="dot_line_pp(x,y,x,y,w,cap,c,d,s)">
-		<b>dot_line_pp(x1,y1,x2,y2,linewidth,linecap,color,dash,space): Draw a dotted line segment between two points</b><br>
+	<div class = "function" id="dotline_pp(x,y,x,y,w,cap,c,d,s)">
+		<b>dotline_pp(x1,y1,x2,y2,linewidth,linecap,color,dash,space): Draw a dotted line segment between two points</b><br>
 		<br>
 		<b>Format: (Real,Real,Real,Real,Real,"String","String",Real,Real)</b><br>
 		<br>
@@ -80,7 +94,7 @@ window.onload = function(){
 		dash: length of dash in pixels<br>
 		space: length of space in pixels<br>
 		<br>
-		Example: dot_line_pp(-10,-10,10,10,2,"round","blue",3,6);
+		Example: dotline_pp(-10,-10,10,10,2,"round","blue",3,6);
 	</div>
 	<hr>
 	<div class = "function" id="downloadcanvas(s)">
@@ -105,6 +119,22 @@ window.onload = function(){
 		showaxis: whether or not the axes are shown. 0 = hide, 1 = show.<br>
 		<br>
 		Example: ezsetgrid(10,3,"black",1,1);
+	</div>
+	<hr>
+	<div class = "function" id="ezplot(func,s,e,w,c,i,d,s)">
+		<b>ezplot(func,start,end,width,color,increment,(dash,space)): plot univariate functions on canvas. A little Javascript basics IS required.</b><br>
+		<br>
+		<b>Format: ("String",Real,Real,Real,"String",Nat,(Nat,Nat))</b><br>
+		<br>
+		func: the function to plot. This parameter requires<b>Javascript styled math input</b><br>
+		start,end: start and end of the region of function to plot (x coordinate). end > start<br>
+		width: width of the drawn function in pixels<br>
+		color: color of the drawn function.<a href="https://www.c-sharpcorner.com/UploadFile/da6585/color-name-in-html5/" target="_blank">HTML5 color name</a><br>
+		increment: plotting resolution. (end-start)/increment must be a natural number.<br>
+		<br>
+		<b>OPTIONAL--</b>dash,space: options reserved for dotted line plotting. same as dotline_pp() as of now.<br>
+		<br>
+		Example: ezplot("y = (Math.sin(x))*x",-10,10,1,"red",0.1);
 	</div>
 	<hr>
 	<div class = "function" id="label(s,x,y,c,f)">

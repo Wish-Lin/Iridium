@@ -1,0 +1,7 @@
+v0.9.3: (2022/4/24)
+
+--Start recording log.
+--Display error message above input area. Due to javascript security reasons, the error message's full detail can only be viewed on console(F12).
+--[ez_init()] renamed to [auto_init()] along with some display choice improvements. added big canvas alert when xmax > 210.
+--[dot_line_pp()] renamed to [dotline_pp()].
+--ezplot() beta test.
