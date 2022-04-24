@@ -174,12 +174,12 @@ function ez_init(xmax){ // Easy initializng for newbies (real)[USER FUNC][NEWBIE
 	else if(xmax > 10 && xmax <= 50){
 		clear();
 		setcanvas(600+10*(xmax-10),600+10*(xmax-10),"white");
-		ezsetgrid(xmax,5,"gray",1,1);
+		ezsetgrid(xmax,3,"gray",1,1);
 	}
 	else if(xmax >= 50){
 		clear();
 		setcanvas(600+10*(xmax-5),600+10*(xmax-5),"white");
-		ezsetgrid(xmax,5,"gray",1,1);
+		ezsetgrid(xmax,3,"gray",1,1);
 	}
 }
 //------↓↓↓↓↓↓↓↓Global variable declare zone↓↓↓↓↓↓↓↓-------------------
