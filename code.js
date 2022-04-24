@@ -165,7 +165,7 @@ function circle(x,y,radius,width,color,fill){ //Draw a hollow or filled circle (
 		ctx.stroke();
 	}
 }
-function ez_init(xmax){ // Easy initializng for newbies (real)[USER FUNC]
+function ez_init(xmax){ // Easy initializng for newbies (real)[USER FUNC][NEWBIE FUNC]
 	if(xmax <= 10){
 		clear();
 		setcanvas(600,600,"white");
