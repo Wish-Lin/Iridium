@@ -1,0 +1,10 @@
+clear();
+setcanvas(600,600,"white");
+ezsetgrid(10,3,"gray",1,1);
+label("x",9.3,-0.7,"gray");
+label("y",-0.7,9.3,"gray");
+label("O",-0.9,-0.9,"gray","30px serif");
+line_pp(-8,-8,8,8,2,"round","blue");
+dot_line_pp(-5,9,8,-4,2,"round","red",3,6);
+point(2,2,4,"green");
+label("(2,2)",2.5,1.8,"green");

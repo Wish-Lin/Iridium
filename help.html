@@ -1,0 +1,162 @@
+<html>
+<head><title>Math Image Generator Help/Manual v0.0.1</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon" / >
+</head>
+<body>
+<script>
+window.onload = function(){
+		n =  new Date();
+		y = n.getFullYear();
+		m = n.getMonth() + 1;
+		d = n.getDate();
+		document.getElementById("date").innerHTML = y + "/" + m + "/" + d;      //Automatic display date
+}
+</script>
+<style>
+.function{
+	font-size: 20px;
+}
+</style>
+	<center><h1 id="title">Help v0.9.1</h1>
+	Designed by Wish Lin 2022<p id = 'date'></p>          <!-- Automatic display date -->
+	<!-- hyperlinks-->
+	<b>System command:</b>
+	<table border = '1'>
+	<tr>
+    <td><a href="#clear()">clear</a></td>
+    <td><a href="#downloadcanvas(s)">downloadcanvas</a></td>
+	</tr>
+	</table>
+	<br>
+	<b>User command:</b>
+	<table border = '1'>
+	<tr>
+    <td><a href="#setcanvas(w,h,c)">setcanvas</a></td>
+    <td><a href="#ezsetgrid(xmax,w,c,st,s)">ezsetgrid</a></td>
+	<td><a href="#line_pp(x,y,x,y,w,cap,c)">line_pp</a></td>
+	<td><a href="#dot_line_pp(x,y,x,y,w,cap,c,d,s)">dot_line_pp</a></td>
+	</tr>
+	<tr>
+	<td><a href="#label(s,x,y,c,f)">label</a></td>
+	<td><a href="#point(x,y,s,c)">point</a></td>
+	<td><a href="#circle(x,y,r,w,c,f)">circle</a></td>
+	<td><a href="#point(x,y,s,c)">empty</a></td>
+	</tr>
+	</table>
+	<!-- hyperlinks-->
+	</center>
+	<hr>
+	<div class = "function" id="circle(x,y,r,w,c,f)">
+		<b>circle(x,y,radius,width,color,fill): Draw a circle with center and radius</b><br>
+		<br>
+		<b>Format: (Real,Real,Real,Real,"String",Bool)</b><br>
+		<br>
+		x,y: coordiante of the circle's center<br>
+		radius: circle's radius<br>
+		width: circle's linewidth.(for a hollow circle)<br>
+		color: color of the circle.<a href="https://www.c-sharpcorner.com/UploadFile/da6585/color-name-in-html5/" target="_blank">HTML5 color name</a><br>
+		fill: whether or not the circle is filled. 0 = hollow, 1 = show.<br>
+		<br>
+		Example: circle(3,3,5,3,"red",0);
+	</div>
+	<hr>
+	<div class = "function" id="clear()">
+		<b>clear(): Clear the entire canvas</b><br>
+		<br>
+		<b>Format: (void)</b><br>
+		<br>
+		No description<br>
+		<br>
+		Example: clear();
+	</div>
+	<hr>
+	<div class = "function" id="dot_line_pp(x,y,x,y,w,cap,c,d,s)">
+		<b>dot_line_pp(x1,y1,x2,y2,linewidth,linecap,color,dash,space): Draw a dotted line segment between two points</b><br>
+		<br>
+		<b>Format: (Real,Real,Real,Real,Real,"String","String",Real,Real)</b><br>
+		<br>
+		same as <a href="#line_pp(x,y,x,y,w,cap,c)">line_pp</a> but with two additional parameters:<br>
+		<br>
+		dash: length of dash in pixels<br>
+		space: length of space in pixels<br>
+		<br>
+		Example: dot_line_pp(-10,-10,10,10,2,"round","blue",3,6);
+	</div>
+	<hr>
+	<div class = "function" id="downloadcanvas(s)">
+		<b>downloadcanvas(filename): Download the entire canvas as filename.png</b><br>
+		<br>
+		<b>Format: ("string")</b><br>
+		<br>
+		No description. More donwload format options may be implemented in the future.<br>
+		<br>
+		Example: downloadcanvas(pic1);
+	</div>
+	<hr>
+	<div class = "function" id="ezsetgrid(xmax,w,c,st,s)">
+		<b>ezsetgrid(xmax,linewidth,"color",showtick,showaxis): Create a simple Cartesian coordinate system with the canvas center as its origin</b><br>
+		<br>
+		<b>Format: (Real,Real,"String",Bool,Bool)</b><br>
+		<br>
+		xmax: maximum value of x shown on canvas. maximum value of y is automatically decided using the canvas' w/h ratio.<br>
+		linewidth: width of the axes in pixels<br>
+		color: color of the axes. "black" is used under most circumstances.<a href="https://www.c-sharpcorner.com/UploadFile/da6585/color-name-in-html5/" target="_blank">HTML5 color name</a><br>
+		showtick: whether or not the ticks on the axes are shown. 0 = hide, 1 = show.<br>
+		showaxis: whether or not the axes are shown. 0 = hide, 1 = show.<br>
+		<br>
+		Example: ezsetgrid(10,3,"black",1,1);
+	</div>
+	<hr>
+	<div class = "function" id="label(s,x,y,c,f)">
+		<b>label(value,x,y,color,(font)): Print text on canvas</b><br>
+		<br>
+		<b>Format: ("String",Real,Real,"String",("String"))</b><br>
+		<br>
+		value: the text you want to print<br>
+		x,y: BOTTOM LEFT coordinate of the text.<br>
+		color: color of the text. <a href="https://www.c-sharpcorner.com/UploadFile/da6585/color-name-in-html5/" target="_blank">HTML5 color name</a><br>
+		<br>
+		<b>OPTIONAL--</b>font: font and style of the text. If this parameter is left out, the default is "italic 20px serif". <a href="https://www.w3schools.com/tags/canvas_font.asp" target="_blank">HTML5 canvas font property</a><br>
+		<br>
+		Example: label("test",1,1,"red","30px Arial");
+	</div>
+	<hr>
+	<div class = "function" id="line_pp(x,y,x,y,w,cap,c)">
+		<b>line_pp(x1,y1,x2,y2,linewidth,linecap,color): Draw a line segment between two points</b><br>
+		<br>
+		<b>Format: (Real,Real,Real,Real,Real,"String","String")</b><br>
+		<br>
+		x1,y1: coordinate of starting point<br>
+		x2,y2: coordinate of end point<br>
+		linewidth: width of line in pixels<br>
+		linecap: this setting changes how the end of the line look like. Use "round" if unsure. <a href="https://www.w3schools.com/tags/canvas_linecap.asp" target="_blank">More information</a><br>
+		color: color of the line.<a href="https://www.c-sharpcorner.com/UploadFile/da6585/color-name-in-html5/" target="_blank">HTML5 color name</a><br>
+		<br>
+		Example: line_pp(-10,-10,10,10,2,"round","blue");
+	</div>
+	<hr>
+	<div class = "function" id="point(x,y,s,c)">
+		<b>point(x,y,size,color): Draw a point on canvas</b><br>
+		<br>
+		<b>Format: (Real,Real,"String","String")</b><br>
+		<br>
+		x,y: coordinate of the point<br>
+		size: radius of point in pixels<br>
+		color: color of the point.<a href="https://www.c-sharpcorner.com/UploadFile/da6585/color-name-in-html5/" target="_blank">HTML5 color name</a><br>
+		<br>
+		Example: point(2,2,4,"green");
+	</div>
+	<hr>
+	<div class = "function" id="setcanvas(w,h,c)">
+		<b>setcanvas(width,height,"color"): Initialize the canvas</b><br>
+		<br>
+		<b>Format: (Natural,Natural,"String")</b><br>
+		<br>
+		width: width of the canvas in pixels (Any natural number greater than 50)<br>
+		height: width of the canvas in pixels (Any natural number greater than 50)<br>
+		color: background color of the canvas. "white" is used under most circumstances.<a href="https://www.c-sharpcorner.com/UploadFile/da6585/color-name-in-html5/" target="_blank">HTML5 color name</a><br>
+		<br>
+		Example: setcanvas(700,400,"white");
+	</div>
+</body>
+</html>
