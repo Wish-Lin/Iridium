@@ -1,7 +1,36 @@
-v0.9.3: (2022/4/24)
+v0.9.3: (release date: 2022/4/24)
 
---Start recording log.
---Display error message above input area. Due to javascript security reasons, the error message's full detail can only be viewed on console(F12).
---[ez_init()] renamed to [auto_init()] along with some display choice improvements. added big canvas alert when xmax > 210.
---[dot_line_pp()] renamed to [dotline_pp()].
---ezplot() beta test.
+--[Major]Start recording log.
+--[Minor]Display error message above input area. Due to javascript security reasons, the error message's full detail can only be viewed on console(F12).
+--[Minor]ez_init() renamed to auto_init() along with some display choice improvements. added big canvas alert when xmax > 210.
+--[Minor]dot_line_pp() renamed to dotline_pp().
+--[New Function]ezplot() beta test.
+
+
+
+v0.9.4:
+--[Major]declared mathematical constants & functions
+	PI
+	Euler's number
+	Golden,Slizer,Bronze ratio
+	Euler-Mascheroni constant
+	------
+	trig x6
+	htrig x6
+	invtrig x6
+	invhtrig x6
+	abs
+	exponential
+	logarithmic
+	sqrt
+	cbrt
+	------
+	floor
+	ceil
+	round
+	trunc
+	sgn
+--[Minor]added "log" link on index.html
+--[Minor]added ezplot() legal increment check
+--[Minor]added math function description in "help.html"
+--[New Function]ezplot_polar() beta test.

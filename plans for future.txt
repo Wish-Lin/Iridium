@@ -1,0 +1,11 @@
+ezplot_polar()
+
+mark area between functions using integral method and many vertical lines
+input function without the use of "" (toString()?)
+inprove ezplot() dotline mode, 用畫一區不畫一區的方式來實作。
+add save notifier when loading file with stuff already present
+function parameter hinter
+
+example in "help" can link to an actual example for people to try on. //might not be necessary if "manual" is well made.
+
+

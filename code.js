@@ -194,23 +194,183 @@ function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic u
 	func = func.replace(/y/g, "y[i]");  // y -> y[i]
 	func = func+';';   //add ';' at the end
 	//---------------------------------------------
-	var x = new Array((end-start)/increment+1);
-	var y = new Array((end-start)/increment+1);
-	for(var i = 0;i<(end-start)/increment+1;i++){
-		x[i] = start+increment*i;  //generate x coord list
-		eval(func);                //generate y coord list (y[i] = f(x[i]))
+	if(!_isnat((end-start)/increment+1)){   
+		alert("ezplot increment error");
 	}
-	if(dash == null || space == null){  //solid line mode
-		for(var i = 0;i<(end-start)/increment+1;i++){
-			line_pp(x[i],y[i],x[i+1],y[i+1],width,"round",color);
+	else{
+		var x = new Array((end-start)/increment+1);
+		var y = new Array((end-start)/increment+1);
+		for(var i = 0;i<(end-start)/increment+1;i++){  //the function is being plotted using many,many line segments
+			x[i] = start+increment*i;  //generate x coord list
+			eval(func);                //generate y coord list (y[i] = f(x[i]))
 		}
-	}
-	else{ //dotted line mode
-		for(var i = 0;i<(end-start)/increment+1;i++){
-			dotline_pp(x[i],y[i],x[i+1],y[i+1],width,"round",color,dash,space);
+		if(dash == null || space == null){  //solid line mode
+			for(var i = 0;i<(end-start)/increment+1;i++){
+				line_pp(x[i],y[i],x[i+1],y[i+1],width,"round",color);
+			}
+		}
+		else{ //dotted line mode
+			for(var i = 0;i<(end-start)/increment+1;i++){
+				dotline_pp(x[i],y[i],x[i+1],y[i+1],width,"round",color,dash,space);
+			}
 		}
 	}
 }
+function ezplot_polar(func,start,end,width,color,increment,dash,space){ //plot basic polar functions ("string",real,real,real,"string",nat,nat,nat)[USER FUNC]
+	//----process input function argument----------
+	func = func.replace(/t/g, "t[i]");  // t -> t[i]
+	func = func.replace(/r/g, "r[i]");  // r -> r[i]
+	func = func+';';   //add ';' at the end
+	//---------------------------------------------
+	if(!_isnat((end-start)/increment+1)){   
+		alert("ezplot_polar increment error");
+	}
+	else{
+		var t = new Array((end-start)/increment+1);
+		var r = new Array((end-start)/increment+1);
+		var x = new Array((end-start)/increment+1);
+		var y = new Array((end-start)/increment+1);
+		for(var i = 0;i<(end-start)/increment+1;i++){  //the function is being plotted using many,many line segments
+			t[i] = start+increment*i;  //generate r coord list
+			eval(func);                //generate t coord list (t[i] = f(r[i]))
+		}
+		for(var i = 0;i<(end-start)/increment+1;i++){  //translate(r,theta) into (x,y)
+			x[i] = r[i]*Math.cos(t[i]);
+			y[i] = r[i]*Math.sin(t[i]);
+		}
+		if(dash == null || space == null){  //solid line mode
+			for(var i = 0;i<(end-start)/increment+1;i++){
+				line_pp(x[i],y[i],x[i+1],y[i+1],width,"round",color);
+			}
+		}
+		else{ //dotted line mode
+			for(var i = 0;i<(end-start)/increment+1;i++){
+				dotline_pp(x[i],y[i],x[i+1],y[i+1],width,"round",color,dash,space);
+			}
+		}
+	}
+}
+//------↓↓↓↓↓↓↓↓Mathematical constant and function declare zone↓↓↓↓↓↓↓↓-------------------
+const PI = 3.1415926535;              //π
+const E = 2.7182818284;               //Euler's number
+const GOLD = 1.6180339887;       //Golden ratio
+const SLIVER = 2.4142135623;     //Sliver ratio
+const BRONZE = 3.3027756377;     //Bronze ratio
+const GAMMA = 0.5772156649       //Euler-Mascheroni constant
+function sin(x){           
+	return Math.sin(x);
+}
+function cos(x){
+	return Math.cos(x);
+}
+function tan(x){
+	return Math.tan(x);
+}
+function cot(x){
+	return 1 / Math.tan(x);
+}
+function sec(x){
+	return 1 / Math.cos(x);
+}
+function csc(x){
+	return 1 / Math.sin(x);
+}
+function arcsin(x){
+	return Math.asin(x);
+}
+function arccos(x){
+	return Math.acos(x);
+}
+function arctan(x){
+	return Math.atan(x);
+}
+function arccot(x){
+	return Math.atan(1/x);
+}
+function arcsec(x){
+	return Math.acos(1/x);
+}
+function arccsc(x){
+	return Math.asin(1/x);
+}
+function sinh(x){
+	return Math.sinh(x);
+}
+function cosh(x){
+	return Math.cosh(x);
+}
+function tanh(x){
+	return Math.tanh(x);
+}
+function coth(x){
+	return 1/Math.tanh(x);
+}
+function sech(x){
+	return 1/Math.cosh(x);
+}
+function csch(x){
+	return 1/Math.sinh(x);
+}
+function arsinh(x){
+	return Math.asinh(x);
+}
+function arcosh(x){
+	return Math.acosh(x);
+}
+function artanh(x){
+	return Math.atanh(x);
+}
+function arcoth(x){
+	return Math.atanh(1/x);
+}
+function arsech(x){
+	return Math.acosh(1/x);
+}
+function arcsch(x){
+	return Math.asinh(1/x);
+}
+//----------------------------------
+function abs(x){
+	return Math.abs(x);
+}
+function pow(base,exponent){
+	return Math.pow(base,exponent);
+}
+function log(base,real){
+	return Math.log(real)/Math.log(base);
+}
+function sqrt(x){
+	return Math.sqrt(x);
+}
+function cbrt(x){
+	return Math.cbrt(x);
+}
+//----------------------------------
+function floor(x){
+	return Math.floor(x);
+}
+function round(x){
+	return Math.round(x);
+}
+function ceil(x){
+	return Math.ceil(x);
+}
+function trunc(x){
+	return Math.trunc(x);
+}
+function sgn(x){
+	return Math.sign(x);
+}
+
+
+
+
+
+
+
+
+
+//------↑↑↑↑↑↑↑↑Mathematical constant and function declare zone↑↑↑↑↑↑↑↑-------------------
 //------↓↓↓↓↓↓↓↓Global variable declare zone↓↓↓↓↓↓↓↓-------------------
 var _ezsetgrid = false;
 var _setgrid = false;
@@ -229,7 +389,7 @@ window.onload = function(){
 		
 		document.getElementById("Run").addEventListener("click", function(){ 
 			program = document.getElementById("input").value;
-			document.getElementById('display1').innerHTML = '';
+			document.getElementById('display1').innerHTML = 'Program executed';
 			eval(program);
 		}); 
 		document.getElementById('fileselect').addEventListener('input', function(){

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><title>Math Image Generator Help/Manual v0.9.3</title>
+<head><title>Math Image Generator Help/Manual v0.9.4</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon" / >
 </head>
 <body>
@@ -18,7 +18,7 @@ window.onload = function(){
 	font-size: 20px;
 }
 </style>
-	<center><h1 id="title">Help v0.9.2</h1>
+	<center><h1 id="title">Help v0.9.4</h1>
 	Designed by Wish Lin 2022<p id = 'date'></p>          <!-- Automatic display date -->
 	<!-- hyperlinks-->
 	<b>System command:</b>
@@ -45,6 +45,13 @@ window.onload = function(){
 	</tr>
 	<tr>
 	<td><a href="#ezplot(func,s,e,w,c,i,d,s)">ezplot</a></td>
+	</tr>
+	</table>
+	<br>
+	<b>Supported math functions and constants</b>
+	<table border = '1'>
+	<tr>
+    <td><a href="#sup_func">v0.9.4</a></td>
 	</tr>
 	</table>
 	<!-- hyperlinks-->
@@ -126,15 +133,15 @@ window.onload = function(){
 		<br>
 		<b>Format: ("String",Real,Real,Real,"String",Nat,(Nat,Nat))</b><br>
 		<br>
-		func: the function to plot. This parameter requires<b>Javascript styled math input</b><br>
+		func: the function to plot. This parameter requires some <b>Javascript styled math input</b> and must be in the form of y = f(x)<br>
 		start,end: start and end of the region of function to plot (x coordinate). end > start<br>
 		width: width of the drawn function in pixels<br>
 		color: color of the drawn function.<a href="https://www.c-sharpcorner.com/UploadFile/da6585/color-name-in-html5/" target="_blank">HTML5 color name</a><br>
-		increment: plotting resolution. (end-start)/increment must be a natural number.<br>
+		increment: plotting resolution. The smaller the increment, the better the resolution is and the longer it takes to draw. (end-start)/increment must be a positive integer(natutal number). <b>0.1</b> is a good choice for general use.<br>
 		<br>
 		<b>OPTIONAL--</b>dash,space: options reserved for dotted line plotting. same as dotline_pp() as of now.<br>
 		<br>
-		Example: ezplot("y = (Math.sin(x))*x",-10,10,1,"red",0.1);
+		Example: ezplot("y = sin(x)*x",-10,10,1,"red",0.1);
 	</div>
 	<hr>
 	<div class = "function" id="label(s,x,y,c,f)">
@@ -188,5 +195,102 @@ window.onload = function(){
 		<br>
 		Example: setcanvas(700,400,"white");
 	</div>
+	<hr>
+	<div class = "function" id="sup_func">
+		<b>Supported math functions and constants:</b><br>
+		<br>
+		<b>As of v0.9.4, the following functions and constants are supported:</b><br>
+		<br>
+		Constants:
+		<table border = '1'>
+		<tr>
+		<td><i>Name</i></td><td><i>Description</i></td>
+		</tr>
+		<tr>
+		<td>PI</td><td>Pi</td>
+		</tr>
+		<tr>
+		<td>E</td><td>Euler's number</td>
+		</tr>
+		<tr>
+		<td>GOLD</td><td>Golden ratio</td>
+		</tr>
+		<tr>
+		<td>SLIVER</td><td>Sliver ratio</td>
+		</tr>
+		<tr>
+		<td>BRONZE</td><td>Bronze ratio</td>
+		</tr>
+		<tr>
+		<td>GAMMA</td><td>Euler-Mascheroni constant</td>
+		</tr>
+		</table>
+		<br>
+		All polynomial and rational functions<br>
+		<br>
+		Trigonometric functions:
+		<table border = '1'>
+		<tr>
+		<td>sin(x)</td><td>cos(x)</td><td>tan(x)</td>
+		</tr>
+		<tr>
+		<td>cot(x)</td><td>sec(x)</td><td>csc(x)</td>
+		</tr>
+		</table>
+		<br>
+		Inverse trigonometric functions:
+		<table border = '1'>
+		<tr>
+		<td>arcsin(x)</td><td>arccos(x)</td><td>arctan(x)</td>
+		</tr>
+		<tr>
+		<td>arccot(x)</td><td>arcsec(x)</td><td>arccsc(x)</td>
+		</tr>
+		</table>
+		<br>
+		Hyperbloic functions:
+		<table border = '1'>
+		<tr>
+		<td>sinh(x)</td><td>cosh(x)</td><td>tanh(x)</td>
+		</tr>
+		<tr>
+		<td>coth(x)</td><td>sech(x)</td><td>csch(x)</td>
+		</tr>
+		</table>
+		<br>
+		Inverse hyperbloic functions:
+		<table border = '1'>
+		<tr>
+		<td>arsinh(x)</td><td>arcosh(x)</td><td>artanh(x)</td>
+		</tr>
+		<tr>
+		<td>arcoth(x)</td><td>arsech(x)</td><td>arcsch(x)</td>
+		</tr>
+		</table>
+		<br>
+		Exponential,logarithmic and root functions:
+		<table border = '1'>
+		<tr>
+		<td>pow(base,exponent)</td><td>log(base,real)</td>
+		</tr>
+		<tr>
+		<td>sqrt(x)</td><td>cbrt(x)</td>
+		</tr>
+		</table>
+		<br>
+		Rounding functions:
+		<table border = '1'>
+		<tr>
+		<td>floor(x)</td><td>round(x)</td><td>ceil(x)</td><td>trunc(x)</td>
+		</tr>
+		</table>
+		<br>
+		Miscellaneous:
+		<table border = '1'>
+		<tr>
+		<td>abs(x)</td><td>sgn(x)</td>
+		</tr>
+		</table>
+		</div>
 </body>
 </html>

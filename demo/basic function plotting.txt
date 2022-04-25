@@ -1,7 +1,8 @@
 clear();  //清空畫布
 setcanvas(600,600,"white"); //設定600x600的白色畫布
-ezsetgrid(10,2,"gray",1,1); //初始化坐標軸
+ezsetgrid(10,3,"gray",1,1); //初始化坐標軸
 label("x",9.4,-0.6,"gray","italic 20px serif");  //x
 label("y",-0.6,9.4,"gray","italic 20px serif");  //y
-label("O",-0.9,-0.9,"gray","italic 25px serif"); //O
+label("O",-0.9,-0.9,"gray","italic 25px serif") //O
 //------------------------------------------------
+ezplot("y = (Math.sin(x))*x",-10,10,1,"red",0.1);
