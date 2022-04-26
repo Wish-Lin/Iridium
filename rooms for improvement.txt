@@ -1,0 +1,2 @@
+remove the need of adding ""
+multiple declaration of "canvas" and "ctx"

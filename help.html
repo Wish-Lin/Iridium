@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><title>Math Image Generator Help/Manual v0.9.4</title>
+<head><title>Math Image Generator Help/Manual v0.9.5</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon" / >
 </head>
 <body>
@@ -18,7 +18,7 @@ window.onload = function(){
 	font-size: 20px;
 }
 </style>
-	<center><h1 id="title">Help v0.9.4</h1>
+	<center><h1 id="title">Help v0.9.5</h1>
 	Designed by Wish Lin 2022<p id = 'date'></p>          <!-- Automatic display date -->
 	<!-- hyperlinks-->
 	<b>System command:</b>
@@ -40,18 +40,19 @@ window.onload = function(){
 	<tr>
 	<td><a href="#label(s,x,y,c,f)">label</a></td>
 	<td><a href="#point(x,y,s,c)">point</a></td>
-	<td><a href="#circle(x,y,r,w,c,f)">circle</a></td>
+	<td><a href="#ez_circle(x,y,r,w,c,f)">ez_circle</a></td>
 	<td><a href="#auto_init(xmax)">auto_init</a></td>
 	</tr>
 	<tr>
 	<td><a href="#ezplot(func,s,e,w,c,i,d,s)">ezplot</a></td>
+	<td><a href="#ezplot_polar(func,s,e,w,c,i,d,s)">ezplot_polar</a></td>
 	</tr>
 	</table>
 	<br>
 	<b>Supported math functions and constants</b>
 	<table border = '1'>
 	<tr>
-    <td><a href="#sup_func">v0.9.4</a></td>
+    <td><a href="#sup_func">v0.9.5</a></td>
 	</tr>
 	</table>
 	<!-- hyperlinks-->
@@ -67,8 +68,8 @@ window.onload = function(){
 		Example: auto_init(20);
 	</div>
 	<hr>
-	<div class = "function" id="circle(x,y,r,w,c,f)">
-		<b>circle(x,y,radius,width,color,fill): Draw a circle with center and radius</b><br>
+	<div class = "function" id="ez_circle(x,y,r,w,c,f)">
+		<b>ez_circle(x,y,radius,width,color,fill): Draw a circle with center and radius. ONLY works when xhat = yhat (i.e, when ez_setgrid() is used)</b><br>
 		<br>
 		<b>Format: (Real,Real,Real,Real,"String",Bool)</b><br>
 		<br>
@@ -76,9 +77,9 @@ window.onload = function(){
 		radius: circle's radius<br>
 		width: circle's linewidth.(for a hollow circle)<br>
 		color: color of the circle.<a href="https://www.c-sharpcorner.com/UploadFile/da6585/color-name-in-html5/" target="_blank">HTML5 color name</a><br>
-		fill: whether or not the circle is filled. 0 = hollow, 1 = show.<br>
+		fill: whether or not the circle is filled. 0 = hollow, 1 = solid.<br>
 		<br>
-		Example: circle(3,3,5,3,"red",0);
+		Example: ez_circle(3,3,5,3,"red",0);
 	</div>
 	<hr>
 	<div class = "function" id="clear()">
@@ -133,15 +134,31 @@ window.onload = function(){
 		<br>
 		<b>Format: ("String",Real,Real,Real,"String",Nat,(Nat,Nat))</b><br>
 		<br>
-		func: the function to plot. This parameter requires some <b>Javascript styled math input</b> and must be in the form of y = f(x)<br>
+		func: the function to plot. This parameter requires some Javascript styled math input and must be inputted in the form of y = f(x)<br>
 		start,end: start and end of the region of function to plot (x coordinate). end > start<br>
 		width: width of the drawn function in pixels<br>
 		color: color of the drawn function.<a href="https://www.c-sharpcorner.com/UploadFile/da6585/color-name-in-html5/" target="_blank">HTML5 color name</a><br>
 		increment: plotting resolution. The smaller the increment, the better the resolution is and the longer it takes to draw. (end-start)/increment must be a positive integer(natutal number). <b>0.1</b> is a good choice for general use.<br>
 		<br>
-		<b>OPTIONAL--</b>dash,space: options reserved for dotted line plotting. same as dotline_pp() as of now.<br>
+		<b>OPTIONAL--</b>dash,space: parameters reserved for dotted line plotting. dash = show how many increments. space = hide how many increments.<br>
 		<br>
-		Example: ezplot("y = sin(x)*x",-10,10,1,"red",0.1);
+		Example: ezplot("y = sin(x)*x",-10,10,1,"red",0.1,10,10);
+	</div>
+	<hr>
+	<div class = "function" id="ezplot_polar(func,s,e,w,c,i,d,s)">
+		<b>ezplot_polar(func,start,end,width,color,increment,(dash,space)): plot univariate polar functions on canvas. A little Javascript basics IS required.</b><br>
+		<br>
+		<b>Format: ("String",Real,Real,Real,"String",Nat,(Nat,Nat))</b><br>
+		<br>
+		func: the polar function to plot. This parameter requires some Javascript styled math input and must be inputted in the form of r = f(t) where t stands for θ.<br>
+		start,end: start and end of the region of function to plot (angle). end > start<br>
+		width: width of the drawn function in pixels<br>
+		color: color of the drawn function.<a href="https://www.c-sharpcorner.com/UploadFile/da6585/color-name-in-html5/" target="_blank">HTML5 color name</a><br>
+		increment: plotting resolution. The smaller the increment, the better the resolution is and the longer it takes to draw. (end-start)/increment must be a positive integer(natutal number). <b>PI/180</b> is a good choice for general use.<br>
+		<br>
+		<b>OPTIONAL--</b>dash,space: parameters reserved for dotted line plotting. dash = show how many increments. space = hide how many increments.<br>
+		<br>
+		Example: ezplot_polar("r = 1+2*sin(t)",0,2*PI,1,"red",PI/180);
 	</div>
 	<hr>
 	<div class = "function" id="label(s,x,y,c,f)">
@@ -199,7 +216,7 @@ window.onload = function(){
 	<div class = "function" id="sup_func">
 		<b>Supported math functions and constants:</b><br>
 		<br>
-		<b>As of v0.9.4, the following functions and constants are supported:</b><br>
+		<b>As of v0.9.5, the following functions and constants are supported:</b><br>
 		<br>
 		Constants:
 		<table border = '1'>

@@ -6,9 +6,8 @@ v0.9.3: (release date: 2022/4/24)
 --[Minor]dot_line_pp() renamed to dotline_pp().
 --[New Function]ezplot() beta test.
 
+v0.9.4: (release date: 2022/4/25)
 
-
-v0.9.4:
 --[Major]declared mathematical constants & functions
 	PI
 	Euler's number
@@ -30,7 +29,17 @@ v0.9.4:
 	round
 	trunc
 	sgn
---[Minor]added "log" link on index.html
+--[Minor]added link to this log on index.html
 --[Minor]added ezplot() legal increment check
 --[Minor]added math function description in "help.html"
 --[New Function]ezplot_polar() beta test.
+
+v0.9.5
+
+--[Minor]ezplot() and ezplot_polar() dotline mode bugfix
+--[Minor]circle() renamed to ez_circle due to its relation with ez_xhat, as well as the fact that it was originally a JS function that can ONLY draw undistorted
+circles, which could be a problem when xhat and yhat can be set to different values in future versions.
+--[Minor]icon change.
+--[New Function]rectangle() beta test.
+--[Major]ezplot() and ezplot_polar() optimization. (doesn't rely on repetitively calling line_pp() anymore, but instead uses moveTo() and lineTo() directly.)
+--[New Function]triangle() beta test.

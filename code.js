@@ -148,22 +148,18 @@ function downloadcanvas(filename){ //download the entire canvas. [SYSTEM FUNC][U
     tmpLink.click();  
     document.body.removeChild( tmpLink );  
 }
-function circle(x,y,radius,width,color,fill){ //Draw a hollow or filled circle (real,real,real,real,"string",bool) [USER FUNC]
+function ez_circle(x,y,radius,width,color,fill){ //Draw a hollow or filled circle (real,real,real,real,"string",bool) [USER FUNC]
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
-	if(fill == true){    //fill mode
-		ctx.fillStyle = color;
-		ctx.beginPath();
-		ctx.arc(_real2pix_x(x),_real2pix_y(y),radius*_ezgrid_xhat, 0, 2 * Math.PI);
-		ctx.fill();
-	}
-	else if(fill == false){
-		ctx.strokeStyle = color;
-		ctx.lineWidth = width;
-		ctx.beginPath();
-		ctx.arc(_real2pix_x(x),_real2pix_y(y),radius*_ezgrid_xhat, 0, 2 * Math.PI);
+	ctx.strokeStyle = color;
+	ctx.fillStyle = color;
+	ctx.lineWidth = width;
+	ctx.beginPath();
+	ctx.arc(_real2pix_x(x),_real2pix_y(y),radius*_ezgrid_xhat, 0, 2 * Math.PI);
+	if(fill == false)
 		ctx.stroke();
-	}
+	else if(fill == true)
+		ctx.fill();
 }
 function auto_init(xmax){ // Automatically initialize the system (real)[USER FUNC][NEWBIE FUNC]
 	if(xmax <= 0){
@@ -194,6 +190,12 @@ function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic u
 	func = func.replace(/y/g, "y[i]");  // y -> y[i]
 	func = func+';';   //add ';' at the end
 	//---------------------------------------------
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	ctx.setLineDash([]);  //clear out dotline settings
+	ctx.strokeStyle = color;
+	ctx.lineWidth = width;
+	ctx.lineCap = "round";	
 	if(!_isnat((end-start)/increment+1)){   
 		alert("ezplot increment error");
 	}
@@ -205,13 +207,29 @@ function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic u
 			eval(func);                //generate y coord list (y[i] = f(x[i]))
 		}
 		if(dash == null || space == null){  //solid line mode
-			for(var i = 0;i<(end-start)/increment+1;i++){
-				line_pp(x[i],y[i],x[i+1],y[i+1],width,"round",color);
+
+			for(var i = 0;i<(end-start)/increment+1;i++){            //#For some reason, drawing as one consecutive line results in bad resolution.
+				ctx.beginPath();
+				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
+				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
+				ctx.stroke();
+				ctx.closePath();
 			}
 		}
 		else{ //dotted line mode
+		ctx.lineCap = "butt";	
+			var count = 0;
 			for(var i = 0;i<(end-start)/increment+1;i++){
-				dotline_pp(x[i],y[i],x[i+1],y[i+1],width,"round",color,dash,space);
+				ctx.beginPath();
+				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
+				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
+				ctx.stroke();
+				ctx.closePath();
+				count++;
+				if(count == dash){
+					count = 0;
+					i+=space;
+				}
 			}
 		}
 	}
@@ -222,6 +240,12 @@ function ezplot_polar(func,start,end,width,color,increment,dash,space){ //plot b
 	func = func.replace(/r/g, "r[i]");  // r -> r[i]
 	func = func+';';   //add ';' at the end
 	//---------------------------------------------
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	ctx.setLineDash([]);  //clear out dotline settings
+	ctx.strokeStyle = color;
+	ctx.lineWidth = width;
+	ctx.lineCap = "round";	
 	if(!_isnat((end-start)/increment+1)){   
 		alert("ezplot_polar increment error");
 	}
@@ -240,15 +264,70 @@ function ezplot_polar(func,start,end,width,color,increment,dash,space){ //plot b
 		}
 		if(dash == null || space == null){  //solid line mode
 			for(var i = 0;i<(end-start)/increment+1;i++){
-				line_pp(x[i],y[i],x[i+1],y[i+1],width,"round",color);
+				ctx.beginPath();
+				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
+				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
+				ctx.stroke();
+				ctx.closePath();
 			}
 		}
 		else{ //dotted line mode
+			var count = 0;
 			for(var i = 0;i<(end-start)/increment+1;i++){
-				dotline_pp(x[i],y[i],x[i+1],y[i+1],width,"round",color,dash,space);
+				ctx.beginPath();
+				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
+				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
+				ctx.stroke();
+				ctx.closePath();
+				count++;
+				if(count == dash){
+					count = 0;
+					i+=space;
+				}
 			}
 		}
 	}
+}
+function rectangle(x,y,width,height,linewidth,color,fill){//(real,real,real,real,real,string,bool) Draw rectangle[USER FUNC] 
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	ctx.setLineDash([]);  //clear out dotline settings
+	ctx.strokeStyle = color;
+	ctx.fillStyle = color;
+	ctx.lineWidth = linewidth;
+	ctx.beginPath();
+	ctx.lineCap = "round";
+	ctx.lineJoin = "miter";
+	ctx.moveTo(_real2pix_x(x),_real2pix_y(y));
+	ctx.lineTo(_real2pix_x(x+width),_real2pix_y(y));
+	ctx.lineTo(_real2pix_x(x+width),_real2pix_y(y+height));
+	ctx.lineTo(_real2pix_x(x),_real2pix_y(y+height));
+	ctx.lineTo(_real2pix_x(x),_real2pix_y(y));
+	ctx.closePath();
+	if(fill == false)
+		ctx.stroke();
+	else if(fill == true)
+		ctx.fill();
+}
+function triangle(x1,y1,x2,y2,x3,y3,linewidth,color,fill){//(real,real,real,real,real,string,bool) Draw triangle[USER FUNC] 
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	ctx.setLineDash([]);  //clear out dotline settings
+	ctx.strokeStyle = color;
+	ctx.fillStyle = color;
+	ctx.lineWidth = linewidth;
+	ctx.beginPath();
+	ctx.lineCap = "round";
+	ctx.lineJoin = "round";
+	ctx.moveTo(_real2pix_x(x1),_real2pix_y(y1));
+	ctx.lineTo(_real2pix_x(x2),_real2pix_y(y2));
+	ctx.lineTo(_real2pix_x(x3),_real2pix_y(y3));
+	ctx.lineTo(_real2pix_x(x1),_real2pix_y(y1));
+	ctx.closePath();
+	if(fill == false)
+		ctx.stroke();
+	else if(fill == true)
+		ctx.fill();
 }
 //------↓↓↓↓↓↓↓↓Mathematical constant and function declare zone↓↓↓↓↓↓↓↓-------------------
 const PI = 3.1415926535;              //π
