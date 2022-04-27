@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><title>Math Image Generator Help/Manual v0.9.5</title>
+<head><title>Math Image Generator Help/Manual v0.9.6</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon" / >
 </head>
 <body>
@@ -18,7 +18,7 @@ window.onload = function(){
 	font-size: 20px;
 }
 </style>
-	<center><h1 id="title">Help v0.9.5</h1>
+	<center><h1 id="title">Help v0.9.6</h1>
 	Designed by Wish Lin 2022<p id = 'date'></p>          <!-- Automatic display date -->
 	<!-- hyperlinks-->
 	<b>System command:</b>
@@ -46,13 +46,19 @@ window.onload = function(){
 	<tr>
 	<td><a href="#ezplot(func,s,e,w,c,i,d,s)">ezplot</a></td>
 	<td><a href="#ezplot_polar(func,s,e,w,c,i,d,s)">ezplot_polar</a></td>
+	<td><a href="#ezplot_param(func_x,,func_y,s,e,w,c,i,d,s)">ezplot_param</a></td>
+	<td><a href="#rectangle(x,y,w,h,w,c,f)">rectangle</a></td>
+	</tr>
+	<tr>
+	<td><a href="#tringle(x1,y1,x2,y2,x3,y3,w,c,f)">triangle</a></td>
+	<td><a href="#transparency(pct)">transparency</a></td>
 	</tr>
 	</table>
 	<br>
 	<b>Supported math functions and constants</b>
 	<table border = '1'>
 	<tr>
-    <td><a href="#sup_func">v0.9.5</a></td>
+    <td><a href="#sup_func">v0.9.6</a></td>
 	</tr>
 	</table>
 	<!-- hyperlinks-->
@@ -83,7 +89,7 @@ window.onload = function(){
 	</div>
 	<hr>
 	<div class = "function" id="clear()">
-		<b>clear(): Clear the entire canvas</b><br>
+		<b>clear(): Clear the entire canvas and its transparency settings</b><br>
 		<br>
 		<b>Format: (void)</b><br>
 		<br>
@@ -132,7 +138,7 @@ window.onload = function(){
 	<div class = "function" id="ezplot(func,s,e,w,c,i,d,s)">
 		<b>ezplot(func,start,end,width,color,increment,(dash,space)): plot univariate functions on canvas. A little Javascript basics IS required.</b><br>
 		<br>
-		<b>Format: ("String",Real,Real,Real,"String",Nat,(Nat,Nat))</b><br>
+		<b>Format: ("String",Real,Real,Real,"String",Real,(Nat,Nat))</b><br>
 		<br>
 		func: the function to plot. This parameter requires some Javascript styled math input and must be inputted in the form of y = f(x)<br>
 		start,end: start and end of the region of function to plot (x coordinate). end > start<br>
@@ -142,13 +148,30 @@ window.onload = function(){
 		<br>
 		<b>OPTIONAL--</b>dash,space: parameters reserved for dotted line plotting. dash = show how many increments. space = hide how many increments.<br>
 		<br>
-		Example: ezplot("y = sin(x)*x",-10,10,1,"red",0.1,10,10);
+		Example: ezplot("y = sin(x)*x",-10,10,1,"red",0.1,1,2);
+	</div>
+	<hr>
+	<div class = "function" id="ezplot_param(func_x,,func_y,s,e,w,c,i,d,s)">
+		<b>ezplot_param(func_x,func_y,start,end,width,color,increment,(dash,space)): plot basic 2D parametric functions on canvas. A little Javascript basics IS required.</b><br>
+		<br>
+		<b>Format: ("String","String",Real,Real,Real,"String",Real,(Nat,Nat))</b><br>
+		<br>
+		func_x: the x function. This parameter requires some Javascript styled math input and must be inputted in the form of x = f(t).<br>
+		func_y: the y function. This parameter requires some Javascript styled math input and must be inputted in the form of y = f(t).<br>
+		start,end: start and end of the region of function to plot (t). end > start<br>
+		width: width of the drawn function in pixels<br>
+		color: color of the drawn function.<a href="https://www.c-sharpcorner.com/UploadFile/da6585/color-name-in-html5/" target="_blank">HTML5 color name</a><br>
+		increment: plotting resolution. The smaller the increment, the better the resolution is and the longer it takes to draw. (end-start)/increment must be a positive integer(natutal number).<br>
+		<br>
+		<b>OPTIONAL--</b>dash,space: parameters reserved for dotted line plotting. dash = show how many increments. space = hide how many increments.<br>
+		<br>
+		Example: ezplot_param("x = 2*sin(3*PI*t)","y = 2*cos(5*PI*t)",0,2,2,"blue",0.01); //←This is a Lissajous curve
 	</div>
 	<hr>
 	<div class = "function" id="ezplot_polar(func,s,e,w,c,i,d,s)">
 		<b>ezplot_polar(func,start,end,width,color,increment,(dash,space)): plot univariate polar functions on canvas. A little Javascript basics IS required.</b><br>
 		<br>
-		<b>Format: ("String",Real,Real,Real,"String",Nat,(Nat,Nat))</b><br>
+		<b>Format: ("String",Real,Real,Real,"String",Real,(Nat,Nat))</b><br>
 		<br>
 		func: the polar function to plot. This parameter requires some Javascript styled math input and must be inputted in the form of r = f(t) where t stands for θ.<br>
 		start,end: start and end of the region of function to plot (angle). end > start<br>
@@ -201,6 +224,21 @@ window.onload = function(){
 		Example: point(2,2,4,"green");
 	</div>
 	<hr>
+	<div class = "function" id="rectangle(x,y,w,h,w,c,f)">
+		<b>rectangle(x,y,width,height,linewidth,color,fill): Draw a rectangle on canvas</b><br>
+		<br>
+		<b>Format: (Real,Real,Real,Real,Real,"String",Bool)</b><br>
+		<br>
+		x,y: coordiante of the rectangle's BOTTOM LEFT corner<br>
+		width: rectangle's width<br>
+		height: rectangle's height.<br>
+		linewidth: rectangle's linewidth.(for a hollow rectangle)<br>
+		color: color of the rectangle.<a href="https://www.c-sharpcorner.com/UploadFile/da6585/color-name-in-html5/" target="_blank">HTML5 color name</a><br>
+		fill: whether or not the rectangle is filled. 0 = hollow, 1 = solid.<br>
+		<br>
+		Example: rectangle(1,2,5,3,3,"blue",0);
+	</div>
+	<hr>
 	<div class = "function" id="setcanvas(w,h,c)">
 		<b>setcanvas(width,height,"color"): Initialize the canvas</b><br>
 		<br>
@@ -216,7 +254,7 @@ window.onload = function(){
 	<div class = "function" id="sup_func">
 		<b>Supported math functions and constants:</b><br>
 		<br>
-		<b>As of v0.9.5, the following functions and constants are supported:</b><br>
+		<b>As of v0.9.6, the following functions and constants are supported:</b><br>
 		<br>
 		Constants:
 		<table border = '1'>
@@ -308,6 +346,30 @@ window.onload = function(){
 		<td>abs(x)</td><td>sgn(x)</td>
 		</tr>
 		</table>
-		</div>
+	</div>
+	<hr>
+	<div class = "function" id="transparency(pct)">
+		<b>transparency(percentage): Change the transparency setting of the canvas</b><br>
+		<br>
+		<b>Format: (Real)</b><br>
+		<br>
+		percentage: The transparency percentage. 0&lt;percentage&lt;100.<br>
+		<br>
+		Example: transparency(30);
+	</div>
+	<hr>
+	<div class = "function" id="tringle(x1,y1,x2,y2,x3,y3,w,c,f)">
+		<b>triangle(x1,y1,x2,y2,x3,y3,linewidth,color,fill): Draw a triangle on canvas</b><br>
+		<br>
+		<b>Format: (Real,Real,Real,Real,Real,Real,Real,"String",Bool)</b><br>
+		<br>
+		x1,y1,x2,y2,x3,y3: coordiante of the triangle's three vertices.<br>
+		linewidth: triangle's linewidth.(for a hollow triangle)<br>
+		color: color of the triangle.<a href="https://www.c-sharpcorner.com/UploadFile/da6585/color-name-in-html5/" target="_blank">HTML5 color name</a><br>
+		fill: whether or not the triangle is filled. 0 = hollow, 1 = solid.<br>
+		<br>
+		Example: triangle(1,1,4,6,5,3,3,"blue",0);
+	</div>
+	<hr>
 </body>
 </html>

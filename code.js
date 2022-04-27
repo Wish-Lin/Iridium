@@ -5,10 +5,11 @@ function _isnat(num){         // Check if input is natural number. [SYSTEM FUNC]
 	else
 		return false;
 }
-function clear(){             //clear the canvas. [SYSTEM FUNC][USER FUNC]
+function clear(){             //clear the canvas and its transparency settings. [SYSTEM FUNC][USER FUNC]
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.globalAlpha = 1;
 }
 function _real2pix_x(xcord){  // translate calculation result to drawable pixel positions. X coordinate only. [SYSTEM FUNC]
 	if(_ezsetgrid == true && _setgrid == false){   //ezsetgrid mode
@@ -125,7 +126,7 @@ function label(value,x,y,color,font){ //print text on canvas ("string",real,real
 	ctx.fillStyle = color;
 	ctx.fillText(value,_real2pix_x(x),_real2pix_y(y));
 }
-function point(x,y,size,color){ //print dot on canvas ("real,real,real,"string") [USER FUNC]
+function point(x,y,size,color){ //print dot on canvas (real,real,real,"string") [USER FUNC]
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
 	ctx.beginPath();
@@ -147,6 +148,15 @@ function downloadcanvas(filename){ //download the entire canvas. [SYSTEM FUNC][U
     document.body.appendChild( tmpLink );  
     tmpLink.click();  
     document.body.removeChild( tmpLink );  
+}
+function transparency(percentage){ //change drawing transparency (real) [USER FUNC]
+	if(percentage < 0 || percentage > 100)
+		alert("transparency():  0<=percentage<=100");
+	else{
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+		ctx.globalAlpha = percentage/100;
+	}
 }
 function ez_circle(x,y,radius,width,color,fill){ //Draw a hollow or filled circle (real,real,real,real,"string",bool) [USER FUNC]
 	var canvas = document.getElementById("myCanvas");
@@ -184,7 +194,7 @@ function auto_init(xmax){ // Automatically initialize the system (real)[USER FUN
 		}
 	}
 }
-function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic univariate functions ("string",real,real,real,"string",nat,nat,nat)[USER FUNC]
+function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic univariate functions ("string",real,real,real,"string",real,nat,nat)[USER FUNC]
 	//----process input function argument----------
 	func = func.replace(/x/g, "x[i]");  // x -> x[i]
 	func = func.replace(/y/g, "y[i]");  // y -> y[i]
@@ -207,7 +217,6 @@ function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic u
 			eval(func);                //generate y coord list (y[i] = f(x[i]))
 		}
 		if(dash == null || space == null){  //solid line mode
-
 			for(var i = 0;i<(end-start)/increment+1;i++){            //#For some reason, drawing as one consecutive line results in bad resolution.
 				ctx.beginPath();
 				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
@@ -234,7 +243,7 @@ function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic u
 		}
 	}
 }
-function ezplot_polar(func,start,end,width,color,increment,dash,space){ //plot basic polar functions ("string",real,real,real,"string",nat,nat,nat)[USER FUNC]
+function ezplot_polar(func,start,end,width,color,increment,dash,space){ //plot basic polar functions ("string",real,real,real,"string",real,nat,nat)[USER FUNC]
 	//----process input function argument----------
 	func = func.replace(/t/g, "t[i]");  // t -> t[i]
 	func = func.replace(/r/g, "r[i]");  // r -> r[i]
@@ -255,15 +264,69 @@ function ezplot_polar(func,start,end,width,color,increment,dash,space){ //plot b
 		var x = new Array((end-start)/increment+1);
 		var y = new Array((end-start)/increment+1);
 		for(var i = 0;i<(end-start)/increment+1;i++){  //the function is being plotted using many,many line segments
-			t[i] = start+increment*i;  //generate r coord list
-			eval(func);                //generate t coord list (t[i] = f(r[i]))
+			t[i] = start+increment*i;  //generate t coord list
+			eval(func);                //generate r coord list (r[i] = f(t[i]))
 		}
 		for(var i = 0;i<(end-start)/increment+1;i++){  //translate(r,theta) into (x,y)
 			x[i] = r[i]*Math.cos(t[i]);
 			y[i] = r[i]*Math.sin(t[i]);
 		}
-		if(dash == null || space == null){  //solid line mode
+		if(dash == null || space == null){  //solid line mode 
+			for(var i = 0;i<(end-start)/increment+1;i++){       //#For some reason, drawing as one consecutive line results in bad resolution.
+				ctx.beginPath();
+				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
+				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
+				ctx.stroke();
+				ctx.closePath();
+			}
+		}
+		else{ //dotted line mode
+			var count = 0;
 			for(var i = 0;i<(end-start)/increment+1;i++){
+				ctx.beginPath();
+				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
+				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
+				ctx.stroke();
+				ctx.closePath();
+				count++;
+				if(count == dash){
+					count = 0;
+					i+=space;
+				}
+			}
+		}
+	}
+}
+function ezplot_param(func_x,func_y,start,end,width,color,increment,dash,space){ //plot basic 2D parametric functions ("string","string",real,real,real,"string",real,nat,nat)[USER FUNC]
+	//----process input function_x argument----------
+	func_x = func_x.replace(/x/g, "x[i]");  // x -> x[i]
+	func_x = func_x.replace(/t/g, "t[i]");  // t -> t[i]
+	func_x = func_x+';';   //add ';' at the end
+	//----process input function_y argument----------
+	func_y = func_y.replace(/y/g, "y[i]");  // y -> y[i]
+	func_y = func_y.replace(/t/g, "t[i]");  // t -> t[i]
+	func_y = func_y+';';   //add ';' at the end
+	//---------------------------------------------
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	ctx.setLineDash([]);  //clear out dotline settings
+	ctx.strokeStyle = color;
+	ctx.lineWidth = width;
+	ctx.lineCap = "round";	
+	if(!_isnat((end-start)/increment+1)){   
+		alert("ezplot_param increment error");
+	}
+	else{
+		var t = new Array((end-start)/increment+1);
+		var x = new Array((end-start)/increment+1);
+		var y = new Array((end-start)/increment+1);
+		for(var i = 0;i<(end-start)/increment+1;i++){  //the function is being plotted using many,many line segments
+			t[i] = start+increment*i;  //generate t coord list
+			eval(func_x);                //generate x coord list (x[i] = fx(t[i]))
+			eval(func_y);                //generate x coord list (y[i] = fy(t[i]))
+		}
+		if(dash == null || space == null){  //solid line mode
+			for(var i = 0;i<(end-start)/increment+1;i++){     //#For some reason, drawing as one consecutive line results in bad resolution.
 				ctx.beginPath();
 				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
 				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
@@ -309,7 +372,7 @@ function rectangle(x,y,width,height,linewidth,color,fill){//(real,real,real,real
 	else if(fill == true)
 		ctx.fill();
 }
-function triangle(x1,y1,x2,y2,x3,y3,linewidth,color,fill){//(real,real,real,real,real,string,bool) Draw triangle[USER FUNC] 
+function triangle(x1,y1,x2,y2,x3,y3,linewidth,color,fill){//(real,real,real,real,real,real,real,string,bool) Draw triangle[USER FUNC] 
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
 	ctx.setLineDash([]);  //clear out dotline settings
@@ -328,6 +391,9 @@ function triangle(x1,y1,x2,y2,x3,y3,linewidth,color,fill){//(real,real,real,real
 		ctx.stroke();
 	else if(fill == true)
 		ctx.fill();
+}
+function beta_fo_ODE(func,x_known,y_known,start,end,increment,method,width,color,dash,space){
+	
 }
 //------↓↓↓↓↓↓↓↓Mathematical constant and function declare zone↓↓↓↓↓↓↓↓-------------------
 const PI = 3.1415926535;              //π
@@ -465,10 +531,10 @@ window.onload = function(){
 		m = n.getMonth() + 1;
 		d = n.getDate();
 		document.getElementById("date").innerHTML = y + "/" + m + "/" + d;      //Automatic display date
+		document.getElementById("curfontsize").innerHTML = document.getElementById("input").style.fontSize;      //Current textarea font size display
 		
 		document.getElementById("Run").addEventListener("click", function(){ 
 			program = document.getElementById("input").value;
-			document.getElementById('display1').innerHTML = 'Program executed';
 			eval(program);
 		}); 
 		document.getElementById('fileselect').addEventListener('input', function(){
@@ -493,5 +559,88 @@ window.onload = function(){
 		});
 }
 window.onerror = function(e){
-  document.getElementById('display1').innerHTML = "Script Error. Press F12 for more details";
+  alert("Script Error. Press F12 for more details");
 }
+//-------------------------Collapsable side panel from W3School(file)-------
+function colaps_file_open() {
+  document.getElementById("colaps_file").style.width = "250px";
+}
+function colaps_file_close() {
+  document.getElementById("colaps_file").style.width = "0px";
+}
+//-------------------------Collapsable side panel from W3School(file)-------
+//-------------------------Collapsable side panel from W3School(help)-------
+function colaps_help_open() {
+  document.getElementById("colaps_help").style.width = "200px";
+}
+function colaps_help_close() {
+  document.getElementById("colaps_help").style.width = "0px";
+}
+//-------------------------Collapsable side panel from W3School(help)-------
+//-------------------------Collapsable side panel from W3School(settings)-------
+function colaps_settings_open() {
+  document.getElementById("colaps_settings").style.width = "280px";
+}
+function colaps_settings_close() {
+  document.getElementById("colaps_settings").style.width = "0px";
+}
+//-------------------------Collapsable side panel from W3School(settings)-------
+//-------------------------Textarea font size management-------
+function textbox_font_bigger(){
+	var newsize = document.getElementById("input").style.fontSize.slice(0, -2); //npx -> n
+	newsize = (parseInt(newsize,10)+1).toString() + "px";                       //n -> n+1px
+	console.log(newsize);
+	document.getElementById("input").style.fontSize = newsize;
+	document.getElementById("curfontsize").innerHTML = newsize;
+}
+function textbox_font_smaller(){
+	var newsize = document.getElementById("input").style.fontSize.slice(0, -2); //npx -> n
+	if(parseInt(newsize,10) > 12){                                              //always >=12px
+		newsize = (parseInt(newsize,10)-1).toString() + "px";                   //n -> n-1px
+			console.log(newsize);
+		document.getElementById("input").style.fontSize = newsize;
+		document.getElementById("curfontsize").innerHTML = newsize;
+	}
+}
+//-------------------------Textarea font size management-------
+//-------------------------Autofill----------------------------
+function autofill(){
+	var input = document.getElementById("autofill_inp").value;
+	document.getElementById("autofill_inp").value = null;
+	//-----Brute force start------------------------------
+	if(input == "clear")
+		document.getElementById("input").value += "clear();";
+	else if(input == "line_pp")
+		document.getElementById("input").value += "line_pp(x1,y1,x2,y2,linewidth,linecap,color);";
+	else if(input == "dotline_pp")
+		document.getElementById("input").value += "dotline_pp(x1,y1,x2,y2,linewidth,linecap,color,dash,space);";
+	else if(input == "setcanvas")
+		document.getElementById("input").value += "setcanvas(width,height,color);";
+	else if(input == "ezsetgrid")
+		document.getElementById("input").value += "ezsetgrid(xmax,linewidth,color,showtick,showaxis);";
+	else if(input == "label")
+		document.getElementById("input").value += "label(value,x,y,color,font);";
+	else if(input == "point")
+		document.getElementById("input").value += "point(x,y,size,color);";
+	else if(input == "ez_circle")
+		document.getElementById("input").value += "ez_circle(x,y,radius,width,color,fill);";
+	else if(input == "auto_init")
+		document.getElementById("input").value += "auto_init(xmax);";
+	else if(input == "downloadcanvas")
+		document.getElementById("input").value += "downloadcanvas(filename);";
+	else if(input == "ezplot")
+		document.getElementById("input").value += "ezplot(func,start,end,width,color,increment,dash,space);";
+	else if(input == "ezplot_polar")
+		document.getElementById("input").value += "ezplot_polar(func,start,end,width,color,increment,dash,space);";
+	else if(input == "ezplot_param")
+		document.getElementById("input").value += "ezplot_param(func_x,func_y,start,end,width,color,increment,dash,space);";
+	else if(input == "rectangle")
+		document.getElementById("input").value += "rectangle(x,y,width,height,linewidth,color,fill);";
+	else if(input == "triangle")
+		document.getElementById("input").value += "triangle(x1,y1,x2,y2,x3,y3,linewidth,color,fill);";
+	else if(input == "transparency")
+		document.getElementById("input").value += "transparency(percentage);";
+	else
+		alert("Function insert error: not a supported function");
+}
+//-------------------------Autofill----------------------------

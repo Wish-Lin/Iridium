@@ -1,7 +1,6 @@
 v0.9.3: (release date: 2022/4/24)
 
 --[Major]Start recording log.
---[Minor]Display error message above input area. Due to javascript security reasons, the error message's full detail can only be viewed on console(F12).
 --[Minor]ez_init() renamed to auto_init() along with some display choice improvements. added big canvas alert when xmax > 210.
 --[Minor]dot_line_pp() renamed to dotline_pp().
 --[New Function]ezplot() beta test.
@@ -34,7 +33,7 @@ v0.9.4: (release date: 2022/4/25)
 --[Minor]added math function description in "help.html"
 --[New Function]ezplot_polar() beta test.
 
-v0.9.5
+v0.9.5: (release date: 2022/4/26)
 
 --[Minor]ezplot() and ezplot_polar() dotline mode bugfix
 --[Minor]circle() renamed to ez_circle due to its relation with ez_xhat, as well as the fact that it was originally a JS function that can ONLY draw undistorted
@@ -43,3 +42,12 @@ circles, which could be a problem when xhat and yhat can be set to different val
 --[New Function]rectangle() beta test.
 --[Major]ezplot() and ezplot_polar() optimization. (doesn't rely on repetitively calling line_pp() anymore, but instead uses moveTo() and lineTo() directly.)
 --[New Function]triangle() beta test.
+
+v0.9.6: (release date: 2022/4/27)
+
+--[New Function]ezplot_param() beta test.
+--[Major]Load program, save program and save image placed inside a collapsable left side panel "File".
+--[Major]Help and Log placed inside a collapsable left side panel "Help".
+--[Major]Textarea font size now customizable inside a collapsable left side panel "Settings".
+--[Major]Automatic function filler completed, which makes writing programs much,much easier than before.
+--[New Function]transparency() beta test.

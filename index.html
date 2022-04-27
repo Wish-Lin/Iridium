@@ -8,27 +8,142 @@
 #title{
   font-size: 30px;
 }
-#input{
-	font-size: 15px;
+#curfontsize{
+  display: inline;
 }
-#Run{
+#Run, #autofill_exe{
 	font-size: 25px;
 }
+#autofill_inp{
+	font-size: 25px;
+}
+/*-------------------------------------------------------------------------------------------------------*/
+
+/* The colaps_file menu */
+.colaps_file {
+  height: 220px; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the colaps_file */
+  background-color: AliceBlue;
+}
+
+.colaps_file a {
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  transition: 0.3s;
+}
+
+/* Position and style the close button (top right corner) */
+.colaps_file .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  background-color: AliceBlue;
+}
+
+/*-------------------------------------------------------------------------------------------------------*/
+
+/* The colaps_help menu */
+.colaps_help {
+  height: 220px; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the colaps_help */
+  background-color: AliceBlue;
+}
+
+.colaps_help a {
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  transition: 0.3s;
+}
+
+/* Position and style the close button (top right corner) */
+.colaps_help .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  background-color: AliceBlue;
+}
+
+/*-------------------------------------------------------------------------------------------------------*/
+
+/* The colaps_settings menu */
+.colaps_settings {
+  height: 220px; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the colaps_settings */
+  background-color: AliceBlue;
+}
+
+.colaps_settings a {
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  transition: 0.3s;
+}
+
+/* Position and style the close button (top right corner) */
+.colaps_settings .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  background-color: AliceBlue;
+}
+
+/*-------------------------------------------------------------------------------------------------------*/
+
 </style>
 <script src ="code.js">
 </script>
-		<center><h1 id="title">Math Image Generator v0.9.5</h1>
-		Designed by Wish Lin 2022<p id = 'date'></p>
-		<a href="help.html" target="_blank">Help</a>&nbsp;&nbsp;&nbsp;<a href="log.txt" target="_blank">Log</a></center>
-		<br>Upload program:<input type="file" id="fileselect">Save program:<input id="filename" type="text" value='program1'>.txt <button id = "savefile">Save program</button>&nbsp;&nbsp;&nbsp;&nbsp;<input id="imagename" type="text" value='pic1'>.png <button id = "saveimage">Save image</button><br>
-		<div id = "canvas_cont" width="700" height="400" style="float:left; margin:10px">
+		<center><h1 id="title">Math Image Generator v0.9.6</h1>
+		Designed by Wish Lin 2022<p id = 'date'></p></center>
+		<!--"File" side panel-->
+		<button onclick="colaps_file_open()">&#9776; File</button>
+		<div id="colaps_file" class="colaps_file">
+		<a href="javascript:void(0)" class="closebtn" onclick="colaps_file_close()">&times;</a>
+		Upload program:<br><input type="file" id="fileselect"><br><br>
+		Save program:<br><input id="filename" type="text" value='program1'>.txt<br><button id = "savefile">Save</button><br><br>
+		Save image:<br><input id="imagename" type="text" value='pic1'>.png<br><button id = "saveimage">Save</button><br>
+		</div>
+		<!--"File" side panel-->
+		<!--"Help" side panel-->
+		<button onclick="colaps_help_open()">&#9776; Help</button>
+		<div id="colaps_help" class="colaps_help">
+		<a href="javascript:void(0)" class="closebtn" onclick="colaps_help_close()">&times;</a>
+		<a href="help.html" target="_blank" style="font-size: 20px;">-Help-</a><br>
+		<a href="log.txt" target="_blank" style="font-size: 20px;">-Log-</a><br>
+		</div>
+		<!--"Help" side panel-->
+		<!--"Settings" side panel-->
+		<button onclick="colaps_settings_open()">&#9776; Settings</button><br>
+		<div id="colaps_settings" class="colaps_settings">
+		<a href="javascript:void(0)" class="closebtn" onclick="colaps_settings_close()">&times;</a>
+		Textarea font size: <button onclick="textbox_font_smaller()">&#8722;</button> <p id = "curfontsize"></p> <button onclick="textbox_font_bigger()">&#43;</button><br>
+		</div>
+		<!--"Settings" side panel-->
+		<div id = "canvas_cont" width="700" height="400" style="float:left;  margin:10px;" >
 			<canvas id="myCanvas" width="700" height="400" style="border:1px solid black;">
 			</canvas>
 		</div>
-		<div style="width: 300px; float:left; height:100px; margin:10px">
-			<p id = "display1"></p>
-			<textarea id="input" rows="20" cols="55"></textarea>
-			<button id = "Run" style="float: right;">Run</button>
+		<div id = "inputzone" style="width: 500px; float:left; height:100px; margin:10px">
+			<textarea id="input" rows="20" cols="55" style="font-size: 15px;"></textarea>
+			<input id="autofill_inp" type="text"></input>
+			<button id = "autofill_exe" onclick = "autofill()">Insert</button>
+			<button id = "Run">Run</button>
 		</div>
     </body>
 </html>

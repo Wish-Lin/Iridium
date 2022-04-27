@@ -1,14 +1,16 @@
-write ezplot_polar help
-
 mark area between functions using integral method and many vertical lines
 input function without the use of "" (toString()?)
-inprove ezplot() dotline mode, 用畫一區不畫一區的方式來實作。
 add save notifier when loading file with stuff already present
-function parameter hinter
+
+Think of a good name!!!
+Make an About page for the engine.
+
 
 example in "help" can link to an actual example for people to try on. //might not be necessary if "manual" is well made.
 label with different alignment settings
+label that can do linebreak
 A real circle function that uses parametric or polar curves as definiton.
 Add dotted line option to ALL geometry functions.
 
 Ordinary differential equations
+
