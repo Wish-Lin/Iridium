@@ -2,6 +2,8 @@
 function _isnat(num){         // Check if input is natural number. [SYSTEM FUNC]
 	if(num > 0 && Number.isInteger(num))
 		return true;
+	else if(Math.abs(num-Math.round(num)) <= 0.0000001 && num > 0) //float error compensation.
+		return true;
 	else
 		return false;
 }
@@ -205,19 +207,20 @@ function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic u
 	ctx.setLineDash([]);  //clear out dotline settings
 	ctx.strokeStyle = color;
 	ctx.lineWidth = width;
-	ctx.lineCap = "round";	
+	ctx.lineCap = "round";
 	if(!_isnat((end-start)/increment+1)){   
 		alert("ezplot increment error");
 	}
 	else{
-		var x = new Array((end-start)/increment+1);
-		var y = new Array((end-start)/increment+1);
-		for(var i = 0;i<(end-start)/increment+1;i++){  //the function is being plotted using many,many line segments
+		var point_count = Math.round((end-start)/increment+1);
+		var x = new Array(point_count);
+		var y = new Array(point_count);
+		for(var i = 0;i<point_count;i++){  //the function is being plotted using many,many line segments
 			x[i] = start+increment*i;  //generate x coord list
 			eval(func);                //generate y coord list (y[i] = f(x[i]))
 		}
 		if(dash == null || space == null){  //solid line mode
-			for(var i = 0;i<(end-start)/increment+1;i++){            //#For some reason, drawing as one consecutive line results in bad resolution.
+			for(var i = 0;i<point_count;i++){            //#For some reason, drawing as one consecutive line results in bad resolution.
 				ctx.beginPath();
 				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
 				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
@@ -228,7 +231,7 @@ function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic u
 		else{ //dotted line mode
 		ctx.lineCap = "butt";	
 			var count = 0;
-			for(var i = 0;i<(end-start)/increment+1;i++){
+			for(var i = 0;i<point_count;i++){
 				ctx.beginPath();
 				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
 				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
@@ -259,20 +262,21 @@ function ezplot_polar(func,start,end,width,color,increment,dash,space){ //plot b
 		alert("ezplot_polar increment error");
 	}
 	else{
-		var t = new Array((end-start)/increment+1);
-		var r = new Array((end-start)/increment+1);
-		var x = new Array((end-start)/increment+1);
-		var y = new Array((end-start)/increment+1);
-		for(var i = 0;i<(end-start)/increment+1;i++){  //the function is being plotted using many,many line segments
+		var point_count = Math.round((end-start)/increment+1);
+		var t = new Array(point_count);
+		var r = new Array(point_count);
+		var x = new Array(point_count);
+		var y = new Array(point_count);
+		for(var i = 0;i<point_count;i++){  //the function is being plotted using many,many line segments
 			t[i] = start+increment*i;  //generate t coord list
 			eval(func);                //generate r coord list (r[i] = f(t[i]))
 		}
-		for(var i = 0;i<(end-start)/increment+1;i++){  //translate(r,theta) into (x,y)
+		for(var i = 0;i<point_count;i++){  //translate(r,theta) into (x,y)
 			x[i] = r[i]*Math.cos(t[i]);
 			y[i] = r[i]*Math.sin(t[i]);
 		}
 		if(dash == null || space == null){  //solid line mode 
-			for(var i = 0;i<(end-start)/increment+1;i++){       //#For some reason, drawing as one consecutive line results in bad resolution.
+			for(var i = 0;i<point_count;i++){       //#For some reason, drawing as one consecutive line results in bad resolution.
 				ctx.beginPath();
 				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
 				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
@@ -282,7 +286,7 @@ function ezplot_polar(func,start,end,width,color,increment,dash,space){ //plot b
 		}
 		else{ //dotted line mode
 			var count = 0;
-			for(var i = 0;i<(end-start)/increment+1;i++){
+			for(var i = 0;i<point_count;i++){
 				ctx.beginPath();
 				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
 				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
@@ -313,20 +317,21 @@ function ezplot_param(func_x,func_y,start,end,width,color,increment,dash,space){
 	ctx.strokeStyle = color;
 	ctx.lineWidth = width;
 	ctx.lineCap = "round";	
-	if(!_isnat((end-start)/increment+1)){   
+	if(!_isnat((end-start)/increment+1)){
 		alert("ezplot_param increment error");
 	}
 	else{
-		var t = new Array((end-start)/increment+1);
-		var x = new Array((end-start)/increment+1);
-		var y = new Array((end-start)/increment+1);
-		for(var i = 0;i<(end-start)/increment+1;i++){  //the function is being plotted using many,many line segments
+		var point_count = Math.round((end-start)/increment+1);
+		var t = new Array(point_count);
+		var x = new Array(point_count);
+		var y = new Array(point_count);
+		for(var i = 0;i<point_count;i++){  //the function is being plotted using many,many line segments
 			t[i] = start+increment*i;  //generate t coord list
 			eval(func_x);                //generate x coord list (x[i] = fx(t[i]))
 			eval(func_y);                //generate x coord list (y[i] = fy(t[i]))
 		}
 		if(dash == null || space == null){  //solid line mode
-			for(var i = 0;i<(end-start)/increment+1;i++){     //#For some reason, drawing as one consecutive line results in bad resolution.
+			for(var i = 0;i<point_count;i++){     //#For some reason, drawing as one consecutive line results in bad resolution.
 				ctx.beginPath();
 				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
 				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
@@ -336,7 +341,7 @@ function ezplot_param(func_x,func_y,start,end,width,color,increment,dash,space){
 		}
 		else{ //dotted line mode
 			var count = 0;
-			for(var i = 0;i<(end-start)/increment+1;i++){
+			for(var i = 0;i<point_count;i++){
 				ctx.beginPath();
 				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
 				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
@@ -392,16 +397,87 @@ function triangle(x1,y1,x2,y2,x3,y3,linewidth,color,fill){//(real,real,real,real
 	else if(fill == true)
 		ctx.fill();
 }
-function beta_fo_ODE(func,x_known,y_known,start,end,increment,method,width,color,dash,space){
-	
+function foh_ode_euler(p_x,q_x,x0,y0,start,end,increment,width,color){ //numerically plot basic first order homogenous ODE using Euler's method. ("string","string",real,real,real,real,real,real,"string") [USER FUNC]
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	ctx.setLineDash([]);  //clear out dotline settings
+	ctx.strokeStyle = color;
+	ctx.lineWidth = width;
+	ctx.lineCap = "round";
+	if(!_isnat((end-start)/increment+1) || !_isnat((end-x0)/increment+1) || !_isnat((x0-start)/increment+1)){
+		alert("foh_ode_euler increment error");
+	}
+	else{ 
+		//----process p(x) argument----------
+		p_x__r = p_x.replace(/x/g, "x__r[i]");  // x -> x[i] (right side use)
+		p_x__l = p_x.replace(/x/g, "x__l[i]");  // x -> x[i] (left side use)
+		//----process q(x) argument----------
+		q_x__r = q_x.replace(/x/g, "x__r[i]");  // x -> x[i] (right side use)
+		q_x__l = q_x.replace(/x/g, "x__l[i]");  // x -> x[i] (left side use)
+		//---------------------------------------------
+		if(end > x0){ //right side
+			var cmd = "y_prime__r[i] = ("+q_x__r+")-("+p_x__r+")*(y__r[i]);";           // ##y'[n] = q_x[n]-p_x[n]*y[n]## ->  y' = q(x) - p(x)y   //Euler's method related argument
+			console.log(cmd);
+			//----process input function argument----------
+			var point_count__r = Math.round((end-x0)/increment+1);
+			var x__r = new Array(point_count__r);
+			var y__r = new Array(point_count__r);
+			var y_prime__r = new Array(point_count__r);
+			x__r[0] = x0;
+			for(var i = 0;i<point_count__r;i++){ //generate x coord list
+				x__r[i] = x0+increment*i;     											//from center to right
+			}
+			y__r[0] = y0;
+			for(var i = 0;i<point_count__r;i++){ //generate y coord list
+				eval(cmd);
+				y__r[i+1] = y__r[i]+increment*y_prime__r[i];               			 //Euler's method related argument
+			}
+			for(var i = 0;i<point_count__r;i++){            						 //#For some reason, drawing as one consecutive line results in bad resolution.
+				ctx.beginPath();
+				ctx.moveTo(_real2pix_x(x__r[i]),_real2pix_y(y__r[i]));
+				ctx.lineTo(_real2pix_x(x__r[i+1]),_real2pix_y(y__r[i+1]));
+				ctx.stroke();
+				ctx.closePath();
+			}
+		}
+		//---------------------------------------------
+		if(start < x0){ //left side
+			var cmd = "y_prime__l[i] = ("+q_x__l+")-("+p_x__l+")*(y__l[i]);";           // ##y'[n] = q_x[n]-p_x[n]*y[n]## ->  y' = q(x) - p(x)y   //Euler's method related argument
+			console.log(cmd);
+			//----process input function argument----------
+			var point_count__l = Math.round((x0-start)/increment+1);
+			var x__l = new Array(point_count__l);
+			var y__l = new Array(point_count__l);
+			var y_prime__l = new Array(point_count__l);
+			x__l[0] = x0;
+			for(var i = 0;i<point_count__l;i++){ //generate x coord list
+				x__l[i] = x0-increment*i;                                             //from center to left
+			}
+			y__l[0] = y0;
+			for(var i = 0;i<point_count__l;i++){ //generate y coord list
+				eval(cmd);
+				y__l[i+1] = y__l[i]-increment*y_prime__l[i];               			 //Euler's method related argument
+			}
+			for(var i = 0;i<point_count__l;i++){            						 //#For some reason, drawing as one consecutive line results in bad resolution.
+				ctx.beginPath();
+				ctx.moveTo(_real2pix_x(x__l[i]),_real2pix_y(y__l[i]));
+				ctx.lineTo(_real2pix_x(x__l[i+1]),_real2pix_y(y__l[i+1]));
+				ctx.stroke();
+				ctx.closePath();
+			}
+		}
+		
+	}
 }
+
+
 //------↓↓↓↓↓↓↓↓Mathematical constant and function declare zone↓↓↓↓↓↓↓↓-------------------
 const PI = 3.1415926535;              //π
 const E = 2.7182818284;               //Euler's number
-const GOLD = 1.6180339887;       //Golden ratio
-const SLIVER = 2.4142135623;     //Sliver ratio
-const BRONZE = 3.3027756377;     //Bronze ratio
-const GAMMA = 0.5772156649       //Euler-Mascheroni constant
+const GOLD = 1.61803;       //Golden ratio
+const SLIVER = 2.41421;     //Sliver ratio
+const BRONZE = 3.30277;     //Bronze ratio
+const GAMMA = 0.57721;       //Euler-Mascheroni constant
 function sin(x){           
 	return Math.sin(x);
 }
@@ -531,11 +607,12 @@ window.onload = function(){
 		m = n.getMonth() + 1;
 		d = n.getDate();
 		document.getElementById("date").innerHTML = y + "/" + m + "/" + d;      //Automatic display date
+		document.getElementById("year").innerHTML = y;      //Automatic display year
 		document.getElementById("curfontsize").innerHTML = document.getElementById("input").style.fontSize;      //Current textarea font size display
 		
 		document.getElementById("Run").addEventListener("click", function(){ 
-			program = document.getElementById("input").value;
-			eval(program);
+			var script = document.getElementById("input").value;
+			eval(script);
 		}); 
 		document.getElementById('fileselect').addEventListener('input', function(){
             
@@ -559,7 +636,7 @@ window.onload = function(){
 		});
 }
 window.onerror = function(e){
-  alert("Script Error. Press F12 for more details");
+	alert("Script Error. Press F12 for more details");
 }
 //-------------------------Collapsable side panel from W3School(file)-------
 function colaps_file_open() {
@@ -585,6 +662,14 @@ function colaps_settings_close() {
   document.getElementById("colaps_settings").style.width = "0px";
 }
 //-------------------------Collapsable side panel from W3School(settings)-------
+//-------------------------Collapsable side panel from W3School(other)-------
+function colaps_other_open() {
+  document.getElementById("colaps_other").style.width = "280px";
+}
+function colaps_other_close() {
+  document.getElementById("colaps_other").style.width = "0px";
+}
+//-------------------------Collapsable side panel from W3School(other)-------
 //-------------------------Textarea font size management-------
 function textbox_font_bigger(){
 	var newsize = document.getElementById("input").style.fontSize.slice(0, -2); //npx -> n
@@ -606,7 +691,6 @@ function textbox_font_smaller(){
 //-------------------------Autofill----------------------------
 function autofill(){
 	var input = document.getElementById("autofill_inp").value;
-	document.getElementById("autofill_inp").value = null;
 	//-----Brute force start------------------------------
 	if(input == "clear")
 		document.getElementById("input").value += "clear();";
@@ -640,7 +724,9 @@ function autofill(){
 		document.getElementById("input").value += "triangle(x1,y1,x2,y2,x3,y3,linewidth,color,fill);";
 	else if(input == "transparency")
 		document.getElementById("input").value += "transparency(percentage);";
+	else if(input == "foh_ode_euler")
+		document.getElementById("input").value += "foh_ode_euler(p_x,q_x,x0,y0,start,end,increment,width,color);";
 	else
-		alert("Function insert error: not a supported function");
+		alert("Insert error: not a supported function");
 }
 //-------------------------Autofill----------------------------

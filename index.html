@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><title>Math Image Generator</title>
+<head><title>Iridium</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon" / >
 </head>
 <body>
@@ -8,7 +8,7 @@
 #title{
   font-size: 30px;
 }
-#curfontsize{
+#curfontsize, #year{
   display: inline;
 }
 #Run, #autofill_exe{
@@ -106,17 +106,46 @@
 
 /*-------------------------------------------------------------------------------------------------------*/
 
+/* The colaps_other menu */
+.colaps_other {
+  height: 220px; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the colaps_other */
+  background-color: AliceBlue;
+}
+
+.colaps_other a {
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  transition: 0.3s;
+}
+
+/* Position and style the close button (top right corner) */
+.colaps_other .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  background-color: AliceBlue;
+}
+
+/*-------------------------------------------------------------------------------------------------------*/
+
 </style>
 <script src ="code.js">
 </script>
-		<center><h1 id="title">Math Image Generator v0.9.6</h1>
-		Designed by Wish Lin 2022<p id = 'date'></p></center>
+		<center><h1 id="title">Iridium v0.9.7</h1>
+		Wish Lin <p id = "year"></p><p id = 'date'></p></center>
 		<!--"File" side panel-->
 		<button onclick="colaps_file_open()">&#9776; File</button>
 		<div id="colaps_file" class="colaps_file">
 		<a href="javascript:void(0)" class="closebtn" onclick="colaps_file_close()">&times;</a>
-		Upload program:<br><input type="file" id="fileselect"><br><br>
-		Save program:<br><input id="filename" type="text" value='program1'>.txt<br><button id = "savefile">Save</button><br><br>
+		Upload script:<br><input type="file" id="fileselect"><br><br>
+		Save script:<br><input id="filename" type="text" value='script1'>.txt<br><button id = "savefile">Save</button><br><br>
 		Save image:<br><input id="imagename" type="text" value='pic1'>.png<br><button id = "saveimage">Save</button><br>
 		</div>
 		<!--"File" side panel-->
@@ -129,12 +158,19 @@
 		</div>
 		<!--"Help" side panel-->
 		<!--"Settings" side panel-->
-		<button onclick="colaps_settings_open()">&#9776; Settings</button><br>
+		<button onclick="colaps_settings_open()">&#9776; Settings</button>
 		<div id="colaps_settings" class="colaps_settings">
 		<a href="javascript:void(0)" class="closebtn" onclick="colaps_settings_close()">&times;</a>
 		Textarea font size: <button onclick="textbox_font_smaller()">&#8722;</button> <p id = "curfontsize"></p> <button onclick="textbox_font_bigger()">&#43;</button><br>
 		</div>
 		<!--"Settings" side panel-->
+		<!--"Other" side panel-->
+		<button onclick="colaps_other_open()">&#9776; Other</button><br>
+		<div id="colaps_other" class="colaps_other">
+		<a href="javascript:void(0)" class="closebtn" onclick="colaps_other_close()">&times;</a>
+		currently blank
+		</div>
+		<!--"Other" side panel-->
 		<div id = "canvas_cont" width="700" height="400" style="float:left;  margin:10px;" >
 			<canvas id="myCanvas" width="700" height="400" style="border:1px solid black;">
 			</canvas>

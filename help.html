@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><title>Math Image Generator Help/Manual v0.9.6</title>
+<head><title>Iridium Help/Manual v0.9.7</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon" / >
 </head>
 <body>
@@ -11,15 +11,19 @@ window.onload = function(){
 		m = n.getMonth() + 1;
 		d = n.getDate();
 		document.getElementById("date").innerHTML = y + "/" + m + "/" + d;      //Automatic display date
+		document.getElementById("year").innerHTML = y;      //Automatic display year
 }
 </script>
 <style>
 .function{
 	font-size: 20px;
 }
+#year{
+	display: inline;
+}
 </style>
-	<center><h1 id="title">Help v0.9.6</h1>
-	Designed by Wish Lin 2022<p id = 'date'></p>          <!-- Automatic display date -->
+	<center><h1 id="title">Help v0.9.7</h1>
+	Wish Lin <p id = "year"></p><p id = 'date'></p>          <!-- Automatic display date -->
 	<!-- hyperlinks-->
 	<b>System command:</b>
 	<table border = '1'>
@@ -52,13 +56,14 @@ window.onload = function(){
 	<tr>
 	<td><a href="#tringle(x1,y1,x2,y2,x3,y3,w,c,f)">triangle</a></td>
 	<td><a href="#transparency(pct)">transparency</a></td>
+	<td><a href="#foh_ode_euler(p,q,x,y,s,e,i,w,c)">foh_ode_euler</a></td>
 	</tr>
 	</table>
 	<br>
 	<b>Supported math functions and constants</b>
 	<table border = '1'>
 	<tr>
-    <td><a href="#sup_func">v0.9.6</a></td>
+    <td><a href="#sup_func">v0.9.7</a></td>
 	</tr>
 	</table>
 	<!-- hyperlinks-->
@@ -184,6 +189,24 @@ window.onload = function(){
 		Example: ezplot_polar("r = 1+2*sin(t)",0,2*PI,1,"red",PI/180);
 	</div>
 	<hr>
+	<div class = "function" id="foh_ode_euler(p,q,x,y,s,e,i,w,c)">
+		<b>foh_ode_euler(p_x,q_x,x0,y0,start,end,increment,width,color): numerically plot basic first order homogenous ODE using Euler's method. A little Javascript basics IS required.</b><br>
+		<br>
+		<b>Format: ("String","String",Real,Real,Real,Real,Real,Real,"String")</b><br>
+		<br>
+		
+		<b>This function ONLY accepts first order ODE in the form y' + p(x)y = q(x) which initial condition (x0,y0)</b><br>
+		<br>
+		p(x),q(x): as mentioned above.<br>
+		x0,y0: initial condition of the equation.<br>
+		start,end: start and end of the region you would like to plot. start&lt;x0&lt;end. 
+		increment: the step size you would like to take using Euler's method. (end-start)/increment must be a positive integer(natutal number).
+		width: width of the drawn solution in pixels<br>
+		color: color of the drawn solution.<a href="https://www.c-sharpcorner.com/UploadFile/da6585/color-name-in-html5/" target="_blank">HTML5 color name</a><br>
+		<br>
+		Example: foh_ode_euler("cos(x)","pow(E,x)",0,0,-10,10,0.01,1,"red");
+	</div>
+	<hr>
 	<div class = "function" id="label(s,x,y,c,f)">
 		<b>label(value,x,y,color,(font)): Print text on canvas</b><br>
 		<br>
@@ -254,7 +277,7 @@ window.onload = function(){
 	<div class = "function" id="sup_func">
 		<b>Supported math functions and constants:</b><br>
 		<br>
-		<b>As of v0.9.6, the following functions and constants are supported:</b><br>
+		<b>As of v0.9.7, the following functions and constants are supported:</b><br>
 		<br>
 		Constants:
 		<table border = '1'>

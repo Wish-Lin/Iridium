@@ -51,3 +51,10 @@ v0.9.6: (release date: 2022/4/27)
 --[Major]Textarea font size now customizable inside a collapsable left side panel "Settings".
 --[Major]Automatic function filler completed, which makes writing programs much,much easier than before.
 --[New Function]transparency() beta test.
+
+
+v0.9.7:
+
+--[Minor]_isnat() bug fix (float/float error, which produces results like 5.000000000007, but in reality the result should be exactly 5).
+--[IMPORTANT]The program now has a formal name "Iridium".
+--[New Function]foh_ode_euler() beta test.

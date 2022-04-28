@@ -1,0 +1,21 @@
+//上、下標字元: ₀₁₂₃₄₅₆₇₈₉⁰¹²³⁴⁵⁶⁷⁸⁹
+
+//折射定律示意圖
+
+clear();  //清空畫布
+setcanvas(600,600,"white"); //設定600x600的白色畫布
+ezsetgrid(10,2,"gray",1,0); //初始化坐標軸
+//------------------------------------------------
+transparency(30);
+rectangle(-10,-10,20,10,3,"blue",1);
+transparency(100);
+label("Water: n₂ = 1.333",2,-5,"black","italic 30px serif"); 
+label("Air: n₁ = 1",-7.5,4,"black","italic 30px serif");
+label("Snell's Law: n₁sinθ₁ = n₂sinθ₂",-5.5,8,"black","italic 30px serif");
+line_pp(0,0,10,10,3,"round","red");
+line_pp(0,0,-6.272,-10,3,"round","red");
+label("θ₁",0.4,1.5,"black","italic 30px serif");
+label("θ₂",-1,-2.5,"black","italic 30px serif");
+label("Normal Line",-1.5,5.5,"gray","italic 20px serif");
+dotline_pp(0,5,0,-5,3,"round","gray",4,7);
+rectangle(-5.9,7.5,12.5,1.7,3,"DarkSalmon",0);

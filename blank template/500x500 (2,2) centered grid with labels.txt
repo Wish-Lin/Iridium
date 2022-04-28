@@ -1,0 +1,7 @@
+clear();  //清空畫布
+setcanvas(500,500,"white"); //設定600x600的白色畫布
+ezsetgrid(2,2,"gray",1,1); //初始化坐標軸
+label("x",1.85,-0.15,"gray","italic 20px serif");  //x
+label("y",-0.15,1.85,"gray","italic 20px serif");  //y
+label("O",-0.2,-0.2,"gray","italic 25px serif"); //O
+//------------------------------------------------

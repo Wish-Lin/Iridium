@@ -1,16 +1,26 @@
 mark area between functions using integral method and many vertical lines
+arc() option, along with true circle(). A real circle function that uses parametric or polar curves as definiton.
 input function without the use of "" (toString()?)
 add save notifier when loading file with stuff already present
+use some sort of button combination for "running script"
 
-Think of a good name!!!
+Think of a good name!!!         (Iridium)
 Make an About page for the engine.
+
+fix ezplot_param increment setting
 
 
 example in "help" can link to an actual example for people to try on. //might not be necessary if "manual" is well made.
 label with different alignment settings
 label that can do linebreak
-A real circle function that uses parametric or polar curves as definiton.
 Add dotted line option to ALL geometry functions.
 
 Ordinary differential equations
 
+
+20x20 rename to 10x10.
+
+
+//Watch out,these might be future bugs
+
+float/float error compensation implemented from v0.9.7 onwards
