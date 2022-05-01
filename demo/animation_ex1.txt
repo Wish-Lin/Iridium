@@ -1,0 +1,22 @@
+var encoder = new GIFEncoder();  //jsgif gif encoder
+encoder.setRepeat(1);
+encoder.setDelay(100);
+encoder.start();
+
+for(var tmp = 0;tmp <= 40;tmp++){
+
+clear();  //清空畫布
+setcanvas(600,600,"white"); //設定600x600的白色畫布
+ezsetgrid(4,2,"gray",1,1); //初始化坐標軸
+label("x",9.4,-0.6,"gray","italic 20px serif");  //x
+label("y",-0.6,9.4,"gray","italic 20px serif");  //y
+label("O",-0.9,-0.9,"gray","italic 25px serif"); //O
+//------------------------------------------------
+label("r = 1+2sin(1.5θ)",-3.5,3.2,"red","italic 30px serif");
+label("θ = [0,"+(tmp/10).toString()+"π]",-3,2.2,"red","italic 30px serif");
+ezplot_polar("r = 1+2*sin(1.5*t)",0,(tmp/10)*PI,1,"red",PI/180);
+encoder.addFrame(document.getElementById("myCanvas").getContext("2d"));
+console.log(tmp);
+}
+encoder.finish();
+encoder.download("download6.gif");

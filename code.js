@@ -160,7 +160,7 @@ function transparency(percentage){ //change drawing transparency (real) [USER FU
 		ctx.globalAlpha = percentage/100;
 	}
 }
-function ez_circle(x,y,radius,width,color,fill){ //Draw a hollow or filled circle (real,real,real,real,"string",bool) [USER FUNC]
+function ez_circle(x,y,radius,width,color,fill){ //Draw a hollow or filled circle ON EZ mode(real,real,real,real,"string",bool) [USER FUNC]
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
 	ctx.strokeStyle = color;
@@ -417,7 +417,7 @@ function foh_ode_euler(p_x,q_x,x0,y0,start,end,increment,width,color){ //numeric
 		//---------------------------------------------
 		if(end > x0){ //right side
 			var cmd = "y_prime__r[i] = ("+q_x__r+")-("+p_x__r+")*(y__r[i]);";           // ##y'[n] = q_x[n]-p_x[n]*y[n]## ->  y' = q(x) - p(x)y   //Euler's method related argument
-			console.log(cmd);
+			//console.log(cmd);
 			//----process input function argument----------
 			var point_count__r = Math.round((end-x0)/increment+1);
 			var x__r = new Array(point_count__r);
@@ -443,7 +443,7 @@ function foh_ode_euler(p_x,q_x,x0,y0,start,end,increment,width,color){ //numeric
 		//---------------------------------------------
 		if(start < x0){ //left side
 			var cmd = "y_prime__l[i] = ("+q_x__l+")-("+p_x__l+")*(y__l[i]);";           // ##y'[n] = q_x[n]-p_x[n]*y[n]## ->  y' = q(x) - p(x)y   //Euler's method related argument
-			console.log(cmd);
+			//console.log(cmd);
 			//----process input function argument----------
 			var point_count__l = Math.round((x0-start)/increment+1);
 			var x__l = new Array(point_count__l);
@@ -469,7 +469,11 @@ function foh_ode_euler(p_x,q_x,x0,y0,start,end,increment,width,color){ //numeric
 		
 	}
 }
-
+function circle(x,y,radius,width,color){ //Draw circle [USER FUNC] 
+	func_x = "x = "+x.toString()+"+"+radius.toString()+"*cos(t)";
+	func_y = "y = "+y.toString()+"+"+radius.toString()+"*sin(t)";
+	eval(ezplot_param(func_x,func_y,0,2*PI,width,color,PI/45));
+}
 
 //------↓↓↓↓↓↓↓↓Mathematical constant and function declare zone↓↓↓↓↓↓↓↓-------------------
 const PI = 3.1415926535;              //π
@@ -586,11 +590,6 @@ function sgn(x){
 
 
 
-
-
-
-
-
 //------↑↑↑↑↑↑↑↑Mathematical constant and function declare zone↑↑↑↑↑↑↑↑-------------------
 //------↓↓↓↓↓↓↓↓Global variable declare zone↓↓↓↓↓↓↓↓-------------------
 var _ezsetgrid = false;
@@ -604,9 +603,6 @@ window.onload = function(){
 		
 		n =  new Date();
 		y = n.getFullYear();
-		m = n.getMonth() + 1;
-		d = n.getDate();
-		document.getElementById("date").innerHTML = y + "/" + m + "/" + d;      //Automatic display date
 		document.getElementById("year").innerHTML = y;      //Automatic display year
 		document.getElementById("curfontsize").innerHTML = document.getElementById("input").style.fontSize;      //Current textarea font size display
 		
@@ -674,7 +670,7 @@ function colaps_other_close() {
 function textbox_font_bigger(){
 	var newsize = document.getElementById("input").style.fontSize.slice(0, -2); //npx -> n
 	newsize = (parseInt(newsize,10)+1).toString() + "px";                       //n -> n+1px
-	console.log(newsize);
+	//console.log(newsize);
 	document.getElementById("input").style.fontSize = newsize;
 	document.getElementById("curfontsize").innerHTML = newsize;
 }
@@ -682,7 +678,7 @@ function textbox_font_smaller(){
 	var newsize = document.getElementById("input").style.fontSize.slice(0, -2); //npx -> n
 	if(parseInt(newsize,10) > 12){                                              //always >=12px
 		newsize = (parseInt(newsize,10)-1).toString() + "px";                   //n -> n-1px
-			console.log(newsize);
+			//console.log(newsize);
 		document.getElementById("input").style.fontSize = newsize;
 		document.getElementById("curfontsize").innerHTML = newsize;
 	}

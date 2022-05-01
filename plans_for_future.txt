@@ -1,11 +1,33 @@
+v0.9.8
+function & symbol inserter pop_up
+solve extreme value issue when plotting
+
+
+
+v0.9.9
+setgrid()
+
+make about page
+make blank_template link_page(pop_up)
+make manual page
+make reference page
+make demo link_page(pop_up)
+add function inserter(pop_up or multi-layered list)
+add special character inserter(pop_up)
+
+real ellipse
+arc
+hyperbola
+real circle
+
+---------------------------------------------------------------------------------------------------------------------------
+
+
 mark area between functions using integral method and many vertical lines
 arc() option, along with true circle(). A real circle function that uses parametric or polar curves as definiton.
 input function without the use of "" (toString()?)
 add save notifier when loading file with stuff already present
 use some sort of button combination for "running script"
-
-Think of a good name!!!         (Iridium)
-Make an About page for the engine.
 
 fix ezplot_param increment setting
 
@@ -18,9 +40,5 @@ Add dotted line option to ALL geometry functions.
 Ordinary differential equations
 
 
-20x20 rename to 10x10.
-
-
 //Watch out,these might be future bugs
-
-float/float error compensation implemented from v0.9.7 onwards
+	float/float error compensation implemented from v0.9.7 onwards

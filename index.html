@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head><title>Iridium</title>
+<head><title>Iridium Main Page</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon" / >
 </head>
-<body>
+<body style="background-color:Ivory">
 <style>
 #title{
   font-size: 30px;
@@ -21,6 +21,7 @@
 
 /* The colaps_file menu */
 .colaps_file {
+  font-family: Consolas; 
   height: 220px; /* Specify a height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
@@ -32,6 +33,7 @@
 .colaps_file a {
   text-decoration: none;
   font-size: 25px;
+  font-family: Consolas; 
   color: black;
   transition: 0.3s;
 }
@@ -50,6 +52,7 @@
 
 /* The colaps_help menu */
 .colaps_help {
+  font-family: Consolas; 
   height: 220px; /* Specify a height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
@@ -61,6 +64,7 @@
 .colaps_help a {
   text-decoration: none;
   font-size: 25px;
+  font-family: Consolas; 
   color: black;
   transition: 0.3s;
 }
@@ -79,6 +83,8 @@
 
 /* The colaps_settings menu */
 .colaps_settings {
+  font-family: Consolas; 
+  font-size: 13px;
   height: 220px; /* Specify a height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
@@ -89,7 +95,8 @@
 
 .colaps_settings a {
   text-decoration: none;
-  font-size: 25px;
+  font-size: 20px;
+  font-family: Consolas; 
   color: black;
   transition: 0.3s;
 }
@@ -108,6 +115,7 @@
 
 /* The colaps_other menu */
 .colaps_other {
+  font-family: Consolas; 
   height: 220px; /* Specify a height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
@@ -119,6 +127,7 @@
 .colaps_other a {
   text-decoration: none;
   font-size: 25px;
+  font-family: Consolas; 
   color: black;
   transition: 0.3s;
 }
@@ -136,10 +145,15 @@
 /*-------------------------------------------------------------------------------------------------------*/
 
 </style>
-<script src ="code.js">
-</script>
-		<center><h1 id="title">Iridium v0.9.7</h1>
-		Wish Lin <p id = "year"></p><p id = 'date'></p></center>
+<script src ="code.js"></script>
+<script src="jsgif/LZWEncoder.js"></script>  <!-- jsgif GIFEncoder by antimatter15-->
+<script src="jsgif/NeuQuant.js"></script>    <!-- jsgif GIFEncoder by antimatter15-->
+<script src="jsgif/GIFEncoder.js"></script>  <!-- jsgif GIFEncoder by antimatter15-->
+		<center><h1 id="title">Iridium v0.9.8</h1>
+		by Wish Lin <p id = "year"></p><br>
+		<br>
+		<a href="https://hackmd.io/@Wish-Lin/SJKUYAdBq" target="_blank" style="font: 15px serif;">Acknowledgement</a><br>
+		</center>
 		<!--"File" side panel-->
 		<button onclick="colaps_file_open()">&#9776; File</button>
 		<div id="colaps_file" class="colaps_file">
@@ -153,8 +167,7 @@
 		<button onclick="colaps_help_open()">&#9776; Help</button>
 		<div id="colaps_help" class="colaps_help">
 		<a href="javascript:void(0)" class="closebtn" onclick="colaps_help_close()">&times;</a>
-		<a href="help.html" target="_blank" style="font-size: 20px;">-Help-</a><br>
-		<a href="log.txt" target="_blank" style="font-size: 20px;">-Log-</a><br>
+		<a href="https://hackmd.io/@Wish-Lin/BkkNjgKr5" target="_blank" style="font: 15px consolas;">Scripting commands</a><br>
 		</div>
 		<!--"Help" side panel-->
 		<!--"Settings" side panel-->
@@ -168,11 +181,11 @@
 		<button onclick="colaps_other_open()">&#9776; Other</button><br>
 		<div id="colaps_other" class="colaps_other">
 		<a href="javascript:void(0)" class="closebtn" onclick="colaps_other_close()">&times;</a>
-		currently blank
+		<a href="log.txt" target="_blank" style="font: 25px consolas;">Log</a><br>
 		</div>
 		<!--"Other" side panel-->
 		<div id = "canvas_cont" width="700" height="400" style="float:left;  margin:10px;" >
-			<canvas id="myCanvas" width="700" height="400" style="border:1px solid black;">
+			<canvas id="myCanvas" width="700" height="400" style="border:1px solid black; background-color: white;">
 			</canvas>
 		</div>
 		<div id = "inputzone" style="width: 500px; float:left; height:100px; margin:10px">
