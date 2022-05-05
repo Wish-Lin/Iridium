@@ -1,0 +1,18 @@
+clear();  //清空畫布
+setcanvas(600,600,"white"); //設定600x600的白色畫布
+ezsetgrid(10,2,"gray",1,0); //初始化坐標軸
+//------------------------------------------------
+arc(0,0,6,3,"gray",-30,30);
+rectangle(0,0,0.1,2,1,"red",1);
+line_pp(-10,0,10,0,1.5,"round","black");
+dotline_pp(0.1,2,6,0,1.5,"round","black",3,6);
+dotline_pp(-3,-3,6,0,1.5,"round","black",3,6);
+dotline_pp(0.1,2,5.8,2,1.5,"round","black",3,6);
+dotline_pp(5.6,2,-2.2,-4,1.5,"round","black",3,6);
+transparency(50);
+rectangle(0.6,-1.8,0.1,1.8,1,"red",1);
+transparency(100);
+point(3,0,3,"blue");
+label("F",2.5,0.2,"blue","italic 20px serif");
+point(0.05,0,3,"blue");
+label("2F",-1,0.2,"blue","italic 20px serif");

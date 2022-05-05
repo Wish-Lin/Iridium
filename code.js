@@ -87,6 +87,10 @@ function ezsetgrid(xmax,linewidth,color,showtick,showaxis){ //(real,real,string,
 	var ymax = xmax*document.getElementById('canvas_cont').height/document.getElementById('canvas_cont').width;
 	_ezgrid_xhat = origin_x / xmax;
 	_ezgrid_yhat = _ezgrid_xhat;
+	_globalxmax = xmax;
+	__globalxmin = -xmax;
+	_globalymax = ymax;
+	__globalymin = -ymax;
 	_ezsetgrid = true;
 	_setgrid = false;
 	if(showaxis == true){
@@ -219,6 +223,18 @@ function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic u
 			x[i] = start+increment*i;  //generate x coord list
 			eval(func);                //generate y coord list (y[i] = f(x[i]))
 		}
+		for(var i = 0;i<point_count;i++){  //vertical asymptote prevention
+			if(y[i] > _globalymax && y[i+1] < _globalymin){
+				x[i+1] = "NaN";
+				y[i+1] = "NaN";
+				i++;
+			}
+			else if(y[i] < _globalymin && y[i+1] > _globalymax){
+				x[i+1] = "NaN";
+				y[i+1] = "NaN";
+				i++;
+			}
+		}
 		if(dash == null || space == null){  //solid line mode
 			for(var i = 0;i<point_count;i++){            //#For some reason, drawing as one consecutive line results in bad resolution.
 				ctx.beginPath();
@@ -226,6 +242,7 @@ function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic u
 				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
 				ctx.stroke();
 				ctx.closePath();
+				console.log(y[i]);
 			}
 		}
 		else{ //dotted line mode
@@ -474,6 +491,22 @@ function circle(x,y,radius,width,color){ //Draw circle [USER FUNC]
 	func_y = "y = "+y.toString()+"+"+radius.toString()+"*sin(t)";
 	eval(ezplot_param(func_x,func_y,0,2*PI,width,color,PI/45));
 }
+function arc(x,y,radius,width,color,start,end){ //Draw part of circle [USER FUNC]
+	if(Number.isInteger(start) && Number.isInteger(end) && start < end && start >= -360 && end <= 360){ 
+		func_x = "x = "+x.toString()+"+"+radius.toString()+"*cos(t)";
+		func_y = "y = "+y.toString()+"+"+radius.toString()+"*sin(t)";
+		eval(ezplot_param(func_x,func_y,PI*start/180,PI*end/180,width,color,PI/180));
+	}
+	else
+		alert("arc() error");
+}
+
+
+
+
+
+
+
 
 //------↓↓↓↓↓↓↓↓Mathematical constant and function declare zone↓↓↓↓↓↓↓↓-------------------
 const PI = 3.1415926535;              //π
@@ -594,6 +627,10 @@ function sgn(x){
 //------↓↓↓↓↓↓↓↓Global variable declare zone↓↓↓↓↓↓↓↓-------------------
 var _ezsetgrid = false;
 var _setgrid = false;
+var _globalxmax = 1;
+var _globalymax = 1;
+var _globalxmin = 1;
+var _globalymin = 1;
 var _ezgrid_xhat = 1;   //xhat for ezgrid related processing only
 var _ezgrid_yhat = 1;   //yhat for ezgrid related processing only
 //------↑↑↑↑↑↑↑↑Global variable declare zone↑↑↑↑↑↑↑↑-------------------
@@ -726,3 +763,13 @@ function autofill(){
 		alert("Insert error: not a supported function");
 }
 //-------------------------Autofill----------------------------
+//-------------------------Special character inserter----------------------------
+function insert_symbol(){
+	window.open("symbol_list.html", "_blank",'height=300,width=400,status=yes,top=150,left=250,toolbar=no,menubar=no,location=no');
+	
+}
+function typeInTextarea(newText, el = document.getElementById("input")) {
+  const [start, end] = [el.selectionStart, el.selectionEnd];
+  el.setRangeText(newText, start, end, 'select');
+}
+//-------------------------Special character inserter----------------------------

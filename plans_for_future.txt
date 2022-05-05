@@ -1,6 +1,5 @@
 v0.9.8
 function & symbol inserter pop_up
-solve extreme value issue when plotting
 
 
 
@@ -16,9 +15,7 @@ add function inserter(pop_up or multi-layered list)
 add special character inserter(pop_up)
 
 real ellipse
-arc
 hyperbola
-real circle
 
 ---------------------------------------------------------------------------------------------------------------------------
 
@@ -42,3 +39,7 @@ Ordinary differential equations
 
 //Watch out,these might be future bugs
 	float/float error compensation implemented from v0.9.7 onwards
+	
+	the bug of ezplot() drawing vertical "asymptotes" when plotting tan(x) and other similar functions is fixed by eliminating that line forcefully, so the
+	plotting will suck under those cases when the increment is too big now. A huge chunk of the function will be missing. from v0.9.8 onwards
+	

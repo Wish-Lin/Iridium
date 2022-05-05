@@ -1,0 +1,1 @@
+start chrome.exe  --disable-site-isolation-trials --disable-web-security --user-data-dir="C:\Documents

@@ -46,9 +46,9 @@ circles, which could be a problem when xhat and yhat can be set to different val
 v0.9.6: (release date: 2022/4/27)
 
 --[New Function]ezplot_param() beta test.
---[Major]Load program, save program and save image placed inside a collapsable left side panel "File".
---[Major]Help and Log placed inside a collapsable left side panel "Help".
---[Major]Textarea font size now customizable inside a collapsable left side panel "Settings".
+--[Major]Load program, save program and save image placed inside a collapsible left side panel "File".
+--[Major]Help and Log placed inside a collapsible left side panel "Help".
+--[Major]Textarea font size now customizable inside a collapsible left side panel "Settings".
 --[Major]Automatic function filler completed, which makes writing programs much,much easier than before.
 --[New Function]transparency() beta test.
 
@@ -58,9 +58,17 @@ v0.9.7: (release date: 2022/4/28)
 --[IMPORTANT]The program now has a formal name "Iridium".
 --[New Function]foh_ode_euler() beta test.
 
-v0.9.8:
---[Minor]set background color of all pages and subpages to "Ivory" except those made by HackMD.
+v0.9.8: (release date: 2022/5/1)
+--[Minor]set background color of all pages and subpages to "Ivory" except those hosted on HackMD.
 --[IMPORTANT]"jsgif" GIFEncoder library installed. Iridium can now make short GIF animations.
 --[Major]Acknowledgement.md finished and hosted externally using HackMD.
 --[Major]Scripting commands.md finished and hosted externally using HackMD.
 --[New Function]circle() beta test.
+--[Minor]"Help" renamed to "Scripting command" in left side panel "Help".
+--[Minor]Log moved into a new collapsible left side panel "Other".
+
+v0.9.9: 
+--[Minor]the bug of ezplot() drawing vertical "asymptotes" when plotting tan(x) and other similar functions is fixed.
+--[New Function]arc() beta test.
+--[IMPORTANT]Special character inserter beta test. Characters will be added gradually in the future. This is also the first pop-up window of Iridium.
+	Testing of pop-up windows require the "same-origin policy" on Chrome to be disabled.  
