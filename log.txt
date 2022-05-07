@@ -73,7 +73,12 @@ v0.9.9: (release date: 2022/5/5)
 --[IMPORTANT]Special character inserter beta test. Characters will be added gradually in the future. This is also the first pop-up window in Iridium.
 	To test the local pop-up windows, "Same-Origin Policy" on Chrome needs to be disabled.
 	
-v0.9.10:
+v0.9.10: (release date: 2022/5/7)
 --[New Function]drawimage() beta test. User can now import images(such as LaTEX equations or anything else) into the canvas.
 --[Minor]Default template will load and run automatically whenever page is refreshed.
 --[IMPORTANT]setgrid() completed. Users can now use Iridium with self-defined origin, xhat and yhat.
+
+v0.9.11: (release date: 2022/5/7)
+--[Minor]Refresh page warning added.
+--[IMPORTANT]Cursor Position Tool(CPT) beta test. Users can now get the coordinates on the canvas precisely using their cursor. This feature makes 
+	finding numerical solutions to equations and setting up indicators quicker and easier.

@@ -15,7 +15,7 @@ function clear(){             //clear the canvas and its transparency settings. 
 }
 function _real2pix_x(xcord){  // translate calculation result to drawable pixel positions. X coordinate only. [SYSTEM FUNC]
 	if(_ezsetgrid == true && _setgrid == false){   //ezsetgrid mode
-		var out = document.getElementById('canvas_cont').width/2 + _ezgrid_xhat*xcord;
+		var out = document.getElementById('canvas_cont').width/2 + _grid_xhat*xcord;
 		return out;
 	}
 	else if(_ezsetgrid == false && _setgrid == true){ //setgrid mode
@@ -25,7 +25,7 @@ function _real2pix_x(xcord){  // translate calculation result to drawable pixel 
 }
 function _real2pix_y(ycord){  // translate calculation result to drawable pixel positions. Y coordinate only. [SYSTEM FUNC]
 	if(_ezsetgrid == true && _setgrid == false){   //ezsetgrid mode
-		var out = document.getElementById('canvas_cont').height/2 - _ezgrid_yhat*ycord;
+		var out = document.getElementById('canvas_cont').height/2 - _grid_yhat*ycord;
 		return out;
 	}
 	else if(_ezsetgrid == false && _setgrid == true){ //setgrid mode
@@ -84,11 +84,11 @@ function setcanvas(width,height,color){ //(nat,nat,string)(width >= 50px, height
 	}
 }
 function ezsetgrid(xmax,linewidth,color,showtick,showaxis){ //(real,real,string,bool,bool) [USER FUNC]
-	var origin_x = document.getElementById('myCanvas').width / 2;
-	var origin_y = document.getElementById('myCanvas').height / 2;
+	_orig_x = document.getElementById('myCanvas').width / 2;
+	_orig_y = document.getElementById('myCanvas').height / 2;
 	var ymax = xmax*document.getElementById('myCanvas').height/document.getElementById('myCanvas').width;
-	_ezgrid_xhat = origin_x / xmax;
-	_ezgrid_yhat = _ezgrid_xhat;
+	_grid_xhat = _orig_x / xmax;
+	_grid_yhat = _orig_x / xmax;
 	_globalxmax = xmax;
 	__globalxmin = -xmax;
 	_globalymax = ymax;
@@ -101,11 +101,11 @@ function ezsetgrid(xmax,linewidth,color,showtick,showaxis){ //(real,real,string,
 		ctx.strokeStyle = color;
 		ctx.lineWidth = linewidth;
 		ctx.beginPath();
-		ctx.moveTo(0,origin_y);
-		ctx.lineTo(2*origin_x,origin_y);       
+		ctx.moveTo(0,_orig_y);
+		ctx.lineTo(2*_orig_x,_orig_y);       
 		ctx.stroke();                          //draw x axis
-		ctx.moveTo(origin_x,0);
-		ctx.lineTo(origin_x,2*origin_y);    
+		ctx.moveTo(_orig_x,0);
+		ctx.lineTo(_orig_x,2*_orig_y);    
 		ctx.stroke();                          //draw y axis
 		if(showtick == true){
 			for(var i = 1;i<xmax;i++){                           
@@ -220,7 +220,7 @@ function ez_circle(x,y,radius,width,color,fill){ //Draw a hollow or filled circl
 		ctx.fillStyle = color;
 		ctx.lineWidth = width;
 		ctx.beginPath();
-		ctx.arc(_real2pix_x(x),_real2pix_y(y),radius*_ezgrid_xhat, 0, 2 * Math.PI);
+		ctx.arc(_real2pix_x(x),_real2pix_y(y),radius*_grid_xhat, 0, 2 * Math.PI);
 		if(fill == false)
 			ctx.stroke();
 		else if(fill == true)
@@ -689,13 +689,12 @@ var _globalxmax = 1;
 var _globalymax = 1;
 var _globalxmin = 1;
 var _globalymin = 1;
-var _ezgrid_xhat = 1;   //xhat for ezgrid related processing only
-var _ezgrid_yhat = 1;   //yhat for ezgrid related processing only
-var _grid_xhat = 1;		//xhat for setgrid related processing only
-var _grid_yhat = 1;		//yhat for setgrid related processing only
-var _orig_x = 0;			//origin coordinate for setgrid related processing only
-var _orig_y = 0;			//origin coordinate for setgrid related processing only
+var _grid_xhat = 1;		  	//global xhat
+var _grid_yhat = 1;			//global yhat
+var _orig_x = 0;			//global origin x coordinate
+var _orig_y = 0;			//global origin y coordinate
 const default_template = "clear();  //clear canvas\nsetcanvas(600,600,\"white\"); //set 600x600 white canvas\nezsetgrid(10,2,\"gray\",1,1); //initialize coordinate\nlabel(\"x\",9.4,-0.6,\"gray\",\"italic 20px serif\");  //x\nlabel(\"y\",-0.6,9.4,\"gray\",\"italic 20px serif\");  //y\nlabel(\"O\",-0.9,-0.9,\"gray\",\"italic 25px serif\"); //O\nfor(var tmp = -9;tmp <=9;tmp++){\nline_pp(tmp,10,tmp,-10,0.3,\"round\",\"gray\");\nline_pp(-10,tmp,10,tmp,0.3,\"round\",\"gray\");\n}\n//------------------------------------------------\n";
+var print_curpos_enabled = false;					//This is for the cursor position tool
 //------↑↑↑↑↑↑↑↑Global variable declare zone↑↑↑↑↑↑↑↑-------------------
 
 
@@ -708,6 +707,13 @@ window.onload = function(){
 		document.getElementById("input").value = default_template;  //load default template
 		var script = document.getElementById("input").value;    	//run default template
 		eval(script);												//run default template
+		
+		dragElement(document.getElementById("curpos_display"));  //set cursorpos displayer as a draggable <div>
+		
+		const canvasQ = document.querySelector('canvas');		//This is for the cursor position tool
+		canvasQ.addEventListener('mousedown', function(e) { 	//This is for the cursor position tool
+			print_curpos(canvasQ,e);                        	//This is for the cursor position tool
+		});
 		
 		n =  new Date();
 		y = n.getFullYear();
@@ -742,39 +748,45 @@ window.onload = function(){
 window.onerror = function(e){
 	alert("Script Error. Press F12 for more details");
 }
-//-------------------------Collapsable side panel from W3School(file)-------
+window.onbeforeunload = function() {            //Page refresh warning
+  return "Data will be lost if you leave the page, are you sure?";
+}
+
+//-------------------------Collapsable side panel from W3School(file)
 function colaps_file_open() {
   document.getElementById("colaps_file").style.width = "250px";
 }
 function colaps_file_close() {
   document.getElementById("colaps_file").style.width = "0px";
 }
-//-------------------------Collapsable side panel from W3School(file)-------
-//-------------------------Collapsable side panel from W3School(help)-------
+//-------------------------Collapsable side panel from W3School(file)
+//-------------------------Collapsable side panel from W3School(help)
 function colaps_help_open() {
   document.getElementById("colaps_help").style.width = "200px";
 }
 function colaps_help_close() {
   document.getElementById("colaps_help").style.width = "0px";
 }
-//-------------------------Collapsable side panel from W3School(help)-------
-//-------------------------Collapsable side panel from W3School(settings)-------
+//-------------------------Collapsable side panel from W3School(help)
+//-------------------------Collapsable side panel from W3School(settings)
 function colaps_settings_open() {
   document.getElementById("colaps_settings").style.width = "280px";
 }
 function colaps_settings_close() {
   document.getElementById("colaps_settings").style.width = "0px";
 }
-//-------------------------Collapsable side panel from W3School(settings)-------
-//-------------------------Collapsable side panel from W3School(other)-------
+//-------------------------Collapsable side panel from W3School(settings)
+//-------------------------Collapsable side panel from W3School(other)
 function colaps_other_open() {
   document.getElementById("colaps_other").style.width = "280px";
 }
 function colaps_other_close() {
   document.getElementById("colaps_other").style.width = "0px";
 }
-//-------------------------Collapsable side panel from W3School(other)-------
-//-------------------------Textarea font size management-------
+//-------------------------Collapsable side panel from W3School(other)
+
+
+//-------------------------Textarea font size management
 function textbox_font_bigger(){
 	var newsize = document.getElementById("input").style.fontSize.slice(0, -2); //npx -> n
 	newsize = (parseInt(newsize,10)+1).toString() + "px";                       //n -> n+1px
@@ -791,60 +803,118 @@ function textbox_font_smaller(){
 		document.getElementById("curfontsize").innerHTML = newsize;
 	}
 }
-//-------------------------Textarea font size management-------
-//-------------------------Autofill----------------------------
-function autofill(){
-	var input = document.getElementById("autofill_inp").value;
-	//-----Brute force start------------------------------
-	if(input == "clear")
-		document.getElementById("input").value += "clear();";
-	else if(input == "line_pp")
-		document.getElementById("input").value += "line_pp(x1,y1,x2,y2,linewidth,linecap,color);";
-	else if(input == "dotline_pp")
-		document.getElementById("input").value += "dotline_pp(x1,y1,x2,y2,linewidth,linecap,color,dash,space);";
-	else if(input == "setcanvas")
-		document.getElementById("input").value += "setcanvas(width,height,color);";
-	else if(input == "ezsetgrid")
-		document.getElementById("input").value += "ezsetgrid(xmax,linewidth,color,showtick,showaxis);";
-	else if(input == "label")
-		document.getElementById("input").value += "label(value,x,y,color,font);";
-	else if(input == "point")
-		document.getElementById("input").value += "point(x,y,size,color);";
-	else if(input == "ez_circle")
-		document.getElementById("input").value += "ez_circle(x,y,radius,width,color,fill);";
-	else if(input == "auto_init")
-		document.getElementById("input").value += "auto_init(xmax);";
-	else if(input == "downloadcanvas")
-		document.getElementById("input").value += "downloadcanvas(filename);";
-	else if(input == "ezplot")
-		document.getElementById("input").value += "ezplot(func,start,end,width,color,increment,dash,space);";
-	else if(input == "ezplot_polar")
-		document.getElementById("input").value += "ezplot_polar(func,start,end,width,color,increment,dash,space);";
-	else if(input == "ezplot_param")
-		document.getElementById("input").value += "ezplot_param(func_x,func_y,start,end,width,color,increment,dash,space);";
-	else if(input == "rectangle")
-		document.getElementById("input").value += "rectangle(x,y,width,height,linewidth,color,fill);";
-	else if(input == "triangle")
-		document.getElementById("input").value += "triangle(x1,y1,x2,y2,x3,y3,linewidth,color,fill);";
-	else if(input == "transparency")
-		document.getElementById("input").value += "transparency(percentage);";
-	else if(input == "foh_ode_euler")
-		document.getElementById("input").value += "foh_ode_euler(p_x,q_x,x0,y0,start,end,increment,width,color);";
-	else
-		alert("Insert error: not a supported function");
+
+
+function dragElement(elmnt) {	//-------Driver for draggable <div> from W3School
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
 }
-//-------------------------Autofill----------------------------
-//-------------------------Special character inserter----------------------------
+
+
+//-------Cursor position tool related functions
+function curpos_show_control() { //(from W3School)
+	// Get the checkbox
+	var checkBox = document.getElementById("show_curpos");
+	var div = document.getElementById("curpos_display");
+	var txt = document.getElementById("curpos_displaycontent");
+	if(checkBox.checked == true){
+		div.style.display = "block";
+		if(_ezsetgrid == false && _setgrid == false){     //coordinate hasn't been set yet
+			txt.innerHTML = "coordinate undefined!!!";
+		}
+		else if(_ezsetgrid == true || _setgrid == true){  //coordinate properly set
+			print_curpos_enabled = true;
+		}
+	}
+	else{
+		print_curpos_enabled = false;
+		div.style.display = "none";
+		txt.innerHTML = "(X: ?,Y: ?)";
+	}
+}
+function print_curpos(canvasQ, event) {
+	if(print_curpos_enabled == true){
+	    var rect = canvasQ.getBoundingClientRect();
+		var x = event.clientX - rect.left;
+		var y = event.clientY - rect.top;
+		var actual_x = (x-_orig_x)/_grid_xhat;
+		var actual_y = (_orig_y-y)/_grid_yhat;
+		document.getElementById("curpos_displaycontent").innerHTML = "(X: "+actual_x.toFixed(3).toString()+", Y: "+actual_y.toFixed(3).toString()+")";	
+	}
+}
+
+
+//-------------------------Special character inserter related functions
 function insert_symbol(){
 	window.open("symbol_list.html", "_blank",'height=300,width=400,status=yes,top=150,left=250,toolbar=no,menubar=no,location=no');
-	
-}
-function add_command(){
-	window.open("add_command.html", "_blank",'height=300,width=400,status=yes,top=150,left=250,toolbar=no,menubar=no,location=no');
 	
 }
 function typeInTextarea(newText, el = document.getElementById("input")) {
   const [start, end] = [el.selectionStart, el.selectionEnd];
   el.setRangeText(newText, start, end, 'select');
 }
-//-------------------------Special character inserter----------------------------
+
+
+//-------------------------Command inserter related functions
+function add_command(){
+	window.open("add_command.html", "_blank",'height=300,width=400,status=yes,top=150,left=250,toolbar=no,menubar=no,location=no');
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

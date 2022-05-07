@@ -144,16 +144,46 @@
 
 /*-------------------------------------------------------------------------------------------------------*/
 
+#curpos_display {
+  position: absolute;
+  z-index: 9;
+  background-color: #f1f1f1;
+  border: 1px solid #d3d3d3;
+  text-align: left;
+  display: none;
+}
+
+#curpos_displayheader {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: AliceBlue;
+  color: black;
+}
+
+
+
 </style>
 <script src ="code.js"></script>
 <script src="jsgif/LZWEncoder.js"></script>  <!-- jsgif GIFEncoder by antimatter15-->
 <script src="jsgif/NeuQuant.js"></script>    <!-- jsgif GIFEncoder by antimatter15-->
 <script src="jsgif/GIFEncoder.js"></script>  <!-- jsgif GIFEncoder by antimatter15-->
-		<center><h1 id="title" style="font: bold 30px Arial;">Iridium v0.9.10</h1>
+		<center><h1 id="title" style="font: bold 30px Arial;">Iridium v0.9.11</h1>
 		<span style="font: 16px Arial;">by Wish Lin</span> <p id = "year" style="font: 16px Arial;"></p><br>
 		<br>
 		<a href="https://hackmd.io/@Wish-Lin/SJKUYAdBq" target="_blank" style="font: 15px serif;">Acknowledgement</a><br>
 		</center>
+		
+		<!-- This is the normally-hidden Cursor Position Tool(CPT) display interface -->
+		<div id="curpos_display">
+		  <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" --> 
+		  <div id="curpos_displayheader">
+		  &#9776; Cursor Position Tool 
+		  <a href="javascript:void(0)" style = "font-size: 25px; color: black" onclick="document.getElementById('show_curpos').checked = false; curpos_show_control();">&times;</a>  <!-- Uncheckes the box and closes itself along with all other related settings-->
+		  </div>
+		  <p id ="curpos_displaycontent">(X: ?,Y: ?)</p>
+		</div>
+		
 		<!--"File" side panel-->
 		<button onclick="colaps_file_open()">&#9776; File</button>
 		<div id="colaps_file" class="colaps_file">
@@ -171,17 +201,18 @@
 		</div>
 		<!--"Help" side panel-->
 		<!--"Settings" side panel-->
-		<button onclick="colaps_settings_open()">&#9776; Settings</button>
+		<button onclick="colaps_settings_open()">&#9776; Settings & Tools</button>
 		<div id="colaps_settings" class="colaps_settings">
 		<a href="javascript:void(0)" class="closebtn" onclick="colaps_settings_close()">&times;</a>
 		Textarea font size: <button onclick="textbox_font_smaller()">&#8722;</button> <p id = "curfontsize"></p> <button onclick="textbox_font_bigger()">&#43;</button><br>
+		Cursor position tool: <input type="checkbox" id="show_curpos" value = "on" onclick = "curpos_show_control()" style = "height: 18px; width: 18px"></input><br>
 		</div>
 		<!--"Settings" side panel-->
 		<!--"Other" side panel-->
 		<button onclick="colaps_other_open()">&#9776; Other</button><br>
 		<div id="colaps_other" class="colaps_other">
 		<a href="javascript:void(0)" class="closebtn" onclick="colaps_other_close()">&times;</a>
-		<a href="log.txt" target="_blank" style="font: 25px consolas;">Log</a><br>
+		<a href="log.txt" target="_blank" style="font: 15px consolas;">Version Log</a><br>
 		</div>
 		<!--"Other" side panel-->
 		<div id = "canvas_cont" width="700" height="400" style="float:left;  margin:10px;" >
