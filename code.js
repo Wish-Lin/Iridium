@@ -19,7 +19,8 @@ function _real2pix_x(xcord){  // translate calculation result to drawable pixel 
 		return out;
 	}
 	else if(_ezsetgrid == false && _setgrid == true){ //setgrid mode
-		
+		var out = _orig_x + _grid_xhat*xcord;
+		return out;
 	}
 }
 function _real2pix_y(ycord){  // translate calculation result to drawable pixel positions. Y coordinate only. [SYSTEM FUNC]
@@ -28,7 +29,8 @@ function _real2pix_y(ycord){  // translate calculation result to drawable pixel 
 		return out;
 	}
 	else if(_ezsetgrid == false && _setgrid == true){ //setgrid mode
-		
+		var out = _orig_y - _grid_yhat*ycord;
+		return out;
 	}
 }
 function line_pp(x1,y1,x2,y2,linewidth,linecap,color){//(real,real,real,real,real,string,string) Draw line segment between two points [USER FUNC] 
@@ -82,9 +84,9 @@ function setcanvas(width,height,color){ //(nat,nat,string)(width >= 50px, height
 	}
 }
 function ezsetgrid(xmax,linewidth,color,showtick,showaxis){ //(real,real,string,bool,bool) [USER FUNC]
-	var origin_x = document.getElementById('canvas_cont').width / 2;
-	var origin_y = document.getElementById('canvas_cont').height / 2;
-	var ymax = xmax*document.getElementById('canvas_cont').height/document.getElementById('canvas_cont').width;
+	var origin_x = document.getElementById('myCanvas').width / 2;
+	var origin_y = document.getElementById('myCanvas').height / 2;
+	var ymax = xmax*document.getElementById('myCanvas').height/document.getElementById('myCanvas').width;
 	_ezgrid_xhat = origin_x / xmax;
 	_ezgrid_yhat = _ezgrid_xhat;
 	_globalxmax = xmax;
@@ -120,7 +122,51 @@ function ezsetgrid(xmax,linewidth,color,showtick,showaxis){ //(real,real,string,
 			}
 		}
 	}
-	
+}
+function setgrid(x0,y0,xhat,yhat,xtick,ytick,linewidth,color,showtick,showaxis){ //(real,real,real,real,real,real,real,"string",bool,bool) [USER FUNC]
+	_orig_x = x0;
+	_orig_y = y0;
+	var cheight = document.getElementById('myCanvas').height;
+	var cwidth = document.getElementById('myCanvas').width;
+	if(x0 > cwidth || y0 > cheight)
+		alert("setgrid() error");
+	else{
+		_grid_xhat = xhat;
+		_grid_yhat = yhat;
+		_global_xmax = (cwidth-x0)/xhat;
+		_global_xmin = (0-x0)/xhat;
+		_global_ymax = y0/yhat;
+		_global_ymin = (y0-cheight)/yhat;
+		_ezsetgrid = false;
+		_setgrid = true;
+		if(showaxis == true){
+			var canvas = document.getElementById("myCanvas");
+			var ctx = canvas.getContext("2d");
+			ctx.strokeStyle = color;
+			ctx.lineWidth = linewidth;
+			ctx.beginPath();
+			ctx.moveTo(0,_orig_y);
+			ctx.lineTo(cwidth,_orig_y);       
+			ctx.stroke();                          //draw x axis
+			ctx.moveTo(_orig_x,0);
+			ctx.lineTo(_orig_x,cheight);    
+			ctx.stroke();                          //draw y axis
+			if(showtick == true){
+				for(var i = 1;i<_global_xmax;i++){                           
+					line_pp(i,xtick,i,-xtick,linewidth/2,"round",color);  //right side. The thickness of the ticks are currently set to axis width/2.
+				}
+				for(var i = -1;i>_global_xmin;i--){                           
+					line_pp(i,xtick,i,-xtick,linewidth/2,"round",color);  //left side. The thickness of the ticks are currently set to axis width/2.
+				}
+				for(var i = 1;i<_global_ymax;i++){                           
+					line_pp(ytick,i,-ytick,i,linewidth/2,"round",color);  //up side. The thickness of the ticks are currently set to axis width/2.
+				}
+				for(var i = -1;i>_global_ymin;i--){                           
+					line_pp(ytick,i,-ytick,i,linewidth/2,"round",color);  //down side. The thickness of the ticks are currently set to axis width/2.
+				}
+			}
+		}
+	}
 }
 function label(value,x,y,color,font){ //print text on canvas ("string",real,real,"string","string") [USER FUNC]
 	var canvas = document.getElementById("myCanvas");
@@ -165,17 +211,21 @@ function transparency(percentage){ //change drawing transparency (real) [USER FU
 	}
 }
 function ez_circle(x,y,radius,width,color,fill){ //Draw a hollow or filled circle ON EZ mode(real,real,real,real,"string",bool) [USER FUNC]
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
-	ctx.strokeStyle = color;
-	ctx.fillStyle = color;
-	ctx.lineWidth = width;
-	ctx.beginPath();
-	ctx.arc(_real2pix_x(x),_real2pix_y(y),radius*_ezgrid_xhat, 0, 2 * Math.PI);
-	if(fill == false)
-		ctx.stroke();
-	else if(fill == true)
-		ctx.fill();
+	if(_ezsetgrid == false && _setgrid == true)
+		alert("ez_circle() unavailable");
+	else{
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+		ctx.strokeStyle = color;
+		ctx.fillStyle = color;
+		ctx.lineWidth = width;
+		ctx.beginPath();
+		ctx.arc(_real2pix_x(x),_real2pix_y(y),radius*_ezgrid_xhat, 0, 2 * Math.PI);
+		if(fill == false)
+			ctx.stroke();
+		else if(fill == true)
+			ctx.fill();
+	}
 }
 function auto_init(xmax){ // Automatically initialize the system (real)[USER FUNC][NEWBIE FUNC]
 	if(xmax <= 0){
@@ -345,7 +395,7 @@ function ezplot_param(func_x,func_y,start,end,width,color,increment,dash,space){
 		for(var i = 0;i<point_count;i++){  //the function is being plotted using many,many line segments
 			t[i] = start+increment*i;  //generate t coord list
 			eval(func_x);                //generate x coord list (x[i] = fx(t[i]))
-			eval(func_y);                //generate x coord list (y[i] = fy(t[i]))
+			eval(func_y);                //generate y coord list (y[i] = fy(t[i]))
 		}
 		if(dash == null || space == null){  //solid line mode
 			for(var i = 0;i<point_count;i++){     //#For some reason, drawing as one consecutive line results in bad resolution.
@@ -486,12 +536,12 @@ function foh_ode_euler(p_x,q_x,x0,y0,start,end,increment,width,color){ //numeric
 		
 	}
 }
-function circle(x,y,radius,width,color){ //Draw circle [USER FUNC] 
+function circle(x,y,radius,width,color){ //Draw circle (real,real,real,real,"string")[USER FUNC] 
 	func_x = "x = "+x.toString()+"+"+radius.toString()+"*cos(t)";
 	func_y = "y = "+y.toString()+"+"+radius.toString()+"*sin(t)";
 	eval(ezplot_param(func_x,func_y,0,2*PI,width,color,PI/45));
 }
-function arc(x,y,radius,width,color,start,end){ //Draw part of circle [USER FUNC]
+function arc(x,y,radius,width,color,start,end){ //Draw part of circle (real,real,real,real,"string",nat,nat)[USER FUNC]
 	if(Number.isInteger(start) && Number.isInteger(end) && start < end && start >= -360 && end <= 360){ 
 		func_x = "x = "+x.toString()+"+"+radius.toString()+"*cos(t)";
 		func_y = "y = "+y.toString()+"+"+radius.toString()+"*sin(t)";
@@ -500,7 +550,15 @@ function arc(x,y,radius,width,color,start,end){ //Draw part of circle [USER FUNC
 	else
 		alert("arc() error");
 }
-
+function drawimage(x,y,path){ //Draw image on canvas (real,real,"string") [USER FUNC]
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	base_image = new Image();
+	base_image.src = path;
+	base_image.onload = function(){
+		ctx.drawImage(base_image, _real2pix_x(x), _real2pix_y(y));
+	}
+}
 
 
 
@@ -633,10 +691,23 @@ var _globalxmin = 1;
 var _globalymin = 1;
 var _ezgrid_xhat = 1;   //xhat for ezgrid related processing only
 var _ezgrid_yhat = 1;   //yhat for ezgrid related processing only
+var _grid_xhat = 1;		//xhat for setgrid related processing only
+var _grid_yhat = 1;		//yhat for setgrid related processing only
+var _orig_x = 0;			//origin coordinate for setgrid related processing only
+var _orig_y = 0;			//origin coordinate for setgrid related processing only
+const default_template = "clear();  //clear canvas\nsetcanvas(600,600,\"white\"); //set 600x600 white canvas\nezsetgrid(10,2,\"gray\",1,1); //initialize coordinate\nlabel(\"x\",9.4,-0.6,\"gray\",\"italic 20px serif\");  //x\nlabel(\"y\",-0.6,9.4,\"gray\",\"italic 20px serif\");  //y\nlabel(\"O\",-0.9,-0.9,\"gray\",\"italic 25px serif\"); //O\nfor(var tmp = -9;tmp <=9;tmp++){\nline_pp(tmp,10,tmp,-10,0.3,\"round\",\"gray\");\nline_pp(-10,tmp,10,tmp,0.3,\"round\",\"gray\");\n}\n//------------------------------------------------\n";
 //------↑↑↑↑↑↑↑↑Global variable declare zone↑↑↑↑↑↑↑↑-------------------
+
+
+
+
 window.onload = function(){
         var canvas = document.getElementById("myCanvas");
         var context = canvas.getContext("2d");	
+		
+		document.getElementById("input").value = default_template;  //load default template
+		var script = document.getElementById("input").value;    	//run default template
+		eval(script);												//run default template
 		
 		n =  new Date();
 		y = n.getFullYear();
@@ -766,6 +837,10 @@ function autofill(){
 //-------------------------Special character inserter----------------------------
 function insert_symbol(){
 	window.open("symbol_list.html", "_blank",'height=300,width=400,status=yes,top=150,left=250,toolbar=no,menubar=no,location=no');
+	
+}
+function add_command(){
+	window.open("add_command.html", "_blank",'height=300,width=400,status=yes,top=150,left=250,toolbar=no,menubar=no,location=no');
 	
 }
 function typeInTextarea(newText, el = document.getElementById("input")) {

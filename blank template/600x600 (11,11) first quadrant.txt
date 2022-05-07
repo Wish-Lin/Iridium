@@ -1,0 +1,7 @@
+clear();  //clear canvas
+setcanvas(600,600,"white"); //set 600x600 white canvas
+setgrid(50,550,50,50,0.1,0.1,2,"gray",1,1);  //initialize coordinate
+label("x",10.7,-0.3,"gray","italic 20px serif");  //x
+label("y",-0.3,10.7,"gray","italic 20px serif");  //y
+label("O",-0.5,-0.5,"gray","italic 25px serif"); //O
+//------------------------------------------------

@@ -67,8 +67,13 @@ v0.9.8: (release date: 2022/5/1)
 --[Minor]"Help" renamed to "Scripting command" in left side panel "Help".
 --[Minor]Log moved into a new collapsible left side panel "Other".
 
-v0.9.9: 
+v0.9.9: (release date: 2022/5/5)
 --[Minor]the bug of ezplot() drawing vertical "asymptotes" when plotting tan(x) and other similar functions is fixed.
 --[New Function]arc() beta test.
---[IMPORTANT]Special character inserter beta test. Characters will be added gradually in the future. This is also the first pop-up window of Iridium.
-	Testing of pop-up windows require the "same-origin policy" on Chrome to be disabled.  
+--[IMPORTANT]Special character inserter beta test. Characters will be added gradually in the future. This is also the first pop-up window in Iridium.
+	To test the local pop-up windows, "Same-Origin Policy" on Chrome needs to be disabled.
+	
+v0.9.10:
+--[New Function]drawimage() beta test. User can now import images(such as LaTEX equations or anything else) into the canvas.
+--[Minor]Default template will load and run automatically whenever page is refreshed.
+--[IMPORTANT]setgrid() completed. Users can now use Iridium with self-defined origin, xhat and yhat.
