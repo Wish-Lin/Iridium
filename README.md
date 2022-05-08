@@ -1,2 +1,2 @@
-# math-image-generator
-A HTML5 canvas & Javascript-based tool/library for creating simple geometric images for educational purposes
+# Iridium
+Iridium is a HTML5 canvas & Javascript-based tool for creating mathematical images.
