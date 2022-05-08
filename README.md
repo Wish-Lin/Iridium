@@ -27,9 +27,9 @@ After the COVID-19 pandemic, online courses, along with the convenience it bring
 ![](https://i.imgur.com/SMFe9fI.png)
 
 * Basic algebra: 
-    * Basic function plotting ( $y = f(x)$ )
-    * Parametric function plotting ( $(x,y) = (f(t),g(t))$ )
-    * Polar function plotting ( $r = f(\theta)$ )
+    * Basic function plotting ( y = f(x) )
+    * Parametric function plotting ( (x,y) = (f(t),g(t)) )
+    * Polar function plotting ( r = f(θ) )
 ![](https://i.imgur.com/zXhEFpU.png)
 
 * Calculus:
