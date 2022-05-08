@@ -87,3 +87,7 @@ v0.9.11.1: (release date: 2022/5/8) (patch)
 --[Major]brackets autocomplete function added.
 --[Minor]<meta charset = "utf-8"> tag added to ensure the proper display of Unicode characters.
 
+v0.9.12: (release date: 2022/5/8)
+--[Minor]Link to Github repository added in "Other" side panel.
+--[Major]About page completed.
+

@@ -717,9 +717,6 @@ window.onload = function(){
 			print_curpos(canvasQ,e);                        	//This is for the cursor position tool
 		});
 		
-		n =  new Date();
-		y = n.getFullYear();
-		document.getElementById("year").innerHTML = y;      //Automatic display year
 		document.getElementById("curfontsize").innerHTML = document.getElementById("input").style.fontSize;      //Current textarea font size display
 		
 		document.getElementById("Run").addEventListener("click", function(){ 
@@ -764,7 +761,7 @@ function colaps_file_close() {
 //-------------------------Collapsable side panel from W3School(file)
 //-------------------------Collapsable side panel from W3School(help)
 function colaps_help_open() {
-  document.getElementById("colaps_help").style.width = "200px";
+  document.getElementById("colaps_help").style.width = "300px";
 }
 function colaps_help_close() {
   document.getElementById("colaps_help").style.width = "0px";
@@ -888,8 +885,9 @@ function insert_symbol(){
 	
 }
 function typeInTextarea(newText, el = document.getElementById("input")) {
-  const [start, end] = [el.selectionStart, el.selectionEnd];
-  el.setRangeText(newText, start, end, 'select');
+	el.focus();
+	const [start, end] = [el.selectionStart, el.selectionEnd];
+	el.setRangeText(newText, start, end, 'end');
 }
 
 
