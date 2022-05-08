@@ -1,13 +1,4 @@
-# About
-
-<br>
-
-> <center>“I would rather have questions that can't be answered than answers that can't be questioned.” -- Richard P. Feynman
-
-<br>
-</center>
-
- ![](https://i.imgur.com/0fZ01NB.png)
+# Iridium
 
 ## What is Iridium?
 **Iridium** is an open-source, Javascript-based math plotter & animator that can satisfy most precalculus and some basic calculus plotting needs. 
