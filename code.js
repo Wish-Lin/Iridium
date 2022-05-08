@@ -704,6 +704,8 @@ window.onload = function(){
         var canvas = document.getElementById("myCanvas");
         var context = canvas.getContext("2d");	
 		
+		document.addEventListener('keyup', input_autocomplete , false); //input_autocomplete
+		
 		document.getElementById("input").value = default_template;  //load default template
 		var script = document.getElementById("input").value;    	//run default template
 		eval(script);												//run default template
@@ -891,30 +893,47 @@ function typeInTextarea(newText, el = document.getElementById("input")) {
 }
 
 
+//-------------------------Input autocompleter related functions
+function input_autocomplete(e){
+	if(document.activeElement == document.getElementById("input")){
+		if (e.key === '(') {
+			el = el = document.getElementById("input");
+			const [start, end] = [el.selectionStart, el.selectionEnd];    //This make the caret at the middle of the brackets, like this: "(|)"
+			el.setRangeText(')', start, end, 'select');
+			el.setRangeText('', start, end, 'end');
+		}	
+		else if (e.key === '[') {
+			el = el = document.getElementById("input");
+			const [start, end] = [el.selectionStart, el.selectionEnd];
+			el.setRangeText(']', start, end, 'select');
+			el.setRangeText('', start, end, 'end');
+		}
+		else if (e.key === '{') {
+			el = el = document.getElementById("input");
+			const [start, end] = [el.selectionStart, el.selectionEnd];
+			el.setRangeText('}', start, end, 'select');
+			el.setRangeText('', start, end, 'end');
+		}
+		else if (e.key === '\'') {
+			el = el = document.getElementById("input");
+			const [start, end] = [el.selectionStart, el.selectionEnd];
+			el.setRangeText('\'', start, end, 'select');
+			el.setRangeText('', start, end, 'end');
+		}
+		else if (e.key === '\"') {
+			el = el = document.getElementById("input");
+			const [start, end] = [el.selectionStart, el.selectionEnd];
+			el.setRangeText('\"', start, end, 'select');
+			el.setRangeText('', start, end, 'end');
+		}
+	}
+}
+
+
 //-------------------------Command inserter related functions
 function add_command(){
 	window.open("add_command.html", "_blank",'height=300,width=400,status=yes,top=150,left=250,toolbar=no,menubar=no,location=no');
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

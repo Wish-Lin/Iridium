@@ -82,3 +82,8 @@ v0.9.11: (release date: 2022/5/7)
 --[Minor]Refresh page warning added.
 --[IMPORTANT]Cursor Position Tool(CPT) beta test. Users can now get the coordinates on the canvas precisely using their cursor. This feature makes 
 	finding numerical solutions to equations and setting up indicators quicker and easier.
+	
+v0.9.11.1: (release date: 2022/5/8) (patch)
+--[Major]brackets autocomplete function added.
+--[Minor]<meta charset = "utf-8"> tag added to ensure the proper display of Unicode characters.
+
