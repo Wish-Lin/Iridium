@@ -22,6 +22,7 @@ After the COVID-19 pandemic, online courses, along with the convenience it bring
     * Rectangles
     * Triangles
     * Arcs
+	
 ![](https://i.imgur.com/EtCYp61.png)
 ![](https://i.imgur.com/SMFe9fI.png)
 
@@ -52,7 +53,7 @@ After the COVID-19 pandemic, online courses, along with the convenience it bring
         * Save the finished image or GIF animation
     * Fully customizable points and labels that can be used to mark intersections of functions, show formulas, etc.
     * Fully customizable transparency of **everything** on the canvas.
-    * Support importing external images into the canvas, which enables $\LaTeX$ equations generated on an external website as well as a custom background.
+    * Support importing external images into the canvas, which enables LaTeX equations generated on an external website as well as a custom background.
     * Cursor Position Tool that makes finding numerical solutions to functions very quick and easy.
 * Animation:
     * By using the GIF Encoder [jsgif](https://github.com/antimatter15/jsgif) along with some very basic Javascript scripting, **Iridium** can produce high quality GIF animations. Note that this feature is still in beta-test as of v0.9.12.
