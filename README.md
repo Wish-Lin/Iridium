@@ -7,7 +7,7 @@ Iridium is conceived, developed and maintained by 林韋旭(Wish Lin) starting f
 
 ## The purpose of this project
 
-After the COVID-19 pandemic, online courses, along with the convenience it brings to both students and teachers alike, are getting more and more attention around the world. Under such circumstances, it is forseeable that the demand in online math courses will rise as well, thus, the existence of a tool that anyone can get their hands on, understand, and produce high quality math images & animations for educational purposes has never be this important.
+After the COVID-19 pandemic, online courses, along with the convenience it brings to both students and teachers alike, are getting more and more attention around the world. Under such circumstances, it is forseeable that the demand in online math courses will rise as well, thus, creating a tool that anyone can get their hands on, understand, and produce high quality math images & animations for educational purposes has never be this important.
 
 ## Functions and Features (as of v0.9.12)
 
