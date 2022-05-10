@@ -10,4 +10,4 @@ foh_ode_euler("cos(x)","pow(E,x)",0,0,-10,10,0.01,1,"red");
 
 //this function accepts the form y' + p(x)y = q(x) with initial condition (x0,y0).
 
-//y' + xy = cos(x), y(0) = 4
+//y' + cos(x)y = e^x, y(0) = 0

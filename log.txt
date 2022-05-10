@@ -59,6 +59,7 @@ v0.9.7: (release date: 2022/4/28)
 --[New Function]foh_ode_euler() beta test.
 
 v0.9.8: (release date: 2022/5/1)
+
 --[Minor]set background color of all pages and subpages to "Ivory" except those hosted on HackMD.
 --[IMPORTANT]"jsgif" GIFEncoder library installed. Iridium can now make short GIF animations.
 --[Major]Acknowledgement.md finished and hosted externally using HackMD.
@@ -68,26 +69,50 @@ v0.9.8: (release date: 2022/5/1)
 --[Minor]Log moved into a new collapsible left side panel "Other".
 
 v0.9.9: (release date: 2022/5/5)
+
 --[Minor]the bug of ezplot() drawing vertical "asymptotes" when plotting tan(x) and other similar functions is fixed.
 --[New Function]arc() beta test.
 --[IMPORTANT]Special character inserter beta test. Characters will be added gradually in the future. This is also the first pop-up window in Iridium.
 	To test the local pop-up windows, "Same-Origin Policy" on Chrome needs to be disabled.
 	
 v0.9.10: (release date: 2022/5/7)
+
 --[New Function]drawimage() beta test. User can now import images(such as LaTEX equations or anything else) into the canvas.
 --[Minor]Default template will load and run automatically whenever page is refreshed.
 --[IMPORTANT]setgrid() completed. Users can now use Iridium with self-defined origin, xhat and yhat.
 
 v0.9.11: (release date: 2022/5/7)
+
 --[Minor]Refresh page warning added.
---[IMPORTANT]Cursor Position Tool(CPT) beta test. Users can now get the coordinates on the canvas precisely using their cursor. This feature makes 
+--[IMPORTANT][New Tool]Cursor Position Tool(CPT) beta test. Users can now get the coordinates on the canvas precisely using their cursor. This feature makes 
 	finding numerical solutions to equations and setting up indicators quicker and easier.
 	
 v0.9.11.1: (release date: 2022/5/8) (patch)
+
 --[Major]brackets autocomplete function added.
 --[Minor]<meta charset = "utf-8"> tag added to ensure the proper display of Unicode characters.
 
 v0.9.12: (release date: 2022/5/8)
+
 --[Minor]Link to Github repository added in "Other" side panel.
 --[Major]About page completed.
 
+v0.9.13: (release date: 2022/5/11)
+
+--[New Function]bounded_area() beta test.
+--[New Function]bounded_area_polar() beta test.
+--[New Function]README.md update.
+--[Major]circle() now fillable.
+--[Major]due to the aforementioned reason, ez_circle() is deleted.
+--[Major]declared mathematical constants & functions
+	Apery's constant
+	------
+	factorial
+	nPr
+	nCr
+	------
+	erf
+	normPDF
+	normCDF
+--[New Tool]"Quick calculator" beta test. It is bascially a shameless exploit of the F12 Terminal.
+--[Minor]Small aesthetic changes to the Cursor Position Tool(CPT).

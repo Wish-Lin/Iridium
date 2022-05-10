@@ -16,12 +16,14 @@ add special character inserter(pop_up)
 
 real ellipse
 hyperbola
+gamma function
+norm_cdf;
 
 ---------------------------------------------------------------------------------------------------------------------------
 
 
-mark area between functions using integral method and many vertical lines
-arc() option, along with true circle(). A real circle function that uses parametric or polar curves as definiton.
+
+
 input function without the use of "" (toString()?)
 add save notifier when loading file with stuff already present
 use some sort of button combination for "running script"

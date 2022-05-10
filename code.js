@@ -210,23 +210,6 @@ function transparency(percentage){ //change drawing transparency (real) [USER FU
 		ctx.globalAlpha = percentage/100;
 	}
 }
-function ez_circle(x,y,radius,width,color,fill){ //Draw a hollow or filled circle ON EZ mode(real,real,real,real,"string",bool) [USER FUNC]
-	if(_ezsetgrid == false && _setgrid == true)
-		alert("ez_circle() unavailable");
-	else{
-		var canvas = document.getElementById("myCanvas");
-		var ctx = canvas.getContext("2d");
-		ctx.strokeStyle = color;
-		ctx.fillStyle = color;
-		ctx.lineWidth = width;
-		ctx.beginPath();
-		ctx.arc(_real2pix_x(x),_real2pix_y(y),radius*_grid_xhat, 0, 2 * Math.PI);
-		if(fill == false)
-			ctx.stroke();
-		else if(fill == true)
-			ctx.fill();
-	}
-}
 function auto_init(xmax){ // Automatically initialize the system (real)[USER FUNC][NEWBIE FUNC]
 	if(xmax <= 0){
 		alert("Canvas size invalid!!");
@@ -292,7 +275,7 @@ function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic u
 				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
 				ctx.stroke();
 				ctx.closePath();
-				console.log(y[i]);
+				//console.log(y[i]);
 			}
 		}
 		else{ //dotted line mode
@@ -402,8 +385,8 @@ function ezplot_param(func_x,func_y,start,end,width,color,increment,dash,space){
 				ctx.beginPath();
 				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
 				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
-				ctx.stroke();
 				ctx.closePath();
+				ctx.stroke();
 			}
 		}
 		else{ //dotted line mode
@@ -412,8 +395,8 @@ function ezplot_param(func_x,func_y,start,end,width,color,increment,dash,space){
 				ctx.beginPath();
 				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
 				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
+				ctx.closePath();				
 				ctx.stroke();
-				ctx.closePath();
 				count++;
 				if(count == dash){
 					count = 0;
@@ -536,10 +519,58 @@ function foh_ode_euler(p_x,q_x,x0,y0,start,end,increment,width,color){ //numeric
 		
 	}
 }
-function circle(x,y,radius,width,color){ //Draw circle (real,real,real,real,"string")[USER FUNC] 
+function circle(x,y,radius,width,color,fill){ //Draw circle (real,real,real,real,"string",bool)[USER FUNC] 
 	func_x = "x = "+x.toString()+"+"+radius.toString()+"*cos(t)";
 	func_y = "y = "+y.toString()+"+"+radius.toString()+"*sin(t)";
-	eval(ezplot_param(func_x,func_y,0,2*PI,width,color,PI/45));
+	
+//--------------ezplot_param(modified)---------------------------------------
+	func_x = func_x.replace(/x/g, "x[i]");  // x -> x[i]
+	func_x = func_x.replace(/t/g, "t[i]");  // t -> t[i]
+	func_x = func_x+';';   //add ';' at the end
+	//----process input function_y argument----------
+	func_y = func_y.replace(/y/g, "y[i]");  // y -> y[i]
+	func_y = func_y.replace(/t/g, "t[i]");  // t -> t[i]
+	func_y = func_y+';';   //add ';' at the end
+	//---------------------------------------------
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	ctx.setLineDash([]);  //clear out dotline settings
+	ctx.fillStyle = color;
+	ctx.strokeStyle = color;
+	ctx.lineWidth = width;
+	ctx.lineCap = "round";
+	
+	var increment = PI/45;
+	var start = 0;
+	var end = 2*PI;
+	
+		var point_count = Math.round((end-start)/increment+1);
+		var t = new Array(point_count);
+		var x = new Array(point_count);
+		var y = new Array(point_count);
+		for(var i = 0;i<point_count;i++){  //the function is being plotted using many,many line segments
+			t[i] = start+increment*i;  //generate t coord list
+			eval(func_x);                //generate x coord list (x[i] = fx(t[i]))
+			eval(func_y);                //generate y coord list (y[i] = fy(t[i]))
+		}
+		if(fill == false){  //hollow circle
+			for(var i = 0;i<point_count;i++){     //#For some reason, drawing as one consecutive line results in bad resolution.
+				ctx.beginPath();
+				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
+				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
+				ctx.closePath();
+				ctx.stroke();
+			}
+		}
+		else if(fill == true){ //solid circle
+			ctx.beginPath();
+			ctx.moveTo(_real2pix_x(x[0]),_real2pix_y(y[0]));
+			for(var i = 0;i<point_count-1;i++){     //#For some reason, drawing as one consecutive line results in bad resolution.
+				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
+			}
+			ctx.closePath();
+			ctx.fill();
+		}
 }
 function arc(x,y,radius,width,color,start,end){ //Draw part of circle (real,real,real,real,"string",nat,nat)[USER FUNC]
 	if(Number.isInteger(start) && Number.isInteger(end) && start < end && start >= -360 && end <= 360){ 
@@ -559,9 +590,94 @@ function drawimage(x,y,path){ //Draw image on canvas (real,real,"string") [USER 
 		ctx.drawImage(base_image, _real2pix_x(x), _real2pix_y(y));
 	}
 }
-
-
-
+function bounded_area(func1,func2,start,end,color,increment){ //Draw bounded area of functions on canvas ("string","string",real,real,"string",real) [USER FUNC]
+	if(!_isnat((end-start)/increment+1)){   
+		alert("bounded_area error");
+	}
+	else{
+		if(func1 == "x-axis")
+			func1 = "y = x**0 -1";
+		else if(func2 == "x-axis")
+			func2 = "y = x**0 -1";
+		//----process input function argument----------
+		func1 = func1.replace(/x/g, "x[i]");  // x -> x[i]
+		func1 = func1.replace(/y/g, "y1[i]");  // y -> y1[i]
+		func1 = func1+';';   //add ';' at the end
+		func2 = func2.replace(/x/g, "x[i]");  // x -> x[i]
+		func2 = func2.replace(/y/g, "y2[i]");  // y -> y2[i]
+		func2 = func2+';';   //add ';' at the end
+		//---------------------------------------------
+		var point_count = Math.round((end-start)/increment+1);
+		var x = new Array(point_count);
+		var y1 = new Array(point_count);
+		var y2 = new Array(point_count);
+		for(var i = 0;i<point_count;i++){  //the function is being plotted using many,many line segments
+			x[i] = start+increment*i;  //generate x coord list
+			eval(func1);               //generate y1 coord list (y1[i] = f(x[i]))
+			eval(func2);               //generate y2 coord list (y2[i] = f(x[i]))
+		}
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+		
+		ctx.setLineDash([]);  //clear out dotline settings
+		ctx.fillStyle = color;
+		ctx.lineWidth = 0.1;
+		ctx.lineCap = "round";
+		ctx.lineJoin = "miter";
+		
+		ctx.beginPath();
+		ctx.moveTo(_real2pix_x(x[0]),_real2pix_y(y1[0]));
+		for(var i = 0;i<point_count-1;i++){
+			ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y1[i+1]));
+		}
+		ctx.lineTo(_real2pix_x(x[point_count-1]),_real2pix_y(y2[point_count-1]));
+		for(var i = point_count-1;i>0;i--){
+			ctx.lineTo(_real2pix_x(x[i-1]),_real2pix_y(y2[i-1]));
+		}
+		ctx.lineTo(_real2pix_x(x[0]),_real2pix_y(y1[0]));
+		ctx.closePath();
+		ctx.fill();
+		}
+	}
+function bounded_area_polar(func,start,end,color,increment){ //Draw bounded area of polar functions on canvas ("string",real,real,"string",real) [USER FUNC]
+	//----process input function argument----------
+	func = func.replace(/t/g, "t[i]");  // t -> t[i]
+	func = func.replace(/r/g, "r[i]");  // r -> r[i]
+	func = func+';';   //add ';' at the end
+	//---------------------------------------------
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	ctx.setLineDash([]);  //clear out dotline settings
+	ctx.fillStyle = color;
+	ctx.lineWidth = 0.1;
+	ctx.lineCap = "round";	
+	if(!_isnat((end-start)/increment+1)){   
+		alert("bounded_area_polar increment error");
+	}
+	else{
+		var point_count = Math.round((end-start)/increment+1);
+		var t = new Array(point_count);
+		var r = new Array(point_count);
+		var x = new Array(point_count);
+		var y = new Array(point_count);
+		for(var i = 0;i<point_count;i++){  //the function is being plotted using many,many line segments
+			t[i] = start+increment*i;  //generate t coord list
+			eval(func);                //generate r coord list (r[i] = f(t[i]))
+		}
+		for(var i = 0;i<point_count;i++){  //translate(r,theta) into (x,y)
+			x[i] = r[i]*Math.cos(t[i]);
+			y[i] = r[i]*Math.sin(t[i]);
+		}
+		ctx.beginPath();
+		ctx.moveTo(_real2pix_x(0),_real2pix_y(0));
+		for(var i = 0;i<point_count;i++){
+			ctx.lineTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
+		}
+		ctx.lineTo(_real2pix_x(0),_real2pix_y(0));
+		ctx.closePath();
+		ctx.fill();
+	}
+}
 
 
 
@@ -569,10 +685,11 @@ function drawimage(x,y,path){ //Draw image on canvas (real,real,"string") [USER 
 //------↓↓↓↓↓↓↓↓Mathematical constant and function declare zone↓↓↓↓↓↓↓↓-------------------
 const PI = 3.1415926535;              //π
 const E = 2.7182818284;               //Euler's number
-const GOLD = 1.61803;       //Golden ratio
-const SLIVER = 2.41421;     //Sliver ratio
-const BRONZE = 3.30277;     //Bronze ratio
-const GAMMA = 0.57721;       //Euler-Mascheroni constant
+const GOLD = 1.6180339888;       	  //Golden ratio
+const SLIVER = 2.4142135623;          //Sliver ratio
+const BRONZE = 3.3027756377;          //Bronze ratio
+const GAMMA = 0.5772156649;           //Euler-Mascheroni constant
+const APERY = 1.2020569032;           //Apery's constant
 function sin(x){           
 	return Math.sin(x);
 }
@@ -677,6 +794,86 @@ function trunc(x){
 function sgn(x){
 	return Math.sign(x);
 }
+//----------------------------------
+function factorial(x){
+	var out = 1;
+	if(x == 0)
+		return 1;
+	else if(!_isnat(x))
+		alert("factorial() error: x is not a natural number");
+	else if(x>20)
+		alert("factorial() error: x too large(>20)");
+	else{
+		for(var i = 1;i<=x;i++){
+			out*=i;
+		}
+		return out;
+	}
+}
+function nPr(n,r){
+	if(r == 0)
+		return 1;
+	else if(!_isnat(n) || !_isnat(r) || r>n)
+		alert("nPr() error");
+	else{
+		var tmp = n;
+		var out = 1;
+		for(var i = 0;i<r;i++){
+			out *= tmp;
+			tmp--;
+		}
+		return out;
+	}
+}
+function nCr(n,r){
+	if(r == 0)
+		return 1;
+	else if(!_isnat(n) || !_isnat(r) || r>n)
+		alert("nCr() error");
+	else{
+		if(r > n/2)
+			r = n-r;
+		return nPr(n,r)/factorial(r);
+	}
+}
+//----------------------------------
+function erf(x){
+	if(x > 6)
+		return 1;
+	else if(x < -6)
+		return -1;
+	else if(x == 0)
+		return 0;
+	else if(x<=6 && x > 0){
+		var out = 1-(1/(pow((1+0.278393*x+0.230389*pow(x,2)+0.000972*pow(x,3)+0.078108*pow(x,4)),4)));
+		return out;
+	}
+	else if(x>=-6 && x < 0){
+		var k = -x;
+		var out = 1-(1/(pow((1+0.278393*k+0.230389*pow(k,2)+0.000972*pow(k,3)+0.078108*pow(k,4)),4)));
+		return -out;
+	}
+}
+function normPDF(mean,variance,x){
+	if(variance <= 0)
+		alert("normPDF() error: variance <= 0");
+	else{
+		var stdev = sqrt(variance);
+		var out = (1/(stdev*sqrt(2*PI)))*pow(E,-0.5*((x-mean)/stdev)**2);
+		return out;
+	}
+}
+function normCDF(mean,variance,x){
+	if(variance <= 0)
+		alert("normCDF() error: variance <= 0");
+	else{
+		var stdev = sqrt(variance);
+		var out = 0.5*(1+erf((x-mean)/(stdev*sqrt(2))));
+		return out;
+	}
+}
+
+
 
 
 
@@ -864,7 +1061,7 @@ function curpos_show_control() { //(from W3School)
 	else{
 		print_curpos_enabled = false;
 		div.style.display = "none";
-		txt.innerHTML = "(X: ?,Y: ?)";
+		txt.innerHTML = "(X: 0.000, Y: 0.000)";
 	}
 }
 function print_curpos(canvasQ, event) {
@@ -927,6 +1124,13 @@ function input_autocomplete(e){
 	}
 }
 
+function quick_calculator(){
+	var out = 0;
+	var input = document.getElementById("calc_input").value;
+	var command = "out = "+input;
+	eval(command);
+	document.getElementById("calc_display").innerHTML = out.toFixed(6);
+}
 
 //-------------------------Command inserter related functions
 function add_command(){
