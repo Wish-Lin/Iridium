@@ -1,0 +1,155 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Functions</title>
+</head>
+<script>
+    function returnData(selected) {
+       var main_page = window.opener;
+       main_page.typeInTextarea(selected);
+       window.close();
+    }
+</script>
+
+<style>
+.selector{
+  font: 16px serif;
+  height: 25px;
+  text-align: left;
+}
+</style>
+
+<body>
+	<center><span style = "font: 35px Arial;">Function Inserter</span></center><br>
+	<span style = "font: 20px Arial;">Trigonometric:</span><br>
+    <table>
+	<tr>
+<td><button class="selector" onclick = "returnData('sin(x)')">sin(x)</button></td>
+<td><button class="selector" onclick = "returnData('cos(x)')">cos(x)</button></td>
+<td><button class="selector" onclick = "returnData('tan(x)')">tan(x)</button></td>
+	</tr>
+	<tr>
+<td><button class="selector" onclick = "returnData('cot(x)')">cot(x)</button></td>
+<td><button class="selector" onclick = "returnData('sec(x)')">sec(x)</button></td>
+<td><button class="selector" onclick = "returnData('csc(x)')">csc(x)</button></td>
+	</tr>
+    </table><br>
+	
+	<hr>
+
+	<span style = "font: 20px Arial;">Inverse trigonometric:</span><br>
+    <table>
+	<tr>
+<td><button class="selector" onclick = "returnData('arcsin(x)')">arcsin(x)</button></td>
+<td><button class="selector" onclick = "returnData('arccos(x)')">arccos(x)</button></td>
+<td><button class="selector" onclick = "returnData('arctan(x)')">arctan(x)</button></td>
+	</tr>
+	<tr>
+<td><button class="selector" onclick = "returnData('arccot(x)')">arccot(x)</button></td>
+<td><button class="selector" onclick = "returnData('arcsec(x)')">arcsec(x)</button></td>
+<td><button class="selector" onclick = "returnData('arccsc(x)')">arccsc(x)</button></td>
+	</tr>
+    </table><br>
+	
+	<hr>
+	
+	<span style = "font: 20px Arial;">Hyperbolic:</span><br>
+    <table>
+	<tr>
+<td><button class="selector" onclick = "returnData('sinh(x)')">sinh(x)</button></td>
+<td><button class="selector" onclick = "returnData('cosh(x)')">cosh(x)</button></td>
+<td><button class="selector" onclick = "returnData('tanh(x)')">tanh(x)</button></td>
+	</tr>
+	<tr>
+<td><button class="selector" onclick = "returnData('coth(x)')">coth(x)</button></td>
+<td><button class="selector" onclick = "returnData('sech(x)')">sech(x)</button></td>
+<td><button class="selector" onclick = "returnData('csch(x)')">csch(x)</button></td>
+	</tr>
+    </table><br>
+	
+	<hr>
+	
+	<span style = "font: 20px Arial;">Inverse Hyperbolic:</span><br>
+    <table>
+	<tr>
+<td><button class="selector" onclick = "returnData('arsinh(x)')">arsinh(x)</button></td>
+<td><button class="selector" onclick = "returnData('arcosh(x)')">arcosh(x)</button></td>
+<td><button class="selector" onclick = "returnData('artanh(x)')">artanh(x)</button></td>
+	</tr>
+	<tr>
+<td><button class="selector" onclick = "returnData('arcoth(x)')">arcoth(x)</button></td>
+<td><button class="selector" onclick = "returnData('arsech(x)')">arsech(x)</button></td>
+<td><button class="selector" onclick = "returnData('arcsch(x)')">arcsch(x)</button></td>
+	</tr>
+    </table><br>
+	
+	<hr>
+	
+	<span style = "font: 20px Arial;">Exponential & Logarithmic:</span><br>
+    <table>
+	<tr>
+<td><button class="selector" onclick = "returnData('pow(base,exponent)')">pow(base,exponent)</button></td>
+<td><button class="selector" onclick = "returnData('log(base,real)')">log(base,real)</button></td>
+	</tr>
+    </table>
+
+	<hr>
+	
+	<span style = "font: 20px Arial;">Root:</span><br>
+    <table>
+	<tr>
+<td><button class="selector" onclick = "returnData('sqrt(x)')">sqrt(x)</button></td>
+<td><button class="selector" onclick = "returnData('cbrt(x)')">cbrt(x)</button></td>
+	</tr>
+    </table>
+
+	<hr>
+	
+	<span style = "font: 20px Arial;">Rounding:</span><br>
+    <table>
+	<tr>
+<td><button class="selector" onclick = "returnData('floor(x)')">floor(x)</button></td>
+<td><button class="selector" onclick = "returnData('round(x)')">round(x)</button></td>
+<td><button class="selector" onclick = "returnData('ceil(x)')">ceil(x)</button></td>
+<td><button class="selector" onclick = "returnData('trunc(x)')">trunc(x)</button></td>
+	</tr>
+    </table>
+	
+	<hr>
+	
+	<span style = "font: 20px Arial;">Statistics:</span><br>
+    <table>
+	<tr>
+<td><button class="selector" onclick = "returnData('erf(x)')">erf(x)</button></td>
+	</tr>
+	<tr>
+<td><button class="selector" onclick = "returnData('normPDF(mean,variance,x)')">normPDF(mean,variance,x)</button></td>
+	</tr>
+	<tr>
+<td><button class="selector" onclick = "returnData('normCDF(mean,variance,x)')">normCDF(mean,variance,x)</button></td>
+	</tr>
+	</table>
+	
+	<hr>
+	
+	<span style = "font: 20px Arial;">Combination:</span><br>
+    <table>
+	<tr>
+<td><button class="selector" onclick = "returnData('nPr(n,r)')">nPr(n,r)</button></td>
+<td><button class="selector" onclick = "returnData('nCr(n,r)')">nCr(n,r)</button></td>
+	</tr>
+	</table>
+	
+	<hr>
+	
+	<span style = "font: 20px Arial;">Miscellaneous:</span><br>
+    <table>
+	<tr>
+<td><button class="selector" onclick = "returnData('abs(x)')">abs(x)</button></td>
+<td><button class="selector" onclick = "returnData('sgn(x)')">sgn(x)</button></td>
+<td><button class="selector" onclick = "returnData('factorial(x)')">factorial(x)</button></td>
+	</tr>
+	</table>
+	
+</body>
+</html>

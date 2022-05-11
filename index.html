@@ -166,11 +166,11 @@
 
 
 </style>
-<script src ="code.js"></script>
+<script src="code.js"></script>
 <script src="jsgif/LZWEncoder.js"></script>  <!-- jsgif GIFEncoder by antimatter15-->
 <script src="jsgif/NeuQuant.js"></script>    <!-- jsgif GIFEncoder by antimatter15-->
 <script src="jsgif/GIFEncoder.js"></script>  <!-- jsgif GIFEncoder by antimatter15-->
-		<center><h1 id="title" style="font: bold 30px Arial;">Iridium v0.9.13</h1>
+		<center><h1 id="title" style="font: bold 30px Arial;">Iridium v0.9.13.1</h1>
 		<a href="https://hackmd.io/@Wish-Lin/SyAOvT4L9" target="_blank" style="font: bold 25px Arial;">About</a><br>
 		<br>
 		<a href="https://hackmd.io/@Wish-Lin/SJKUYAdBq" target="_blank" style="font: bold 15px Arial;">Acknowledgement</a><br>
@@ -225,11 +225,12 @@
 		<div id = "inputzone" style="width: 500px; float:left; height:100px; margin:10px">
 			<textarea id="input" rows="20" cols="55" style="font-size: 15px;"></textarea>
 			<button id = "symbol" onclick = "insert_symbol()" style="font: 25px Arial;">🕮 Symbol</button>
-			<button id = "command" onclick = "add_command()" style="font: 25px Arial;">Σ Command</button>
+			<button id = "function" onclick = "insert_function()" style="font: 25px Arial;">𝑓(𝑥) Function</button>
+			<button id = "command" onclick = "add_command()" style="font: 25px Arial;">Σ Command</button><br>
 			<button id = "Run" style="font: 25px Arial;">▶ Run Script</button><br><br>
 			<span style="font: bold 15px Arial;">Quick Calculator:</span><br>
 			<input id="calc_input" type="text" value='cos(PI/3)'> <button id = "calc_exe" onclick = "quick_calculator()">=</button>
-			<span id = "calc_display" style="font: bold 15px Arial;">0.5</span><br>
+			<span id = "calc_display" style="font: bold 15px Arial;"></span><br>
 		</div>
     </body>
 </html>

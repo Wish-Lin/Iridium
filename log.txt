@@ -72,7 +72,7 @@ v0.9.9: (release date: 2022/5/5)
 
 --[Minor]the bug of ezplot() drawing vertical "asymptotes" when plotting tan(x) and other similar functions is fixed.
 --[New Function]arc() beta test.
---[IMPORTANT]Special character inserter beta test. Characters will be added gradually in the future. This is also the first pop-up window in Iridium.
+--[IMPORTANT]Special character inserter beta test. More characters will be gradually added in the future. This is also the first pop-up window in Iridium.
 	To test the local pop-up windows, "Same-Origin Policy" on Chrome needs to be disabled.
 	
 v0.9.10: (release date: 2022/5/7)
@@ -116,3 +116,7 @@ v0.9.13: (release date: 2022/5/11)
 	normCDF
 --[New Tool]"Quick calculator" beta test. It is bascially a shameless exploit of the F12 Terminal.
 --[Minor]Small aesthetic changes to the Cursor Position Tool(CPT).
+
+v0.9.13.1:
+--[New Tool]Function inserter beta test. It includes all functions declared as of v0.9.13.
+--[New Tool]Command inserter beta test. Currently only the inserter for ezplot() is made.

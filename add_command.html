@@ -1,180 +1,37 @@
 <html>
 <head>
-<title>Symbols & Characters</title>
+<meta charset="utf-8">
+<title>Commands</title>
 </head>
-<script>
-    function returnData(selected) {
-       var main_page = window.opener;
-       main_page.typeInTextarea(selected);
-       window.close();
-    }
-</script>
+<script src="add_command.js"></script>
 
 <style>
 .selector{
   font: 16px serif;
-  width: 25px;
   height: 25px;
   text-align: left;
 }
 </style>
 
 <body>
-
-	<span style = "font: 20px Arial;">Commonly used:</span><br>
-    <table>
-	<tr>
-<td><button class="selector" onclick = "returnData('&#43;')">&#43;</button></td>
-<td><button class="selector" onclick = "returnData('&#8722;')">&#8722;</button></td>
-<td><button class="selector" onclick = "returnData('&#215;')">&#215;</button></td>
-<td><button class="selector" onclick = "returnData('&#247;')">&#247;</button></td>
-<td><button class="selector" onclick = "returnData('&#61;')">&#61;</button></td>
-<td><button class="selector" onclick = "returnData('&#8800;')">&#8800;</button></td>
-<td><button class="selector" onclick = "returnData('&#177;')">&#177;</button></td>
-<td><button class="selector" onclick = "returnData('&#60;')">&#60;</button></td>
-<td><button class="selector" onclick = "returnData('&#62;')">&#62;</button></td>
-<td><button class="selector" onclick = "returnData('&#8804;')">&#8804;</button></td>
-<td><button class="selector" onclick = "returnData('&#8805;')">&#8805;</button></td>
-<td><button class="selector" onclick = "returnData('&#176;')">&#176;</button></td>
-	</tr>
-    </table><br>
+	<center><span style = "font: 35px Arial;">Command Inserter</span></center><br>
+	<div id = "ezplot" style = "font: 20px Arial; background-color: AliceBlue">
+	ezplot(): Plot univariate 2D functions on canvas.<br><br>
+	y = <input id="ezplot1" type="text" value='sin(x)' style = "width: 80px;">
+	start:<input id="ezplot2" type="number" value='-10' style = "width: 60px;">
+	end:<input id="ezplot3" type="number" value='10' style = "width: 60px;">
+	<br><br>
+	width:<input id="ezplot4" type="number" value='2' style = "width: 60px;" min = 0.5 step = 0.5>
+	color:<input id="ezplot5" type="color" value='#000000' style = "width: 60px;">
+	increment:<input id="ezplot6" type="number" value='0.1' style = "width: 60px;"min = 0.01 step = 0.1>
+	<br><br>
+	Optional: ( 0 = none )<br><br>
+	dash:<input id="ezplot7" type="number" value='0' style = "width: 60px;" min = 0 step = 1>
+	space:<input id="ezplot8" type="number" value='0' style = "width: 60px;" min = 0 step = 1>
+	<br><br>
+	<button id = "ezplot_insert" style = "font: 20px Arial;" onclick = "returnData(ezplot_insert())">Insert</button>
+	</div>
+	<br>
 	
-	<hr>
-
-	<span style = "font: 20px Arial;">Superscript:</span><br>
-    <table>
-	<tr>
-<td><button class="selector" onclick = "returnData('&#8304;')">&#8304;</button></td>
-<td><button class="selector" onclick = "returnData('&#185;')">&#185;</button></td>
-<td><button class="selector" onclick = "returnData('&#178;')">&#178;</button></td>
-<td><button class="selector" onclick = "returnData('&#179;')">&#179;</button></td>
-<td><button class="selector" onclick = "returnData('&#8308;')">&#8308;</button></td>
-<td><button class="selector" onclick = "returnData('&#8309;')">&#8309;</button></td>
-<td><button class="selector" onclick = "returnData('&#8310;')">&#8310;</button></td>
-<td><button class="selector" onclick = "returnData('&#8311;')">&#8311;</button></td>
-<td><button class="selector" onclick = "returnData('&#8312;')">&#8312;</button></td>
-<td><button class="selector" onclick = "returnData('&#8313;')">&#8313;</button></td>
-	</tr>
-	<tr>
-<td><button class="selector" onclick = "returnData('&#8314;')">&#8314;</button></td>
-<td><button class="selector" onclick = "returnData('&#8315;')">&#8315;</button></td>
-<td><button class="selector" onclick = "returnData('&#8316;')">&#8316;</button></td>
-<td><button class="selector" onclick = "returnData('&#8317;')">&#8317;</button></td>
-<td><button class="selector" onclick = "returnData('&#8318;')">&#8318;</button></td>
-	</tr>
-    </table><br>
-	
-	<hr>
-	
-	<span style = "font: 20px Arial;">Subscript:</span><br>
-    <table>
-	<tr>
-<td><button class="selector" onclick = "returnData('&#8320;')">&#8320;</button></td>
-<td><button class="selector" onclick = "returnData('&#8321;')">&#8321;</button></td>
-<td><button class="selector" onclick = "returnData('&#8322;')">&#8322;</button></td>
-<td><button class="selector" onclick = "returnData('&#8323;')">&#8323;</button></td>
-<td><button class="selector" onclick = "returnData('&#8324;')">&#8324;</button></td>
-<td><button class="selector" onclick = "returnData('&#8325;')">&#8325;</button></td>
-<td><button class="selector" onclick = "returnData('&#8326;')">&#8326;</button></td>
-<td><button class="selector" onclick = "returnData('&#8327;')">&#8327;</button></td>
-<td><button class="selector" onclick = "returnData('&#8328;')">&#8328;</button></td>
-<td><button class="selector" onclick = "returnData('&#8329;')">&#8329;</button></td>
-	</tr>
-	<tr>
-<td><button class="selector" onclick = "returnData('&#8330;')">&#8330;</button></td>
-<td><button class="selector" onclick = "returnData('&#8331;')">&#8331;</button></td>
-<td><button class="selector" onclick = "returnData('&#8332;')">&#8332;</button></td>
-<td><button class="selector" onclick = "returnData('&#8333;')">&#8333;</button></td>
-<td><button class="selector" onclick = "returnData('&#8334;')">&#8334;</button></td>
-	</tr>
-    </table><br>
-	
-	<hr>
-	
-	<span style = "font: 20px Arial;">Greek Letters:</span><br>
-    <table>
-	<tr>
-<td><button class="selector" onclick = "returnData('&#913;')">&#913;</button></td>
-<td><button class="selector" onclick = "returnData('&#914;')">&#914;</button></td>
-<td><button class="selector" onclick = "returnData('&#915;')">&#915;</button></td>
-<td><button class="selector" onclick = "returnData('&#916;')">&#916;</button></td>
-<td><button class="selector" onclick = "returnData('&#917;')">&#917;</button></td>
-<td><button class="selector" onclick = "returnData('&#918;')">&#918;</button></td>
-<td><button class="selector" onclick = "returnData('&#919;')">&#919;</button></td>
-<td><button class="selector" onclick = "returnData('&#920;')">&#920;</button></td>
-	</tr>
-	<tr>
-<td><button class="selector" onclick = "returnData('&#921;')">&#921;</button></td>
-<td><button class="selector" onclick = "returnData('&#922;')">&#922;</button></td>
-<td><button class="selector" onclick = "returnData('&#923;')">&#923;</button></td>
-<td><button class="selector" onclick = "returnData('&#924;')">&#924;</button></td>
-<td><button class="selector" onclick = "returnData('&#925;')">&#925;</button></td>
-<td><button class="selector" onclick = "returnData('&#926;')">&#926;</button></td>
-<td><button class="selector" onclick = "returnData('&#927;')">&#927;</button></td>
-<td><button class="selector" onclick = "returnData('&#928;')">&#928;</button></td>
-	</tr>
-	<tr>
-<td><button class="selector" onclick = "returnData('&#929;')">&#929;</button></td>
-<td><button class="selector" onclick = "returnData('&#931;')">&#931;</button></td>
-<td><button class="selector" onclick = "returnData('&#932;')">&#932;</button></td>
-<td><button class="selector" onclick = "returnData('&#933;')">&#933;</button></td>
-<td><button class="selector" onclick = "returnData('&#934;')">&#934;</button></td>
-<td><button class="selector" onclick = "returnData('&#935;')">&#935;</button></td>
-<td><button class="selector" onclick = "returnData('&#936;')">&#936;</button></td>
-<td><button class="selector" onclick = "returnData('&#937;')">&#937;</button></td>
-	</tr>
-	<tr>
-<td><button class="selector" onclick = "returnData('&#945;')">&#945;</button></td>
-<td><button class="selector" onclick = "returnData('&#946;')">&#946;</button></td>
-<td><button class="selector" onclick = "returnData('&#947;')">&#947;</button></td>
-<td><button class="selector" onclick = "returnData('&#948;')">&#948;</button></td>
-<td><button class="selector" onclick = "returnData('&#949;')">&#949;</button></td>
-<td><button class="selector" onclick = "returnData('&#950;')">&#950;</button></td>
-<td><button class="selector" onclick = "returnData('&#951;')">&#951;</button></td>
-<td><button class="selector" onclick = "returnData('&#952;')">&#952;</button></td>
-	</tr>
-	<tr>
-<td><button class="selector" onclick = "returnData('&#953;')">&#953;</button></td>
-<td><button class="selector" onclick = "returnData('&#954;')">&#954;</button></td>
-<td><button class="selector" onclick = "returnData('&#955;')">&#955;</button></td>
-<td><button class="selector" onclick = "returnData('&#956;')">&#956;</button></td>
-<td><button class="selector" onclick = "returnData('&#957;')">&#957;</button></td>
-<td><button class="selector" onclick = "returnData('&#958;')">&#958;</button></td>
-<td><button class="selector" onclick = "returnData('&#959;')">&#959;</button></td>
-<td><button class="selector" onclick = "returnData('&#960;')">&#960;</button></td>
-	</tr>
-	<tr>
-<td><button class="selector" onclick = "returnData('&#961;')">&#961;</button></td>
-<td><button class="selector" onclick = "returnData('&#963;')">&#963;</button></td>
-<td><button class="selector" onclick = "returnData('&#964;')">&#964;</button></td>
-<td><button class="selector" onclick = "returnData('&#965;')">&#965;</button></td>
-<td><button class="selector" onclick = "returnData('&#966;')">&#966;</button></td>
-<td><button class="selector" onclick = "returnData('&#967;')">&#967;</button></td>
-<td><button class="selector" onclick = "returnData('&#968;')">&#968;</button></td>
-<td><button class="selector" onclick = "returnData('&#969;')">&#969;</button></td>
-	</tr>
-    </table><br>
-	
-	<hr>
-	
-	<span style = "font: 20px Arial;">Calculus:</span><br>
-    <table>
-	<tr>
-	</tr>
-    </table>
-
-	<hr>
-	
-	<span style = "font: 20px Arial;">Number Types:</span><br>
-    <table>
-	<tr>
-<td><button class="selector" onclick = "returnData('&#8469;')">&#8469;</button></td>
-<td><button class="selector" onclick = "returnData('&#8484;')">&#8484;</button></td>
-<td><button class="selector" onclick = "returnData('&#8474;')">&#8474;</button></td>
-<td><button class="selector" onclick = "returnData('&#8477;')">&#8477;</button></td>
-<td><button class="selector" onclick = "returnData('&#8450;')">&#8450;</button></td>
-	</tr>
-    </table>
-
 </body>
 </html>

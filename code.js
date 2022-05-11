@@ -1087,6 +1087,17 @@ function typeInTextarea(newText, el = document.getElementById("input")) {
 	el.setRangeText(newText, start, end, 'end');
 }
 
+//-------------------------Function inserter related functions
+function insert_function(){
+	window.open("function_list.html", "_blank",'height=300,width=400,status=yes,top=150,left=250,toolbar=no,menubar=no,location=no');
+	
+}
+
+//-------------------------Command inserter related functions
+function add_command(){
+	window.open("add_command.html", "_blank",'height=450,width=800,status=yes,top=100,left=250,toolbar=no,menubar=no,location=no');
+	
+}
 
 //-------------------------Input autocompleter related functions
 function input_autocomplete(e){
@@ -1124,18 +1135,13 @@ function input_autocomplete(e){
 	}
 }
 
+//-------------------------Small calculator driver
 function quick_calculator(){
 	var out = 0;
 	var input = document.getElementById("calc_input").value;
 	var command = "out = "+input;
 	eval(command);
 	document.getElementById("calc_display").innerHTML = out.toFixed(6);
-}
-
-//-------------------------Command inserter related functions
-function add_command(){
-	window.open("add_command.html", "_blank",'height=300,width=400,status=yes,top=150,left=250,toolbar=no,menubar=no,location=no');
-	
 }
 
 
