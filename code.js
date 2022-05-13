@@ -890,7 +890,7 @@ var _grid_xhat = 1;		  	//global xhat
 var _grid_yhat = 1;			//global yhat
 var _orig_x = 0;			//global origin x coordinate
 var _orig_y = 0;			//global origin y coordinate
-const default_template = "clear();  //clear canvas\nsetcanvas(600,600,\"white\"); //set 600x600 white canvas\nezsetgrid(10,2,\"gray\",1,1); //initialize coordinate\nlabel(\"x\",9.4,-0.6,\"gray\",\"italic 20px serif\");  //x\nlabel(\"y\",-0.6,9.4,\"gray\",\"italic 20px serif\");  //y\nlabel(\"O\",-0.9,-0.9,\"gray\",\"italic 25px serif\"); //O\nfor(var tmp = -9;tmp <=9;tmp++){\nline_pp(tmp,10,tmp,-10,0.3,\"round\",\"gray\");\nline_pp(-10,tmp,10,tmp,0.3,\"round\",\"gray\");\n}\n//------------------------------------------------\n";
+const default_template = "// Default template\n//-------------------------\nclear();  //clear canvas\nsetcanvas(600,600,\"white\"); //set 600x600 white canvas\nezsetgrid(10,2,\"gray\",1,1); //initialize coordinate\nlabel(\"x\",9.4,-0.6,\"gray\",\"italic 20px serif\");  //x\nlabel(\"y\",-0.6,9.4,\"gray\",\"italic 20px serif\");  //y\nlabel(\"O\",-0.9,-0.9,\"gray\",\"italic 25px serif\"); //O\nfor(var tmp = -9;tmp <=9;tmp++){\nline_pp(tmp,10,tmp,-10,0.3,\"round\",\"gray\");\nline_pp(-10,tmp,10,tmp,0.3,\"round\",\"gray\");\n}\n";
 var print_curpos_enabled = false;					//This is for the cursor position tool
 //------↑↑↑↑↑↑↑↑Global variable declare zone↑↑↑↑↑↑↑↑-------------------
 
@@ -898,14 +898,15 @@ var print_curpos_enabled = false;					//This is for the cursor position tool
 
 
 window.onload = function(){
+		
         var canvas = document.getElementById("myCanvas");
         var context = canvas.getContext("2d");	
 		
 		document.addEventListener('keyup', input_autocomplete , false); //input_autocomplete
 		
-		document.getElementById("input").value = default_template;  //load default template
-		var script = document.getElementById("input").value;    	//run default template
-		eval(script);												//run default template
+		document.getElementById("template").value = default_template;  //load default template
+		var template = document.getElementById("template").value;    	//run default template
+		eval(template);												//run default template
 		
 		dragElement(document.getElementById("curpos_display"));  //set cursorpos displayer as a draggable <div>
 		
@@ -917,25 +918,26 @@ window.onload = function(){
 		document.getElementById("curfontsize").innerHTML = document.getElementById("input").style.fontSize;      //Current textarea font size display
 		
 		document.getElementById("Run").addEventListener("click", function(){ 
-			var script = document.getElementById("input").value;
+			var script = document.getElementById("template").value + document.getElementById("input").value;
 			eval(script);
 		}); 
 		document.getElementById('fileselect').addEventListener('input', function(){
             
             var fr=new FileReader();
             fr.onload=function(){
-				document.getElementById("input").value = fr.result;
+				var data = fr.result.split("\n==============================\n");  //separate template and script
+				document.getElementById("template").value = data[0];
+				document.getElementById("input").value = data[1];
 			}
 			fr.readAsText(this.files[0]);
 		});
 		document.getElementById("savefile").addEventListener("click", function(){ 
-		var output_file_content = document.getElementById("input").value;
+		var output_file_content = document.getElementById("template").value + "\n==============================\n" + document.getElementById("input").value; //merge template and script
 		var fname = document.getElementById('filename').value;
 		var a = document.createElement("a");
 		a.href = window.URL.createObjectURL(new Blob([output_file_content], {type: "text/plain;charset=utf-8"}));
 		a.download = fname+".txt";
 		a.click();
-		//alert("success");
 		}); 
 		document.getElementById("saveimage").addEventListener("click", function(){
 			downloadcanvas(document.getElementById('imagename').value);
@@ -987,6 +989,7 @@ function textbox_font_bigger(){
 	var newsize = document.getElementById("input").style.fontSize.slice(0, -2); //npx -> n
 	newsize = (parseInt(newsize,10)+1).toString() + "px";                       //n -> n+1px
 	//console.log(newsize);
+	document.getElementById("template").style.fontSize = newsize;
 	document.getElementById("input").style.fontSize = newsize;
 	document.getElementById("curfontsize").innerHTML = newsize;
 }
@@ -994,7 +997,8 @@ function textbox_font_smaller(){
 	var newsize = document.getElementById("input").style.fontSize.slice(0, -2); //npx -> n
 	if(parseInt(newsize,10) > 12){                                              //always >=12px
 		newsize = (parseInt(newsize,10)-1).toString() + "px";                   //n -> n-1px
-			//console.log(newsize);
+		//console.log(newsize);
+		document.getElementById("template").style.fontSize = newsize;
 		document.getElementById("input").style.fontSize = newsize;
 		document.getElementById("curfontsize").innerHTML = newsize;
 	}
@@ -1144,4 +1148,16 @@ function quick_calculator(){
 	document.getElementById("calc_display").innerHTML = out.toFixed(6);
 }
 
-
+//-------------------------template & script textarea size switch
+function t_s_switch(){
+	var temp_size = document.getElementById("template").rows;
+	var script_size = document.getElementById("input").rows;
+	if(temp_size < script_size){
+		document.getElementById("template").rows = 18;
+		document.getElementById("input").rows = 2;
+	}
+	else if(temp_size > script_size){
+		document.getElementById("template").rows = 2;
+		document.getElementById("input").rows = 18;
+	}
+}

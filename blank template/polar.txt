@@ -1,0 +1,50 @@
+clear();  //clear canvas
+setcanvas(600,600,"white"); //set 600x600 white canvas
+ezsetgrid(10,2,"gray",0,0); //initialize coordinate
+label("0",9.3,0.2,"gray","italic 20px serif");
+label("π/6",8.867,5.751,"gray","italic 20px serif");  
+label("π/3",5.833,9.251,"gray","italic 20px serif");
+label("π/2",0.2,9.251,"gray","italic 20px serif");
+label("2π/3",-7.033,9.251,"gray","italic 20px serif");
+label("5π/6",-9.667,5.751,"gray","italic 20px serif");
+label("π",-9.7,0.2,"gray","italic 20px serif");
+label("7π/6",-9.667,-6.251,"gray","italic 20px serif");
+label("4π/3",-6.933,-9.651,"gray","italic 20px serif");
+label("3π/2",0.2,-9.651,"gray","italic 20px serif");
+label("5π/3",5.833,-9.651,"gray","italic 20px serif");
+label("11π/6",8.267,-6.251,"gray","italic 20px serif");
+label("2",1.8,-0.5,"black","15px Arial");
+label("4",3.8,-0.5,"black","15px Arial");
+label("6",5.8,-0.5,"black","15px Arial");
+label("8",7.8,-0.5,"black","15px Arial");
+label("10",9.3,-0.5,"black","15px Arial");
+label("2",-2.1,-0.5,"black","15px Arial");
+label("4",-4.1,-0.5,"black","15px Arial");
+label("6",-6.1,-0.5,"black","15px Arial");
+label("8",-8.1,-0.5,"black","15px Arial");
+label("10",-9.9,-0.5,"black","15px Arial");
+label("2",-0.4,1.8,"black","15px Arial");
+label("4",-0.4,3.8,"black","15px Arial");
+label("6",-0.4,5.8,"black","15px Arial");
+label("8",-0.4,7.8,"black","15px Arial");
+label("10",-0.7,9.5,"black","15px Arial");
+label("2",-0.4,-2.2,"black","15px Arial");
+label("4",-0.4,-4.2,"black","15px Arial");
+label("6",-0.4,-6.2,"black","15px Arial");
+label("8",-0.4,-8.2,"black","15px Arial");
+label("10",-0.7,-9.9,"black","15px Arial");
+for(var tmp = 1;tmp <=10;tmp++){
+circle(0,0,tmp,0.3,'gray',0)
+}
+line_pp(-10,0,10,0,2,"round","black");
+line_pp(0,10,0,-10,2,"round","black");
+line_pp(-10,-5.7735,10,5.7735,0.5,"round","gray");
+line_pp(-10,5.7735,10,-5.7735,0.5,"round","gray");
+line_pp(-5.7735,-10,5.7735,10,0.5,"round","gray");
+line_pp(-5.7735,10,5.7735,-10,0.5,"round","gray");
+line_pp(-10,-10,10,10,0.5,"round","gray");
+line_pp(-10,10,10,-10,0.5,"round","gray");
+line_pp(-10,-2.6794,10,2.6794,0.5,"round","gray");
+line_pp(-10,2.6794,10,-2.6794,0.5,"round","gray");
+line_pp(-2.6794,-10,2.6794,10,0.5,"round","gray");
+line_pp(-2.6794,10,2.6794,-10,0.5,"round","gray");

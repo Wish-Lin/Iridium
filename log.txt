@@ -125,3 +125,15 @@ v0.9.13.1:  (release date: 2022/5/11)
 v1.0.0:  (release date: 2022/5/12)
 
 --[Major]New LOGO.
+--[IMPORTANT]First official release!!!! Although there are still many features I would like to add in the future, all the core functions
+	are completed and tested at this point, and gathering user feedback is now the utmost priority.
+	
+v1.0.1:  (release date: 2022/5/13)
+
+--[Minor]"About" and "Acknowledgement" placed into "Other" side panel.
+--[Major]Script now seperated into "template" and "script", users can inport/export them separately.
+--[Minor]Texatrea resize grabber disbaled.
+--[Minor]Users can now contract and expand "template" and "script" textarea using the button "↑↓".
+--[Minor]Small aesthetic changes.
+
+ 
