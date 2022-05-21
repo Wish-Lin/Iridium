@@ -1,0 +1,9 @@
+function get_actual_data(name){
+	return eval(name);
+}
+
+//default template
+const def = "// Default template\n//-------------------------\nclear();  //clear canvas\nsetcanvas(600,600,\"white\"); //set 600x600 white canvas\nezsetgrid(10,2,\"gray\",1,1); //initialize coordinate\nlabel(\"x\",9.4,-0.6,\"gray\",\"italic 20px serif\");  //x\nlabel(\"y\",-0.6,9.4,\"gray\",\"italic 20px serif\");  //y\nlabel(\"O\",-0.9,-0.9,\"gray\",\"italic 25px serif\"); //O\nfor(var tmp = -9;tmp <=9;tmp++){\nline_pp(tmp,10,tmp,-10,0.3,\"round\",\"gray\");\nline_pp(-10,tmp,10,tmp,0.3,\"round\",\"gray\");\n}\n";
+
+//first quadrant only
+const first_quadrant = "// First Quadrant\n//-------------------------\nclear();  //clear canvas\nsetcanvas(600,600,\"white\"); //set 600x600 white canvas\nsetgrid(50,550,50,50,0.2,0.2,1,\"black\",1,1)\nlabel(\"x\",10.6,-0.4,\"black\",\"italic 25px serif\");   //x\nlabel(\"y\",-0.4,10.6,\"black\",\"italic 25px serif\");   //y\nlabel(\"O\",-0.65,-0.65,\"black\",\"italic 25px serif\"); //O\nlabel(\"2\",1.85,-0.65,\"black\",\"italic 25px serif\");\nlabel(\"4\",3.85,-0.65,\"black\",\"italic 25px serif\");\nlabel(\"6\",5.85,-0.65,\"black\",\"italic 25px serif\");\nlabel(\"8\",7.85,-0.65,\"black\",\"italic 25px serif\");\nlabel(\"10\",9.75,-0.65,\"black\",\"italic 25px serif\");\nlabel(\"2\",-0.65,1.85,\"black\",\"italic 25px serif\");\nlabel(\"4\",-0.65,3.85,\"black\",\"italic 25px serif\");\nlabel(\"6\",-0.65,5.85,\"black\",\"italic 25px serif\");\nlabel(\"8\",-0.65,7.85,\"black\",\"italic 25px serif\");\nlabel(\"10\",-0.75,9.85,\"black\",\"italic 25px serif\");\nfor(var tmp = 1;tmp <=9;tmp+=2){                    //thin\nline_pp(tmp,11,tmp,0,0.3,\"round\",\"gray\");\nline_pp(0,tmp,11,tmp,0.3,\"round\",\"gray\");\n}\nfor(var tmp = 2;tmp <=10;tmp+=2){                   //thick\nline_pp(tmp,11,tmp,0,0.7,\"round\",\"gray\");\nline_pp(0,tmp,11,tmp,0.7,\"round\",\"gray\");\n}\n";

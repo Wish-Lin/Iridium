@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Templates</title>
+</head>
+<script src = "template_database.js"></script>
+<script>
+    function returnData(selected) {
+       var main_page = window.opener;
+       main_page.document.getElementById("template").value = get_actual_data(selected);
+	   main_page.update_selected_template();
+       window.close();
+    }
+</script>
+
+<style>
+.demo{
+  width: 300px
+}
+</style>
+
+<body>
+	<center><span style = "font: 35px Arial;">Template Selector</span></center><br>
+    <table border = "1px">
+	<tr>
+<td><img src = "template_images/def.png" class="demo" onclick = "returnData('def')"></img></td>
+<td style = "width: 450px">
+<span style = "font: bold 20px Arial">Default template</span>
+<br><br>
+Size: 600px*600px
+<br><br>
+Range: (xmin,xmax,ymin,ymax) = (-10,10,-10,10)
+<br><br>
+Description: Standard Cartesian grid with origin at its center.
+</td>
+	</tr>
+	
+	<tr>
+<td><img src = "template_images/first_quadrant.png" class="demo" onclick = "returnData('first_quadrant')"></img></td>
+<td style = "width: 450px">
+<span style = "font: bold 20px Arial">First quadrant</span>
+<br><br>
+Size: 600px*600px
+<br><br>
+Range: (xmin,xmax,ymin,ymax) = (-1,11,-1,11)
+<br><br>
+Description: Standard Cartesian grid but only the first quadrant is shown.
+</td>
+	</tr>
+    </table><br>
+	
+</body>
+</html>

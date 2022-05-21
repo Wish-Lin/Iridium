@@ -7,13 +7,13 @@ function _isnat(num){         // Check if input is natural number. [SYSTEM FUNC]
 	else
 		return false;
 }
-function clear(){             //clear the canvas and its transparency settings. [SYSTEM FUNC][USER FUNC]
+function clear(){             // Clear the canvas and its transparency settings. [SYSTEM FUNC][USER FUNC]
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	ctx.globalAlpha = 1;
 }
-function _real2pix_x(xcord){  // translate calculation result to drawable pixel positions. X coordinate only. [SYSTEM FUNC]
+function _real2pix_x(xcord){  // Translate calculation result to drawable pixel positions. X coordinate only. [SYSTEM FUNC]
 	if(_ezsetgrid == true && _setgrid == false){   //ezsetgrid mode
 		var out = document.getElementById('canvas_cont').width/2 + _grid_xhat*xcord;
 		return out;
@@ -23,7 +23,7 @@ function _real2pix_x(xcord){  // translate calculation result to drawable pixel 
 		return out;
 	}
 }
-function _real2pix_y(ycord){  // translate calculation result to drawable pixel positions. Y coordinate only. [SYSTEM FUNC]
+function _real2pix_y(ycord){  // Translate calculation result to drawable pixel positions. Y coordinate only. [SYSTEM FUNC]
 	if(_ezsetgrid == true && _setgrid == false){   //ezsetgrid mode
 		var out = document.getElementById('canvas_cont').height/2 - _grid_yhat*ycord;
 		return out;
@@ -235,8 +235,6 @@ function auto_init(xmax){ // Automatically initialize the system (real)[USER FUN
 }
 function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic univariate functions ("string",real,real,real,"string",real,nat,nat)[USER FUNC]
 	//----process input function argument----------
-	func = func.replace(/x/g, "x[i]");  // x -> x[i]
-	func = func.replace(/y/g, "y[i]");  // y -> y[i]
 	func = func+';';   //add ';' at the end
 	//---------------------------------------------
 	var canvas = document.getElementById("myCanvas");
@@ -250,29 +248,33 @@ function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic u
 	}
 	else{
 		var point_count = Math.round((end-start)/increment+1);
-		var x = new Array(point_count);
-		var y = new Array(point_count);
+		var X = new Array(point_count);
+		var Y = new Array(point_count);
+		var x = 0; //buffer for the eval(), a measure to prevent functions with 'x', 'y', 'r', 't' in their names being processed away.
+		var y = 0;
 		for(var i = 0;i<point_count;i++){  //the function is being plotted using many,many line segments
-			x[i] = start+increment*i;  //generate x coord list
-			eval(func);                //generate y coord list (y[i] = f(x[i]))
+			x = start+increment*i;
+			eval(func);
+			X[i] = x;  //generate x coord list
+			Y[i] = y;  //generate y coord list (Y[i] = f(X[i]))
 		}
 		for(var i = 0;i<point_count;i++){  //vertical asymptote prevention
-			if(y[i] > _globalymax && y[i+1] < _globalymin){
-				x[i+1] = "NaN";
-				y[i+1] = "NaN";
+			if(Y[i] > _globalymax && Y[i+1] < _globalymin){
+				X[i+1] = "NaN";
+				Y[i+1] = "NaN";
 				i++;
 			}
-			else if(y[i] < _globalymin && y[i+1] > _globalymax){
-				x[i+1] = "NaN";
-				y[i+1] = "NaN";
+			else if(Y[i] < _globalymin && Y[i+1] > _globalymax){
+				X[i+1] = "NaN";
+				Y[i+1] = "NaN";
 				i++;
 			}
 		}
 		if(dash == null || space == null){  //solid line mode
 			for(var i = 0;i<point_count;i++){            //#For some reason, drawing as one consecutive line results in bad resolution.
 				ctx.beginPath();
-				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
-				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
+				ctx.moveTo(_real2pix_x(X[i]),_real2pix_y(Y[i]));
+				ctx.lineTo(_real2pix_x(X[i+1]),_real2pix_y(Y[i+1]));
 				ctx.stroke();
 				ctx.closePath();
 				//console.log(y[i]);
@@ -283,8 +285,8 @@ function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic u
 			var count = 0;
 			for(var i = 0;i<point_count;i++){
 				ctx.beginPath();
-				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
-				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
+				ctx.moveTo(_real2pix_x(X[i]),_real2pix_y(Y[i]));
+				ctx.lineTo(_real2pix_x(X[i+1]),_real2pix_y(Y[i+1]));
 				ctx.stroke();
 				ctx.closePath();
 				count++;
@@ -298,8 +300,6 @@ function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic u
 }
 function ezplot_polar(func,start,end,width,color,increment,dash,space){ //plot basic polar functions ("string",real,real,real,"string",real,nat,nat)[USER FUNC]
 	//----process input function argument----------
-	func = func.replace(/t/g, "t[i]");  // t -> t[i]
-	func = func.replace(/r/g, "r[i]");  // r -> r[i]
 	func = func+';';   //add ';' at the end
 	//---------------------------------------------
 	var canvas = document.getElementById("myCanvas");
@@ -313,17 +313,33 @@ function ezplot_polar(func,start,end,width,color,increment,dash,space){ //plot b
 	}
 	else{
 		var point_count = Math.round((end-start)/increment+1);
-		var t = new Array(point_count);
-		var r = new Array(point_count);
+		var T = new Array(point_count);
+		var R = new Array(point_count);
 		var x = new Array(point_count);
 		var y = new Array(point_count);
+		var t = 0; //buffer for the eval(), a measure to prevent functions with 'x', 'y', 'r', 't' in their names being processed away.
+		var r = 0;
 		for(var i = 0;i<point_count;i++){  //the function is being plotted using many,many line segments
-			t[i] = start+increment*i;  //generate t coord list
-			eval(func);                //generate r coord list (r[i] = f(t[i]))
+			t = start+increment*i;
+			eval(func);
+			T[i] = t;  //generate t coord list
+			R[i] = r;  //generate r coord list (r[i] = f(t[i]))
 		}
 		for(var i = 0;i<point_count;i++){  //translate(r,theta) into (x,y)
-			x[i] = r[i]*Math.cos(t[i]);
-			y[i] = r[i]*Math.sin(t[i]);
+			x[i] = R[i]*Math.cos(T[i]);
+			y[i] = R[i]*Math.sin(T[i]);
+		}
+		for(var i = 0;i<point_count;i++){  //vertical asymptote prevention
+			if(x[i] > _globalymax && x[i+1] < _globalymin){
+				x[i+1] = "NaN";
+				y[i+1] = "NaN";
+				i++;
+			}
+			else if(x[i] < _globalymin && y[i+1] > _globalymax){
+				x[i+1] = "NaN";
+				y[i+1] = "NaN";
+				i++;
+			}
 		}
 		if(dash == null || space == null){  //solid line mode 
 			for(var i = 0;i<point_count;i++){       //#For some reason, drawing as one consecutive line results in bad resolution.
@@ -353,12 +369,8 @@ function ezplot_polar(func,start,end,width,color,increment,dash,space){ //plot b
 }
 function ezplot_param(func_x,func_y,start,end,width,color,increment,dash,space){ //plot basic 2D parametric functions ("string","string",real,real,real,"string",real,nat,nat)[USER FUNC]
 	//----process input function_x argument----------
-	func_x = func_x.replace(/x/g, "x[i]");  // x -> x[i]
-	func_x = func_x.replace(/t/g, "t[i]");  // t -> t[i]
 	func_x = func_x+';';   //add ';' at the end
 	//----process input function_y argument----------
-	func_y = func_y.replace(/y/g, "y[i]");  // y -> y[i]
-	func_y = func_y.replace(/t/g, "t[i]");  // t -> t[i]
 	func_y = func_y+';';   //add ';' at the end
 	//---------------------------------------------
 	var canvas = document.getElementById("myCanvas");
@@ -372,19 +384,25 @@ function ezplot_param(func_x,func_y,start,end,width,color,increment,dash,space){
 	}
 	else{
 		var point_count = Math.round((end-start)/increment+1);
-		var t = new Array(point_count);
-		var x = new Array(point_count);
-		var y = new Array(point_count);
+		var T = new Array(point_count);
+		var X = new Array(point_count);
+		var Y = new Array(point_count);
+		var t = 0;		//buffer for the eval(), a measure to prevent functions with 'x', 'y', 'r', 't' in their names being processed away.
+		var x = 0;
+		var y = 0;
 		for(var i = 0;i<point_count;i++){  //the function is being plotted using many,many line segments
-			t[i] = start+increment*i;  //generate t coord list
-			eval(func_x);                //generate x coord list (x[i] = fx(t[i]))
-			eval(func_y);                //generate y coord list (y[i] = fy(t[i]))
+			t = start+increment*i;  //generate t coord list
+			eval(func_x);           //generate x coord list (x[i] = fx(t[i]))
+			eval(func_y);           //generate y coord list (y[i] = fy(t[i]))
+			T[i] = t;
+			X[i] = x;
+			Y[i] = y;
 		}
 		if(dash == null || space == null){  //solid line mode
 			for(var i = 0;i<point_count;i++){     //#For some reason, drawing as one consecutive line results in bad resolution.
 				ctx.beginPath();
-				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
-				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
+				ctx.moveTo(_real2pix_x(X[i]),_real2pix_y(Y[i]));
+				ctx.lineTo(_real2pix_x(X[i+1]),_real2pix_y(Y[i+1]));
 				ctx.closePath();
 				ctx.stroke();
 			}
@@ -393,8 +411,8 @@ function ezplot_param(func_x,func_y,start,end,width,color,increment,dash,space){
 			var count = 0;
 			for(var i = 0;i<point_count;i++){
 				ctx.beginPath();
-				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
-				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
+				ctx.moveTo(_real2pix_x(X[i]),_real2pix_y(Y[i]));
+				ctx.lineTo(_real2pix_x(X[i+1]),_real2pix_y(Y[i+1]));
 				ctx.closePath();				
 				ctx.stroke();
 				count++;
@@ -595,10 +613,6 @@ function bounded_area(func1,func2,start,end,color,increment){ //Draw bounded are
 		alert("bounded_area error");
 	}
 	else{
-		if(func1 == "x-axis")
-			func1 = "y = x**0 -1";
-		else if(func2 == "x-axis")
-			func2 = "y = x**0 -1";
 		//----process input function argument----------
 		func1 = func1.replace(/x/g, "x[i]");  // x -> x[i]
 		func1 = func1.replace(/y/g, "y1[i]");  // y -> y1[i]
@@ -678,7 +692,10 @@ function bounded_area_polar(func,start,end,color,increment){ //Draw bounded area
 		ctx.fill();
 	}
 }
-
+function display(str){ //Display text on Public Display ("string") [SYSTEM FUNC][USER FUNC]
+	document.getElementById("public_displaycontent").innerHTML = str;
+	return 0; //simply means success;
+}
 
 
 
@@ -872,292 +889,4 @@ function normCDF(mean,variance,x){
 		return out;
 	}
 }
-
-
-
-
-
-
 //------↑↑↑↑↑↑↑↑Mathematical constant and function declare zone↑↑↑↑↑↑↑↑-------------------
-//------↓↓↓↓↓↓↓↓Global variable declare zone↓↓↓↓↓↓↓↓-------------------
-var _ezsetgrid = false;
-var _setgrid = false;
-var _globalxmax = 1;
-var _globalymax = 1;
-var _globalxmin = 1;
-var _globalymin = 1;
-var _grid_xhat = 1;		  	//global xhat
-var _grid_yhat = 1;			//global yhat
-var _orig_x = 0;			//global origin x coordinate
-var _orig_y = 0;			//global origin y coordinate
-const default_template = "// Default template\n//-------------------------\nclear();  //clear canvas\nsetcanvas(600,600,\"white\"); //set 600x600 white canvas\nezsetgrid(10,2,\"gray\",1,1); //initialize coordinate\nlabel(\"x\",9.4,-0.6,\"gray\",\"italic 20px serif\");  //x\nlabel(\"y\",-0.6,9.4,\"gray\",\"italic 20px serif\");  //y\nlabel(\"O\",-0.9,-0.9,\"gray\",\"italic 25px serif\"); //O\nfor(var tmp = -9;tmp <=9;tmp++){\nline_pp(tmp,10,tmp,-10,0.3,\"round\",\"gray\");\nline_pp(-10,tmp,10,tmp,0.3,\"round\",\"gray\");\n}\n";
-var print_curpos_enabled = false;					//This is for the cursor position tool
-//------↑↑↑↑↑↑↑↑Global variable declare zone↑↑↑↑↑↑↑↑-------------------
-
-
-
-
-window.onload = function(){
-		
-        var canvas = document.getElementById("myCanvas");
-        var context = canvas.getContext("2d");	
-		
-		document.addEventListener('keyup', input_autocomplete , false); //input_autocomplete
-		
-		document.getElementById("template").value = default_template;  //load default template
-		var template = document.getElementById("template").value;    	//run default template
-		eval(template);												//run default template
-		
-		dragElement(document.getElementById("curpos_display"));  //set cursorpos displayer as a draggable <div>
-		
-		const canvasQ = document.querySelector('canvas');		//This is for the cursor position tool
-		canvasQ.addEventListener('mousedown', function(e) { 	//This is for the cursor position tool
-			print_curpos(canvasQ,e);                        	//This is for the cursor position tool
-		});
-		
-		document.getElementById("curfontsize").innerHTML = document.getElementById("input").style.fontSize;      //Current textarea font size display
-		
-		document.getElementById("Run").addEventListener("click", function(){ 
-			var script = document.getElementById("template").value + document.getElementById("input").value;
-			eval(script);
-		}); 
-		document.getElementById('fileselect').addEventListener('input', function(){
-            
-            var fr=new FileReader();
-            fr.onload=function(){
-				var data = fr.result.split("\n==============================\n");  //separate template and script
-				document.getElementById("template").value = data[0];
-				document.getElementById("input").value = data[1];
-			}
-			fr.readAsText(this.files[0]);
-		});
-		document.getElementById("savefile").addEventListener("click", function(){ 
-		var output_file_content = document.getElementById("template").value + "\n==============================\n" + document.getElementById("input").value; //merge template and script
-		var fname = document.getElementById('filename').value;
-		var a = document.createElement("a");
-		a.href = window.URL.createObjectURL(new Blob([output_file_content], {type: "text/plain;charset=utf-8"}));
-		a.download = fname+".txt";
-		a.click();
-		}); 
-		document.getElementById("saveimage").addEventListener("click", function(){
-			downloadcanvas(document.getElementById('imagename').value);
-		});
-}
-window.onerror = function(e){
-	alert("Script Error. Press F12 for more details");
-}
-window.onbeforeunload = function() {            //Page refresh warning
-  return "Data will be lost if you leave the page, are you sure?";
-}
-
-//-------------------------Collapsable side panel from W3School(file)
-function colaps_file_open() {
-  document.getElementById("colaps_file").style.width = "250px";
-}
-function colaps_file_close() {
-  document.getElementById("colaps_file").style.width = "0px";
-}
-//-------------------------Collapsable side panel from W3School(file)
-//-------------------------Collapsable side panel from W3School(help)
-function colaps_help_open() {
-  document.getElementById("colaps_help").style.width = "300px";
-}
-function colaps_help_close() {
-  document.getElementById("colaps_help").style.width = "0px";
-}
-//-------------------------Collapsable side panel from W3School(help)
-//-------------------------Collapsable side panel from W3School(settings)
-function colaps_settings_open() {
-  document.getElementById("colaps_settings").style.width = "280px";
-}
-function colaps_settings_close() {
-  document.getElementById("colaps_settings").style.width = "0px";
-}
-//-------------------------Collapsable side panel from W3School(settings)
-//-------------------------Collapsable side panel from W3School(other)
-function colaps_other_open() {
-  document.getElementById("colaps_other").style.width = "280px";
-}
-function colaps_other_close() {
-  document.getElementById("colaps_other").style.width = "0px";
-}
-//-------------------------Collapsable side panel from W3School(other)
-
-
-//-------------------------Textarea font size management
-function textbox_font_bigger(){
-	var newsize = document.getElementById("input").style.fontSize.slice(0, -2); //npx -> n
-	newsize = (parseInt(newsize,10)+1).toString() + "px";                       //n -> n+1px
-	//console.log(newsize);
-	document.getElementById("template").style.fontSize = newsize;
-	document.getElementById("input").style.fontSize = newsize;
-	document.getElementById("curfontsize").innerHTML = newsize;
-}
-function textbox_font_smaller(){
-	var newsize = document.getElementById("input").style.fontSize.slice(0, -2); //npx -> n
-	if(parseInt(newsize,10) > 12){                                              //always >=12px
-		newsize = (parseInt(newsize,10)-1).toString() + "px";                   //n -> n-1px
-		//console.log(newsize);
-		document.getElementById("template").style.fontSize = newsize;
-		document.getElementById("input").style.fontSize = newsize;
-		document.getElementById("curfontsize").innerHTML = newsize;
-	}
-}
-
-
-function dragElement(elmnt) {	//-------Driver for draggable <div> from W3School
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "header")) {
-    // if present, the header is where you move the DIV from:
-    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-  } else {
-    // otherwise, move the DIV from anywhere inside the DIV:
-    elmnt.onmousedown = dragMouseDown;
-  }
-
-  function dragMouseDown(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
-  }
-
-  function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
-
-  function closeDragElement() {
-    // stop moving when mouse button is released:
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}
-
-
-//-------Cursor position tool related functions
-function curpos_show_control() { //(from W3School)
-	// Get the checkbox
-	var checkBox = document.getElementById("show_curpos");
-	var div = document.getElementById("curpos_display");
-	var txt = document.getElementById("curpos_displaycontent");
-	if(checkBox.checked == true){
-		div.style.display = "block";
-		if(_ezsetgrid == false && _setgrid == false){     //coordinate hasn't been set yet
-			txt.innerHTML = "coordinate undefined!!!";
-		}
-		else if(_ezsetgrid == true || _setgrid == true){  //coordinate properly set
-			print_curpos_enabled = true;
-		}
-	}
-	else{
-		print_curpos_enabled = false;
-		div.style.display = "none";
-		txt.innerHTML = "(X: 0.000, Y: 0.000)";
-	}
-}
-function print_curpos(canvasQ, event) {
-	if(print_curpos_enabled == true){
-	    var rect = canvasQ.getBoundingClientRect();
-		var x = event.clientX - rect.left;
-		var y = event.clientY - rect.top;
-		var actual_x = (x-_orig_x)/_grid_xhat;
-		var actual_y = (_orig_y-y)/_grid_yhat;
-		document.getElementById("curpos_displaycontent").innerHTML = "(X: "+actual_x.toFixed(3).toString()+", Y: "+actual_y.toFixed(3).toString()+")";	
-	}
-}
-
-
-//-------------------------Special character inserter related functions
-function insert_symbol(){
-	window.open("symbol_list.html", "_blank",'height=300,width=400,status=yes,top=150,left=250,toolbar=no,menubar=no,location=no');
-	
-}
-function typeInTextarea(newText, el = document.getElementById("input")) {
-	el.focus();
-	const [start, end] = [el.selectionStart, el.selectionEnd];
-	el.setRangeText(newText, start, end, 'end');
-}
-
-//-------------------------Function inserter related functions
-function insert_function(){
-	window.open("function_list.html", "_blank",'height=300,width=400,status=yes,top=150,left=250,toolbar=no,menubar=no,location=no');
-	
-}
-
-//-------------------------Command inserter related functions
-function add_command(){
-	window.open("add_command.html", "_blank",'height=450,width=800,status=yes,top=100,left=250,toolbar=no,menubar=no,location=no');
-	
-}
-
-//-------------------------Input autocompleter related functions
-function input_autocomplete(e){
-	if(document.activeElement == document.getElementById("input")){
-		if (e.key === '(') {
-			el = el = document.getElementById("input");
-			const [start, end] = [el.selectionStart, el.selectionEnd];    //This make the caret at the middle of the brackets, like this: "(|)"
-			el.setRangeText(')', start, end, 'select');
-			el.setRangeText('', start, end, 'end');
-		}	
-		else if (e.key === '[') {
-			el = el = document.getElementById("input");
-			const [start, end] = [el.selectionStart, el.selectionEnd];
-			el.setRangeText(']', start, end, 'select');
-			el.setRangeText('', start, end, 'end');
-		}
-		else if (e.key === '{') {
-			el = el = document.getElementById("input");
-			const [start, end] = [el.selectionStart, el.selectionEnd];
-			el.setRangeText('}', start, end, 'select');
-			el.setRangeText('', start, end, 'end');
-		}
-		else if (e.key === '\'') {
-			el = el = document.getElementById("input");
-			const [start, end] = [el.selectionStart, el.selectionEnd];
-			el.setRangeText('\'', start, end, 'select');
-			el.setRangeText('', start, end, 'end');
-		}
-		else if (e.key === '\"') {
-			el = el = document.getElementById("input");
-			const [start, end] = [el.selectionStart, el.selectionEnd];
-			el.setRangeText('\"', start, end, 'select');
-			el.setRangeText('', start, end, 'end');
-		}
-	}
-}
-
-//-------------------------Small calculator driver
-function quick_calculator(){
-	var out = 0;
-	var input = document.getElementById("calc_input").value;
-	var command = "out = "+input;
-	eval(command);
-	document.getElementById("calc_display").innerHTML = out.toFixed(6);
-}
-
-//-------------------------template & script textarea size switch
-function t_s_switch(){
-	var temp_size = document.getElementById("template").rows;
-	var script_size = document.getElementById("input").rows;
-	if(temp_size < script_size){
-		document.getElementById("template").rows = 18;
-		document.getElementById("input").rows = 2;
-	}
-	else if(temp_size > script_size){
-		document.getElementById("template").rows = 2;
-		document.getElementById("input").rows = 18;
-	}
-}

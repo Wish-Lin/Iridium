@@ -1,0 +1,6 @@
+add ellipse (orthogonal only at first)
+template selector
+improve ALL function plotting: 
+	a better replace method, so that stuff like tan(x) can be used properly.
+
+insert function,command and special characters wherever I need.
