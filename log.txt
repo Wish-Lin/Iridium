@@ -136,14 +136,18 @@ v1.0.1:  (release date: 2022/5/13)
 --[Minor]Users can now contract and expand "template" and "script" textarea using the button "↑↓".
 --[Minor]Small aesthetic changes.
 
-v1.1.0:
+v1.1.0:  (release date: 2022/5/21)
 
 --[Minor]Command inserter add: ezplot_polar()
 --[Bug Fix] ezplot(), ezplot_polar() and ezplot_param() can now accept arguments like "r = tan(t)" without worrying the 't' in "tan" being replaced by "t[i]".
 	This bug will be fixed in other functions in later versions. I am tired now.
 --[New Tool]Public display beta test. It is a draggable, hideable <div> that can be accessed by ANYONE to display text.
---[New Function]display() beta test. This is the user function that accesses the public display.
+--[New Function]display() beta test. This is the user function that accesses the aforementioned public display.
 --[IMPORTANT]Major rearrangement of the files.
 --[Minor]Small aesthetic changes.
 --[Minor]Textarea can now be resized BUT only horizontally.
 --[New Tool]Template selector beta test.
+
+v1.1.1:
+
+--[Minor]Template selector add: Basic Polar
