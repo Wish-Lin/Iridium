@@ -274,6 +274,8 @@ function load_template_only(){
 	window.open("subwindows/templates/template_list.html", "_blank",'height=500,width=750,status=yes,top=75,left=250,toolbar=no,menubar=no,location=no');
 }
 function update_selected_template(){
-	var template = document.getElementById("template").value;
-	eval(template);		
+	var data = document.getElementById("template").value;
+	eval(data);
+	data = document.getElementById("input").value;
+	eval(data);
 }

@@ -38,7 +38,7 @@ For  more in-depth information, please check out [scripting commands](https://ha
 * Calculus:
     * Marking out bounded areas of basic and polar functions.
 ![](https://i.imgur.com/tlpRRyv.png)
-    * Numerically plot first order homogenous ODEs using Euler's method. 
+    * Numerically plot first order ODEs using Euler's method. 
 ![](https://i.imgur.com/FjtCIFx.png)
 
 

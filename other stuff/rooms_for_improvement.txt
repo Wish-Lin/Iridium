@@ -4,3 +4,20 @@ improve ALL function plotting:
 	a better replace method, so that stuff like tan(x) can be used properly.
 
 insert function,command and special characters wherever I need.
+
+
+
+
+
+
+
+
+
+
+Functions that are finished but the description isn't completed yet: 
+ellipse()
+slope_field()
+polygon_rc()
+polygon_ri()
+polygon_rs()
+polygon_rv()

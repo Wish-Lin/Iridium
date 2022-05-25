@@ -7,6 +7,9 @@ function _isnat(num){         // Check if input is natural number. [SYSTEM FUNC]
 	else
 		return false;
 }
+function _dist2D(x1,y1,x2,y2){// return distance between two points in 2D. [SYSTEM FUNC]
+	return Math.sqrt((x2-x1)**2+(y2-y1)**2);
+}
 function clear(){             // Clear the canvas and its transparency settings. [SYSTEM FUNC][USER FUNC]
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
@@ -465,7 +468,7 @@ function triangle(x1,y1,x2,y2,x3,y3,linewidth,color,fill){//(real,real,real,real
 	else if(fill == true)
 		ctx.fill();
 }
-function foh_ode_euler(p_x,q_x,x0,y0,start,end,increment,width,color){ //numerically plot basic first order homogenous ODE using Euler's method. ("string","string",real,real,real,real,real,real,"string") [USER FUNC]
+function fo_ode_euler(p_x,q_x,x0,y0,start,end,increment,width,color){ //numerically plot basic first order ODE using Euler's method. ("string","string",real,real,real,real,real,real,"string") [USER FUNC]
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
 	ctx.setLineDash([]);  //clear out dotline settings
@@ -608,7 +611,7 @@ function drawimage(x,y,path){ //Draw image on canvas (real,real,"string") [USER 
 		ctx.drawImage(base_image, _real2pix_x(x), _real2pix_y(y));
 	}
 }
-function bounded_area(func1,func2,start,end,color,increment){ //Draw bounded area of functions on canvas ("string","string",real,real,"string",real) [USER FUNC]
+function bounded_area(func1,func2,start,end,color,increment){ //Draw bounded area of functions on canvas. ("string","string",real,real,"string",real) [USER FUNC]
 	if(!_isnat((end-start)/increment+1)){   
 		alert("bounded_area error");
 	}
@@ -653,7 +656,7 @@ function bounded_area(func1,func2,start,end,color,increment){ //Draw bounded are
 		ctx.fill();
 		}
 	}
-function bounded_area_polar(func,start,end,color,increment){ //Draw bounded area of polar functions on canvas ("string",real,real,"string",real) [USER FUNC]
+function bounded_area_polar(func,start,end,color,increment){ //Draw bounded area of polar functions on canvas. ("string",real,real,"string",real) [USER FUNC]
 	//----process input function argument----------
 	func = func.replace(/t/g, "t[i]");  // t -> t[i]
 	func = func.replace(/r/g, "r[i]");  // r -> r[i]
@@ -694,8 +697,205 @@ function bounded_area_polar(func,start,end,color,increment){ //Draw bounded area
 }
 function display(str){ //Display text on Public Display ("string") [SYSTEM FUNC][USER FUNC]
 	document.getElementById("public_displaycontent").innerHTML = str;
-	return 0; //simply means success;
 }
+function ellipse(c1x,c1y,c2x,c2y,a,width,color,fill){ //Draw ellipse of any angle. (real,real,real,real,real,real,"string",bool)[USER FUNC]
+	if(c1x > c2x){ //swap two points to make sure c2x >= c1x
+		var tmp;
+		tmp = c1x;
+		c1x = c2x;
+		c2x = tmp;
+		tmp = c1y;
+		c1y = c2y;
+		c2y = tmp;
+	}
+	var center_x = (c1x+c2x)/2;
+	var center_y = (c1y+c2y)/2;
+	var c = Math.sqrt((c2x-c1x)**2+(c2y-c1y)**2)/2;
+	var b = Math.sqrt(a**2 - c**2); // a^2 = b^2 + c^2
+	var cos_theta = cos(arctan((c2y-c1y)/abs((c2x-c1x))));
+	var sin_theta = sin(arctan((c2y-c1y)/abs((c2x-c1x))));
+	
+	func_x = "x = "+a.toString()+"*cos(t)";
+	func_y = "y = "+b.toString()+"*sin(t)";
+	
+//--------------ezplot_param(modified)---------------------------------------
+	func_x = func_x.replace(/x/g, "x[i]");  // x -> x[i]
+	func_x = func_x.replace(/t/g, "t[i]");  // t -> t[i]
+	func_x = func_x+';';   //add ';' at the end
+	//----process input function_y argument----------
+	func_y = func_y.replace(/y/g, "y[i]");  // y -> y[i]
+	func_y = func_y.replace(/t/g, "t[i]");  // t -> t[i]
+	func_y = func_y+';';   //add ';' at the end
+	//---------------------------------------------
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	ctx.setLineDash([]);  //clear out dotline settings
+	ctx.fillStyle = color;
+	ctx.strokeStyle = color;
+	ctx.lineWidth = width;
+	ctx.lineCap = "round";
+	
+	var increment = PI/45;
+	var start = 0;
+	var end = 2*PI;
+	
+		var point_count = Math.round((end-start)/increment+1);
+		var t = new Array(point_count);
+		var x = new Array(point_count);
+		var y = new Array(point_count);
+		for(var i = 0;i<point_count;i++){  //the function is being plotted using many,many line segments
+			t[i] = start+increment*i;  //generate t coord list
+			eval(func_x);                //generate x coord list (x[i] = fx(t[i]))
+			eval(func_y);                //generate y coord list (y[i] = fy(t[i]))
+		}
+		var tempx = 0;
+		var tempy = 0;
+		for(var i = 0;i<point_count;i++){  //apply rotation matrix and center dispalcement
+			tempx = cos_theta*x[i] - sin_theta*y[i] + center_x;
+			tempy = sin_theta*x[i] + cos_theta*y[i] + center_y;
+			x[i] = tempx;
+			y[i] = tempy;
+		}
+		if(fill == false){  //hollow circle
+			for(var i = 0;i<point_count;i++){     //#For some reason, drawing as one consecutive line results in bad resolution.
+				ctx.beginPath();
+				ctx.moveTo(_real2pix_x(x[i]),_real2pix_y(y[i]));
+				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
+				ctx.closePath();
+				ctx.stroke();
+			}
+		}
+		else if(fill == true){ //solid circle
+			ctx.beginPath();
+			ctx.moveTo(_real2pix_x(x[0]),_real2pix_y(y[0]));
+			for(var i = 0;i<point_count-1;i++){     //#For some reason, drawing as one consecutive line results in bad resolution.
+				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
+			}
+			ctx.closePath();
+			ctx.fill();
+		}
+}
+function slope_field(p_x,q_x,xmin,xmax,ymin,ymax,increment,length,width,color){ //Draw slope field of basic first order ODE. ("string","string",real,real,real,real,real,real,real,"string") [USER FUNC]
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	ctx.setLineDash([]);  //clear out dotline settings
+	ctx.strokeStyle = color;
+	ctx.lineWidth = width;
+	ctx.lineCap = "round";
+	if(!_isnat((xmax-xmin)/increment+1) || !_isnat((ymax-ymin)/increment+1)){
+		alert("slope_field increment or range error");
+	}
+	else{
+		var slope;
+		//----process p(x) argument----------
+		p = p_x.replace(/x/g, "i");  // x -> i
+		//----process q(x) argument----------
+		q = q_x.replace(/x/g, "i");  // x -> i
+		//---------------------------------------------
+		var cmd = "slope = ("+q+")-("+p+")*(j);";
+		var x_dis = 0;
+		var y_dis = 0;
+		for(var i = xmin;i<=xmax;i+=increment){
+			for(var j = ymin;j<=ymax;j+=increment){
+				eval(cmd);
+				x_dis = (length/2)*Math.cos(Math.atan(slope));
+				y_dis = (length/2)*Math.sin(Math.atan(slope));
+				ctx.beginPath();
+				ctx.moveTo(_real2pix_x(i-x_dis),_real2pix_y(j-y_dis));
+				ctx.lineTo(_real2pix_x(i+x_dis),_real2pix_y(j+y_dis));  
+				ctx.stroke();				
+				ctx.closePath();
+			}
+		}
+	}
+}
+function polygon_rc(cx,cy,r,n,theta,linewidth,color,fill){  //Draw circumscribed regular polygons. (real,real,real,nat,real,real,"string",bool) [USER FUNC]
+	if(!_isnat(n) || n<3)
+		alert("polygon_rc n incorrect")
+	else{
+		var x = new Array(n);
+		var y = new Array(n);
+		var angle = 2*PI/n;
+		var theta_now = 0;
+		x[0] = 0;
+		y[0] = r;
+		for(var i = 0;i<n-1;i++){
+			theta_now+=angle;			                        //generate the list of points by rotating counterclockwise
+			x[i+1] = cos(theta_now)*x[0] - sin(theta_now)*y[0];
+			y[i+1] = sin(theta_now)*x[0] + cos(theta_now)*y[0];
+		}
+		var temp_x = 0;
+		var temp_y = 0;
+		for(var i = 0;i<n;i++){		                            //rotate it theta degrees + displace (cx,cy)
+			temp_x = cos(theta*PI/180)*x[i] - sin(theta*PI/180)*y[i];
+			temp_y = sin(theta*PI/180)*x[i] + cos(theta*PI/180)*y[i];
+			x[i] = temp_x+cx;
+			y[i] = temp_y+cy;
+		}
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+		ctx.setLineDash([]);  //clear out dotline settings
+		ctx.strokeStyle = color;
+		ctx.fillStyle = color;
+		ctx.lineWidth = linewidth;
+		ctx.lineCap = "round";
+		ctx.beginPath();
+		ctx.moveTo(_real2pix_x(x[0]),_real2pix_y(y[0]));
+			for(var i = 0;i<n-1;i++){
+				ctx.lineTo(_real2pix_x(x[i+1]),_real2pix_y(y[i+1]));
+		}    
+		ctx.closePath();
+		if(fill == false)
+			ctx.stroke();
+		else if(fill == true)
+			ctx.fill();
+		
+	}
+}
+function polygon_ri(cx,cy,r,n,theta,linewidth,color,fill){	//Draw inscribed regular polygons. (real,real,real,nat,real,real,"string",bool) [USER FUNC]
+	if(!_isnat(n) || n<3)
+		alert("polygon_ri n incorrect");
+	else{
+		var r2 = r*sec(2*PI/(2*n));
+		polygon_rc(cx,cy,r2,n,theta,linewidth,color,fill);
+	}
+}
+function polygon_rs(cx,cy,s,n,theta,linewidth,color,fill){  //Draw regular polygons by defining center and sidelength. (real,real,real,nat,real,real,"string",bool) [USER FUNC]
+	if(!_isnat(n) || n<3)
+		alert("polygon_rs n incorrect");
+	else{
+		var r2 = (s/2)*csc(2*PI/(2*n));
+		polygon_rc(cx,cy,r2,n,theta,linewidth,color,fill);
+	}
+}
+function polygon_rv(cx,cy,vx,vy,n,linewidth,color,fill){    //Draw regular polygons by defining center and one vertex. (real,real,real,real,nat,real,"string",bool) [USER FUNC]
+	if(!_isnat(n) || n<3)
+		alert("polygon_rv n incorrect");
+	else if(cx == vx && cy == vy)
+		alert("polygon_rv center and vertex are the same point");
+	else{
+		var angle = 0;
+		if(vx-cx > 0)
+			angle = arctan((vy-cy)/(vx-cx));
+		else if(vx-cx < 0)
+			angle = arctan((vy-cy)/(vx-cx))+PI;
+		else if(vx-cx == 0){
+			if(vy > cy)
+				angle = PI/2;
+			else if(vy < cy)
+				angle = -PI/2;
+		}
+		var r = _dist2D(cx,cy,vx,vy);
+		polygon_rc(cx,cy,r,n,-90+(angle*180/PI),linewidth,color,fill);
+	}
+}
+
+
+
+
+
+
+
 
 
 

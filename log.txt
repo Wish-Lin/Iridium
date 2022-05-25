@@ -148,6 +148,17 @@ v1.1.0:  (release date: 2022/5/21)
 --[Minor]Textarea can now be resized BUT only horizontally.
 --[New Tool]Template selector beta test.
 
-v1.1.1:
+v1.1.1:  (release date: 2022/5/24)
 
 --[Minor]Template selector add: Basic Polar
+
+v1.1.2:  (release date: 2022/5/25)
+
+--[New Function]ellipse() beta test.
+--[Minor] foh_ode_euler() renamed to fo_ode_euler() since I misunderstood the word "homogenous" before.
+--[New Function]slope field() beta test.
+--[New Function]polygon_rc() beta test.
+--[New Function]polygon_ri() beta test.
+--[New Function]polygon_rs() beta test.
+--[New Function]polygon_rv() beta test.
+--[New Function]_dist2D(): Simple system function for calculating distance.
