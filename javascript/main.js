@@ -31,6 +31,7 @@ window.onload = function(){
 		
 		dragElement(document.getElementById("curpos_display"));  //set cursorpos displayer as a draggable <div>
 		dragElement(document.getElementById("public_display"));  //set public display as a draggable <div>
+		dragElement(document.getElementById("tdp_dials"));       //set 3d prespective dials as a draggable <div>
 		
 		const canvasQ = document.querySelector('canvas');		//This is for the cursor position tool
 		canvasQ.addEventListener('mousedown', function(e) { 	//This is for the cursor position tool

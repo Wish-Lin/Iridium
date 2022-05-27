@@ -139,7 +139,21 @@ function public_show_control() { //(from W3School)
 	// Get the checkbox
 	var checkBox = document.getElementById("show_public");
 	var div = document.getElementById("public_display");
-	var txt = document.getElementById("public_displaycontent");
+	if(checkBox.checked == true){
+		div.style.display = "block";
+		print_public_enabled = true;
+	}
+	else{
+		print_public_enabled = false;
+		div.style.display = "none";
+	}
+}
+
+//-------3D perspective dials related functions
+function tdpd_show_control() {   //(from W3School)
+	// Get the checkbox
+	var checkBox = document.getElementById("show_tdpd");
+	var div = document.getElementById("tdp_dials");
 	if(checkBox.checked == true){
 		div.style.display = "block";
 		print_public_enabled = true;

@@ -162,3 +162,9 @@ v1.1.2:  (release date: 2022/5/25)
 --[New Function]polygon_rs() beta test.
 --[New Function]polygon_rv() beta test.
 --[New Function]_dist2D(): Simple system function for calculating distance.
+
+v1.1.3:  (release date: 2022/5/27)
+
+--[New Tool]3D Perspective Dial Panel beta test. It is a draggable, hideable <div> that will be used to control 3D plotting in the future.
+--[Minor]Small aesthetic changes.
+--[Minor]declared mathematical function sinc(x) = sin(x)/x for x != 1 and sinc(x) = 1 for x = 1.

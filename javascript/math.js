@@ -1011,6 +1011,12 @@ function trunc(x){
 function sgn(x){
 	return Math.sign(x);
 }
+function sinc(x){
+	if(x == 0)
+		return 1;
+	else
+		return Math.sin(x)/x;
+}
 //----------------------------------
 function factorial(x){
 	var out = 1;

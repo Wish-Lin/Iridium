@@ -5,7 +5,7 @@
 <title>Iridium Main Page</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon" / >
 </head>
-<body style="background-color:Ivory">
+<body style="background-color: #fffff0;"> 
 <style>
 #title{
   font-size: 30px;
@@ -149,7 +149,7 @@
 #curpos_display {
   position: absolute;
   z-index: 9;
-  background-color: #f1f1f1;
+  background-color: #fffff0;
   border: 1px solid #d3d3d3;
   text-align: left;
   display: none;
@@ -166,7 +166,7 @@
 #public_display {
   position: absolute;
   z-index: 9;
-  background-color: #f1f1f1;
+  background-color: #fffff0;
   border: 1px solid #d3d3d3;
   text-align: left;
   display: none;
@@ -180,14 +180,50 @@
   color: black;
 }
 
-</style>
-<script src="javascript/main.js"></script>              <!-- initialize window onload-->
-<script src="javascript/math.js"></script>				<!-- all the math stuff-->
-<script src="javascript/gui_driver.js"></script>  		<!-- code for all the subwindow and GUIs-->
-<script src="javascript/jsgif/LZWEncoder.js"></script>  <!-- jsgif GIFEncoder by antimatter15-->
-<script src="javascript/jsgif/NeuQuant.js"></script>    <!-- jsgif GIFEncoder by antimatter15-->
-<script src="javascript/jsgif/GIFEncoder.js"></script>  <!-- jsgif GIFEncoder by antimatter15-->
+#tdp_dials {
+  position: absolute;
+  z-index: 9;
+  background-color: #fffff0;
+  border: 1px solid #d3d3d3;
+  text-align: left;
+  display: none;
+}
 
+#tdp_dialsheader {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: AliceBlue;
+  color: black;
+  text-align: center;
+}
+
+</style>
+<script src="javascript/main.js"></script>                 <!-- initialize window onload-->
+<script src="javascript/math.js"></script>				   <!-- all the math stuff-->
+<script src="javascript/gui_driver.js"></script>  		   <!-- code for all the subwindow and GUIs-->
+<script src="javascript/jsgif/LZWEncoder.js"></script>     <!-- jsgif GIFEncoder by antimatter15-->
+<script src="javascript/jsgif/NeuQuant.js"></script>       <!-- jsgif GIFEncoder by antimatter15-->
+<script src="javascript/jsgif/GIFEncoder.js"></script>     <!-- jsgif GIFEncoder by antimatter15-->
+<script src="javascript/jQuery/jquery-3.6.0.js"></script>  <!-- jQuery-->
+<script src="javascript/jQuery/jquery.knob.js"></script>   <!-- jQuery knob extension for powering the dials-->
+<script>
+    $(function() {
+        $(".3d_perspective_dial").knob({
+			'min':0,
+			'max':360,
+			'width':80,
+			'height':80,
+		});
+		$(".3d_zoom_dial").knob({
+			'min':10,
+			'max':400,
+			'step':10,
+			'width':80,
+			'height':80,
+		});
+    });
+</script>
 		
 		
 		<center>
@@ -216,6 +252,23 @@
 		  <center><p id ="public_displaycontent" style="font: bold 15px Arial;">empty</p></center>
 		</div>
 		
+		<!-- This is the normally-hidden 3D perspective control dials panel-->
+		<div id="tdp_dials">
+		  <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+		  <div id="tdp_dialsheader">
+		  <span style="font: 15px Arial;">3D Perspective Control Dials</span>
+		  <a href="javascript:void(0)" style = "font-size: 25px; color: black;" onclick="document.getElementById('show_tdpd').checked = false; tdpd_show_control();">&times;</a>  <!-- Uncheckes the box and closes itself along with all other related settings-->
+		  </div>
+		  <table border = 1px>
+		  <tr><td>X rotation:</td><td>Y rotation:</td><td>Z rotation:</td><td>Zoom(%):</td></tr>
+		  <tr>
+		  <td><input id = "x_perspective_dial "type="text" value="60" class="3d_perspective_dial"></td>
+		  <td><input id = "y_perspective_dial "type="text" value="60" class="3d_perspective_dial"></td>
+		  <td><input id = "z_perspective_dial "type="text" value="60" class="3d_perspective_dial"></td>
+		  <td><input id = "zoom_dial "type="text" value="100" class="3d_zoom_dial"></td>
+		  </tr>
+		  </table>
+		</div>
 		
 		<!--"File" side panel-->
 		<button onclick="colaps_file_open()">&#9776; File</button>
@@ -247,6 +300,8 @@
 		<span style="font: 20px consolas;">Cursor position tool:</span><input type="checkbox" id="show_curpos" value = "on" onclick = "curpos_show_control()" style = "height: 18px; width: 18px"></input><br>
 		<hr>
 		<span style="font: 20px consolas;">Public display:</span><input type="checkbox" id="show_public" value = "on" onclick = "public_show_control()" style = "height: 18px; width: 18px"></input><br>
+		<hr>
+		<span style="font: 20px consolas;">3D perspective control:</span><input type="checkbox" id="show_tdpd" value = "on" onclick = "tdpd_show_control()" style = "height: 18px; width: 18px"></input><br>
 		</div>
 		<!--"Settings" side panel-->
 		
@@ -255,7 +310,7 @@
 		<button onclick="colaps_other_open()">&#9776; Other</button><br>
 		<div id="colaps_other" class="colaps_other">
 		<a href="javascript:void(0)" class="closebtn" onclick="colaps_other_close()">&times;</a>
-		<span style="font: 20px consolas;">Version: 1.1.2</span><br><br>
+		<span style="font: 20px consolas;">Version: 1.1.3</span><br><br>
 		<a href="log.txt" target="_blank" style="font: 20px consolas;">Version Log</a><br>
 		<hr>
 		<a href="https://github.com/Wish-Lin/Iridium" target="_blank" style="font: 20px consolas;">Github Repository</a><br>

@@ -21,3 +21,7 @@ polygon_rc()
 polygon_ri()
 polygon_rs()
 polygon_rv()
+sinc()
+
+can't draw on top of drawimage()
+
