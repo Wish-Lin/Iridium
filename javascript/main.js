@@ -16,7 +16,6 @@ var print_public_enabled = false;					//control boolean variable for the public 
 var tdpd_enabled = false;							//control boolean variable for the tdpd display
 var anim_control_enabled = false;					//control boolean variable for the animation control panel display
 
-var ANIM_T0 = 0;             //animation timeline 0
 //------↑↑↑↑↑↑↑↑Global variable declare zone↑↑↑↑↑↑↑↑-------------------
 
 

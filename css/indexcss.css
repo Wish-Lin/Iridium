@@ -239,7 +239,7 @@
   border: 1px solid #d3d3d3;
   text-align: left;
   display: none;
-  width: 650px;
+  width: 700px;
   height: 500px;
 }
 
@@ -251,3 +251,10 @@
   color: black;
   text-align: center;
 }
+
+/*-------------------------------------------------------------------------------------------------------*/
+
+.anim_setting_input {
+  font: bold 16px Arial; width:40px;
+}
+

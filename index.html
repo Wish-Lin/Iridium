@@ -78,42 +78,75 @@
 		</div>
 		
 		<!-- This is the normally-hidden Animation control panel-->
-		<div id="anim_control">
+		<div id="anim_control" style = "overflow: scroll;">
 		<!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
 		<div id="anim_controlheader">
-		<span style="font: 17px Arial;">Animation control panel</span>
+		<span style="font: bold 20px Arial;">Animation control panel</span>
+		<a href="javascript:void(0)" style = "font-size: 25px; color: black;" onclick="anim_control_show_control();">&times;</a>
 		</div>
-			<div id ="anim_controlpanel" style="font: 18px verdana; text-align: center;">
-			<br>Timeline settings<br><br>
-			<table border=1px style="margin-left:auto; margin-right:auto; margin-bottom: 10px; margin-top: 10px;">
-			<tr>
-			<td>Timeline Name</td>
-			<td>Start</td>
-			<td>End</td>
-			<td>Increment Count</td>
-			<td>FPS</td>
-			<td></td>
-			</tr>
-			<tr>
-			<td>ANIM_T0</td>
-			<td><input id="animt0_start" type="text" value='0' style = "font: bold 20px Arial; width:40px;"></td>
-			<td><input id="animt0_end" type="text" value='5' style = "font: bold 20px Arial; width:40px;"></td>
-			<td><input id="animt0_increment_count" type="text" value='100' style = "font: bold 20px Arial; width:40px;"></td>
-			<td><input id="animt0_fps" type="text" value='25' style = "font: bold 20px Arial; width:40px;"></td>
-			<td><button id="set_animt0" onclick = "set_animt0()" class = "menubutton">Set</td>
-			</tr>
-			</table>
-			<table border=1px style="margin-left:auto; margin-right:auto; margin-bottom: 10px; margin-top: 10px;">
-			<tr>
-			<td>Frame Count</td>
-			<td>Total Time(s)</td>
-			</tr>
-			<tr>
-			<td><span id="animt0_framecount" style = "font: bold 20px Arial; width:40px;">101</span></td>
-			<td><span id="animt0_totaltime" style = "font: bold 20px Arial; width:40px;">4.0400</span></td>
-			</tr>
-			</table>
-			<button class="menubutton" onclick="run_animt0()">▶ Run ANIM_T0</button>
+			<div id ="anim_controlpanel" style="font: 20px verdana; text-align: center;">
+				<table border=1px style="margin-left:auto; margin-right:auto; margin-bottom: 10px; margin-top: 10px; font: 17px Verdana;">
+				<tr>
+				<td>Timeline</td>
+				<td>Start</td>
+				<td>End</td>
+				<td>Steps</td>
+				<td>FPS</td>
+				<td></td>
+				<td>Frames</td>
+				<td>Time(s)</td>
+				<td>Label</td>
+				<td></td>
+				</tr>
+				<tr>
+				<td>ANIM_T1</td>
+				<td><input id="animt1_start" type="text" value='0' class = "anim_setting_input"></td>
+				<td><input id="animt1_end" type="text" value='5' class = "anim_setting_input"></td>
+				<td><input id="animt1_increment_count" type="text" value='100' class = "anim_setting_input"></td>
+				<td><input id="animt1_fps" type="text" value='25' class = "anim_setting_input"></td>
+				<td><button id="set_animt1" onclick = "set_animt1()" class = "menubutton">→</td>
+				<td><span id="animt1_framecount" class = "anim_setting_input"></span></td>
+				<td><span id="animt1_totaltime" class = "anim_setting_input"></span></td>
+				<td><input style = "font: 16px Arial; width:80px;"></td>
+				<td><button class="menubutton" onclick="run_animt1()">▶ Run</button></td>
+				</tr>
+				<tr>
+				<td>ANIM_T2</td>
+				<td><input id="animt2_start" type="text" value='0' class = "anim_setting_input"></td>
+				<td><input id="animt2_end" type="text" value='5' class = "anim_setting_input"></td>
+				<td><input id="animt2_increment_count" type="text" value='100' class = "anim_setting_input"></td>
+				<td><input id="animt2_fps" type="text" value='25' class = "anim_setting_input"></td>
+				<td><button id="set_animt2" onclick = "set_animt2()" class = "menubutton">→</td>
+				<td><span id="animt2_framecount" class = "anim_setting_input"></span></td>
+				<td><span id="animt2_totaltime" class = "anim_setting_input"></span></td>
+				<td><input style = "font: 16px Arial; width:80px;"></td>
+				<td><button class="menubutton" onclick="run_animt2()">▶ Run</button></td>
+				</tr>
+				<tr>
+				<td>ANIM_T3</td>
+				<td><input id="animt3_start" type="text" value='0' class = "anim_setting_input"></td>
+				<td><input id="animt3_end" type="text" value='5' class = "anim_setting_input"></td>
+				<td><input id="animt3_increment_count" type="text" value='100' class = "anim_setting_input"></td>
+				<td><input id="animt3_fps" type="text" value='25' class = "anim_setting_input"></td>
+				<td><button id="set_animt3" onclick = "set_animt3()" class = "menubutton">→</td>
+				<td><span id="animt3_framecount" class = "anim_setting_input"></span></td>
+				<td><span id="animt3_totaltime" class = "anim_setting_input"></span></td>
+				<td><input style = "font: 16px Arial; width:80px;"></td>
+				<td><button class="menubutton" onclick="run_animt3()">▶ Run</button></td>
+				</tr>
+				<tr>
+				<td>ANIM_T4</td>
+				<td><input id="animt4_start" type="text" value='0' class = "anim_setting_input"></td>
+				<td><input id="animt4_end" type="text" value='5' class = "anim_setting_input"></td>
+				<td><input id="animt4_increment_count" type="text" value='100' class = "anim_setting_input"></td>
+				<td><input id="animt4_fps" type="text" value='25' class = "anim_setting_input"></td>
+				<td><button id="set_animt4" onclick = "set_animt4()" class = "menubutton">→</td>
+				<td><span id="animt4_framecount" class = "anim_setting_input"></span></td>
+				<td><span id="animt4_totaltime" class = "anim_setting_input"></span></td>
+				<td><input style = "font: 16px Arial; width:80px;"></td>
+				<td><button class="menubutton" onclick="run_animt4()">▶ Run</button></td>
+				</tr>
+				</table>
 			</div>
 		</div>
 		
