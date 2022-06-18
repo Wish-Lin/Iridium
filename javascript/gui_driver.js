@@ -1,39 +1,62 @@
+var colaps_file_enabled = false;
+var colaps_help_enabled = false;
+var colaps_settings_enabled = false;
+var colaps_other_enabled = false;
+
+
+
 //-------------------------Collapsable side panel from W3School(file)
 function colaps_file_open() {
-  document.getElementById("colaps_file").style.width = "250px";
-}
-function colaps_file_close() {
-  document.getElementById("colaps_file").style.width = "0px";
+	if(colaps_file_enabled == false){
+		document.getElementById("colaps_file").style.width = "250px";
+		colaps_file_enabled = true;
+	}
+	else if(colaps_file_enabled == true){
+		document.getElementById("colaps_file").style.width = "0px";
+		colaps_file_enabled = false;
+	}
 }
 //-------------------------Collapsable side panel from W3School(file)
 
 
 //-------------------------Collapsable side panel from W3School(help)
 function colaps_help_open() {
-  document.getElementById("colaps_help").style.width = "300px";
-}
-function colaps_help_close() {
-  document.getElementById("colaps_help").style.width = "0px";
+  	if(colaps_help_enabled == false){
+		document.getElementById("colaps_help").style.width = "300px";
+		colaps_help_enabled = true;
+	}
+	else if(colaps_help_enabled == true){
+		document.getElementById("colaps_help").style.width = "0px";
+		colaps_help_enabled = false;
+	}
 }
 //-------------------------Collapsable side panel from W3School(help)
 
 
 //-------------------------Collapsable side panel from W3School(settings)
 function colaps_settings_open() {
-  document.getElementById("colaps_settings").style.width = "280px";
-}
-function colaps_settings_close() {
-  document.getElementById("colaps_settings").style.width = "0px";
+  	if(colaps_settings_enabled == false){
+		document.getElementById("colaps_settings").style.width = "280px";
+		colaps_settings_enabled = true;
+	}
+	else if(colaps_settings_enabled == true){
+		document.getElementById("colaps_settings").style.width = "0px";
+		colaps_settings_enabled = false;
+	}
 }
 //-------------------------Collapsable side panel from W3School(settings)
 
 
 //-------------------------Collapsable side panel from W3School(other)
 function colaps_other_open() {
-  document.getElementById("colaps_other").style.width = "280px";
-}
-function colaps_other_close() {
-  document.getElementById("colaps_other").style.width = "0px";
+  	if(colaps_other_enabled == false){
+		document.getElementById("colaps_other").style.width = "280px";
+		colaps_other_enabled = true;
+	}
+	else if(colaps_other_enabled == true){
+		document.getElementById("colaps_other").style.width = "0px";
+		colaps_other_enabled = false;
+	}
 }
 //-------------------------Collapsable side panel from W3School(other)
 
@@ -102,7 +125,7 @@ function dragElement(elmnt) {	//-------Driver for draggable <div> from W3School
 
 
 //-------Cursor Position Tool related functions
-function curpos_show_control() { //(from W3School)
+function curpos_show_control(){ //(from W3School)
 	// Get the checkbox
 	var checkBox = document.getElementById("show_curpos");
 	var div = document.getElementById("curpos_display");
@@ -135,7 +158,7 @@ function print_curpos(canvasQ, event) {
 
 
 //-------Public Display related functions
-function public_show_control() { //(from W3School)
+function public_show_control(){ //(from W3School)
 	// Get the checkbox
 	var checkBox = document.getElementById("show_public");
 	var div = document.getElementById("public_display");
@@ -150,20 +173,33 @@ function public_show_control() { //(from W3School)
 }
 
 //-------3D perspective dials related functions
-function tdpd_show_control() {   //(from W3School)
+function tdpd_show_control(){   //(from W3School)
 	// Get the checkbox
 	var checkBox = document.getElementById("show_tdpd");
 	var div = document.getElementById("tdp_dials");
 	if(checkBox.checked == true){
 		div.style.display = "block";
-		print_public_enabled = true;
+		tdpd_enabled = true;
 	}
 	else{
-		print_public_enabled = false;
+		tdpd_enabled = false;
 		div.style.display = "none";
 	}
 }
 
+//-------Animation control panel related functions
+
+function anim_control_show_control(){   //(from W3School)
+	var div = document.getElementById("anim_control");
+	if(anim_control_enabled == false){
+		div.style.display = "block";
+		anim_control_enabled = true;
+	}
+	else{
+		anim_control_enabled = false;
+		div.style.display = "none";
+	}
+}
 
 //-------------------------Special character inserter related functions
 function insert_symbol(){
@@ -223,7 +259,7 @@ function input_autocomplete(e){
 			el.setRangeText('', start, end, 'end');
 		}
 	}
-	else if(document.activeElement == document.getElementById("template")){
+	else if(document.activeElement == document.getElementById("template")){ //Identical function for the template section
 		if (e.key === '(') {
 			el = el = document.getElementById("template");
 			const [start, end] = [el.selectionStart, el.selectionEnd];   

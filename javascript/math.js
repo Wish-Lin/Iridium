@@ -71,9 +71,9 @@ function setcanvas(width,height,color){ //(nat,nat,string)(width >= 50px, height
 	else if(height <50)
 		alert("setcanvas(width,height,\"color\"): \"height\" too small(<50)");
 	else{
-	if(!isNaN(color)){
-		alert("setcanvas(width,height,\"color\"): \"color\" invalid.");
-		color = "white";
+		if(!isNaN(color)){
+			alert("setcanvas(width,height,\"color\"): \"color\" invalid.");
+			color = "white";
 	}
 	//-------------------------------------
 	document.getElementById('canvas_cont').width = width;
@@ -84,6 +84,7 @@ function setcanvas(width,height,color){ //(nat,nat,string)(width >= 50px, height
 	var ctx = canvas.getContext("2d");
 	ctx.fillStyle = color;
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
+	
 	}
 }
 function ezsetgrid(xmax,linewidth,color,showtick,showaxis){ //(real,real,string,bool,bool) [USER FUNC]
@@ -889,18 +890,51 @@ function polygon_rv(cx,cy,vx,vy,n,linewidth,color,fill){    //Draw regular polyg
 		polygon_rc(cx,cy,r,n,-90+(angle*180/PI),linewidth,color,fill);
 	}
 }
+function la_line_pp(x1,y1,x2,y2,linewidth,linecap,color){//(real,real,real,real,real,string,string) Draw line segment between two points(linear transformable) [USER FUNC] 
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	ctx.setLineDash([]);  //clear out dotline settings
+	ctx.strokeStyle = color;
+	ctx.lineWidth = linewidth;
+	ctx.beginPath();
+	ctx.lineCap = linecap;
+	ctx.moveTo(_real2pix_x(x1*lin_tran[0]+y1*lin_tran[1]),_real2pix_y(x1*lin_tran[2]+y1*lin_tran[3]));
+	ctx.lineTo(_real2pix_x(x2*lin_tran[0]+y2*lin_tran[1]),_real2pix_y(x2*lin_tran[2]+y2*lin_tran[3]));       
+	ctx.stroke();                          
+}
+function la_rectangle(x,y,width,height,linewidth,color,fill){//(real,real,real,real,real,string,bool) Draw rectangle(linear transformable) [USER FUNC] 
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	ctx.setLineDash([]);  //clear out dotline settings
+	ctx.strokeStyle = color;
+	ctx.fillStyle = color;
+	ctx.lineWidth = linewidth;
+	ctx.beginPath();
+	ctx.lineCap = "round";
+	ctx.lineJoin = "miter";
+	
+	ctx.moveTo(_real2pix_x(x*lin_tran[0]+y*lin_tran[1]),_real2pix_y(x*lin_tran[2]+y*lin_tran[3]));
+	ctx.lineTo(_real2pix_x((x+width)*lin_tran[0]+y*lin_tran[1]),_real2pix_y((x+width)*lin_tran[2]+y*lin_tran[3]));
+	ctx.lineTo(_real2pix_x((x+width)*lin_tran[0]+(y+height)*lin_tran[1]),_real2pix_y((x+width)*lin_tran[2]+(y+height)*lin_tran[3]));
+	ctx.lineTo(_real2pix_x(x*lin_tran[0]+(y+height)*lin_tran[1]),_real2pix_y(x*lin_tran[2]+(y+height)*lin_tran[3]));
+	ctx.lineTo(_real2pix_x(x*lin_tran[0]+y*lin_tran[1]),_real2pix_y(x*lin_tran[2]+y*lin_tran[3]));
+	ctx.closePath();
+	
+	if(fill == false)
+		ctx.stroke();
+	else if(fill == true)
+		ctx.fill();
+}
+
+//------↓↓↓↓↓↓↓↓Mathematical variables declare zone↓↓↓↓↓↓↓↓-------------------
+var lin_tran = new Array(1,0,0,1);  //linear transformation variable, default is unit matrix(no transformation).
 
 
-
-
-
-
-
-
+//------↑↑↑↑↑↑↑↑Mathematical variables and function declare zone↑↑↑↑↑↑↑↑-------------------
 
 
 //------↓↓↓↓↓↓↓↓Mathematical constant and function declare zone↓↓↓↓↓↓↓↓-------------------
-const PI = 3.1415926535;              //π
+const PI = 3.1415926535;              //PI
 const E = 2.7182818284;               //Euler's number
 const GOLD = 1.6180339888;       	  //Golden ratio
 const SLIVER = 2.4142135623;          //Sliver ratio

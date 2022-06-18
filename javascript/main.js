@@ -13,6 +13,10 @@ var _orig_y = 0;			//global origin y coordinate
 const default_template = "// Default template\n//-------------------------\nclear();  //clear canvas\nsetcanvas(600,600,\"white\"); //set 600x600 white canvas\nezsetgrid(10,2,\"gray\",1,1); //initialize coordinate\nlabel(\"x\",9.4,-0.6,\"gray\",\"italic 20px serif\");  //x\nlabel(\"y\",-0.6,9.4,\"gray\",\"italic 20px serif\");  //y\nlabel(\"O\",-0.9,-0.9,\"gray\",\"italic 25px serif\"); //O\nfor(var tmp = -9;tmp <=9;tmp++){\nline_pp(tmp,10,tmp,-10,0.3,\"round\",\"gray\");\nline_pp(-10,tmp,10,tmp,0.3,\"round\",\"gray\");\n}\n";
 var print_curpos_enabled = false;					//control boolean variable for the cursor position tool
 var print_public_enabled = false;					//control boolean variable for the public display
+var tdpd_enabled = false;							//control boolean variable for the tdpd display
+var anim_control_enabled = false;					//control boolean variable for the animation control panel display
+
+var ANIM_T0 = 0;             //animation timeline 0
 //------↑↑↑↑↑↑↑↑Global variable declare zone↑↑↑↑↑↑↑↑-------------------
 
 
@@ -32,6 +36,7 @@ window.onload = function(){
 		dragElement(document.getElementById("curpos_display"));  //set cursorpos displayer as a draggable <div>
 		dragElement(document.getElementById("public_display"));  //set public display as a draggable <div>
 		dragElement(document.getElementById("tdp_dials"));       //set 3d prespective dials as a draggable <div>
+		dragElement(document.getElementById("anim_control"));    //set animation control panel as a draggable <div>
 		
 		const canvasQ = document.querySelector('canvas');		//This is for the cursor position tool
 		canvasQ.addEventListener('mousedown', function(e) { 	//This is for the cursor position tool

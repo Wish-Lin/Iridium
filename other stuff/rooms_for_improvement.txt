@@ -21,7 +21,10 @@ polygon_rc()
 polygon_ri()
 polygon_rs()
 polygon_rv()
-sinc()
 
 can't draw on top of drawimage()
 
+la_line_pp()
+la_rectangle()
+
+change all childwindows to hideable <div>s.

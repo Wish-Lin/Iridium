@@ -1,0 +1,253 @@
+#title{
+  font-size: 30px;
+}
+#curfontsize{
+  display: inline;
+}
+#autofill_exe{
+	font-size: 25px;
+}
+#autofill_inp{
+	font-size: 25px;
+}
+
+/*----------------------------CSS style for pure aesthetic purposes------------------------------------------------*/
+
+/* https://cssbuttongenerator.com/ */
+
+.menubutton {   
+  font-size:17px;
+  font-family:Arial;
+  height:35px;
+  border-width:2px;
+  color:rgba(0, 0, 0, 1);
+  border-color:rgba(0, 0, 0, 1);
+  font-weight:bold;
+  border-top-left-radius:8px;
+  border-top-right-radius:8px;
+  border-bottom-left-radius:8px;
+  border-bottom-right-radius:8px;
+  background:rgba(255, 255, 255, 1);
+}
+
+.menubutton:hover {
+  background: rgba(211, 211, 211, 1)
+}    
+
+.generic_button {
+  font-size:15px;
+  font-family:Arial;
+  border-width:2px;
+  color:rgba(0, 0, 0, 1);
+  border-color:rgba(0, 0, 0, 1);
+  font-weight:bold;
+  border-top-left-radius:8px;
+  border-top-right-radius:8px;
+  border-bottom-left-radius:8px;
+  border-bottom-right-radius:8px;
+  background:rgba(255, 255, 255, 1);
+}
+
+.generic_button:hover {
+  background: rgba(211, 211, 211, 1)
+}
+  
+
+/*-------------------------------------------------------------------------------------------------------*/
+
+/* The colaps_file menu */
+.colaps_file {
+  font-family: Consolas; 
+  height: 220px; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the colaps_file */
+  background-color: AliceBlue;
+}
+
+.colaps_file a {
+  text-decoration: none;
+  font-size: 25px;
+  font-family: Consolas; 
+  color: black;
+  transition: 0.3s;
+}
+
+/* Position and style the close button (top right corner) */
+.colaps_file .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  background-color: AliceBlue;
+}
+
+/*-------------------------------------------------------------------------------------------------------*/
+
+/* The colaps_help menu */
+.colaps_help {
+  font-family: Consolas; 
+  height: 220px; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the colaps_help */
+  background-color: AliceBlue;
+}
+
+.colaps_help a {
+  text-decoration: none;
+  font-size: 25px;
+  font-family: Consolas; 
+  color: black;
+  transition: 0.3s;
+}
+
+/* Position and style the close button (top right corner) */
+.colaps_help .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  background-color: AliceBlue;
+}
+
+/*-------------------------------------------------------------------------------------------------------*/
+
+/* The colaps_settings menu */
+.colaps_settings {
+  font-family: Consolas; 
+  font-size: 13px;
+  height: 220px; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the colaps_settings */
+  background-color: AliceBlue;
+}
+
+.colaps_settings a {
+  text-decoration: none;
+  font-size: 20px;
+  font-family: Consolas; 
+  color: black;
+  transition: 0.3s;
+}
+
+/* Position and style the close button (top right corner) */
+.colaps_settings .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  background-color: AliceBlue;
+}
+
+/*-------------------------------------------------------------------------------------------------------*/
+
+/* The colaps_other menu */
+.colaps_other {
+  font-family: Consolas; 
+  height: 220px; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the colaps_other */
+  background-color: AliceBlue;
+}
+
+.colaps_other a {
+  text-decoration: none;
+  font-size: 25px;
+  font-family: Consolas; 
+  color: black;
+  transition: 0.3s;
+}
+
+/* Position and style the close button (top right corner) */
+.colaps_other .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  background-color: AliceBlue;
+}
+
+/*-------------------------------------------------------------------------------------------------------*/
+
+#curpos_display {
+  position: absolute;
+  z-index: 9;
+  background-color: #fffff0;
+  border: 1px solid #d3d3d3;
+  text-align: left;
+  display: none;
+}
+
+#curpos_displayheader {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: AliceBlue;
+  color: black;
+}
+
+#public_display {
+  position: absolute;
+  z-index: 9;
+  background-color: #fffff0;
+  border: 1px solid #d3d3d3;
+  text-align: left;
+  display: none;
+}
+
+#public_displayheader {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: AliceBlue;
+  color: black;
+}
+
+#tdp_dials {
+  position: absolute;
+  z-index: 9;
+  background-color: #fffff0;
+  border: 1px solid #d3d3d3;
+  text-align: left;
+  display: none;
+}
+
+#tdp_dialsheader {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: AliceBlue;
+  color: black;
+  text-align: center;
+}
+
+#anim_control {
+  position: absolute;
+  z-index: 9;
+  background-color: #fffff0;
+  border: 1px solid #d3d3d3;
+  text-align: left;
+  display: none;
+  width: 650px;
+  height: 500px;
+}
+
+#anim_controlheader {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: AliceBlue;
+  color: black;
+  text-align: center;
+}
