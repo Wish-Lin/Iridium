@@ -14,7 +14,8 @@ insert function,command and special characters wherever I need.
 
 
 
-Functions that are finished but the description isn't completed yet: 
+Functions that are finished but the description isn't completed yet:
+display()
 ellipse()
 slope_field()
 polygon_rc()

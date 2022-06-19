@@ -595,7 +595,7 @@ function circle(x,y,radius,width,color,fill){ //Draw circle (real,real,real,real
 		}
 }
 function arc(x,y,radius,width,color,start,end){ //Draw part of circle (real,real,real,real,"string",nat,nat)[USER FUNC]
-	if(Number.isInteger(start) && Number.isInteger(end) && start < end && start >= -360 && end <= 360){ 
+	if(Number.isInteger(start) && Number.isInteger(end) && start <= end && start >= -360 && end <= 360){ 
 		func_x = "x = "+x.toString()+"+"+radius.toString()+"*cos(t)";
 		func_y = "y = "+y.toString()+"+"+radius.toString()+"*sin(t)";
 		eval(ezplot_param(func_x,func_y,PI*start/180,PI*end/180,width,color,PI/180));

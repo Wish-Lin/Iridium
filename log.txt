@@ -185,5 +185,9 @@ v1.2.0:  (release date: 2022/6/18)
 
 v1.2.0.1:  (release date: 2022/6/18) 
 
---[Minor]Beta test of 4/10 In-program animation timelines(ANIM_T1~ANIM_T10), which I think is very sufficient for general use.
+--[Minor]Online beta test of 4/10 In-program animation timelines(ANIM_T1~ANIM_T4), which I think is very sufficient for general use.
 
+v1.2.0.2:  (release date: 2022/6/19) 
+
+--[Minor]Small aesthetic changes.
+--[Minor]GUI improvement. Unwanted side menu scrollbar eliminated.

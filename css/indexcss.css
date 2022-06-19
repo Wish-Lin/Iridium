@@ -58,12 +58,14 @@
 /* The colaps_file menu */
 .colaps_file {
   font-family: Consolas; 
-  height: 220px; /* Specify a height */
+  height: 280px; /* Specify a height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
   overflow-x: hidden; /* Disable horizontal scroll */
+  overflow-y: hidden;
   transition: 0.5s; /* 0.5 second transition effect to slide in the colaps_file */
   background-color: AliceBlue;
+
 }
 
 .colaps_file a {
@@ -93,6 +95,7 @@
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
   overflow-x: hidden; /* Disable horizontal scroll */
+  overflow-y: hidden;
   transition: 0.5s; /* 0.5 second transition effect to slide in the colaps_help */
   background-color: AliceBlue;
 }
@@ -121,10 +124,11 @@
 .colaps_settings {
   font-family: Consolas; 
   font-size: 13px;
-  height: 220px; /* Specify a height */
+  height: 270px; /* Specify a height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
   overflow-x: hidden; /* Disable horizontal scroll */
+  overflow-y: hidden;
   transition: 0.5s; /* 0.5 second transition effect to slide in the colaps_settings */
   background-color: AliceBlue;
 }
@@ -152,10 +156,11 @@
 /* The colaps_other menu */
 .colaps_other {
   font-family: Consolas; 
-  height: 220px; /* Specify a height */
+  height: 270px; /* Specify a height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
   overflow-x: hidden; /* Disable horizontal scroll */
+  overflow-y: hidden;
   transition: 0.5s; /* 0.5 second transition effect to slide in the colaps_other */
   background-color: AliceBlue;
 }
@@ -258,3 +263,6 @@
   font: bold 16px Arial; width:40px;
 }
 
+.anim_setting_dropdown {
+  font: bold 16px Arial; width:45px;
+}
