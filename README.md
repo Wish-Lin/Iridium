@@ -1,4 +1,4 @@
-    ![](https://i.imgur.com/Z4vr6v0.gif)
+![](https://i.imgur.com/Z4vr6v0.gif)
 
 ## [Try Iridium Here](https://wish-lin.github.io/Iridium/)
 
