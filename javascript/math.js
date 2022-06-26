@@ -925,6 +925,21 @@ function la_rectangle(x,y,width,height,linewidth,color,fill){//(real,real,real,r
 	else if(fill == true)
 		ctx.fill();
 }
+function line_ps(x,y,m,ll,rl,linewidth,linecap,color){//(real,real,real,real,real,real,string,string) Draw line segment with point and slope [USER FUNC] 
+	line_pp(x-Math.sqrt((ll**2)/(m**2+1)),y-m*Math.sqrt((ll**2)/(m**2+1)),x+Math.sqrt((rl**2)/(m**2+1)),y+m*Math.sqrt((rl**2)/(m**2+1)),linewidth,linecap,color);
+}
+function n_derivative(fx,xpos){ //(string,real) Estimate derivative using symmetric difference quotient with h = 0.001[USER FUNC]
+	var x = xpos; //buffer for the eval(), a measure to prevent functions with 'x', 'y', 'r', 't' in their names being processed away.
+	var y,y1,y2 = 0;
+	x-=0.001;
+	eval(fx);
+	y1 = y;
+	x+=0.002;
+	eval(fx);
+	y2 = y;
+	return (y2-y1)/(0.002);
+}
+
 
 //------↓↓↓↓↓↓↓↓Mathematical variables declare zone↓↓↓↓↓↓↓↓-------------------
 var lin_tran = new Array(1,0,0,1);  //linear transformation variable, default is unit matrix(no transformation).

@@ -15,7 +15,7 @@ var print_curpos_enabled = false;					//control boolean variable for the cursor 
 var print_public_enabled = false;					//control boolean variable for the public display
 var tdpd_enabled = false;							//control boolean variable for the tdpd display
 var anim_control_enabled = false;					//control boolean variable for the animation control panel display
-
+var main_mode = false;                              //false = static image mode. true = animation mode.
 //------↑↑↑↑↑↑↑↑Global variable declare zone↑↑↑↑↑↑↑↑-------------------
 
 
@@ -35,7 +35,8 @@ window.onload = function(){
 		dragElement(document.getElementById("curpos_display"));  //set cursorpos displayer as a draggable <div>
 		dragElement(document.getElementById("public_display"));  //set public display as a draggable <div>
 		dragElement(document.getElementById("tdp_dials"));       //set 3d prespective dials as a draggable <div>
-		dragElement(document.getElementById("anim_control"));    //set animation control panel as a draggable <div>
+		
+		document.getElementById("static_mode_select").style.backgroundColor = "#d3d3d3";  //Initialize "static image" button in gray background (selected)
 		
 		const canvasQ = document.querySelector('canvas');		//This is for the cursor position tool
 		canvasQ.addEventListener('mousedown', function(e) { 	//This is for the cursor position tool

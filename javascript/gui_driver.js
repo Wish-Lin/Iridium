@@ -187,20 +187,6 @@ function tdpd_show_control(){   //(from W3School)
 	}
 }
 
-//-------Animation control panel related functions
-
-function anim_control_show_control(){   //(from W3School)
-	var div = document.getElementById("anim_control");
-	if(anim_control_enabled == false){
-		div.style.display = "block";
-		anim_control_enabled = true;
-	}
-	else{
-		anim_control_enabled = false;
-		div.style.display = "none";
-	}
-}
-
 //-------------------------Special character inserter related functions
 function insert_symbol(){
 	window.open("subwindows/symbol_list.html", "_blank",'height=300,width=400,status=yes,top=150,left=250,toolbar=no,menubar=no,location=no');
@@ -328,4 +314,20 @@ function update_selected_template(){
 	eval(data);
 	data = document.getElementById("input").value;
 	eval(data);
+}
+
+//-------------------------Static Image/Animation edit mode switch
+function switch_to_static(){
+	main_mode = false;
+	document.getElementById("static_mode_select").style.backgroundColor = "#d3d3d3";
+	document.getElementById("anim_mode_select").style.backgroundColor = "#ffffff";
+	document.getElementById("inputzone_static").style.display = "inline";
+	document.getElementById("inputzone_anim").style.display = "none";
+}
+function switch_to_anim(){
+	main_mode = true;
+	document.getElementById("static_mode_select").style.backgroundColor = "#ffffff";
+	document.getElementById("anim_mode_select").style.backgroundColor = "#d3d3d3";
+	document.getElementById("inputzone_static").style.display = "none";
+	document.getElementById("inputzone_anim").style.display = "inline";
 }

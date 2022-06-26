@@ -191,3 +191,14 @@ v1.2.0.2:  (release date: 2022/6/19)
 
 --[Minor]Small aesthetic changes.
 --[Minor]GUI improvement. Unwanted side menu scrollbar eliminated.
+
+v1.3.0:
+
+--[Minor]Small aesthetic changes.
+--[Minor]Animation max FPS change from 50FPS to 25FPS.
+--[Minor]Version number moved to title.
+--[Major]In-program animation removed from button list and is now another separate scripting section (switch between static image mode and animation
+    mode using buttons). All previous GUI for its pop-up window(buttons/animation panels/display-control functions) are therefore deleted.
+--[Update]Animation: 4 timelines and 15 manual command inputs deployed.
+--[New Function]line_ps() beta test.
+--[New Function]n_derivative() beta test.

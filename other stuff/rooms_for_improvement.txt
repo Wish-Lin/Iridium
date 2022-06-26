@@ -28,4 +28,8 @@ can't draw on top of drawimage()
 la_line_pp()
 la_rectangle()
 
+line_ps()
+n_derivative()
+
+
 change all childwindows to hideable <div>s.

@@ -260,9 +260,21 @@
 /*-------------------------------------------------------------------------------------------------------*/
 
 .anim_setting_input {
-  font: bold 16px Arial; width:40px;
+  font: bold 16px Arial;
+  width:40px;
 }
 
 .anim_setting_dropdown {
-  font: bold 16px Arial; width:45px;
+  font: bold 16px Arial;
+  width:45px;
+}
+
+.anim_cmd_dropdown {                       /*currently unused*/
+  font: bold 16px Arial;
+  width:55px;
+}
+
+.anim_command {
+  font-size: 15px; 
+  resize: vertical;
 }
