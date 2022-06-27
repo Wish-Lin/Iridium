@@ -43,6 +43,10 @@ window.onload = function(){
 			print_curpos(canvasQ,e);                        	//This is for the cursor position tool
 		});
 		
+		for(var i = 0;i<=14;i++){
+			cmd_exe_control[i] = false;						//Initialize all 15 indiv-command show control checkboxes as "false"
+		}
+		
 		document.getElementById("curfontsize").innerHTML = document.getElementById("input").style.fontSize;      //Current textarea font size display
 		
 		document.getElementById("Run").addEventListener("click", function(){ 

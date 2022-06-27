@@ -9,6 +9,7 @@ var ANIM_T8 = 0;             //animation timeline 8
 var ANIM_T9 = 0;             //animation timeline 9
 var ANIM_T10 = 0;            //animation timeline 10
 
+var cmd_exe_control = new Array(15); //boolean array to store checkbox stats, initialized on window.onload()
 
 
 function set_animt1(){
@@ -397,65 +398,15 @@ function run_animt10(){
 }
 
 
-function run_anim_cmd1(){
-	var script = document.getElementById("anim_cmd1").value;
-	eval(script);
-}
-function run_anim_cmd2(){
-	var script = document.getElementById("anim_cmd2").value;
-	eval(script);
-}
-function run_anim_cmd3(){
-	var script = document.getElementById("anim_cmd3").value;
-	eval(script);
-}
-function run_anim_cmd4(){
-	var script = document.getElementById("anim_cmd4").value;
-	eval(script);
-}
-function run_anim_cmd5(){
-	var script = document.getElementById("anim_cmd5").value;
-	eval(script);
-}
-function run_anim_cmd6(){
-	var script = document.getElementById("anim_cmd6").value;
-	eval(script);
-}
-function run_anim_cmd7(){
-	var script = document.getElementById("anim_cmd7").value;
-	eval(script);
-}
-function run_anim_cmd8(){
-	var script = document.getElementById("anim_cmd8").value;
-	eval(script);
-}
-function run_anim_cmd9(){
-	var script = document.getElementById("anim_cmd9").value;
-	eval(script);
-}
-function run_anim_cmd10(){
-	var script = document.getElementById("anim_cmd10").value;
-	eval(script);
-}
-function run_anim_cmd11(){
-	var script = document.getElementById("anim_cmd11").value;
-	eval(script);
-}
-function run_anim_cmd12(){
-	var script = document.getElementById("anim_cmd12").value;
-	eval(script);
-}
-function run_anim_cmd13(){
-	var script = document.getElementById("anim_cmd13").value;
-	eval(script);
-}
-function run_anim_cmd14(){
-	var script = document.getElementById("anim_cmd14").value;
-	eval(script);
-}
-function run_anim_cmd15(){
-	var script = document.getElementById("anim_cmd15").value;
-	eval(script);
+function run_all_indiv_command(){
+	eval(document.getElementById("template").value);  //run the blank template again(clear all previous stuff)
+	var tmpstring = "";
+	for(var i = 0;i<=14;i++){
+		if(cmd_exe_control[i] == true){  //if the checkbox is checked
+			tmpstring = "anim_cmd"+(i+1).toString();  //then execute that command
+			eval(document.getElementById(tmpstring).value);
+		}
+	}
 }
 
 function clearall_indivcommands() {
