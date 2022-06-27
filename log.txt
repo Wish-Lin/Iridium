@@ -192,7 +192,7 @@ v1.2.0.2:  (release date: 2022/6/19)
 --[Minor]Small aesthetic changes.
 --[Minor]GUI improvement. Unwanted side menu scrollbar eliminated.
 
-v1.3.0:
+v1.3.0:  (release date: 2022/6/26) 
 
 --[Minor]Small aesthetic changes.
 --[Minor]Animation max FPS change from 50FPS to 25FPS.
@@ -202,3 +202,7 @@ v1.3.0:
 --[Update]Animation: 4 timelines and 15 manual command inputs deployed.
 --[New Function]line_ps() beta test.
 --[New Function]n_derivative() beta test.
+
+v1.3.0.1:  (release date: 2022/6/27)
+
+--[Minor]Small aesthetic changes(textarea font now actively set to Consolas).

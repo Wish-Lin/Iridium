@@ -253,3 +253,7 @@ function clearall_indivcommands() {
 			tmp_note_list[i].value = "";
 	}
 }
+function clearall_indivcommandplots() {
+		var template = document.getElementById("template").value;
+		eval(template);
+}

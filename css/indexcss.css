@@ -275,6 +275,11 @@
 }
 
 .anim_command {
-  font-size: 15px; 
+  font: 15px Consolas; 
   resize: vertical;
+}
+
+.note_labels {
+  font: 15px Consolas;
+  width: 90px;
 }
