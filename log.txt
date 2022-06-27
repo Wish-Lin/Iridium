@@ -185,7 +185,7 @@ v1.2.0:  (release date: 2022/6/18)
 
 v1.2.0.1:  (release date: 2022/6/18) 
 
---[Minor]Online beta test of 4/10 In-program animation timelines(ANIM_T1~ANIM_T4), which I think is very sufficient for general use.
+--[Minor]Online beta test of 4/10 in-program animation timelines(ANIM_T1~ANIM_T4), which I think is very sufficient for general use.
 
 v1.2.0.2:  (release date: 2022/6/19) 
 
@@ -206,3 +206,7 @@ v1.3.0:  (release date: 2022/6/26)
 v1.3.0.1:  (release date: 2022/6/27)
 
 --[Minor]Small aesthetic changes(textarea font now actively set to Consolas).
+
+v1.3.0.2:  (release date: 2022/6/27)
+
+--[Minor]Online beta test of all 10 in-program animation timelines(ANIM_T1~ANIM_T10), which I think is very sufficient for general use.
