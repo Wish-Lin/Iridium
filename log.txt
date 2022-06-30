@@ -223,7 +223,9 @@ v1.4.0:  (release date: 2022/6/30)
 --[Bug Fix]line_ps() can now accept infinite slope as input (i.e, a vertical line), both manually (m == "inf") or returned by other functions (m == NaN)
 --[Minor]Iridium licensed under MIT License.
 
+v1.4.0.1:  (release date: 2022/6/30)
 
+--[Minor]License fix.
 
 
 
