@@ -205,7 +205,7 @@ v1.3.0: (release date: 2022/6/26)
 
 v1.3.0.1: (release date: 2022/6/27)
 
---[Minor]Small aesthetic changes(textarea font now actively set to Consolas).
+--[Minor]Small aesthetic changes(textarea font now formally set to Consolas).
 
 v1.3.0.2: (release date: 2022/6/27)
 
@@ -214,3 +214,22 @@ v1.3.0.2: (release date: 2022/6/27)
 v1.3.0.3:  (release date: 2022/6/27)
 
 --[Update]Animation: All 15 manual command inputs can now be selected/unselected for display individually. "Run" buttons are replaced by checkboxes.
+
+v1.4.0:  (release date: 2022/6/30)
+
+--[Minor]"index.css" renamed to "main.css" as pages other than index.html is now using it as well.
+--[Minor]Major aesthetic improvement of "add_command.html".
+--[Minor]input bracket autocomplete function disabled because it is not stable enough and is not efficient.
+--[Bug Fix]line_ps() can now accept infinite slope as input (i.e, a vertical line), both manually (m == "inf") or returned by other functions (m == NaN)
+--[Minor]Iridium licensed under MIT License.
+
+
+
+
+
+install "latin modern math" for function inserter, symbol selector and math display in general
+all pop-up inserters use Window.postMessage()
+CSS update of all pop-up inserters.
+Update all function to HACKMD.
+save/upload animation section along with static section.
+**Add Madoka "hope-despair-love" and EVA "reality and dream" to HACKMD page. 

@@ -1,5 +1,5 @@
-add ellipse (orthogonal only at first)
-template selector
+add ellipse (orthogonal only at first)   --done
+template selector   --done
 improve ALL function plotting: 
 	a better replace method, so that stuff like tan(x) can be used properly.
 
@@ -24,6 +24,7 @@ polygon_rs()
 polygon_rv()
 
 can't draw on top of drawimage()
+static image / animation button "hover gray" function doesn't work.  (2022/6/29)
 
 la_line_pp()
 la_rectangle()
@@ -32,4 +33,3 @@ line_ps()
 n_derivative()
 
 
-change all childwindows to hideable <div>s.

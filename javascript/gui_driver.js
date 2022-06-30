@@ -211,8 +211,8 @@ function add_command(){
 }
 
 
-//-------------------------Input autocompleter related functions
-function input_autocomplete(e){
+//-------------------------Input autocompleter related functions (disabled starting from v1.4.0)
+/*function input_autocomplete(e){
 	if(document.activeElement == document.getElementById("input")){
 		if (e.key === '(') {
 			el = el = document.getElementById("input");
@@ -278,7 +278,7 @@ function input_autocomplete(e){
 		}
 	}
 }
-
+*/
 
 //-------------------------Small calculator driver
 function quick_calculator(){

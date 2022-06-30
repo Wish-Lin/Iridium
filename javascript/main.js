@@ -26,7 +26,7 @@ window.onload = function(){
         var canvas = document.getElementById("myCanvas");
         var context = canvas.getContext("2d");	
 		
-		document.addEventListener('keyup', input_autocomplete , false); //input_autocomplete
+		//document.addEventListener('keyup', input_autocomplete , false); //input_autocomplete
 		
 		document.getElementById("template").value = default_template;  //load default template
 		var template = document.getElementById("template").value;    	//run default template
@@ -57,9 +57,20 @@ window.onload = function(){
             
             var fr=new FileReader();
             fr.onload=function(){
-				var data = fr.result.split("\n==============================\n");  //separate template and script
+				var data = fr.result.split("\n==============================\n");  //separate template, script and animation stuff
 				document.getElementById("template").value = data[0];
 				document.getElementById("input").value = data[1];
+				
+				//decode&load timeline
+				
+				var tl_dat = data[2].split("\n");  //raw timeline data array, split by return
+				var tl_dat_dat = "";  //variable for individual timeline
+				var tmpstring = "";   //variable for object id
+				for(var i = 0;i<=9;i++){
+					tl_dat_dat = tl_dat.split("`"); //separator is '`' character, because no one uses it.
+					
+				}
+				//var indiv_dat = data[3]; //raw individual command data
 			}
 			fr.readAsText(this.files[0]);
 		});
