@@ -33,3 +33,18 @@ line_ps()
 n_derivative()
 
 
+
+
+install "latin modern math" for function inserter, symbol selector and math display in general
+all pop-up inserters use Window.postMessage()
+CSS update of all pop-up inserters.
+Update all function to HACKMD.
+"File" side menu needs CSS update.
+
+**Add Madoka "hope-despair-love" and EVA "reality and dream" to HACKMD page. 
+
+**Use <datalist> for function format hinter in the future.
+
+static image / animation button "hover gray" function doesn't work.  (2022/6/29)  It seems like there is no solution. (2022/7/1)
+
+**why can't setcanvas() change background transparency?.

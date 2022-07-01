@@ -48,7 +48,7 @@ function run_animt1(){
 		}
 		else{
 			ANIM_T1+=step;
-			console.log(end);
+			//console.log(end);
 			i++;
 			eval(script);
 		}
@@ -400,6 +400,7 @@ function run_animt10(){
 
 function run_all_indiv_command(){
 	eval(document.getElementById("template").value);  //run the blank template again(clear all previous stuff)
+	eval(document.getElementById("input").value);     //run script as well
 	var tmpstring = "";
 	for(var i = 0;i<=14;i++){
 		if(cmd_exe_control[i] == true){  //if the checkbox is checked

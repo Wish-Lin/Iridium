@@ -221,17 +221,16 @@ v1.4.0:  (release date: 2022/6/30)
 --[Minor]Major aesthetic improvement of "add_command.html".
 --[Minor]input bracket autocomplete function disabled because it is not stable enough and is not efficient.
 --[Bug Fix]line_ps() can now accept infinite slope as input (i.e, a vertical line), both manually (m == "inf") or returned by other functions (m == NaN)
---[Minor]Iridium licensed under MIT License.
+--[IMPORTANT]Iridium licensed under MIT License.
 
 v1.4.0.1:  (release date: 2022/6/30)
 
---[Minor]License fix.
+--[Minor]License file extension fix("LICENSE.md" -> "LICENSE").
 
+v1.4.1:  (release date: 2022/7/1)
 
-
-install "latin modern math" for function inserter, symbol selector and math display in general
-all pop-up inserters use Window.postMessage()
-CSS update of all pop-up inserters.
-Update all function to HACKMD.
-save/upload animation section along with static section.
-**Add Madoka "hope-despair-love" and EVA "reality and dream" to HACKMD page. 
+--[Minor]Small aesthetic changes.
+--[Major]Iridium cabn now save/upload animation section along with static section.
+--[Minor]When executing individual command, template AND script will also be executed to create background. I hope this doesn't backfire in the future.
+--[Minor]All alert() changed to console.log() to prevent the hundreds of alerts while incorrectly animating. I hope this doesn't backfire in the future.
+--[Minor]"File" side menu CSS update.

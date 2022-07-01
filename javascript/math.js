@@ -63,16 +63,16 @@ function dotline_pp(x1,y1,x2,y2,linewidth,linecap,color,dash,space){//(real,real
 function setcanvas(width,height,color){ //(nat,nat,string)(width >= 50px, height >= 50px)(Exception handling done) [USER FUNC]
 	//---------Exception handling---------
 	if(_isnat(width) == 0)
-		alert("setcanvas(width,height,\"color\"): \"width\" is not a natural number");
+		console.log("setcanvas(width,height,\"color\"): \"width\" is not a natural number");
 	else if(width < 50)
-		alert("setcanvas(width,height,\"color\"): \"width\" too small(<50)");
+		console.log("setcanvas(width,height,\"color\"): \"width\" too small(<50)");
 	else if(_isnat(height) == 0)
-		alert("setcanvas(width,height,\"color\"): \"height\" is not a natural number");
+		console.log("setcanvas(width,height,\"color\"): \"height\" is not a natural number");
 	else if(height <50)
-		alert("setcanvas(width,height,\"color\"): \"height\" too small(<50)");
+		console.log("setcanvas(width,height,\"color\"): \"height\" too small(<50)");
 	else{
 		if(!isNaN(color)){
-			alert("setcanvas(width,height,\"color\"): \"color\" invalid.");
+			console.log("setcanvas(width,height,\"color\"): \"color\" invalid.");
 			color = "white";
 	}
 	//-------------------------------------
@@ -133,7 +133,7 @@ function setgrid(x0,y0,xhat,yhat,xtick,ytick,linewidth,color,showtick,showaxis){
 	var cheight = document.getElementById('myCanvas').height;
 	var cwidth = document.getElementById('myCanvas').width;
 	if(x0 > cwidth || y0 > cheight)
-		alert("setgrid() error");
+		console.log("setgrid() error");
 	else{
 		_grid_xhat = xhat;
 		_grid_yhat = yhat;
@@ -207,7 +207,7 @@ function downloadcanvas(filename){ //download the entire canvas. [SYSTEM FUNC][U
 }
 function transparency(percentage){ //change drawing transparency (real) [USER FUNC]
 	if(percentage < 0 || percentage > 100)
-		alert("transparency():  0<=percentage<=100");
+		console.log("transparency():  0<=percentage<=100");
 	else{
 		var canvas = document.getElementById("myCanvas");
 		var ctx = canvas.getContext("2d");
@@ -216,7 +216,7 @@ function transparency(percentage){ //change drawing transparency (real) [USER FU
 }
 function auto_init(xmax){ // Automatically initialize the system (real)[USER FUNC][NEWBIE FUNC]
 	if(xmax <= 0){
-		alert("Canvas size invalid!!");
+		console.log("Canvas size invalid!!");
 	}
 	else if(xmax <= 10){
 		clear();
@@ -233,7 +233,7 @@ function auto_init(xmax){ // Automatically initialize the system (real)[USER FUN
 		setcanvas(600+3*(xmax-10),600+3*(xmax-10),"white");
 		ezsetgrid(xmax,3,"gray",1,1);
 		if(xmax >= 210){           //big canvas notification
-			alert("Beware of canvas size(>1200x1200)");
+			console.log("Beware of canvas size(>1200x1200)");
 		}
 	}
 }
@@ -248,7 +248,7 @@ function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic u
 	ctx.lineWidth = width;
 	ctx.lineCap = "round";
 	if(!_isnat((end-start)/increment+1)){   
-		alert("ezplot increment error");
+		console.log("ezplot increment error");
 	}
 	else{
 		var point_count = Math.round((end-start)/increment+1);
@@ -313,7 +313,7 @@ function ezplot_polar(func,start,end,width,color,increment,dash,space){ //plot b
 	ctx.lineWidth = width;
 	ctx.lineCap = "round";	
 	if(!_isnat((end-start)/increment+1)){   
-		alert("ezplot_polar increment error");
+		console.log("ezplot_polar increment error");
 	}
 	else{
 		var point_count = Math.round((end-start)/increment+1);
@@ -384,7 +384,7 @@ function ezplot_param(func_x,func_y,start,end,width,color,increment,dash,space){
 	ctx.lineWidth = width;
 	ctx.lineCap = "round";	
 	if(!_isnat((end-start)/increment+1)){
-		alert("ezplot_param increment error");
+		console.log("ezplot_param increment error");
 	}
 	else{
 		var point_count = Math.round((end-start)/increment+1);
@@ -477,7 +477,7 @@ function fo_ode_euler(p_x,q_x,x0,y0,start,end,increment,width,color){ //numerica
 	ctx.lineWidth = width;
 	ctx.lineCap = "round";
 	if(!_isnat((end-start)/increment+1) || !_isnat((end-x0)/increment+1) || !_isnat((x0-start)/increment+1)){
-		alert("foh_ode_euler increment error");
+		console.log("foh_ode_euler increment error");
 	}
 	else{ 
 		//----process p(x) argument----------
@@ -601,7 +601,7 @@ function arc(x,y,radius,width,color,start,end){ //Draw part of circle (real,real
 		eval(ezplot_param(func_x,func_y,PI*start/180,PI*end/180,width,color,PI/180));
 	}
 	else
-		alert("arc() error");
+		console.log("arc() error");
 }
 function drawimage(x,y,path){ //Draw image on canvas (real,real,"string") [USER FUNC]
 	var canvas = document.getElementById("myCanvas");
@@ -614,7 +614,7 @@ function drawimage(x,y,path){ //Draw image on canvas (real,real,"string") [USER 
 }
 function bounded_area(func1,func2,start,end,color,increment){ //Draw bounded area of functions on canvas. ("string","string",real,real,"string",real) [USER FUNC]
 	if(!_isnat((end-start)/increment+1)){   
-		alert("bounded_area error");
+		console.log("bounded_area error");
 	}
 	else{
 		//----process input function argument----------
@@ -670,7 +670,7 @@ function bounded_area_polar(func,start,end,color,increment){ //Draw bounded area
 	ctx.lineWidth = 0.1;
 	ctx.lineCap = "round";	
 	if(!_isnat((end-start)/increment+1)){   
-		alert("bounded_area_polar increment error");
+		console.log("bounded_area_polar increment error");
 	}
 	else{
 		var point_count = Math.round((end-start)/increment+1);
@@ -784,7 +784,7 @@ function slope_field(p_x,q_x,xmin,xmax,ymin,ymax,increment,length,width,color){ 
 	ctx.lineWidth = width;
 	ctx.lineCap = "round";
 	if(!_isnat((xmax-xmin)/increment+1) || !_isnat((ymax-ymin)/increment+1)){
-		alert("slope_field increment or range error");
+		console.log("slope_field increment or range error");
 	}
 	else{
 		var slope;
@@ -812,7 +812,7 @@ function slope_field(p_x,q_x,xmin,xmax,ymin,ymax,increment,length,width,color){ 
 }
 function polygon_rc(cx,cy,r,n,theta,linewidth,color,fill){  //Draw circumscribed regular polygons. (real,real,real,nat,real,real,"string",bool) [USER FUNC]
 	if(!_isnat(n) || n<3)
-		alert("polygon_rc n incorrect")
+		console.log("polygon_rc n incorrect")
 	else{
 		var x = new Array(n);
 		var y = new Array(n);
@@ -855,7 +855,7 @@ function polygon_rc(cx,cy,r,n,theta,linewidth,color,fill){  //Draw circumscribed
 }
 function polygon_ri(cx,cy,r,n,theta,linewidth,color,fill){	//Draw inscribed regular polygons. (real,real,real,nat,real,real,"string",bool) [USER FUNC]
 	if(!_isnat(n) || n<3)
-		alert("polygon_ri n incorrect");
+		console.log("polygon_ri n incorrect");
 	else{
 		var r2 = r*sec(2*PI/(2*n));
 		polygon_rc(cx,cy,r2,n,theta,linewidth,color,fill);
@@ -863,7 +863,7 @@ function polygon_ri(cx,cy,r,n,theta,linewidth,color,fill){	//Draw inscribed regu
 }
 function polygon_rs(cx,cy,s,n,theta,linewidth,color,fill){  //Draw regular polygons by defining center and sidelength. (real,real,real,nat,real,real,"string",bool) [USER FUNC]
 	if(!_isnat(n) || n<3)
-		alert("polygon_rs n incorrect");
+		console.log("polygon_rs n incorrect");
 	else{
 		var r2 = (s/2)*csc(2*PI/(2*n));
 		polygon_rc(cx,cy,r2,n,theta,linewidth,color,fill);
@@ -871,9 +871,9 @@ function polygon_rs(cx,cy,s,n,theta,linewidth,color,fill){  //Draw regular polyg
 }
 function polygon_rv(cx,cy,vx,vy,n,linewidth,color,fill){    //Draw regular polygons by defining center and one vertex. (real,real,real,real,nat,real,"string",bool) [USER FUNC]
 	if(!_isnat(n) || n<3)
-		alert("polygon_rv n incorrect");
+		console.log("polygon_rv n incorrect");
 	else if(cx == vx && cy == vy)
-		alert("polygon_rv center and vertex are the same point");
+		console.log("polygon_rv center and vertex are the same point");
 	else{
 		var angle = 0;
 		if(vx-cx > 0)
@@ -947,7 +947,7 @@ function n_derivative(fx,xpos){ //(string,real) Estimate derivative using symmet
 
 
 //------↓↓↓↓↓↓↓↓Mathematical variables declare zone↓↓↓↓↓↓↓↓-------------------
-var lin_tran = new Array(1,0,0,1);  //linear transformation variable, default is unit matrix(no transformation).
+var lin_tran = new Array(1,0,0,1);  //linear transformation matrix, default is unit matrix(no transformation).
 
 
 //------↑↑↑↑↑↑↑↑Mathematical variables and function declare zone↑↑↑↑↑↑↑↑-------------------
@@ -1077,9 +1077,9 @@ function factorial(x){
 	if(x == 0)
 		return 1;
 	else if(!_isnat(x))
-		alert("factorial() error: x is not a natural number");
+		console.log("factorial() error: x is not a natural number");
 	else if(x>20)
-		alert("factorial() error: x too large(>20)");
+		console.log("factorial() error: x too large(>20)");
 	else{
 		for(var i = 1;i<=x;i++){
 			out*=i;
@@ -1091,7 +1091,7 @@ function nPr(n,r){
 	if(r == 0)
 		return 1;
 	else if(!_isnat(n) || !_isnat(r) || r>n)
-		alert("nPr() error");
+		console.log("nPr() error");
 	else{
 		var tmp = n;
 		var out = 1;
@@ -1106,7 +1106,7 @@ function nCr(n,r){
 	if(r == 0)
 		return 1;
 	else if(!_isnat(n) || !_isnat(r) || r>n)
-		alert("nCr() error");
+		console.log("nCr() error");
 	else{
 		if(r > n/2)
 			r = n-r;
@@ -1133,7 +1133,7 @@ function erf(x){
 }
 function normPDF(mean,variance,x){
 	if(variance <= 0)
-		alert("normPDF() error: variance <= 0");
+		console.log("normPDF() error: variance <= 0");
 	else{
 		var stdev = sqrt(variance);
 		var out = (1/(stdev*sqrt(2*PI)))*pow(E,-0.5*((x-mean)/stdev)**2);
@@ -1142,7 +1142,7 @@ function normPDF(mean,variance,x){
 }
 function normCDF(mean,variance,x){
 	if(variance <= 0)
-		alert("normCDF() error: variance <= 0");
+		console.log("normCDF() error: variance <= 0");
 	else{
 		var stdev = sqrt(variance);
 		var out = 0.5*(1+erf((x-mean)/(stdev*sqrt(2))));

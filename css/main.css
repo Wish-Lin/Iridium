@@ -27,11 +27,11 @@
   border-top-right-radius:8px;
   border-bottom-left-radius:8px;
   border-bottom-right-radius:8px;
-  background:rgba(255, 255, 255, 1);
+  background:#ffffff;
 }
 
 .menubutton:hover {
-  background: rgba(211, 211, 211, 1)
+  background: #d3d3d3;
 }    
 
 .generic_button {
@@ -45,11 +45,11 @@
   border-top-right-radius:8px;
   border-bottom-left-radius:8px;
   border-bottom-right-radius:8px;
-  background:rgba(255, 255, 255, 1);
+  background:#ffffff;
 }
 
 .generic_button:hover {
-  background: rgba(211, 211, 211, 1)
+  background: #d3d3d3;
 }
   
 

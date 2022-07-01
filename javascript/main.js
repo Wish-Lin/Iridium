@@ -65,22 +65,92 @@ window.onload = function(){
 				
 				var tl_dat = data[2].split("\n");  //raw timeline data array, split by return
 				var tl_dat_dat = "";  //variable for individual timeline
-				var tmpstring = "";   //variable for object id
+				var id = "";   //variable for object id
 				for(var i = 0;i<=9;i++){
-					tl_dat_dat = tl_dat.split("`"); //separator is '`' character, because no one uses it.
-					
+					tl_dat_dat = tl_dat[i].split("`"); //separator is '`' character, because no one uses it.
+					id = "animt"+(i+1).toString()+"_start";
+					document.getElementById(id).value = tl_dat_dat[0]; //start
+					id = "animt"+(i+1).toString()+"_end";
+					document.getElementById(id).value = tl_dat_dat[1]; //end
+					id = "animt"+(i+1).toString()+"_increment_count";
+					document.getElementById(id).value = tl_dat_dat[2]; //increment_count
+					id = "animt"+(i+1).toString()+"_fps";
+					document.getElementById(id).value = tl_dat_dat[3]; //fps
+					id = "animt"+(i+1).toString()+"_label";
+					document.getElementById(id).value = tl_dat_dat[4]; //note label
 				}
-				//var indiv_dat = data[3]; //raw individual command data
+				
+				//decode&load individual commands
+				
+				var indiv_dat = data[3].split("||"); //raw individual command data, "||" indicates a sepaprate command section
+				var indiv_dat_dat = "";
+				for(var i = 0;i<=14;i++){
+					indiv_dat_dat = indiv_dat[i].split("`"); //separator is '`' character, because no one uses it.
+					id = "anim_cmd"+(i+1).toString();
+					document.getElementById(id).value = indiv_dat_dat[0]; //command
+					id = "anim_cmd"+(i+1).toString()+"_label";
+					document.getElementById(id).value = indiv_dat_dat[1]; //note label
+					id = "anim_cmd"+(i+1).toString()+"_ckbx";
+					if(indiv_dat_dat[2] == "0"){
+						document.getElementById(id).checked = false; //checkbox uncheck
+						cmd_exe_control[i] = false;
+					}
+					else if(indiv_dat_dat[2] == "1"){
+						document.getElementById(id).checked = true; //checkbox check
+						cmd_exe_control[i] = true;
+					}
+				}
 			}
 			fr.readAsText(this.files[0]);
 		});
 		document.getElementById("savefile").addEventListener("click", function(){ 
-		var output_file_content = document.getElementById("template").value + "\n==============================\n" + document.getElementById("input").value; //merge template and script
-		var fname = document.getElementById('filename').value;
-		var a = document.createElement("a");
-		a.href = window.URL.createObjectURL(new Blob([output_file_content], {type: "text/plain;charset=utf-8"}));
-		a.download = fname+".txt";
-		a.click();
+			
+			var output_file_content = document.getElementById("template").value + "\n==============================\n" + document.getElementById("input").value+"\n==============================\n"; //merge template and script
+			
+			//save timeline
+			
+			for(var i = 0;i<=9;i++){
+					id = "animt"+(i+1).toString()+"_start";
+					output_file_content += document.getElementById(id).value; //start
+					output_file_content += "`"; //separator is '`' character, because no one uses it.
+					id = "animt"+(i+1).toString()+"_end";
+					output_file_content += document.getElementById(id).value; //end
+					output_file_content += "`";
+					id = "animt"+(i+1).toString()+"_increment_count";
+					output_file_content += document.getElementById(id).value; //increment_count
+					output_file_content += "`";
+					id = "animt"+(i+1).toString()+"_fps";
+					output_file_content += document.getElementById(id).value; //fps
+					output_file_content += "`";
+					id = "animt"+(i+1).toString()+"_label";
+					output_file_content += document.getElementById(id).value; //note label
+					output_file_content += "\n";
+				}
+			output_file_content += "==============================\n"
+			
+			//save individual commands
+			
+			for(var i = 0;i<=14;i++){
+					id = "anim_cmd"+(i+1).toString();
+					output_file_content += document.getElementById(id).value; //command
+					output_file_content += "`"; //separator is '`' character, because no one uses it.
+					id = "anim_cmd"+(i+1).toString()+"_label";
+					output_file_content += document.getElementById(id).value; //note label
+					output_file_content += "`";
+					id = "anim_cmd"+(i+1).toString()+"_ckbx";
+					if(document.getElementById(id).checked == false)
+						output_file_content += "0"; //checkbox not checked, save as 0
+					else if(document.getElementById(id).checked == true)
+						output_file_content += "1"; //checkbox not checked, save as 1
+					output_file_content += "`";
+					output_file_content += "||";
+				}
+			
+			var fname = document.getElementById('filename').value;
+			var a = document.createElement("a");
+			a.href = window.URL.createObjectURL(new Blob([output_file_content], {type: "text/plain;charset=utf-8"}));
+			a.download = fname+".txt";
+			a.click();
 		}); 
 		document.getElementById("saveimage").addEventListener("click", function(){
 			downloadcanvas(document.getElementById('imagename').value);

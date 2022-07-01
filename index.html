@@ -36,7 +36,7 @@
     });
 </script>
 		
-		<div id="main_title" style="font: bold 30px Arial; text-align: center; background: #2ecc71;">Iridium v1.4.0</div><br>
+		<div id="main_title" style="font: bold 30px Arial; text-align: center; background: #2ecc71;">Iridium v1.4.1</div><br>
 		
 		<!-- This is the normally-hidden Cursor Position Tool(CPT) display interface -->
 		<div id="curpos_display">
@@ -81,9 +81,9 @@
 		<button class="menubutton" onclick="colaps_file_open()">&#9776; File</button>
 		<div id="colaps_file" class="colaps_file">
 		<span style="font: bold 20px Verdana;">File</span><br><br>
-		Upload script:<br><input type="file" id="fileselect"><br><br>
-		Save script:<br><input id="filename" type="text" value='script1'>.txt<br><button id = "savefile">Save</button><br><br>
-		Save image:<br><input id="imagename" type="text" value='pic1'>.png<br><button id = "saveimage">Save</button><br>
+		<span style="font: bold 17px Arial;">Upload script:</span><br><input type="file" id="fileselect"><br><br>
+		<span style="font: bold 17px Arial;">Save script:</span><br><input id="filename" type="text" value='script1' style = "font: 15px Consolas;"><span style="font: 15px Consolas;">.txt</span><br><button id = "savefile" class="generic_button" style = "margin-top: 4px;">Save</button><br><br>
+		<span style="font: bold 17px Arial;">Save image:</span><br><input id="imagename" type="text" value='pic1' style = "font: 15px Consolas;"><span style="font: 15px Consolas;">.png</span><br><button id = "saveimage" class="generic_button" style = "margin-top: 4px;">Save</button><br>
 		</div>
 		<!--"File" side panel-->
 		
@@ -140,8 +140,8 @@
 				<span style="font: bold 15px Arial;">Template:</span>
 				<button id = "load_template_only" class="generic_button" onclick = "load_template_only()">Choose Template</button>
 				<br>
-				<textarea id="template" rows="2" cols="65" style="font: 15px Consolas; resize: horizontal; margin-top: 5px;"></textarea><br>
-				<button id = "temp_script_switch" class="generic_button" onclick = "t_s_switch()">↑↓</button><br>
+				<textarea id="template" rows="2" cols="65" style="font: 15px Consolas; resize: horizontal; margin-top: 5px; margin-bottom: 2px;"></textarea><br>
+				<button id = "temp_script_switch" class="generic_button" onclick = "t_s_switch()" style = "margin-top: 2px; margin-bottom: 4px;">↑↓</button><br>
 				<span style="font: bold 15px Arial;">Script:</span><br>
 				<textarea id="input" rows="18" cols="65" style="font: 15px Consolas; resize: horizontal;"></textarea><br>
 				<div id = "command_bar">
@@ -193,7 +193,7 @@
 						<td><button id="set_animt1" onclick = "set_animt1()" class = "menubutton">→</td>
 						<td><span id="animt1_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt1_totaltime" class = "anim_setting_input"></span></td>
-						<td><input class = "note_labels"></td>
+						<td><input id = "animt1_label" value = "" class = "note_labels"></td>
 						<td><button id = "run_animt1" class="menubutton" onclick="run_animt1()">▶ Run</button></td>
 					</tr>
 					<tr>
@@ -216,7 +216,7 @@
 						<td><button id="set_animt2" onclick = "set_animt2()" class = "menubutton">→</td>
 						<td><span id="animt2_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt2_totaltime" class = "anim_setting_input"></span></td>
-						<td><input class = "note_labels"></td>
+						<td><input id = "animt2_label" value = "" class = "note_labels"></td>
 						<td><button class="menubutton" onclick="run_animt2()">▶ Run</button></td>
 					</tr>
 					<tr>
@@ -239,7 +239,7 @@
 						<td><button id="set_animt3" onclick = "set_animt3()" class = "menubutton">→</td>
 						<td><span id="animt3_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt3_totaltime" class = "anim_setting_input"></span></td>
-						<td><input class = "note_labels"></td>
+						<td><input id = "animt3_label" value = "" class = "note_labels"></td>
 						<td><button class="menubutton" onclick="run_animt3()">▶ Run</button></td>
 					</tr>
 					<tr>
@@ -262,7 +262,7 @@
 						<td><button id="set_animt4" onclick = "set_animt4()" class = "menubutton">→</td>
 						<td><span id="animt4_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt4_totaltime" class = "anim_setting_input"></span></td>
-						<td><input class = "note_labels"></td>
+						<td><input id = "animt4_label" value = "" class = "note_labels"></td>
 						<td><button class="menubutton" onclick="run_animt4()">▶ Run</button></td>
 					</tr>
 					<tr>
@@ -285,7 +285,7 @@
 						<td><button id="set_animt5" onclick = "set_animt5()" class = "menubutton">→</td>
 						<td><span id="animt5_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt5_totaltime" class = "anim_setting_input"></span></td>
-						<td><input class = "note_labels"></td>
+						<td><input id = "animt5_label" value = "" class = "note_labels"></td>
 						<td><button class="menubutton" onclick="run_animt5()">▶ Run</button></td>
 					</tr>
 					<tr>
@@ -308,7 +308,7 @@
 						<td><button id="set_animt6" onclick = "set_animt6()" class = "menubutton">→</td>
 						<td><span id="animt6_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt6_totaltime" class = "anim_setting_input"></span></td>
-						<td><input class = "note_labels"></td>
+						<td><input id = "animt6_label" value = "" class = "note_labels"></td>
 						<td><button class="menubutton" onclick="run_animt6()">▶ Run</button></td>
 					</tr>
 					<tr>
@@ -331,7 +331,7 @@
 						<td><button id="set_animt7" onclick = "set_animt7()" class = "menubutton">→</td>
 						<td><span id="animt7_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt7_totaltime" class = "anim_setting_input"></span></td>
-						<td><input class = "note_labels"></td>
+						<td><input id = "animt7_label" value = "" class = "note_labels"></td>
 						<td><button class="menubutton" onclick="run_animt7()">▶ Run</button></td>
 					</tr>
 					<tr>
@@ -354,7 +354,7 @@
 						<td><button id="set_animt8" onclick = "set_animt8()" class = "menubutton">→</td>
 						<td><span id="animt8_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt8_totaltime" class = "anim_setting_input"></span></td>
-						<td><input class = "note_labels"></td>
+						<td><input id = "animt8_label" value = "" class = "note_labels"></td>
 						<td><button class="menubutton" onclick="run_animt8()">▶ Run</button></td>
 					</tr>
 					<tr>
@@ -377,7 +377,7 @@
 						<td><button id="set_animt9" onclick = "set_animt9()" class = "menubutton">→</td>
 						<td><span id="animt9_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt9_totaltime" class = "anim_setting_input"></span></td>
-						<td><input class = "note_labels"></td>
+						<td><input id = "animt9_label" value = "" class = "note_labels"></td>
 						<td><button class="menubutton" onclick="run_animt9()">▶ Run</button></td>
 					</tr>
 					<tr>
@@ -400,7 +400,7 @@
 						<td><button id="set_animt10" onclick = "set_animt10()" class = "menubutton">→</td>
 						<td><span id="animt10_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt10_totaltime" class = "anim_setting_input"></span></td>
-						<td><input class = "note_labels"></td>
+						<td><input id = "animt10_label" value = "" class = "note_labels"></td>
 						<td><button class="menubutton" onclick="run_animt10()">▶ Run</button></td>
 					</tr>
 					</table>
@@ -419,91 +419,91 @@
 					<tr>
 						<td>1</td>
 						<td><textarea id="anim_cmd1" rows="1" cols="55" class = "anim_command"></textarea></td>
-						<td><input class = "note_labels"></td>
+						<td><input id="anim_cmd1_label" value = "" class = "note_labels"></td>
 						<td><input id = "anim_cmd1_ckbx" type="checkbox" class = "cmd_checkbox" onclick = "cmd_exe_control[0] = !cmd_exe_control[0]; run_all_indiv_command();"></td>
 					</tr>
 					<tr>
 						<td>2</td>
 						<td><textarea id="anim_cmd2" rows="1" cols="55" class = "anim_command"></textarea></td>
-						<td><input class = "note_labels"></td>
+						<td><input id="anim_cmd2_label" value = "" class = "note_labels"></td>
 						<td><input id = "anim_cmd2_ckbx" type="checkbox" class = "cmd_checkbox" onclick = "cmd_exe_control[1] = !cmd_exe_control[1]; run_all_indiv_command();"></td>
 					</tr>
 					<tr>
 						<td>3</td>
 						<td><textarea id="anim_cmd3" rows="1" cols="55" class = "anim_command"></textarea></td>
-						<td><input class = "note_labels"></td>
+						<td><input id="anim_cmd3_label" value = "" class = "note_labels"></td>
 						<td><input id = "anim_cmd3_ckbx" type="checkbox" class = "cmd_checkbox" onclick = "cmd_exe_control[2] = !cmd_exe_control[2]; run_all_indiv_command();"></td>
 					</tr>
 					<tr>
 						<td>4</td>
 						<td><textarea id="anim_cmd4" rows="1" cols="55" class = "anim_command"></textarea></td>
-						<td><input class = "note_labels"></td>
+						<td><input id="anim_cmd4_label" value = "" class = "note_labels"></td>
 						<td><input id = "anim_cmd4_ckbx" type="checkbox" class = "cmd_checkbox" onclick = "cmd_exe_control[3] = !cmd_exe_control[3]; run_all_indiv_command();"></td>
 					</tr>
 					<tr>
 						<td>5</td>
 						<td><textarea id="anim_cmd5" rows="1" cols="55" class = "anim_command"></textarea></td>
-						<td><input class = "note_labels"></td>
+						<td><input id="anim_cmd5_label" value = "" class = "note_labels"></td>
 						<td><input id = "anim_cmd5_ckbx" type="checkbox" class = "cmd_checkbox" onclick = "cmd_exe_control[4] = !cmd_exe_control[4]; run_all_indiv_command();"></td>
 					</tr>
 					<tr>
 						<td>6</td>
 						<td><textarea id="anim_cmd6" rows="1" cols="55" class = "anim_command"></textarea></td>
-						<td><input class = "note_labels"></td>
+						<td><input id="anim_cmd6_label" value = "" class = "note_labels"></td>
 						<td><input id = "anim_cmd6_ckbx" type="checkbox" class = "cmd_checkbox" onclick = "cmd_exe_control[5] = !cmd_exe_control[5]; run_all_indiv_command();"></td>
 					</tr>
 					<tr>
 						<td>7</td>
 						<td><textarea id="anim_cmd7" rows="1" cols="55" class = "anim_command"></textarea></td>
-						<td><input class = "note_labels"></td>
+						<td><input id="anim_cmd7_label" value = "" class = "note_labels"></td>
 						<td><input id = "anim_cmd7_ckbx" type="checkbox" class = "cmd_checkbox" onclick = "cmd_exe_control[6] = !cmd_exe_control[6]; run_all_indiv_command();"></td>
 					</tr>
 					<tr>
 						<td>8</td>
 						<td><textarea id="anim_cmd8" rows="1" cols="55" class = "anim_command"></textarea></td>
-						<td><input class = "note_labels"></td>
+						<td><input id="anim_cmd8_label" value = "" class = "note_labels"></td>
 						<td><input id = "anim_cmd8_ckbx" type="checkbox" class = "cmd_checkbox" onclick = "cmd_exe_control[7] = !cmd_exe_control[7]; run_all_indiv_command();"></td>
 					</tr>
 					<tr>
 						<td>9</td>
 						<td><textarea id="anim_cmd9" rows="1" cols="55" class = "anim_command"></textarea></td>
-						<td><input class = "note_labels"></td>
+						<td><input id="anim_cmd9_label" value = "" class = "note_labels"></td>
 						<td><input id = "anim_cmd9_ckbx" type="checkbox" class = "cmd_checkbox" onclick = "cmd_exe_control[8] = !cmd_exe_control[8]; run_all_indiv_command();"></td>
 					</tr>
 					<tr>
 						<td>10</td>
 						<td><textarea id="anim_cmd10" rows="1" cols="55" class = "anim_command"></textarea></td>
-						<td><input class = "note_labels"></td>
+						<td><input id="anim_cmd10_label" value = "" class = "note_labels"></td>
 						<td><input id = "anim_cmd10_ckbx" type="checkbox" class = "cmd_checkbox" onclick = "cmd_exe_control[9] = !cmd_exe_control[9]; run_all_indiv_command();"></td>
 					</tr>
 					<tr>
 						<td>11</td>
 						<td><textarea id="anim_cmd11" rows="1" cols="55" class = "anim_command"></textarea></td>
-						<td><input class = "note_labels"></td>
+						<td><input id="anim_cmd11_label" value = "" class = "note_labels"></td>
 						<td><input id = "anim_cmd11_ckbx" type="checkbox" class = "cmd_checkbox" onclick = "cmd_exe_control[10] = !cmd_exe_control[10]; run_all_indiv_command();"></td>
 					</tr>
 					<tr>
 						<td>12</td>
 						<td><textarea id="anim_cmd12" rows="1" cols="55" class = "anim_command"></textarea></td>
-						<td><input class = "note_labels"></td>
+						<td><input id="anim_cmd12_label" value = "" class = "note_labels"></td>
 						<td><input id = "anim_cmd12_ckbx" type="checkbox" class = "cmd_checkbox" onclick = "cmd_exe_control[11] = !cmd_exe_control[11]; run_all_indiv_command();"></td>
 					</tr>
 					<tr>
 						<td>13</td>
 						<td><textarea id="anim_cmd13" rows="1" cols="55" class = "anim_command"></textarea></td>
-						<td><input class = "note_labels"></td>
+						<td><input id="anim_cmd13_label" value = "" class = "note_labels"></td>
 						<td><input id = "anim_cmd13_ckbx" type="checkbox" class = "cmd_checkbox" onclick = "cmd_exe_control[12] = !cmd_exe_control[12]; run_all_indiv_command();"></td>
 					</tr>
 					<tr>
 						<td>14</td>
 						<td><textarea id="anim_cmd14" rows="1" cols="55" class = "anim_command"></textarea></td>
-						<td><input class = "note_labels"></td>
+						<td><input id="anim_cmd14_label" value = "" class = "note_labels"></td>
 						<td><input id = "anim_cmd14_ckbx" type="checkbox" class = "cmd_checkbox" onclick = "cmd_exe_control[13] = !cmd_exe_control[13]; run_all_indiv_command();"></td>
 					</tr>
 					<tr>
 						<td>15</td>
 						<td><textarea id="anim_cmd15" rows="1" cols="55" class = "anim_command"></textarea></td>
-						<td><input class = "note_labels"></td>
+						<td><input id="anim_cmd15_label" value = "" class = "note_labels"></td>
 						<td><input id = "anim_cmd15_ckbx" type="checkbox" class = "cmd_checkbox" onclick = "cmd_exe_control[14] = !cmd_exe_control[14]; run_all_indiv_command();"></td>
 					</tr>
 					</table>
