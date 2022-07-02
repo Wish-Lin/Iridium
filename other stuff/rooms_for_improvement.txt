@@ -3,8 +3,6 @@ template selector   --done
 improve ALL function plotting: 
 	a better replace method, so that stuff like tan(x) can be used properly.
 
-insert function,command and special characters wherever I need.
-
 
 
 
@@ -34,12 +32,9 @@ n_derivative()
 
 
 
-
-install "latin modern math" for function inserter, symbol selector and math display in general
-all pop-up inserters use Window.postMessage()
 CSS update of all pop-up inserters.
 Update all function to HACKMD.
-"File" side menu needs CSS update.
+Reset timeline
 
 **Add Madoka "hope-despair-love" and EVA "reality and dream" to HACKMD page. 
 
@@ -48,3 +43,5 @@ Update all function to HACKMD.
 static image / animation button "hover gray" function doesn't work.  (2022/6/29)  It seems like there is no solution. (2022/7/1)
 
 **why can't setcanvas() change background transparency?.
+
+_system_display: upload/download file.  Running timelines.

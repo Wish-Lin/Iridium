@@ -6,11 +6,9 @@
 <script src = "template_database.js"></script>
 <script>
     function returnData(selected) {
-       var main_page = window.opener;
-       main_page.document.getElementById("template").value = get_actual_data(selected);
-	   main_page.update_selected_template();
-       window.close();
-    }
+	   window.opener.postMessage(["Iridium","template",get_actual_data(selected)],'*'); //Send back an array [a,b,c] to EVERY WINDOW. My not so good way of verifying sender and type of data, whiling remaning offline testability is by using an array and checking it in "gui_driver.js".
+	   window.close();
+	}
 </script>
 
 <style>

@@ -11,7 +11,7 @@ Iridium is conceived, written and maintained by 林韋旭(Wish Lin) starting fro
 
 After the COVID-19 pandemic, online courses, along with the convenience it brings to both students and teachers alike, are getting more and more attention around the world. Under such circumstances, it is forseeable that the demand in online math courses will rise as well. However, most softwares that can produce high quality math images(ex. MATLAB) are way too complicated and an absolute overkill for most pre-college courses. Thus, I believe creating a free tool that anyone can obtain, learn and use to create textbook level math content has never been this important. 
 
-## Functions and Features (as of v1.2.0) 
+## Functions and Features (as of v1.5.0) 
 
 ### Functions
 

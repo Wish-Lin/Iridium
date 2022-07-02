@@ -2,7 +2,7 @@ var colaps_file_enabled = false;
 var colaps_help_enabled = false;
 var colaps_settings_enabled = false;
 var colaps_other_enabled = false;
-
+var insert_id;										//the "last" focused element (i.e, the textbox/textarea where the inserter should insert their stuff)
 
 
 //-------------------------Collapsable side panel from W3School(file)
@@ -191,25 +191,53 @@ function tdpd_show_control(){   //(from W3School)
 function insert_symbol(){
 	window.open("subwindows/symbol_list.html", "_blank",'height=300,width=400,status=yes,top=150,left=250,toolbar=no,menubar=no,location=no');
 }
-function typeInTextarea(newText, el = document.getElementById("input")) {
-	el.focus();
-	const [start, end] = [el.selectionStart, el.selectionEnd];
-	el.setRangeText(newText, start, end, 'end');
+function typeInTextarea(newText, el = document.getElementById(insert_id)) {
+	if(el.nodeName == "TEXTAREA" || el.nodeName == "INPUT"){ //A filter for textbox/textarea. Extra precaution is always a good thing. 
+		el.focus();
+		const [start, end] = [el.selectionStart, el.selectionEnd];
+		el.setRangeText(newText, start, end, 'end');   //setRangeText() automatically limited the element to either textbox or texarea.
+	}
 }
 
 //-------------------------Function inserter related functions
 function insert_function(){
 	window.open("subwindows/function_list.html", "_blank",'height=300,width=400,status=yes,top=150,left=250,toolbar=no,menubar=no,location=no');
-	
 }
-
 
 //-------------------------Command inserter related functions
 function add_command(){
 	window.open("subwindows/add_command.html", "_blank",'height=450,width=800,status=yes,top=100,left=250,toolbar=no,menubar=no,location=no');
-	
 }
 
+//-------------------------Template loader related functions
+function load_template_only(){
+	window.open("subwindows/templates/template_list.html", "_blank",'height=500,width=750,status=yes,top=75,left=250,toolbar=no,menubar=no,location=no');
+}
+function update_selected_template(){
+	var data = document.getElementById("template").value;
+	eval(data);
+	data = document.getElementById("input").value;
+	eval(data);
+}
+
+//-------------------------All pop-up window returned data processing
+window.addEventListener('message', event => {
+	if(event.data[0] == "Iridium"){ //Verification
+		if(event.data[1] == "command"){	  //data from add_command.html
+			typeInTextarea(event.data[2]);
+		}
+		else if(event.data[1] == "symbol"){	  //data from symbol_list.html
+			typeInTextarea(event.data[2]);
+		}
+		else if(event.data[1] == "function"){	  //data from function_list.html
+			typeInTextarea(event.data[2]);
+		}
+		else if(event.data[1] == "template"){	  //data from template_list.html
+			document.getElementById("template").value = event.data[2];
+			update_selected_template();
+		}
+	}
+});
 
 //-------------------------Input autocompleter related functions (disabled starting from v1.4.0)
 /*function input_autocomplete(e){
@@ -304,18 +332,6 @@ function t_s_switch(){
 	}
 }
 
-
-//-------------------------Template loader related functions
-function load_template_only(){
-	window.open("subwindows/templates/template_list.html", "_blank",'height=500,width=750,status=yes,top=75,left=250,toolbar=no,menubar=no,location=no');
-}
-function update_selected_template(){
-	var data = document.getElementById("template").value;
-	eval(data);
-	data = document.getElementById("input").value;
-	eval(data);
-}
-
 //-------------------------Static Image/Animation edit mode switch
 function switch_to_static(){
 	main_mode = false;
@@ -330,4 +346,9 @@ function switch_to_anim(){
 	document.getElementById("anim_mode_select").style.backgroundColor = "#d3d3d3";
 	document.getElementById("inputzone_static").style.display = "none";
 	document.getElementById("inputzone_anim").style.display = "inline";
+}
+
+//-------------------------Record last focused element for the inserters to insert.
+function setId(id) {
+    insert_id = id;
 }

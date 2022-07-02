@@ -49,7 +49,8 @@ window.onload = function(){
 		
 		document.getElementById("curfontsize").innerHTML = document.getElementById("input").style.fontSize;      //Current textarea font size display
 		
-		document.getElementById("Run").addEventListener("click", function(){ 
+		document.getElementById("Run").addEventListener("click", function(){
+			_system_display("Script successfully executed","blue"); //this message stays on there if nothing bad happens
 			var script = document.getElementById("template").value + document.getElementById("input").value;
 			eval(script);
 		}); 
@@ -157,7 +158,7 @@ window.onload = function(){
 		});
 }
 window.onerror = function(e){
-	alert("Script Error. Press F12 for more details");
+	_system_display("Script Error. Execution Failed.","red");
 }
 window.onbeforeunload = function() {            //Page refresh warning
   return "Data will be lost if you leave the page, are you sure?";

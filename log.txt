@@ -198,7 +198,7 @@ v1.3.0: (release date: 2022/6/26)
 --[Minor]Animation max FPS change from 50FPS to 25FPS.
 --[Minor]Version number moved to title.
 --[Major]In-program animation removed from button list and is now another separate scripting section (switch between static image mode and animation
-    mode using buttons). All previous GUI for its pop-up window(buttons/animation panels/display-control functions) are therefore deleted.
+	mode using buttons). All previous GUI for its pop-up window(buttons/animation panels/display-control functions) are therefore deleted.
 --[Update]Animation: 4 timelines and 15 manual command inputs deployed.
 --[New Function]line_ps() beta test.
 --[New Function]n_derivative() beta test.
@@ -234,3 +234,13 @@ v1.4.1:  (release date: 2022/7/1)
 --[Minor]When executing individual command, template AND script will also be executed to create background. I hope this doesn't backfire in the future.
 --[Minor]All alert() changed to console.log() to prevent the hundreds of alerts while incorrectly animating. I hope this doesn't backfire in the future.
 --[Minor]"File" side menu CSS update.
+
+v1.5.0:  (major improvement)(release date: 2022/7/1)
+
+--[IMPORTANT]All pop-up inserters now use Window.postMessage(), so no more same-origin-policy related problems, which means all Iridium's features can now be run locally without issues.
+--[IMPORTANT]"system_display" overhead display <span> beta test, as well as the function that controls it "_system_display()". All console.log() changed to _system_display().
+	More new/existing functions will have this feature in the future to improve user experience.
+--[Minor]Small aesthetic changes.
+--[IMPORTANT]Symbol/Function/Command Inserter can now work on any textarea/textbox.
+	Symbol/Function/Command Inserter button moved to top of <div>, independent of static/animation mode switching, so that it is easier to access whenever the user wants to use it.
+	This is acheived by documenting the last focused element (the one prior to clicking the inserter button) and insert there.

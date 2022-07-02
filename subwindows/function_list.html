@@ -6,11 +6,12 @@
 </head>
 <script>
     function returnData(selected) {
-       var main_page = window.opener;
-       main_page.typeInTextarea(selected);
-       window.close();
-    }
+		window.opener.postMessage(["Iridium","function",selected],'*'); //Send back an array [a,b,c] to EVERY WINDOW. My not so good way of verifying sender and type of data, whiling remaning offline testability is by using an array and checking it in "gui_driver.js".
+		window.close();
+ }
 </script>
+
+
 
 <style>
 .selector{
@@ -21,7 +22,7 @@
 </style>
 
 <body>
-	<center><span style = "font: 35px Arial;">Function Inserter</span></center><br>
+	<div id="main_title" style="font: bold 30px Arial; text-align: center; background: #82caff;">Function Inserter</div><br>
 	<span style = "font: 20px Arial;">Trigonometric:</span><br>
     <table>
 	<tr>

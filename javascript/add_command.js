@@ -1,8 +1,9 @@
+
+
 function returnData(selected) {
-	var main_page = window.opener;
-	main_page.typeInTextarea(selected);
-	window.close();
+	window.opener.postMessage(["Iridium","command",selected],'*'); //Send back an array [a,b,c] to EVERY WINDOW. My not so good way of verifying sender and type of data, whiling remaning offline testability is by using an array and checking it in "gui_driver.js".
 }
+
 function ezplot_insert(){
 	var a = document.getElementById("ezplot1").value;
 	var b = document.getElementById("ezplot2").value;
