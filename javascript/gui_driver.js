@@ -2,7 +2,7 @@ var colaps_file_enabled = false;
 var colaps_help_enabled = false;
 var colaps_settings_enabled = false;
 var colaps_other_enabled = false;
-var insert_id;										//the "last" focused element (i.e, the textbox/textarea where the inserter should insert their stuff)
+var insert_id = "input";	//This variable keeps the record of the "last" focused element (i.e, the textbox/textarea where the inserter should insert their stuff). Default is "input".
 
 
 //-------------------------Collapsable side panel from W3School(file)
@@ -192,7 +192,7 @@ function insert_symbol(){
 	window.open("subwindows/symbol_list.html", "_blank",'height=300,width=400,status=yes,top=150,left=250,toolbar=no,menubar=no,location=no');
 }
 function typeInTextarea(newText, el = document.getElementById(insert_id)) {
-	if(el.nodeName == "TEXTAREA" || el.nodeName == "INPUT"){ //A filter for textbox/textarea. Extra precaution is always a good thing. 
+	if(el.nodeName == "TEXTAREA" || el.nodeName == "INPUT"){ //A filter for textbox&textarea. Extra precaution is always a good thing. 
 		el.focus();
 		const [start, end] = [el.selectionStart, el.selectionEnd];
 		el.setRangeText(newText, start, end, 'end');   //setRangeText() automatically limited the element to either textbox or texarea.
@@ -206,7 +206,7 @@ function insert_function(){
 
 //-------------------------Command inserter related functions
 function add_command(){
-	window.open("subwindows/add_command.html", "_blank",'height=450,width=800,status=yes,top=100,left=250,toolbar=no,menubar=no,location=no');
+	window.open("subwindows/add_command.html", "_blank",'height=450,width=600,status=yes,top=250,left=10,toolbar=no,menubar=no,location=no');
 }
 
 //-------------------------Template loader related functions
@@ -225,16 +225,20 @@ window.addEventListener('message', event => {
 	if(event.data[0] == "Iridium"){ //Verification
 		if(event.data[1] == "command"){	  //data from add_command.html
 			typeInTextarea(event.data[2]);
+			_system_display("Command \""+event.data[2]+"\" inserted to "+insert_id,"#82caff"); //color of inserters
 		}
 		else if(event.data[1] == "symbol"){	  //data from symbol_list.html
 			typeInTextarea(event.data[2]);
+			_system_display("Symbol \'"+event.data[2]+"\' inserted to "+insert_id,"#82caff"); //color of inserters
 		}
 		else if(event.data[1] == "function"){	  //data from function_list.html
 			typeInTextarea(event.data[2]);
+			_system_display("Function \""+event.data[2]+"\" inserted to "+insert_id,"#82caff"); //color of inserters
 		}
 		else if(event.data[1] == "template"){	  //data from template_list.html
 			document.getElementById("template").value = event.data[2];
 			update_selected_template();
+			_system_display("Template \""+event.data[3]+"\" selected","#82caff"); //color of inserters
 		}
 	}
 });

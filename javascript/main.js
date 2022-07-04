@@ -103,6 +103,7 @@ window.onload = function(){
 				}
 			}
 			fr.readAsText(this.files[0]);
+			_system_display("Script file successfully uploaded","blue");
 		});
 		document.getElementById("savefile").addEventListener("click", function(){ 
 			
@@ -152,6 +153,7 @@ window.onload = function(){
 			a.href = window.URL.createObjectURL(new Blob([output_file_content], {type: "text/plain;charset=utf-8"}));
 			a.download = fname+".txt";
 			a.click();
+			_system_display(fname+".txt downloaded","blue");
 		}); 
 		document.getElementById("saveimage").addEventListener("click", function(){
 			downloadcanvas(document.getElementById('imagename').value);

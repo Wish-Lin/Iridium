@@ -5,7 +5,26 @@
 <title>Commands</title>
 </head>
 <script src="../javascript/add_command.js"></script>
+<style>
+.inserter {
+  font-size:25px;
+  font-family:Arial;
+  border-width:2px;
+  color:rgba(0, 0, 0, 1);
+  border-color:rgba(0, 0, 0, 1);
+  border-top-left-radius:8px;
+  border-top-right-radius:8px;
+  border-bottom-left-radius:8px;
+  border-bottom-right-radius:8px;
+  background:#ffffff;
+  float: right;
+}
 
+.inserter:hover {
+  background: #d3d3d3;
+}
+  
+</style>
 
 
 <body>
@@ -14,7 +33,7 @@
 	
 	<div id="main_title" style="font: bold 30px Arial; text-align: center; background: #82caff;">Command Inserter</div><br>
 	
-	<div id = "ezplot" style = "font: 20px Arial; background-color: AliceBlue">
+	<div id = "ezplot" style = "font: 20px Arial; background-color: AliceBlue; overflow: hidden;">
 	ezplot(): Plot univariate 2D functions on canvas.<br><br>
 	y = <input id="ezplot1" type="text" value='sin(x)' style = "width: 80px;">
 	start:<input id="ezplot2" type="number" value='-10' style = "width: 60px;">
@@ -27,12 +46,12 @@
 	Optional: ( 0 = none )<br><br>
 	dash:<input id="ezplot7" type="number" value='0' style = "width: 60px;" min = 0 step = 1>
 	space:<input id="ezplot8" type="number" value='0' style = "width: 60px;" min = 0 step = 1>
-	<br><br>
-	<button id = "ezplot_insert" style = "font: 20px Arial;" onclick = "returnData(ezplot_insert())">Insert</button>
+	<br>
+	<button id = "ezplot_insert" onclick = "returnData(ezplot_insert())" class = "inserter">Insert</button>
 	</div>
 	<br>
 	
-	<div id = "ezplot_polar" style = "font: 20px Arial; background-color: Ivory">
+	<div id = "ezplot_polar" style = "font: 20px Arial; background-color: Ivory; overflow: hidden;">
 	ezplot_polar(): Plot basic univariate polar functions on canvas.<br><br>
 	r = <input id="ezplot_polar1" type="text" value='1+2*sin(t)' style = "width: 80px;">
 	start:<input id="ezplot_polar2" type="number" value='0' style = "width: 60px;">
@@ -46,7 +65,7 @@
 	dash:<input id="ezplot_polar7" type="number" value='0' style = "width: 60px;" min = 0 step = 1>
 	space:<input id="ezplot_polar8" type="number" value='0' style = "width: 60px;" min = 0 step = 1>
 	<br><br>
-	<button id = "ezplot_polar_insert" style = "font: 20px Arial;" onclick = "returnData(ezplot_polar_insert())">Insert</button>
+	<button id = "ezplot_polar_insert" onclick = "returnData(ezplot_polar_insert())" class = "inserter">Insert</button>
 	</div>
 	<br>
 	

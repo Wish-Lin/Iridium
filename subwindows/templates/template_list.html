@@ -6,7 +6,7 @@
 <script src = "template_database.js"></script>
 <script>
     function returnData(selected) {
-	   window.opener.postMessage(["Iridium","template",get_actual_data(selected)],'*'); //Send back an array [a,b,c] to EVERY WINDOW. My not so good way of verifying sender and type of data, whiling remaning offline testability is by using an array and checking it in "gui_driver.js".
+	   window.opener.postMessage(["Iridium","template",get_actual_data(selected),selected],'*'); //Send back an array [a,b,c,d] to EVERY WINDOW. My not so good way of verifying sender and type of data, whiling remaning offline testability is by using an array and checking it in "gui_driver.js".
 	   window.close();
 	}
 </script>
@@ -18,7 +18,7 @@
 </style>
 
 <body>
-	<center><span style = "font: 35px Arial;">Template Selector</span></center><br>
+	<div id="main_title" style="font: bold 30px Arial; text-align: center; background: #82caff;">Template Selector</div><br>
     <table border = "1px">
 	<tr>
 <td><img src = "template_images/def.png" class="demo" onclick = "returnData('def')"></img></td>

@@ -44,4 +44,4 @@ static image / animation button "hover gray" function doesn't work.  (2022/6/29)
 
 **why can't setcanvas() change background transparency?.
 
-_system_display: upload/download file.  Running timelines.
+_system_display:  Running timelines.

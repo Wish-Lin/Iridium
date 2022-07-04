@@ -233,9 +233,9 @@ v1.4.1:  (release date: 2022/7/1)
 --[Major]Iridium cabn now save/upload animation section along with static section.
 --[Minor]When executing individual command, template AND script will also be executed to create background. I hope this doesn't backfire in the future.
 --[Minor]All alert() changed to console.log() to prevent the hundreds of alerts while incorrectly animating. I hope this doesn't backfire in the future.
---[Minor]"File" side menu CSS update.
+--[Minor]"File" side menu CSS upgrade.
 
-v1.5.0:  (major improvement)(release date: 2022/7/1)
+v1.5.0:  (major improvement)(release date: 2022/7/2)
 
 --[IMPORTANT]All pop-up inserters now use Window.postMessage(), so no more same-origin-policy related problems, which means all Iridium's features can now be run locally without issues.
 --[IMPORTANT]"system_display" overhead display <span> beta test, as well as the function that controls it "_system_display()". All console.log() changed to _system_display().
@@ -243,4 +243,16 @@ v1.5.0:  (major improvement)(release date: 2022/7/1)
 --[Minor]Small aesthetic changes.
 --[IMPORTANT]Symbol/Function/Command Inserter can now work on any textarea/textbox.
 	Symbol/Function/Command Inserter button moved to top of <div>, independent of static/animation mode switching, so that it is easier to access whenever the user wants to use it.
-	This is acheived by documenting the last focused element (the one prior to clicking the inserter button) and insert there.
+	This is acheived by keeping track of the last focused element (the one prior to clicking the inserter button) and insert there.
+	
+v1.5.1:  (release date: 2022/7/4)
+
+--[Minor]Small aesthetic changes.
+--[Minor]Uploading/Downloading files now has system display hint. Can't get filename of uploaded file, will fix in future.
+--[Major]"symbol_ inserter.html" CSS upgrade + link to _system_display().
+--[Major]"function_ inserter.html" CSS upgrade + link to _system_display().
+--[Major]"template_list.html" CSS upgrade + link to _system_display().
+--[Major]"add_command.html" CSS upgrade + link to _system_display().
+--[Minor]"Individual commands" input section linked to _system_display().
+
+v1.5.2:

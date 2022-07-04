@@ -15,11 +15,11 @@ function ezplot_insert(){
 	var h = document.getElementById("ezplot8").value;
 	var cmd = "ezplot(\"y = "+a+"\","+b+","+c+","+d+",\""+e+"\","+f;
 	if(g == '0' || h == '0'){
-		cmd = cmd+");\n";
+		cmd = cmd+");";
 		return cmd;		
 	}
 	else{
-		cmd = cmd+","+g+","+h+");\n";
+		cmd = cmd+","+g+","+h+");";
 		return cmd;		
 	}
 }
@@ -35,11 +35,11 @@ function ezplot_polar_insert(){
 	var h = document.getElementById("ezplot_polar8").value;
 	var cmd = "ezplot_polar(\"r = "+a+"\","+b+","+c+","+d+",\""+e+"\","+f;
 	if(g == '0' || h == '0'){
-		cmd = cmd+");\n";
+		cmd = cmd+");";
 		return cmd;		
 	}
 	else{
-		cmd = cmd+","+g+","+h+");\n";
+		cmd = cmd+","+g+","+h+");";
 		return cmd;		
 	}
 }

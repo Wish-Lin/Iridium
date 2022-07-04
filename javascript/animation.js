@@ -402,6 +402,7 @@ function run_all_indiv_command(){
 	eval(document.getElementById("template").value);  //run the blank template again(clear all previous stuff)
 	eval(document.getElementById("input").value);     //run script as well
 	var tmpstring = "";
+	_system_display("All 15 individual commands executed successfully","blue");  //this message stays on there if nothing bad happens
 	for(var i = 0;i<=14;i++){
 		if(cmd_exe_control[i] == true){  //if the checkbox is checked
 			tmpstring = "anim_cmd"+(i+1).toString();  //then execute that command

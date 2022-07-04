@@ -204,6 +204,7 @@ function downloadcanvas(filename){ //download the entire canvas. [SYSTEM FUNC][U
     document.body.appendChild( tmpLink );  
     tmpLink.click();  
     document.body.removeChild( tmpLink );  
+	_system_display(filename+".png downloaded","blue");
 }
 function transparency(percentage){ //change drawing transparency (real) [USER FUNC]
 	if(percentage < 0 || percentage > 100)
