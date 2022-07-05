@@ -51,6 +51,7 @@ function run_animt1(){
 			//console.log(end);
 			i++;
 			eval(script);
+			_system_display("Running Animation Timeline 1:  ["+start.toFixed(3)+' | '+ANIM_T1.toFixed(3)+' | '+end.toFixed(3)+']',"green");
 		}
 	}
 }
@@ -89,6 +90,7 @@ function run_animt2(){
 			ANIM_T2+=step;
 			i++;
 			eval(script);
+			_system_display("Running Animation Timeline 2:  ["+start.toFixed(3)+' | '+ANIM_T2.toFixed(3)+' | '+end.toFixed(3)+']',"green");
 		}
 	}
 }
@@ -127,6 +129,7 @@ function run_animt3(){
 			ANIM_T3+=step;
 			i++;
 			eval(script);
+			_system_display("Running Animation Timeline 3:  ["+start.toFixed(3)+' | '+ANIM_T3.toFixed(3)+' | '+end.toFixed(3)+']',"green");
 		}
 	}
 }
@@ -165,6 +168,7 @@ function run_animt4(){
 			ANIM_T4+=step;
 			i++;
 			eval(script);
+			_system_display("Running Animation Timeline 4:  ["+start.toFixed(3)+' | '+ANIM_T4.toFixed(3)+' | '+end.toFixed(3)+']',"green");
 		}
 	}
 }
@@ -203,6 +207,7 @@ function run_animt5(){
 			ANIM_T5+=step;
 			i++;
 			eval(script);
+			_system_display("Running Animation Timeline 5:  ["+start.toFixed(3)+' | '+ANIM_T5.toFixed(3)+' | '+end.toFixed(3)+']',"green");
 		}
 	}
 }
@@ -241,6 +246,7 @@ function run_animt6(){
 			ANIM_T6+=step;
 			i++;
 			eval(script);
+			_system_display("Running Animation Timeline 6:  ["+start.toFixed(3)+' | '+ANIM_T6.toFixed(3)+' | '+end.toFixed(3)+']',"green");
 		}
 	}
 }
@@ -279,6 +285,7 @@ function run_animt7(){
 			ANIM_T7+=step;
 			i++;
 			eval(script);
+			_system_display("Running Animation Timeline 7:  ["+start.toFixed(3)+' | '+ANIM_T7.toFixed(3)+' | '+end.toFixed(3)+']',"green");
 		}
 	}
 }
@@ -317,6 +324,7 @@ function run_animt8(){
 			ANIM_T8+=step;
 			i++;
 			eval(script);
+			_system_display("Running Animation Timeline 8:  ["+start.toFixed(3)+' | '+ANIM_T8.toFixed(3)+' | '+end.toFixed(3)+']',"green");
 		}
 	}
 }
@@ -355,6 +363,7 @@ function run_animt9(){
 			ANIM_T9+=step;
 			i++;
 			eval(script);
+			_system_display("Running Animation Timeline 9:  ["+start.toFixed(3)+' | '+ANIM_T9.toFixed(3)+' | '+end.toFixed(3)+']',"green");
 		}
 	}
 }
@@ -393,6 +402,7 @@ function run_animt10(){
 			ANIM_T10+=step;
 			i++;
 			eval(script);
+			_system_display("Running Animation Timeline 10:  ["+start.toFixed(3)+' | '+ANIM_T10.toFixed(3)+' | '+end.toFixed(3)+']',"green");
 		}
 	}
 }
@@ -402,7 +412,7 @@ function run_all_indiv_command(){
 	eval(document.getElementById("template").value);  //run the blank template again(clear all previous stuff)
 	eval(document.getElementById("input").value);     //run script as well
 	var tmpstring = "";
-	_system_display("All 15 individual commands executed successfully","blue");  //this message stays on there if nothing bad happens
+	_system_display("All 15 individual commands successfully executed","blue");  //this message stays on there if nothing bad happens
 	for(var i = 0;i<=14;i++){
 		if(cmd_exe_control[i] == true){  //if the checkbox is checked
 			tmpstring = "anim_cmd"+(i+1).toString();  //then execute that command

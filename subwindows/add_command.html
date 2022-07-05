@@ -23,7 +23,11 @@
 .inserter:hover {
   background: #d3d3d3;
 }
-  
+
+.parameter {
+  font-family: Arial;
+  font-size: 15px;
+}  
 </style>
 
 
@@ -35,39 +39,60 @@
 	
 	<div id = "ezplot" style = "font: 20px Arial; background-color: AliceBlue; overflow: hidden;">
 	ezplot(): Plot univariate 2D functions on canvas.<br><br>
-	y = <input id="ezplot1" type="text" value='sin(x)' style = "width: 80px;">
-	start:<input id="ezplot2" type="number" value='-10' style = "width: 60px;">
-	end:<input id="ezplot3" type="number" value='10' style = "width: 60px;">
+	y = <input id="ezplot1" type="text" value='sin(x)' style = "width: 80px;" class = "parameter">
+	start: x=<input id="ezplot2" type="number" value='-10' style = "width: 50px;" class = "parameter">
+	end: x=<input id="ezplot3" type="number" value='10' style = "width: 50px;" class = "parameter">
 	<br><br>
-	width:<input id="ezplot4" type="number" value='1' style = "width: 60px;" min = 0.5 step = 0.5>
-	color:<input id="ezplot5" type="color" value='#ff0000' style = "width: 60px;">
-	increment:<input id="ezplot6" type="number" value='0.1' style = "width: 60px;" min = 0.01 step = 0.1>
+	width:<input id="ezplot4" type="number" value='1' style = "width: 40px;" min = 0.5 step = 0.5 class = "parameter">
+	color:<input id="ezplot5" type="color" value='#ff0000' style = "width: 50px;">
+	increment:<input id="ezplot6" type="number" value='0.1' style = "width: 50px;" min = 0.01 step = 0.1 class = "parameter">
 	<br><br>
 	Optional: ( 0 = none )<br><br>
-	dash:<input id="ezplot7" type="number" value='0' style = "width: 60px;" min = 0 step = 1>
-	space:<input id="ezplot8" type="number" value='0' style = "width: 60px;" min = 0 step = 1>
+	dash:<input id="ezplot7" type="number" value='0' style = "width: 50px;" min = 0 step = 1 class = "parameter">
+	space:<input id="ezplot8" type="number" value='0' style = "width: 50px;" min = 0 step = 1 class = "parameter">
 	<br>
 	<button id = "ezplot_insert" onclick = "returnData(ezplot_insert())" class = "inserter">Insert</button>
 	</div>
-	<br>
+	<br><hr><br>
 	
-	<div id = "ezplot_polar" style = "font: 20px Arial; background-color: Ivory; overflow: hidden;">
+	<div id = "ezplot_polar" style = "font: 20px Arial; background-color: AliceBlue; overflow: hidden;">
 	ezplot_polar(): Plot basic univariate polar functions on canvas.<br><br>
-	r = <input id="ezplot_polar1" type="text" value='1+2*sin(t)' style = "width: 80px;">
-	start:<input id="ezplot_polar2" type="number" value='0' style = "width: 60px;">
-	end:<input id="ezplot_polar3" type="text" value='2*PI' style = "width: 60px;">
+	r = <input id="ezplot_polar1" type="text" value='1+2*sin(t)' style = "width: 80px;" class = "parameter">
+	start: θ=<input id="ezplot_polar2" type="number" value='0' style = "width: 50px;" class = "parameter">
+	end: θ=<input id="ezplot_polar3" type="text" value='2*PI' style = "width: 50px;" class = "parameter">
 	<br><br>
-	width:<input id="ezplot_polar4" type="number" value='1' style = "width: 60px;" min = 0.5 step = 0.5>
-	color:<input id="ezplot_polar5" type="color" value='#ff0000' style = "width: 60px;">
-	increment:<input id="ezplot_polar6" type="text" value='PI/180' style = "width: 60px;" min = 0>
+	width:<input id="ezplot_polar4" type="number" value='1' style = "width: 40px;" min = 0.5 step = 0.5 class = "parameter">
+	color:<input id="ezplot_polar5" type="color" value='#ff0000' style = "width: 50px;">
+	increment:<input id="ezplot_polar6" type="text" value='PI/180' style = "width: 50px;" min = 0 class = "parameter">
 	<br><br>
 	Optional: ( 0 = none )<br><br>
-	dash:<input id="ezplot_polar7" type="number" value='0' style = "width: 60px;" min = 0 step = 1>
-	space:<input id="ezplot_polar8" type="number" value='0' style = "width: 60px;" min = 0 step = 1>
+	dash:<input id="ezplot_polar7" type="number" value='0' style = "width: 50px;" min = 0 step = 1 class = "parameter">
+	space:<input id="ezplot_polar8" type="number" value='0' style = "width: 50px;" min = 0 step = 1 class = "parameter">
 	<br><br>
 	<button id = "ezplot_polar_insert" onclick = "returnData(ezplot_polar_insert())" class = "inserter">Insert</button>
 	</div>
-	<br>
+	<br><hr><br>
+	
+	<div id = "line_pp" style = "font: 20px Arial; background-color: AliceBlue; overflow: hidden;">
+	line_pp(): Draw line segment between two points.<br><br>
+	(x1,y1) = (<input id="line_pp1" type="number" value='-3' style = "width: 45px;" class = "parameter">,<input id="line_pp2" type="number" value='-4' style = "width: 45px;" class = "parameter">)
+	<br><br>
+	(x2,y2) = (<input id="line_pp3" type="number" value='5' style = "width: 45px;" class = "parameter">,<input id="line_pp4" type="number" value='7' style = "width: 45px;" class = "parameter">)
+	<br><br>
+	linewidth:<input id="line_pp5" type="number" value='1' style = "width: 40px;" min = 0.5 step = 0.5 class = "parameter">
+	<br><br>
+	linecap:
+		<select id="line_pp6" class = "parameter">
+			<option value = "butt">butt: HTML &lt;canvas&gt; default</option>
+			<option value = "round" selected>round: adds a rounded endcap (Recommended)</option>
+			<option value = "square">square: adds a square endcap</option>
+		</select>
+	<br><br>
+	color:<input id="line_pp7" type="color" value='#ff0000' style = "width: 50px;">
+	<br><br>
+	<button id = "line_pp_insert" onclick = "returnData(line_pp_insert())" class = "inserter">Insert</button>
+	</div>
+	<br><hr><br>
 	
 </body>
 </html>

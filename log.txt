@@ -211,11 +211,11 @@ v1.3.0.2: (release date: 2022/6/27)
 
 --[Major]Online beta test of all 10 in-program animation timelines(ANIM_T1~ANIM_T10), which I think is very sufficient for general use.
 
-v1.3.0.3:  (release date: 2022/6/27)
+v1.3.0.3: (release date: 2022/6/27)
 
 --[Update]Animation: All 15 manual command inputs can now be selected/unselected for display individually. "Run" buttons are replaced by checkboxes.
 
-v1.4.0:  (release date: 2022/6/30)
+v1.4.0: (release date: 2022/6/30)
 
 --[Minor]"index.css" renamed to "main.css" as pages other than index.html is now using it as well.
 --[Minor]Major aesthetic improvement of "add_command.html".
@@ -223,11 +223,11 @@ v1.4.0:  (release date: 2022/6/30)
 --[Bug Fix]line_ps() can now accept infinite slope as input (i.e, a vertical line), both manually (m == "inf") or returned by other functions (m == NaN)
 --[IMPORTANT]Iridium licensed under MIT License.
 
-v1.4.0.1:  (release date: 2022/6/30)
+v1.4.0.1: (release date: 2022/6/30)
 
 --[Minor]License file extension fix("LICENSE.md" -> "LICENSE").
 
-v1.4.1:  (release date: 2022/7/1)
+v1.4.1: (release date: 2022/7/1)
 
 --[Minor]Small aesthetic changes.
 --[Major]Iridium cabn now save/upload animation section along with static section.
@@ -235,7 +235,7 @@ v1.4.1:  (release date: 2022/7/1)
 --[Minor]All alert() changed to console.log() to prevent the hundreds of alerts while incorrectly animating. I hope this doesn't backfire in the future.
 --[Minor]"File" side menu CSS upgrade.
 
-v1.5.0:  (major improvement)(release date: 2022/7/2)
+v1.5.0: (major improvement)(release date: 2022/7/2)
 
 --[IMPORTANT]All pop-up inserters now use Window.postMessage(), so no more same-origin-policy related problems, which means all Iridium's features can now be run locally without issues.
 --[IMPORTANT]"system_display" overhead display <span> beta test, as well as the function that controls it "_system_display()". All console.log() changed to _system_display().
@@ -245,7 +245,7 @@ v1.5.0:  (major improvement)(release date: 2022/7/2)
 	Symbol/Function/Command Inserter button moved to top of <div>, independent of static/animation mode switching, so that it is easier to access whenever the user wants to use it.
 	This is acheived by keeping track of the last focused element (the one prior to clicking the inserter button) and insert there.
 	
-v1.5.1:  (release date: 2022/7/4)
+v1.5.1: (release date: 2022/7/4)
 
 --[Minor]Small aesthetic changes.
 --[Minor]Uploading/Downloading files now has system display hint. Can't get filename of uploaded file, will fix in future.
@@ -255,4 +255,14 @@ v1.5.1:  (release date: 2022/7/4)
 --[Major]"add_command.html" CSS upgrade + link to _system_display().
 --[Minor]"Individual commands" input section linked to _system_display().
 
-v1.5.2:
+v1.5.2: (release date: 2022/7/5)
+
+--[Minor]Added my name back in "Other" side panel.
+--[Major]Installed decimal.js, "An arbitrary-precision Decimal type for JavaScript". https://github.com/MikeMcl/decimal.js. Maybe it'll be used in the future.
+--[Major]All 10 timelines linked to _system_display().
+--[Minor]mode buttons(Static Image/Animation) hover background color change disabled.
+--[Minor]Small aesthetic changes.
+--[Update]line_pp() command inserter completed.
+
+v1.5.3:
+

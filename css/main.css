@@ -15,6 +15,21 @@
 
 /* https://cssbuttongenerator.com/ */
 
+.modebutton {   
+  font-size:17px;
+  font-family:Arial;
+  height:35px;
+  border-width:2px;
+  color:rgba(0, 0, 0, 1);
+  border-color:rgba(0, 0, 0, 1);
+  font-weight:bold;
+  border-top-left-radius:8px;
+  border-top-right-radius:8px;
+  border-bottom-left-radius:8px;
+  border-bottom-right-radius:8px;
+  background:#ffffff;
+}
+
 .menubutton {   
   font-size:17px;
   font-family:Arial;

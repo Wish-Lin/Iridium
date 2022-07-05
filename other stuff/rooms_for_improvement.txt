@@ -1,6 +1,6 @@
 add ellipse (orthogonal only at first)   --done
 template selector   --done
-improve ALL function plotting: 
+improve ALL function plotting: --done
 	a better replace method, so that stuff like tan(x) can be used properly.
 
 
@@ -32,7 +32,7 @@ n_derivative()
 
 
 
-CSS update of all pop-up inserters.
+CSS update of all pop-up inserters. --done
 Update all function to HACKMD.
 Reset timeline
 
@@ -40,8 +40,12 @@ Reset timeline
 
 **Use <datalist> for function format hinter in the future.
 
-static image / animation button "hover gray" function doesn't work.  (2022/6/29)  It seems like there is no solution. (2022/7/1)
+static image / animation button "hover gray" function doesn't work.  (2022/6/29)  It seems like there is no solution. (2022/7/1) Well, I don't need that anyway. (2022/7/4)
 
 **why can't setcanvas() change background transparency?.
 
-_system_display:  Running timelines.
+_system_display:  Running timelines. --done
+
+a checkbox for disabling _system_display()
+
+add line_pp_ext()

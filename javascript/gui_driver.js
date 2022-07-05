@@ -225,15 +225,15 @@ window.addEventListener('message', event => {
 	if(event.data[0] == "Iridium"){ //Verification
 		if(event.data[1] == "command"){	  //data from add_command.html
 			typeInTextarea(event.data[2]);
-			_system_display("Command \""+event.data[2]+"\" inserted to "+insert_id,"#82caff"); //color of inserters
+			_system_display("Command \""+event.data[2]+"\" inserted to \""+insert_id+"\"","#82caff"); //color of inserters
 		}
 		else if(event.data[1] == "symbol"){	  //data from symbol_list.html
 			typeInTextarea(event.data[2]);
-			_system_display("Symbol \'"+event.data[2]+"\' inserted to "+insert_id,"#82caff"); //color of inserters
+			_system_display("Symbol \'"+event.data[2]+"\' inserted to \""+insert_id+"\"","#82caff"); //color of inserters
 		}
 		else if(event.data[1] == "function"){	  //data from function_list.html
 			typeInTextarea(event.data[2]);
-			_system_display("Function \""+event.data[2]+"\" inserted to "+insert_id,"#82caff"); //color of inserters
+			_system_display("Function \""+event.data[2]+"\" inserted to \""+insert_id+"\"","#82caff"); //color of inserters
 		}
 		else if(event.data[1] == "template"){	  //data from template_list.html
 			document.getElementById("template").value = event.data[2];
