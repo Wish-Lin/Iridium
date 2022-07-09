@@ -352,7 +352,13 @@ function switch_to_anim(){
 	document.getElementById("inputzone_anim").style.display = "inline";
 }
 
-//-------------------------Record last focused element for the inserters to insert.
-function setId(id) {
+//-------------------------Record last focused element for the inserters to insert
+function setId(id){
     insert_id = id;
+}
+
+//-------------------------Manual command insert
+function blank_cmd_insert(){
+	typeInTextarea(document.getElementById("blank_cmd_input").value);
+	_system_display("Command \""+document.getElementById("blank_cmd_input").value+"\" inserted to \""+insert_id+"\"","#CD7F32");
 }

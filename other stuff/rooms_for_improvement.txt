@@ -50,5 +50,7 @@ a checkbox for disabling _system_display()
 
 add line_pp_ext()
 add arbitrary_point polygon
+add arrow function
 
 ezplot series are not stable enough, some cracks appear on the graph.
+

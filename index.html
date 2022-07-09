@@ -36,7 +36,7 @@
     });
 </script>
 		
-		<div id="main_title" style="font: bold 30px Arial; text-align: center; background: #2ecc71;">Iridium v1.5.2</div><br>
+		<div id="main_title" style="font: bold 30px Arial; text-align: center; background: #2ecc71;">Iridium v1.5.3</div><br>
 		
 		<!-- This is the normally-hidden Cursor Position Tool(CPT) display interface -->
 		<div id="curpos_display">
@@ -104,8 +104,12 @@
 		<div id="colaps_settings" class="colaps_settings">
 		<span style="font: bold 20px Verdana;">Settings & Tools</span>
 		<span style="font: 30px Arial; float:right; cursor: default; margin: 5px;" onclick="colaps_settings_open()">&times;</span><br><br>
+		<span style="font: 20px consolas;">Quick Calculator:<span><br>
+		<input id="calc_input" type="text" value='cos(PI/3)' size = "16" onBlur="setId(this.id)"> <button id = "calc_exe" class="generic_button" onclick = "quick_calculator()">=</button>
+		<span id = "calc_display" style="font: bold 15px Arial;"></span><br>
+		<hr>
 		<span style="font: 20px consolas;">Textarea font size:<span><br>
-		<button onclick="textbox_font_smaller()">&#8722;</button> <p id = "curfontsize"></p> <button onclick="textbox_font_bigger()">&#43;</button><br>
+		<button onclick="textbox_font_smaller()" class="generic_button">&#8722;</button> <p id = "curfontsize"></p> <button onclick="textbox_font_bigger()" class="generic_button">&#43;</button><br>
 		<hr>
 		<span style="font: 20px consolas;">Cursor position tool:</span><input type="checkbox" id="show_curpos" value = "on" onclick = "curpos_show_control()" style = "height: 18px; width: 18px"></input><br>
 		<hr>
@@ -147,11 +151,11 @@
 			<button id = "static_mode_select" class="modebutton" onclick="switch_to_static()">Static Image</button>
 			<button id = "anim_mode_select" class="modebutton" onclick="switch_to_anim()">Animation</button>
 			
-			<button id = "symbol" class="menubutton" onclick = "insert_symbol()" style = "margin-left: 50px;">🕮 Symbol</button>
+			<button id = "symbol" class="menubutton" onclick = "insert_symbol()" style = "margin-left: 50px;">∯ Symbol</button>
 			<button id = "function" class="menubutton" onclick = "insert_function()">𝑓(𝑥) Function</button>
 			<button id = "command" class="menubutton" onclick = "add_command()">&gt;_ Command</button><br>
 			
-			<div id = "inputzone_static" style="width: 700px; float:left; height:550px; margin:10px; display: inline;">
+			<div id = "inputzone_static" style="width: 700px; float:left; height:522px; margin:10px; display: inline;">
 				<span style="font: bold 15px Arial;">Template:</span>
 				<button id = "load_template_only" class="generic_button" onclick = "load_template_only()">Choose Template</button>
 				<br>
@@ -160,12 +164,9 @@
 				<span style="font: bold 15px Arial;">Script:</span><br>
 				<textarea id="input" rows="18" cols="65" style="font: 15px Consolas; resize: horizontal;" onBlur="setId(this.id)"></textarea><br>
 				<button id = "Run" class="menubutton">▶ Run Script</button><br><br>
-				<span style="font: bold 15px Arial;">Quick Calculator:</span><br>
-				<input id="calc_input" type="text" value='cos(PI/3)' onBlur="setId(this.id)"> <button id = "calc_exe" class="generic_button" onclick = "quick_calculator()">=</button>
-				<span id = "calc_display" style="font: bold 15px Arial;"></span><br>
 			</div>
 			
-			<div id = "inputzone_anim" style="width: 750px; float:left; height:550px; margin:10px; display: none; overflow-y: scroll; border-style: solid; border-width: 1px;">
+			<div id = "inputzone_anim" style="width: 750px; float:left; height:520px; margin:10px; display: none; overflow-y: scroll; border-style: solid; border-width: 1px;">
 				
 				<span style="font: bold 15px Arial; margin-left: 5px;">Timeline Settings:</span><br>
 				
@@ -516,8 +517,46 @@
 						<td><input id = "anim_cmd15_ckbx" type="checkbox" class = "cmd_checkbox" onclick = "cmd_exe_control[14] = !cmd_exe_control[14]; run_all_indiv_command();"></td>
 					</tr>
 					</table>
-					
 			</div>
+			<label for="blank_cmd_input"><span style="font: bold 15px Arial; margin: 10px;">Insert Command:</span></label>
+			<input id="blank_cmd_input" list = "blank_cmd_list" class = "blank_cmd_input">
+			<button id = "blank_cmd_clear" class="generic_button" onclick = "document.getElementById('blank_cmd_input').value = ''">Clear</button>
+			<button id = "blank_cmd_insert" class="generic_button" onclick = "blank_cmd_insert()">Insert</button>
+			<datalist id="blank_cmd_list">
+				<option value="arc(x,y,radius,width,color,start,end);">
+				<option value="auto_init(xmax);">
+				<option value="bounded_area(func1,func2,start,end,color,increment);">
+				<option value="bounded_area_polar(func,start,end,color,increment);">
+				<option value="circle(x,y,radius,width,color,fill);">
+				<option value="clear();">
+				<option value="display(str);">
+				<option value="dotline_pp(x1,y1,x2,y2,linewidth,linecap,color,dash,space);">
+				<option value="downloadcanvas(filename);">
+				<option value="drawimage(x,y,path);">
+				<option value="ellipse(c1x,c1y,c2x,c2y,a,width,color,fill);">
+				<option value="ezplot(func,start,end,width,color,increment,dash,space);">
+				<option value="ezplot_param(func_x,func_y,start,end,width,color,increment,dash,space);">
+				<option value="ezplot_polar(func,start,end,width,color,increment,dash,space);">
+				<option value="ezsetgrid(xmax,linewidth,color,showtick,showaxis);">
+				<option value="fo_ode_euler(p_x,q_x,x0,y0,start,end,increment,width,color);">
+				<option value="label(value,x,y,color,font);">
+				<option value="la_line_pp(x1,y1,x2,y2,linewidth,linecap,color);">
+				<option value="la_rectangle(x,y,width,height,linewidth,color,fill);">
+				<option value="line_pp(x1,y1,x2,y2,linewidth,linecap,color);">
+				<option value="line_ps(x,y,m,ll,rl,linewidth,linecap,color);">
+				<option value="n_derivative(fx,xpos);">
+				<option value="point(x,y,size,color);">
+				<option value="polygon_rc(cx,cy,r,n,theta,linewidth,color,fill);">
+				<option value="polygon_ri(cx,cy,r,n,theta,linewidth,color,fill);">
+				<option value="polygon_rs(cx,cy,s,n,theta,linewidth,color,fill);">
+				<option value="polygon_rv(cx,cy,vx,vy,n,linewidth,color,fill);">
+				<option value="rectangle(x,y,width,height,linewidth,color,fill);">
+				<option value="setcanvas(width,height,color);">
+				<option value="setgrid(x0,y0,xhat,yhat,xtick,ytick,linewidth,color,showtick,showaxis);">
+				<option value="slope_field(p_x,q_x,xmin,xmax,ymin,ymax,increment,length,width,color);">
+				<option value="transparency(percentage);">
+				<option value="triangle(x1,y1,x2,y2,x3,y3,linewidth,color,fill);">
+			</datalist>
 		</div>
     </body>
 </html>

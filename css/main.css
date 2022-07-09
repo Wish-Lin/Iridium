@@ -207,7 +207,7 @@
 .colaps_settings {
   font-family: Consolas; 
   font-size: 13px;
-  height: 270px; /* Specify a height */
+  height: 350px; /* Specify a height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
   overflow-x: hidden; /* Disable horizontal scroll */
@@ -370,4 +370,9 @@
 .cmd_checkbox {    /* checkboxes in indiv-command section*/
   height: 28px;
   width: 28px;
+}
+
+.blank_cmd_input {  /* autocomplete blank command inserter*/
+  font: 16px Consolas;
+  width:320px; 
 }

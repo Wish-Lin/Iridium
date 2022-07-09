@@ -241,9 +241,9 @@ v1.5.0: (major improvement)(release date: 2022/7/2)
 --[IMPORTANT]"system_display" overhead display <span> beta test, as well as the function that controls it "_system_display()". All console.log() changed to _system_display().
 	More new/existing functions will have this feature in the future to improve user experience.
 --[Minor]Small aesthetic changes.
---[IMPORTANT]Symbol/Function/Command Inserter can now work on any textarea/textbox.
+--[IMPORTANT]Symbol/Function/Command Inserter can now work on any textarea/textbox. This is acheived by keeping track of the last focused element (the one prior to clicking the inserter button) and insert there.
 	Symbol/Function/Command Inserter button moved to top of <div>, independent of static/animation mode switching, so that it is easier to access whenever the user wants to use it.
-	This is acheived by keeping track of the last focused element (the one prior to clicking the inserter button) and insert there.
+	
 	
 v1.5.1: (release date: 2022/7/4)
 
@@ -269,4 +269,11 @@ v1.5.2.1: (release date: 2022/7/9)
 --[Update]display() updated to HACKMD.
 --[Update]ellipse() updated to HACKMD.
 --[Minor]"LICENSE" link added to "Other" side panel.
---[Minor]'X' closing button added back to all side panels.
+--[Minor]'X' closing button added back to all side panels.''
+
+v1.5.3: 
+
+--[Major]"Quick Calculator" moved to "Settings & Tools" side panel.
+--[Minor]Small aesthetic changes.
+--[IMPORTANT]"Blank command inserter" implemented. Experienced users can now directly insert blank commands if they don't need the wizard's help.
+--[Minor]"Blank command inserter" linked to _system_display().

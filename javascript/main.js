@@ -43,6 +43,12 @@ window.onload = function(){
 			print_curpos(canvasQ,e);                        	//This is for the cursor position tool
 		});
 		
+		document.getElementById("blank_cmd_input").addEventListener("keyup", function(){	//blank_command_inserter
+			if (event.key === "Enter") {
+				blank_cmd_insert();
+			}
+		});
+		
 		for(var i = 0;i<=14;i++){
 			cmd_exe_control[i] = false;						//Initialize all 15 indiv-command show control checkboxes as "false"
 		}
