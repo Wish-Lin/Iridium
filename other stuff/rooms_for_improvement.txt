@@ -36,7 +36,7 @@ CSS update of all pop-up inserters. --done
 Update all function to HACKMD.
 Reset timeline
 
-**Add Madoka "hope-despair-love" and EVA "reality and dream" to HACKMD page. 
+**Add Madoka "hope-despair-love" and EVA "reality and dream" to HACKMD page. --done
 
 **Use <datalist> for function format hinter in the future.
 
@@ -49,3 +49,6 @@ _system_display:  Running timelines. --done
 a checkbox for disabling _system_display()
 
 add line_pp_ext()
+add arbitrary_point polygon
+
+ezplot series are not stable enough, some cracks appear on the graph.

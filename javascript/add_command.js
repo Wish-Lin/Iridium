@@ -23,7 +23,7 @@ function ezplot_insert(){
 		return cmd;		
 	}
 }
-//ezplot(“y = sin(x)*x”,-10,10,1,“red”,0.1,1,2);
+//ezplot("y = sin(x)*x",-10,10,1,"red",0.1,1,2);
 
 function ezplot_polar_insert(){
 	var a = document.getElementById("ezplot_polar1").value;
@@ -44,7 +44,7 @@ function ezplot_polar_insert(){
 		return cmd;		
 	}
 }
-//ezplot_polar(“r = 1+2*sin(t)”,0,2*PI,1,“red”,PI/180);
+//ezplot_polar("r = 1+2*sin(t)",0,2*PI,1,"red",PI/180);
 
 function line_pp_insert(){
 	var a = document.getElementById("line_pp1").value;
@@ -57,4 +57,4 @@ function line_pp_insert(){
 	var cmd = "line_pp("+a+","+b+","+c+","+d+","+e+",\""+f+"\",\""+g+"\");\n"
 	return cmd;		
 }
-//line_pp(“r = 1+2*sin(t)”,0,2*PI,1,“red”,PI/180);
+//line_pp(-3,-4,5,7,1,"round","#ff0000");

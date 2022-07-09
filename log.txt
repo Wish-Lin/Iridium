@@ -264,5 +264,9 @@ v1.5.2: (release date: 2022/7/5)
 --[Minor]Small aesthetic changes.
 --[Update]line_pp() command inserter completed.
 
-v1.5.3:
+v1.5.2.1: (release date: 2022/7/9)
 
+--[Update]display() updated to HACKMD.
+--[Update]ellipse() updated to HACKMD.
+--[Minor]"LICENSE" link added to "Other" side panel.
+--[Minor]'X' closing button added back to all side panels.

@@ -239,7 +239,7 @@
 /* The colaps_other menu */
 .colaps_other {
   font-family: Consolas; 
-  height: 270px; /* Specify a height */
+  height: 350px; /* Specify a height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
   overflow-x: hidden; /* Disable horizontal scroll */

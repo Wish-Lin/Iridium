@@ -80,7 +80,8 @@
 		<!--"File" side panel-->
 		<button class="menubutton" onclick="colaps_file_open()">&#9776; File</button>
 		<div id="colaps_file" class="colaps_file">
-		<span style="font: bold 20px Verdana;">File</span><br><br>
+		<span style="font: bold 20px Verdana;">File</span>
+		<span style="font: 30px Arial; float:right; cursor: default; margin: 5px;" onclick="colaps_file_open()">&times;</span><br><br>
 		<span style="font: bold 17px Arial;">Upload script:</span><br><input type="file" id="fileselect"><br><br>
 		<span style="font: bold 17px Arial;">Save script:</span><br><input id="filename" type="text" value='script1' style = "font: 15px Consolas;"><span style="font: 15px Consolas;">.txt</span><br><button id = "savefile" class="generic_button" style = "margin-top: 4px;">Save</button><br><br>
 		<span style="font: bold 17px Arial;">Save image:</span><br><input id="imagename" type="text" value='pic1' style = "font: 15px Consolas;"><span style="font: 15px Consolas;">.png</span><br><button id = "saveimage" class="generic_button" style = "margin-top: 4px;">Save</button><br>
@@ -91,7 +92,8 @@
 		<!--"Help" side panel-->
 		<button class="menubutton" onclick="colaps_help_open()">&#9776; Help</button>
 		<div id="colaps_help" class="colaps_help">
-		<span style="font: bold 20px Verdana;">Help</span><br><br>
+		<span style="font: bold 20px Verdana;">Help</span>
+		<span style="font: 30px Arial; float:right; cursor: default; margin: 5px;" onclick="colaps_help_open()">&times;</span><br><br>
 		<a href="https://hackmd.io/@Wish-Lin/BJ48RYa_5" target="_blank" style="font: 20px consolas;">Reference Guide</a><br>
 		</div>
 		<!--"Help" side panel-->
@@ -100,7 +102,8 @@
 		<!--"Settings" side panel-->
 		<button class="menubutton" onclick="colaps_settings_open()">&#9776; Settings & Tools</button>
 		<div id="colaps_settings" class="colaps_settings">
-		<span style="font: bold 20px Verdana;">Settings & Tools</span><br><br>
+		<span style="font: bold 20px Verdana;">Settings & Tools</span>
+		<span style="font: 30px Arial; float:right; cursor: default; margin: 5px;" onclick="colaps_settings_open()">&times;</span><br><br>
 		<span style="font: 20px consolas;">Textarea font size:<span><br>
 		<button onclick="textbox_font_smaller()">&#8722;</button> <p id = "curfontsize"></p> <button onclick="textbox_font_bigger()">&#43;</button><br>
 		<hr>
@@ -115,8 +118,11 @@
 		<!--"Other" side panel-->
 		<button class="menubutton" onclick="colaps_other_open()">&#9776; Other</button>
 		<div id="colaps_other" class="colaps_other">
-		<span style="font: bold 20px Verdana;">Other</span><br><br>
+		<span style="font: bold 20px Verdana;">Other</span>
+		<span style="font: 30px Arial; float:right; cursor: default; margin: 5px;" onclick="colaps_other_open()">&times;</span><br><br>
 		<a href="log.txt" target="_blank" style="font: 20px consolas;">Version Log</a><br>
+		<hr>
+		<a href="LICENSE" target="_blank" style="font: 20px consolas;">License</a><br>
 		<hr>
 		<a href="https://github.com/Wish-Lin/Iridium" target="_blank" style="font: 20px consolas;">Github Repository</a><br>
 		<hr>
