@@ -314,6 +314,8 @@ window.addEventListener('message', event => {
 
 //-------------------------Small calculator driver
 function quick_calculator(){
+	_system_display("Calculator successfully executed","blue"); //this message stays on there if nothing bad happens
+	document.getElementById("calc_display").innerHTML = "";
 	var out = 0;
 	var input = document.getElementById("calc_input").value;
 	var command = "out = "+input;

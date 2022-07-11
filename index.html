@@ -105,7 +105,7 @@
 		<span style="font: bold 20px Verdana;">Settings & Tools</span>
 		<span style="font: 30px Arial; float:right; cursor: default; margin: 5px;" onclick="colaps_settings_open()">&times;</span><br><br>
 		<span style="font: 20px consolas;">Quick Calculator:<span><br>
-		<input id="calc_input" type="text" value='cos(PI/3)' size = "16" onBlur="setId(this.id)"> <button id = "calc_exe" class="generic_button" onclick = "quick_calculator()">=</button>
+		<input id="calc_input" type="text" value='cos(PI/3)' size = "24" onBlur="setId(this.id)"> <button id = "calc_exe" class="generic_button" onclick = "quick_calculator()">=</button><br>
 		<span id = "calc_display" style="font: bold 15px Arial;"></span><br>
 		<hr>
 		<span style="font: 20px consolas;">Textarea font size:<span><br>
@@ -140,8 +140,8 @@
 		
 		<span id = "system_display" style="font: bold 17px Consolas; margin-left: 8px;"></span><br>   <!-- System display -->
 		
-		<div id = "canvas_cont" width="700" height="400" style="float:left;  margin:10px;" >
-			<canvas id="myCanvas" width="700" height="400" style="border:1px solid black; background-color: white;">
+		<div id = "canvas_cont" width="600" height="600" style="float:left; margin:10px;" >
+			<canvas id="myCanvas" width="600" height="600" style="border:1px solid black; background-color: white;">
 			</canvas>
 		</div>
 		
@@ -544,6 +544,7 @@
 				<option value="la_rectangle(x,y,width,height,linewidth,color,fill);">
 				<option value="line_pp(x1,y1,x2,y2,linewidth,linecap,color);">
 				<option value="line_ps(x,y,m,ll,rl,linewidth,linecap,color);">
+				<option value="magnify(sx,sy,sw,sh,dx,dy,dw,dh);">
 				<option value="n_derivative(fx,xpos);">
 				<option value="point(x,y,size,color);">
 				<option value="polygon_rc(cx,cy,r,n,theta,linewidth,color,fill);">

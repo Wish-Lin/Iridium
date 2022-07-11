@@ -271,9 +271,15 @@ v1.5.2.1: (release date: 2022/7/9)
 --[Minor]"LICENSE" link added to "Other" side panel.
 --[Minor]'X' closing button added back to all side panels.''
 
-v1.5.3: 
+v1.5.3: (release date: 2022/7/9)
 
 --[Major]"Quick Calculator" moved to "Settings & Tools" side panel.
 --[Minor]Small aesthetic changes.
 --[IMPORTANT]"Blank command inserter" implemented. Experienced users can now directly insert blank commands if they don't need the wizard's help.
 --[Minor]"Blank command inserter" linked to _system_display().
+
+v1.5.4: (release date: 2022/7/11)
+
+--[Minor]Many aesthetic changes.
+--[New Function]magnify() beta test.
+

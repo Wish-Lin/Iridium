@@ -43,11 +43,11 @@ window.onload = function(){
 			print_curpos(canvasQ,e);                        	//This is for the cursor position tool
 		});
 		
-		document.getElementById("blank_cmd_input").addEventListener("keyup", function(){	//blank_command_inserter
+		/*document.getElementById("blank_cmd_input").addEventListener("keyup", function(){	//blank_command_inserter "press Enter to insert" function
 			if (event.key === "Enter") {
 				blank_cmd_insert();
 			}
-		});
+		});*/
 		
 		for(var i = 0;i<=14;i++){
 			cmd_exe_control[i] = false;						//Initialize all 15 indiv-command show control checkboxes as "false"
@@ -166,7 +166,7 @@ window.onload = function(){
 		});
 }
 window.onerror = function(e){
-	_system_display("Script Error. Execution Failed.","red");
+	_system_display("Execution Failed","red");
 }
 window.onbeforeunload = function() {            //Page refresh warning
   return "Data will be lost if you leave the page, are you sure?";

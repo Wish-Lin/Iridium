@@ -30,6 +30,8 @@ la_rectangle()
 line_ps()
 n_derivative()
 
+magnify()
+
 
 
 CSS update of all pop-up inserters. --done
@@ -54,3 +56,24 @@ add arrow function
 
 ezplot series are not stable enough, some cracks appear on the graph.
 
+all functions: when start = end, simply do nothing.
+
+default values for many functions, so they can be used more easily.
+
+***template files move into .json. 
+
+***Animation Window
+
+
+
+
+
+
+
+
+fetch('https://wish-lin.github.io/Iridium/other%20stuff/demo/cross.txt')
+  .then(response => response.text())
+  .then(data => {
+  	// Do something with your data
+  	console.log(data);
+ });

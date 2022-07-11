@@ -1,0 +1,36 @@
+// Default template
+//-------------------------
+clear();  //clear canvas
+setcanvas(600,600,"white"); //set 600x600 white canvas
+ezsetgrid(10,2,"gray",1,1); //initialize coordinate
+for(var tmp = -9;tmp <=9;tmp++){
+line_pp(tmp,10,tmp,-10,0.3,"round","gray");
+line_pp(-10,tmp,10,tmp,0.3,"round","gray");
+}
+
+==============================
+circle(0,0,5,2,"blue",0);
+circle(2*cos(ANIM_T1*PI),2*sin(ANIM_T1*PI),3,2,"black",0);
+line_pp(2*cos(ANIM_T1*PI),2*sin(ANIM_T1*PI),2*cos(ANIM_T1*PI)+5*cos(2*ANIM_T1*PI/3),2*sin(ANIM_T1*PI)-5*sin(2*ANIM_T1*PI/3),2,"round","#black");
+
+point(2*cos(ANIM_T1*PI)+5*cos(2*ANIM_T1*PI/3),2*sin(ANIM_T1*PI)-5*sin(2*ANIM_T1*PI/3),5,"red");
+
+point(2*cos(ANIM_T1*PI),2*sin(ANIM_T1*PI),5,"black");
+
+ezplot_param("x = 2*cos(t*PI)+5*cos(2*t*PI/3)","y = 2*sin(t*PI)-5*sin(2*t*PI/3)",0,ANIM_T1,2,"red",0.01);
+
+
+
+==============================
+0`6`100`25`Run this
+0`5`100`25`
+0`5`100`25`
+0`5`100`25`
+0`5`100`25`
+0`5`100`25`
+0`5`100`25`
+0`5`100`25`
+0`5`100`25`
+0`5`100`25`
+==============================
+``0`||``0`||``0`||``0`||``0`||``0`||``0`||``0`||``0`||``0`||``0`||``0`||``0`||``0`||``0`||

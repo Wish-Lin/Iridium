@@ -18,7 +18,7 @@ function clear(){             // Clear the canvas and its transparency settings.
 }
 function _real2pix_x(xcord){  // Translate calculation result to drawable pixel positions. X coordinate only. [SYSTEM FUNC]
 	if(_ezsetgrid == true && _setgrid == false){   //ezsetgrid mode
-		var out = document.getElementById('canvas_cont').width/2 + _grid_xhat*xcord;
+		var out = document.getElementById('myCanvas').width/2 + _grid_xhat*xcord;
 		return out;
 	}
 	else if(_ezsetgrid == false && _setgrid == true){ //setgrid mode
@@ -28,7 +28,7 @@ function _real2pix_x(xcord){  // Translate calculation result to drawable pixel 
 }
 function _real2pix_y(ycord){  // Translate calculation result to drawable pixel positions. Y coordinate only. [SYSTEM FUNC]
 	if(_ezsetgrid == true && _setgrid == false){   //ezsetgrid mode
-		var out = document.getElementById('canvas_cont').height/2 - _grid_yhat*ycord;
+		var out = document.getElementById('myCanvas').height/2 - _grid_yhat*ycord;
 		return out;
 	}
 	else if(_ezsetgrid == false && _setgrid == true){ //setgrid mode
@@ -949,6 +949,18 @@ function _system_display(str,color){ //Display text on system_display. ("string"
 	document.getElementById("system_display").style.color = color;
 	document.getElementById("system_display").innerHTML = str;
 }
+function magnify(sx,sy,sw,sh,dx,dy,dw,dh){ //Magnify certain parts of canvas onto another part of canvas. (real,real,real,real,real,real,real,real)[USER FUNC]
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	ctx.drawImage(myCanvas,_real2pix_x(sx),_real2pix_y(sy),sw*_grid_xhat,sh*_grid_yhat,_real2pix_x(dx),_real2pix_y(dy),dw*_grid_xhat,dh*_grid_yhat);
+}
+function arrow_pp(){
+	
+}
+
+
+
+
 
 //------↓↓↓↓↓↓↓↓Mathematical variables declare zone↓↓↓↓↓↓↓↓-------------------
 var lin_tran = new Array(1,0,0,1);  //linear transformation matrix, default is unit matrix(no transformation).
