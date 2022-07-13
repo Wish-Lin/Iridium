@@ -12,7 +12,7 @@ improve ALL function plotting: --done
 
 
 
-Functions that are finished but the description isn't completed yet:
+Functions that are finished but the HACKMD description isn't completed yet:-----------------------------------------------------
 display()
 ellipse()
 slope_field()
@@ -22,7 +22,6 @@ polygon_rs()
 polygon_rv()
 
 can't draw on top of drawimage()
-static image / animation button "hover gray" function doesn't work.  (2022/6/29)
 
 la_line_pp()
 la_rectangle()
@@ -32,6 +31,11 @@ n_derivative()
 
 magnify()
 
+dist2D()
+dist3D()
+toRAD()
+toDEG()
+-------------------------------------------------------------------------------------------------------------------------
 
 
 CSS update of all pop-up inserters. --done
@@ -62,11 +66,7 @@ default values for many functions, so they can be used more easily.
 
 ***template files move into .json. 
 
-***Animation Window
-
-
-
-
+***Animation arranger Window
 
 
 
@@ -77,3 +77,19 @@ fetch('https://wish-lin.github.io/Iridium/other%20stuff/demo/cross.txt')
   	// Do something with your data
   	console.log(data);
  });
+ 
+
+possible far future improvement: multiple <canvas> layers
+
+todeg
+torad
+dist3D function
+dist2D open for user use
+
+optimize closePath()
+optimize PI to Math.PI        not necessary (2022/7/13)
+
+forbid mobile access??
+
+**change name when I move to v2. FNGplot (Faust & Gretchen)
+**change to AGPLv3 license

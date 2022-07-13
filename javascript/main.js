@@ -109,7 +109,7 @@ window.onload = function(){
 				}
 			}
 			fr.readAsText(this.files[0]);
-			_system_display("Script file successfully uploaded","blue");
+			_system_display("Script file uploaded","blue");
 		});
 		document.getElementById("savefile").addEventListener("click", function(){ 
 			

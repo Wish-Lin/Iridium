@@ -64,11 +64,13 @@ function colaps_other_open() {
 //-------------------------Textarea font size management
 function textbox_font_bigger(){
 	var newsize = document.getElementById("input").style.fontSize.slice(0, -2); //npx -> n
-	newsize = (parseInt(newsize,10)+1).toString() + "px";                       //n -> n+1px
-	//console.log(newsize);
-	document.getElementById("template").style.fontSize = newsize;
-	document.getElementById("input").style.fontSize = newsize;
-	document.getElementById("curfontsize").innerHTML = newsize;
+	if(parseInt(newsize,10) < 16){												//always <=16px
+		newsize = (parseInt(newsize,10)+1).toString() + "px";                   //n -> n+1px
+		//console.log(newsize);
+		document.getElementById("template").style.fontSize = newsize;
+		document.getElementById("input").style.fontSize = newsize;
+		document.getElementById("curfontsize").innerHTML = newsize;
+	}
 }
 function textbox_font_smaller(){
 	var newsize = document.getElementById("input").style.fontSize.slice(0, -2); //npx -> n

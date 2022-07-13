@@ -36,7 +36,7 @@
     });
 </script>
 		
-		<div id="main_title" style="font: bold 30px Arial; text-align: center; background: #2ecc71;">Iridium v1.5.4</div><br>
+		<div id="main_title" style="font: bold 30px Arial; text-align: center; background: #2ecc71;">Iridium v1.6.0</div><br>
 		
 		<!-- This is the normally-hidden Cursor Position Tool(CPT) display interface -->
 		<div id="curpos_display">
@@ -105,7 +105,9 @@
 		<span style="font: bold 20px Verdana;">Settings & Tools</span>
 		<span style="font: 30px Arial; float:right; cursor: default; margin: 5px;" onclick="colaps_settings_open()">&times;</span><br><br>
 		<span style="font: 20px consolas;">Quick Calculator:<span><br>
-		<input id="calc_input" type="text" value='cos(PI/3)' size = "24" onBlur="setId(this.id)"> <button id = "calc_exe" class="generic_button" onclick = "quick_calculator()">=</button><br>
+		<input id="calc_input" type="text" value='cos(PI/3)' size = "24" onBlur="setId(this.id)">
+		<button id = "calc_clear" class="generic_button" onclick = "document.getElementById('calc_input').value = ''">C</button>
+		<button id = "calc_exe" class="generic_button" onclick = "quick_calculator()">=</button><br>
 		<span id = "calc_display" style="font: bold 15px Arial;"></span><br>
 		<hr>
 		<span style="font: 20px consolas;">Textarea font size:<span><br>
@@ -159,10 +161,10 @@
 				<span style="font: bold 15px Arial;">Template:</span>
 				<button id = "load_template_only" class="generic_button" onclick = "load_template_only()">Choose Template</button>
 				<br>
-				<textarea id="template" rows="2" cols="65" style="font: 15px Consolas; resize: horizontal; margin-top: 5px; margin-bottom: 2px;" onBlur="setId(this.id)"></textarea><br>
+				<textarea id="template" rows="2" cols="65" style="font: 15px Consolas; resize: horizontal; margin-top: 5px; margin-bottom: 2px;" onBlur="setId(this.id)" placeholder="Enter template here......"></textarea><br>
 				<button id = "temp_script_switch" class="generic_button" onclick = "t_s_switch()" style = "margin-top: 2px; margin-bottom: 4px;">↑↓</button><br>
 				<span style="font: bold 15px Arial;">Script:</span><br>
-				<textarea id="input" rows="18" cols="65" style="font: 15px Consolas; resize: horizontal;" onBlur="setId(this.id)"></textarea><br>
+				<textarea id="input" rows="18" cols="65" style="font: 15px Consolas; resize: horizontal;" onBlur="setId(this.id)" placeholder="Enter script here......"></textarea><br>
 				<button id = "Run" class="menubutton">▶ Run Script</button><br><br>
 			</div>
 			
@@ -524,6 +526,7 @@
 			<button id = "blank_cmd_insert" class="generic_button" onclick = "blank_cmd_insert()">Insert</button>
 			<datalist id="blank_cmd_list">
 				<option value="arc(x,y,radius,width,color,start,end);">
+				<option value="arrow_pp(x1,y1,x2,y2,linewidth,color);">
 				<option value="auto_init(xmax);">
 				<option value="bounded_area(func1,func2,start,end,color,increment);">
 				<option value="bounded_area_polar(func,start,end,color,increment);">

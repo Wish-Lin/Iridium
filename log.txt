@@ -3,7 +3,7 @@ v0.9.3: (release date: 2022/4/24)
 --[Major]Start recording log.
 --[Minor]ez_init() renamed to auto_init() along with some display choice improvements. added big canvas alert when xmax > 210.
 --[Minor]dot_line_pp() renamed to dotline_pp().
---[New Function]ezplot() beta test.
+--[New Command]ezplot() beta test.
 
 v0.9.4: (release date: 2022/4/25)
 
@@ -31,7 +31,7 @@ v0.9.4: (release date: 2022/4/25)
 --[Minor]added link to this log on index.html
 --[Minor]added ezplot() legal increment check
 --[Minor]added math function description in "help.html"
---[New Function]ezplot_polar() beta test.
+--[New Command]ezplot_polar() beta test.
 
 v0.9.5: (release date: 2022/4/26)
 
@@ -39,24 +39,24 @@ v0.9.5: (release date: 2022/4/26)
 --[Minor]circle() renamed to ez_circle due to its relation with ez_xhat, as well as the fact that it was originally a JS function that can ONLY draw undistorted
 circles, which could be a problem when xhat and yhat can be set to different values in future versions.
 --[Minor]icon change.
---[New Function]rectangle() beta test.
+--[New Command]rectangle() beta test.
 --[Major]ezplot() and ezplot_polar() optimization. (doesn't rely on repetitively calling line_pp() anymore, but instead uses moveTo() and lineTo() directly.)
---[New Function]triangle() beta test.
+--[New Command]triangle() beta test.
 
 v0.9.6: (release date: 2022/4/27)
 
---[New Function]ezplot_param() beta test.
+--[New Command]ezplot_param() beta test.
 --[Major]Load program, save program and save image placed inside a collapsible left side panel "File".
 --[Major]Help and Log placed inside a collapsible left side panel "Help".
 --[Major]Textarea font size now customizable inside a collapsible left side panel "Settings".
 --[Major]Automatic function filler completed, which makes writing programs much,much easier than before.
---[New Function]transparency() beta test.
+--[New Command]transparency() beta test.
 
 v0.9.7: (release date: 2022/4/28)
 
 --[Minor]_isnat() bug fix (float/float error, which produces results like 5.000000000007, but in reality the result should be exactly 5).
 --[IMPORTANT]The program now has a formal name "Iridium".
---[New Function]foh_ode_euler() beta test.
+--[New Command]foh_ode_euler() beta test.
 
 v0.9.8: (release date: 2022/5/1)
 
@@ -64,20 +64,20 @@ v0.9.8: (release date: 2022/5/1)
 --[IMPORTANT]"jsgif" GIFEncoder library installed. Iridium can now make short GIF animations.
 --[Major]Acknowledgement.md finished and hosted externally using HackMD.
 --[Major]Scripting commands.md finished and hosted externally using HackMD.
---[New Function]circle() beta test.
+--[New Command]circle() beta test.
 --[Minor]"Help" renamed to "Scripting command" in left side panel "Help".
 --[Minor]Log moved into a new collapsible left side panel "Other".
 
 v0.9.9: (release date: 2022/5/5)
 
 --[Minor]the bug of ezplot() drawing vertical "asymptotes" when plotting tan(x) and other similar functions is fixed.
---[New Function]arc() beta test.
+--[New Command]arc() beta test.
 --[IMPORTANT]Special character inserter beta test. More characters will be gradually added in the future. This is also the first pop-up window in Iridium.
 	To test the local pop-up windows, "Same-Origin Policy" on Chrome needs to be disabled.
 	
 v0.9.10: (release date: 2022/5/7)
 
---[New Function]drawimage() beta test. User can now import images(such as LaTEX equations or anything else) into the canvas.
+--[New Command]drawimage() beta test. User can now import images(such as LaTEX equations or anything else) into the canvas.
 --[Minor]Default template will load and run automatically whenever page is refreshed.
 --[IMPORTANT]setgrid() completed. Users can now use Iridium with self-defined origin, xhat and yhat.
 
@@ -99,9 +99,9 @@ v0.9.12: (release date: 2022/5/8)
 
 v0.9.13: (release date: 2022/5/11)
 
---[New Function]bounded_area() beta test.
---[New Function]bounded_area_polar() beta test.
---[New Function]README.md update.
+--[New Command]bounded_area() beta test.
+--[New Command]bounded_area_polar() beta test.
+--[Major]README.md update.
 --[Major]circle() now fillable.
 --[Major]due to the aforementioned reason, ez_circle() is deleted.
 --[Major]declared mathematical constants & functions
@@ -142,7 +142,7 @@ v1.1.0: (release date: 2022/5/21)
 --[Bug Fix] ezplot(), ezplot_polar() and ezplot_param() can now accept arguments like "r = tan(t)" without worrying the 't' in "tan" being replaced by "t[i]".
 	This bug will be fixed in other functions in later versions. I am tired now.
 --[New Tool]Public display beta test. It is a draggable, hideable <div> that can be accessed by ANYONE to display text.
---[New Function]display() beta test. This is the user function that accesses the aforementioned public display.
+--[New Command]display() beta test. This is the user function that accesses the aforementioned public display.
 --[IMPORTANT]Major rearrangement of the files.
 --[Minor]Small aesthetic changes.
 --[Minor]Textarea can now be resized BUT only horizontally.
@@ -154,13 +154,13 @@ v1.1.1: (release date: 2022/5/24)
 
 v1.1.2: (release date: 2022/5/25)
 
---[New Function]ellipse() beta test.
+--[New Command]ellipse() beta test.
 --[Minor] foh_ode_euler() renamed to fo_ode_euler() since I misunderstood the word "homogenous" before.
---[New Function]slope field() beta test.
---[New Function]polygon_rc() beta test.
---[New Function]polygon_ri() beta test.
---[New Function]polygon_rs() beta test.
---[New Function]polygon_rv() beta test.
+--[New Command]slope field() beta test.
+--[New Command]polygon_rc() beta test.
+--[New Command]polygon_ri() beta test.
+--[New Command]polygon_rs() beta test.
+--[New Command]polygon_rv() beta test.
 --[New Function]_dist2D(): Simple system function for calculating distance.
 
 v1.1.3: (release date: 2022/5/27)
@@ -174,8 +174,8 @@ v1.2.0: (release date: 2022/6/18)
 
 --[Major][New tool]In-program animation using setInterval() beta test. Animation control panel beta test.
 --[Major]Start working on 2D linear transformation related features & functions.
---[New Function]la_line_pp() beta test.
---[New Function]la_rectangle() beta test.
+--[New Command]la_line_pp() beta test.
+--[New Command]la_rectangle() beta test.
 --[Update]Update README.md
 --[Update]Update HackMD descriptions.
 --[Minor]Major aesthetic changes using CSS.
@@ -200,8 +200,8 @@ v1.3.0: (release date: 2022/6/26)
 --[Major]In-program animation removed from button list and is now another separate scripting section (switch between static image mode and animation
 	mode using buttons). All previous GUI for its pop-up window(buttons/animation panels/display-control functions) are therefore deleted.
 --[Update]Animation: 4 timelines and 15 manual command inputs deployed.
---[New Function]line_ps() beta test.
---[New Function]n_derivative() beta test.
+--[New Command]line_ps() beta test.
+--[New Command]n_derivative() beta test.
 
 v1.3.0.1: (release date: 2022/6/27)
 
@@ -262,7 +262,7 @@ v1.5.2: (release date: 2022/7/5)
 --[Major]All 10 timelines linked to _system_display().
 --[Minor]mode buttons(Static Image/Animation) hover background color change disabled.
 --[Minor]Small aesthetic changes.
---[Update]line_pp() command inserter completed.
+--[Update]Command inserter add: line_pp()
 
 v1.5.2.1: (release date: 2022/7/9)
 
@@ -281,5 +281,21 @@ v1.5.3: (release date: 2022/7/9)
 v1.5.4: (release date: 2022/7/11)
 
 --[Minor]Many aesthetic changes.
---[New Function]magnify() beta test.
+--[New Command]magnify() beta test.
+
+v1.6.0: (release date: 2022/7/13)
+
+--[Minor]Small aesthetic changes.
+--[Minor]placeholders added to "Static Image" textareas.
+--[Minor]"Textarea font size" upper limit of 16px placed. User can now only choose between 12px to 16px.
+--[Minor]magnify() parameter slight modification (sx,sy,dx,dy now means bottom left instead of top left).
+--[Major]All math functions that accept function inputs can now accept '^' as exponent symbol.
+--[Minor]variable "ctx" declaration optimized.
+--[Minor]some polygonal commands have an unnecessary line before closePath(). optimized.
+--[New Command]arrow_pp() beta test.
+--[New Function]_dist2D() now open for public use. (_dist2D() -> dist2D())
+--[New Function]dist3D(): Simple function for calculating distance.
+--[New Function]toDEG(): Radians to Degrees.
+--[New Function]toRAD(): Degrees to Radians.
+--[Minor]"clear" button added to "Quick Calculator".
 

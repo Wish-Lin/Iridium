@@ -7,9 +7,6 @@ function _isnat(num){         // Check if input is natural number. [SYSTEM FUNC]
 	else
 		return false;
 }
-function _dist2D(x1,y1,x2,y2){// return distance between two points in 2D. [SYSTEM FUNC]
-	return Math.sqrt((x2-x1)**2+(y2-y1)**2);
-}
 function clear(){             // Clear the canvas and its transparency settings. [SYSTEM FUNC][USER FUNC]
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
@@ -37,8 +34,7 @@ function _real2pix_y(ycord){  // Translate calculation result to drawable pixel 
 	}
 }
 function line_pp(x1,y1,x2,y2,linewidth,linecap,color){//(real,real,real,real,real,string,string) Draw line segment between two points [USER FUNC] 
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
+	var ctx = document.getElementById("myCanvas").getContext("2d");
 	ctx.setLineDash([]);  //clear out dotline settings
 	ctx.strokeStyle = color;
 	ctx.lineWidth = linewidth;
@@ -49,8 +45,7 @@ function line_pp(x1,y1,x2,y2,linewidth,linecap,color){//(real,real,real,real,rea
 	ctx.stroke();                          
 }
 function dotline_pp(x1,y1,x2,y2,linewidth,linecap,color,dash,space){//(real,real,real,real,real,string,string,real,real) Draw dotted line segment between two points [USER FUNC] 
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
+	var ctx = document.getElementById("myCanvas").getContext("2d");
 	ctx.strokeStyle = color;
 	ctx.lineWidth = linewidth;
 	ctx.setLineDash([dash, space]);
@@ -100,8 +95,7 @@ function ezsetgrid(xmax,linewidth,color,showtick,showaxis){ //(real,real,string,
 	_ezsetgrid = true;
 	_setgrid = false;
 	if(showaxis == true){
-		var canvas = document.getElementById("myCanvas");
-		var ctx = canvas.getContext("2d");
+		var ctx = document.getElementById("myCanvas").getContext("2d");
 		ctx.strokeStyle = color;
 		ctx.lineWidth = linewidth;
 		ctx.beginPath();
@@ -144,8 +138,7 @@ function setgrid(x0,y0,xhat,yhat,xtick,ytick,linewidth,color,showtick,showaxis){
 		_ezsetgrid = false;
 		_setgrid = true;
 		if(showaxis == true){
-			var canvas = document.getElementById("myCanvas");
-			var ctx = canvas.getContext("2d");
+			var ctx = document.getElementById("myCanvas").getContext("2d");
 			ctx.strokeStyle = color;
 			ctx.lineWidth = linewidth;
 			ctx.beginPath();
@@ -173,8 +166,7 @@ function setgrid(x0,y0,xhat,yhat,xtick,ytick,linewidth,color,showtick,showaxis){
 	}
 }
 function label(value,x,y,color,font){ //print text on canvas ("string",real,real,"string","string") [USER FUNC]
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
+	var ctx = document.getElementById("myCanvas").getContext("2d");
 	if(font == null)
 		ctx.font = "italic 20px serif";
 	else
@@ -183,8 +175,7 @@ function label(value,x,y,color,font){ //print text on canvas ("string",real,real
 	ctx.fillText(value,_real2pix_x(x),_real2pix_y(y));
 }
 function point(x,y,size,color){ //print dot on canvas (real,real,real,"string") [USER FUNC]
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
+	var ctx = document.getElementById("myCanvas").getContext("2d");
 	ctx.beginPath();
     ctx.fillStyle = color;
     ctx.arc(_real2pix_x(x),_real2pix_y(y),size, 0, 2 * Math.PI);
@@ -210,8 +201,7 @@ function transparency(percentage){ //change drawing transparency (real) [USER FU
 	if(percentage < 0 || percentage > 100)
 		_system_display("transparency():  0<=percentage<=100","red");
 	else{
-		var canvas = document.getElementById("myCanvas");
-		var ctx = canvas.getContext("2d");
+		var ctx = document.getElementById("myCanvas").getContext("2d");
 		ctx.globalAlpha = percentage/100;
 	}
 }
@@ -241,9 +231,9 @@ function auto_init(xmax){ // Automatically initialize the system (real)[USER FUN
 function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic univariate functions ("string",real,real,real,"string",real,nat,nat)[USER FUNC]
 	//----process input function argument----------
 	func = func+';';   //add ';' at the end
+	func = func.replace(/\^/g,"**");  // replace all '^' with "**"
 	//---------------------------------------------
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
+	var ctx = document.getElementById("myCanvas").getContext("2d");
 	ctx.setLineDash([]);  //clear out dotline settings
 	ctx.strokeStyle = color;
 	ctx.lineWidth = width;
@@ -306,9 +296,9 @@ function ezplot(func,start,end,width,color,increment,dash,space){ //plot basic u
 function ezplot_polar(func,start,end,width,color,increment,dash,space){ //plot basic polar functions ("string",real,real,real,"string",real,nat,nat)[USER FUNC]
 	//----process input function argument----------
 	func = func+';';   //add ';' at the end
+	func = func.replace(/\^/g,"**");  // replace all '^' with "**"
 	//---------------------------------------------
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
+	var ctx = document.getElementById("myCanvas").getContext("2d");
 	ctx.setLineDash([]);  //clear out dotline settings
 	ctx.strokeStyle = color;
 	ctx.lineWidth = width;
@@ -375,11 +365,12 @@ function ezplot_polar(func,start,end,width,color,increment,dash,space){ //plot b
 function ezplot_param(func_x,func_y,start,end,width,color,increment,dash,space){ //plot basic 2D parametric functions ("string","string",real,real,real,"string",real,nat,nat)[USER FUNC]
 	//----process input function_x argument----------
 	func_x = func_x+';';   //add ';' at the end
+	func_x = func_x.replace(/\^/g,"**");  // replace all '^' with "**"
 	//----process input function_y argument----------
 	func_y = func_y+';';   //add ';' at the end
+	func_y = func_y.replace(/\^/g,"**");  // replace all '^' with "**"
 	//---------------------------------------------
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
+	var ctx = document.getElementById("myCanvas").getContext("2d");
 	ctx.setLineDash([]);  //clear out dotline settings
 	ctx.strokeStyle = color;
 	ctx.lineWidth = width;
@@ -430,8 +421,7 @@ function ezplot_param(func_x,func_y,start,end,width,color,increment,dash,space){
 	}
 }
 function rectangle(x,y,width,height,linewidth,color,fill){//(real,real,real,real,real,string,bool) Draw rectangle[USER FUNC] 
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
+	var ctx = document.getElementById("myCanvas").getContext("2d");
 	ctx.setLineDash([]);  //clear out dotline settings
 	ctx.strokeStyle = color;
 	ctx.fillStyle = color;
@@ -443,7 +433,6 @@ function rectangle(x,y,width,height,linewidth,color,fill){//(real,real,real,real
 	ctx.lineTo(_real2pix_x(x+width),_real2pix_y(y));
 	ctx.lineTo(_real2pix_x(x+width),_real2pix_y(y+height));
 	ctx.lineTo(_real2pix_x(x),_real2pix_y(y+height));
-	ctx.lineTo(_real2pix_x(x),_real2pix_y(y));
 	ctx.closePath();
 	if(fill == false)
 		ctx.stroke();
@@ -451,8 +440,7 @@ function rectangle(x,y,width,height,linewidth,color,fill){//(real,real,real,real
 		ctx.fill();
 }
 function triangle(x1,y1,x2,y2,x3,y3,linewidth,color,fill){//(real,real,real,real,real,real,real,string,bool) Draw triangle[USER FUNC] 
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
+	var ctx = document.getElementById("myCanvas").getContext("2d");
 	ctx.setLineDash([]);  //clear out dotline settings
 	ctx.strokeStyle = color;
 	ctx.fillStyle = color;
@@ -463,7 +451,6 @@ function triangle(x1,y1,x2,y2,x3,y3,linewidth,color,fill){//(real,real,real,real
 	ctx.moveTo(_real2pix_x(x1),_real2pix_y(y1));
 	ctx.lineTo(_real2pix_x(x2),_real2pix_y(y2));
 	ctx.lineTo(_real2pix_x(x3),_real2pix_y(y3));
-	ctx.lineTo(_real2pix_x(x1),_real2pix_y(y1));
 	ctx.closePath();
 	if(fill == false)
 		ctx.stroke();
@@ -471,8 +458,7 @@ function triangle(x1,y1,x2,y2,x3,y3,linewidth,color,fill){//(real,real,real,real
 		ctx.fill();
 }
 function fo_ode_euler(p_x,q_x,x0,y0,start,end,increment,width,color){ //numerically plot basic first order ODE using Euler's method. ("string","string",real,real,real,real,real,real,"string") [USER FUNC]
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
+	var ctx = document.getElementById("myCanvas").getContext("2d");
 	ctx.setLineDash([]);  //clear out dotline settings
 	ctx.strokeStyle = color;
 	ctx.lineWidth = width;
@@ -481,6 +467,8 @@ function fo_ode_euler(p_x,q_x,x0,y0,start,end,increment,width,color){ //numerica
 		_system_display("foh_ode_euler increment error","red");
 	}
 	else{ 
+		p_x = p_x.replace(/\^/g,"**");  // replace all '^' with "**"
+		q_x = q_x.replace(/\^/g,"**");  // replace all '^' with "**"
 		//----process p(x) argument----------
 		p_x__r = p_x.replace(/x/g, "x__r[i]");  // x -> x[i] (right side use)
 		p_x__l = p_x.replace(/x/g, "x__l[i]");  // x -> x[i] (left side use)
@@ -555,8 +543,7 @@ function circle(x,y,radius,width,color,fill){ //Draw circle (real,real,real,real
 	func_y = func_y.replace(/t/g, "t[i]");  // t -> t[i]
 	func_y = func_y+';';   //add ';' at the end
 	//---------------------------------------------
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
+	var ctx = document.getElementById("myCanvas").getContext("2d");
 	ctx.setLineDash([]);  //clear out dotline settings
 	ctx.fillStyle = color;
 	ctx.strokeStyle = color;
@@ -605,8 +592,7 @@ function arc(x,y,radius,width,color,start,end){ //Draw part of circle (real,real
 		_system_display("arc() error","red");
 }
 function drawimage(x,y,path){ //Draw image on canvas (real,real,"string") [USER FUNC]
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
+	var ctx = document.getElementById("myCanvas").getContext("2d");
 	base_image = new Image();
 	base_image.src = path;
 	base_image.onload = function(){
@@ -622,9 +608,11 @@ function bounded_area(func1,func2,start,end,color,increment){ //Draw bounded are
 		func1 = func1.replace(/x/g, "x[i]");  // x -> x[i]
 		func1 = func1.replace(/y/g, "y1[i]");  // y -> y1[i]
 		func1 = func1+';';   //add ';' at the end
+		func1 = func1.replace(/\^/g,"**");  // replace all '^' with "**"
 		func2 = func2.replace(/x/g, "x[i]");  // x -> x[i]
 		func2 = func2.replace(/y/g, "y2[i]");  // y -> y2[i]
 		func2 = func2+';';   //add ';' at the end
+		func2 = func2.replace(/\^/g,"**");  // replace all '^' with "**"
 		//---------------------------------------------
 		var point_count = Math.round((end-start)/increment+1);
 		var x = new Array(point_count);
@@ -635,8 +623,7 @@ function bounded_area(func1,func2,start,end,color,increment){ //Draw bounded are
 			eval(func1);               //generate y1 coord list (y1[i] = f(x[i]))
 			eval(func2);               //generate y2 coord list (y2[i] = f(x[i]))
 		}
-		var canvas = document.getElementById("myCanvas");
-		var ctx = canvas.getContext("2d");
+		var ctx = document.getElementById("myCanvas").getContext("2d");
 		
 		ctx.setLineDash([]);  //clear out dotline settings
 		ctx.fillStyle = color;
@@ -663,9 +650,9 @@ function bounded_area_polar(func,start,end,color,increment){ //Draw bounded area
 	func = func.replace(/t/g, "t[i]");  // t -> t[i]
 	func = func.replace(/r/g, "r[i]");  // r -> r[i]
 	func = func+';';   //add ';' at the end
+	func = func.replace(/\^/g,"**");  // replace all '^' with "**"
 	//---------------------------------------------
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
+	var ctx = document.getElementById("myCanvas").getContext("2d");
 	ctx.setLineDash([]);  //clear out dotline settings
 	ctx.fillStyle = color;
 	ctx.lineWidth = 0.1;
@@ -729,8 +716,7 @@ function ellipse(c1x,c1y,c2x,c2y,a,width,color,fill){ //Draw ellipse of any angl
 	func_y = func_y.replace(/t/g, "t[i]");  // t -> t[i]
 	func_y = func_y+';';   //add ';' at the end
 	//---------------------------------------------
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
+	var ctx = document.getElementById("myCanvas").getContext("2d");
 	ctx.setLineDash([]);  //clear out dotline settings
 	ctx.fillStyle = color;
 	ctx.strokeStyle = color;
@@ -778,8 +764,7 @@ function ellipse(c1x,c1y,c2x,c2y,a,width,color,fill){ //Draw ellipse of any angl
 		}
 }
 function slope_field(p_x,q_x,xmin,xmax,ymin,ymax,increment,length,width,color){ //Draw slope field of basic first order ODE. ("string","string",real,real,real,real,real,real,real,"string") [USER FUNC]
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
+	var ctx = document.getElementById("myCanvas").getContext("2d");
 	ctx.setLineDash([]);  //clear out dotline settings
 	ctx.strokeStyle = color;
 	ctx.lineWidth = width;
@@ -834,8 +819,7 @@ function polygon_rc(cx,cy,r,n,theta,linewidth,color,fill){  //Draw circumscribed
 			x[i] = temp_x+cx;
 			y[i] = temp_y+cy;
 		}
-		var canvas = document.getElementById("myCanvas");
-		var ctx = canvas.getContext("2d");
+		var ctx = document.getElementById("myCanvas").getContext("2d");
 		ctx.setLineDash([]);  //clear out dotline settings
 		ctx.strokeStyle = color;
 		ctx.fillStyle = color;
@@ -887,13 +871,12 @@ function polygon_rv(cx,cy,vx,vy,n,linewidth,color,fill){    //Draw regular polyg
 			else if(vy < cy)
 				angle = -PI/2;
 		}
-		var r = _dist2D(cx,cy,vx,vy);
+		var r = dist2D(cx,cy,vx,vy);
 		polygon_rc(cx,cy,r,n,-90+(angle*180/PI),linewidth,color,fill);
 	}
 }
 function la_line_pp(x1,y1,x2,y2,linewidth,linecap,color){//(real,real,real,real,real,string,string) Draw line segment between two points(linear transformable) [USER FUNC] 
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
+	var ctx = document.getElementById("myCanvas").getContext("2d");
 	ctx.setLineDash([]);  //clear out dotline settings
 	ctx.strokeStyle = color;
 	ctx.lineWidth = linewidth;
@@ -904,8 +887,7 @@ function la_line_pp(x1,y1,x2,y2,linewidth,linecap,color){//(real,real,real,real,
 	ctx.stroke();                          
 }
 function la_rectangle(x,y,width,height,linewidth,color,fill){//(real,real,real,real,real,string,bool) Draw rectangle(linear transformable) [USER FUNC] 
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
+	var ctx = document.getElementById("myCanvas").getContext("2d");
 	ctx.setLineDash([]);  //clear out dotline settings
 	ctx.strokeStyle = color;
 	ctx.fillStyle = color;
@@ -918,7 +900,6 @@ function la_rectangle(x,y,width,height,linewidth,color,fill){//(real,real,real,r
 	ctx.lineTo(_real2pix_x((x+width)*lin_tran[0]+y*lin_tran[1]),_real2pix_y((x+width)*lin_tran[2]+y*lin_tran[3]));
 	ctx.lineTo(_real2pix_x((x+width)*lin_tran[0]+(y+height)*lin_tran[1]),_real2pix_y((x+width)*lin_tran[2]+(y+height)*lin_tran[3]));
 	ctx.lineTo(_real2pix_x(x*lin_tran[0]+(y+height)*lin_tran[1]),_real2pix_y(x*lin_tran[2]+(y+height)*lin_tran[3]));
-	ctx.lineTo(_real2pix_x(x*lin_tran[0]+y*lin_tran[1]),_real2pix_y(x*lin_tran[2]+y*lin_tran[3]));
 	ctx.closePath();
 	
 	if(fill == false)
@@ -926,7 +907,7 @@ function la_rectangle(x,y,width,height,linewidth,color,fill){//(real,real,real,r
 	else if(fill == true)
 		ctx.fill();
 }
-function line_ps(x,y,m,ll,rl,linewidth,linecap,color){//(real,real,real/string,real,real,real,string,string) Draw line segment with point and slope [USER FUNC] 
+function line_ps(x,y,m,ll,rl,linewidth,linecap,color){//(real,real,real/string,real,real,real,string,string) Draw line segment with point and slope. [USER FUNC] 
 	if(m == NaN || m == "inf"){ //manual or function-returned infinity
 		line_pp(x,y-ll,x,y+rl,linewidth,linecap,color);
 	}
@@ -935,6 +916,7 @@ function line_ps(x,y,m,ll,rl,linewidth,linecap,color){//(real,real,real/string,r
 	}
 }
 function n_derivative(fx,xpos){ //(string,real) Estimate derivative using symmetric difference quotient with h = 0.001[USER FUNC]
+	fx = fx.replace(/\^/g,"**");  // replace all '^' with "**"
 	var x = xpos; //buffer for the eval(), a measure to prevent functions with 'x', 'y', 'r', 't' in their names being processed away.
 	var y,y1,y2 = 0;
 	x-=0.001;
@@ -950,16 +932,97 @@ function _system_display(str,color){ //Display text on system_display. ("string"
 	document.getElementById("system_display").innerHTML = str;
 }
 function magnify(sx,sy,sw,sh,dx,dy,dw,dh){ //Magnify certain parts of canvas onto another part of canvas. (real,real,real,real,real,real,real,real)[USER FUNC]
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
-	ctx.drawImage(myCanvas,_real2pix_x(sx),_real2pix_y(sy),sw*_grid_xhat,sh*_grid_yhat,_real2pix_x(dx),_real2pix_y(dy),dw*_grid_xhat,dh*_grid_yhat);
+	var ctx = document.getElementById("myCanvas").getContext("2d");
+	ctx.drawImage(myCanvas,_real2pix_x(sx),_real2pix_y(sy+sh),sw*_grid_xhat,sh*_grid_yhat,_real2pix_x(dx),_real2pix_y(dy+dh),dw*_grid_xhat,dh*_grid_yhat);
 }
-function arrow_pp(){
+function arrow_pp(x1,y1,x2,y2,linewidth,color){ //Draw arrow on canvas. (real,real,real,real,real,"string")[USER FUNC]
 	
+	//This one is particularly difficult to implement, because of the dynamic tip size and the annoying <canvas> coordinate system, AND I need to make sure this works under any coordinate setting...tired.
+	
+	//Note: When working with pixel coordinates directly, origin is at top-left corner and the basis vectors point right and downwards.
+	
+	/*
+		I get my dynamic tip size formula from LibreOfiice 7.2 Impress. I called out many arrows with different widths and analyzed them one by one.
+	
+		The result I get is that for an arrow with width "n" px, its head width is roughly n*( 4/3 + 35/(6*n) ) px.
+		
+		The tip triangle is bounded by a square. It is NOT a right triangle.
+	*/
+	
+	//Step: Draw vertical downwards arrow from origin -> rotate -> translate
+	
+	var ctx = document.getElementById("myCanvas").getContext("2d");
+	var rx1 = _real2pix_x(x1);
+	var rx2 = _real2pix_x(x2);
+	var ry1 = _real2pix_y(y1);
+	var ry2 = _real2pix_y(y2);
+	var length = Math.sqrt((rx2-rx1)**2+(ry2-ry1)**2);
+	var tip_width = linewidth*(4/3 + 35/(6*linewidth));   //adjusting the tip size according to linewidth
+	
+	//p1 = arrowstart, p2 = tip, p3&4 = side, p5 = end of line segment(embedded in triangle)
+	
+	//downward arrow
+	
+	//at this point, p1x = 0,p1y = 0, p2x = 0, p2y = length, p3x = -(tip_width/2), p3y = length-tip_width, p4x = (tip_width/2), p4y = length-tip_width, p5x = 0, p5y = length-tip_width+2;
+	
+	//get rotation angle
+	var angle = 0;
+	
+	if(Math.abs(rx1-rx2) >= 0.0001){ //rx1 != rx2 (not vertical)
+		angle = Math.atan((ry2-ry1)/(rx2-rx1));
+		if(rx2-rx1 > 0){ //arrow point to right
+			var s = Math.sin(angle-Math.PI/2); 
+			var c = Math.cos(angle-Math.PI/2);
+		}
+		else if(rx2-rx1 < 0){ //arrow point to left
+			var s = Math.sin(angle+Math.PI/2); 
+			var c = Math.cos(angle+Math.PI/2);
+		}
+	}
+	else{
+		//pointing down, no change	
+		if(ry2 < ry1){	//pointing straight up
+			var s = 0;
+			var c = -1;
+		}
+	}
+	
+	//constructing the arrow. declaration itself contains rotation matrix and translation.
+	var p1x = rx1; 
+	var p1y = ry1;
+	var p2x = length*-s+rx1;
+	var p2y = length*c+ry1;
+	var p3x = (-tip_width/2)*c + (length-tip_width)*-s+rx1;
+	var p3y = (-tip_width/2)*s + (length-tip_width)*c+ry1;
+	var p4x = (tip_width/2)*c + (length-tip_width)*-s+rx1;
+	var p4y = (tip_width/2)*s + (length-tip_width)*c+ry1;
+	var p5x = (length-tip_width+2)*-s+rx1;
+	var p5y = (length-tip_width+2)*c+ry1;
+
+
+	// draw arrow body
+
+	ctx.setLineDash([]);  //clear out dotline settings
+	ctx.strokeStyle = color;
+	ctx.fillStyle = color;
+	ctx.lineWidth = linewidth;
+	ctx.lineCap = "butt";
+	ctx.beginPath();
+	ctx.moveTo(p1x,p1y);
+	ctx.lineTo(p5x,p5y);       
+	ctx.stroke();
+	
+	// draw arrow tip
+	
+	ctx.beginPath();
+	ctx.lineJoin = "round";
+	ctx.moveTo(p2x,p2y);
+	ctx.lineTo(p3x,p3y);
+	ctx.lineTo(p4x,p4y);
+	ctx.closePath();
+	ctx.fill();
+
 }
-
-
-
 
 
 //------↓↓↓↓↓↓↓↓Mathematical variables declare zone↓↓↓↓↓↓↓↓-------------------
@@ -1164,5 +1227,18 @@ function normCDF(mean,variance,x){
 		var out = 0.5*(1+erf((x-mean)/(stdev*sqrt(2))));
 		return out;
 	}
+}
+//----------------------------------
+function dist2D(x1,y1,x2,y2){
+	return Math.sqrt((x2-x1)**2+(y2-y1)**2);
+}
+function dist3D(x1,y1,z1,x2,y2,z2){
+	return Math.sqrt((x2-x1)**2+(y2-y1)**2+(z2-z1)**2);
+}
+function toDEG(x){
+	return x*180/Math.PI;
+}
+function toRAD(x){
+	return x*Math.PI/180;
 }
 //------↑↑↑↑↑↑↑↑Mathematical constant and function declare zone↑↑↑↑↑↑↑↑-------------------
