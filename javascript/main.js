@@ -164,8 +164,8 @@ window.onload = function(){
 		document.getElementById("saveimage").addEventListener("click", function(){
 			downloadcanvas(document.getElementById('imagename').value);
 		});
-		if(mobileCheck() == true){
-			alert("on mobile");
+		if(mobileCheck() == true){ //if user is on mobile
+			location.replace("https://wish-lin.github.io/Iridium/subwindows/mobile_redirect.html");
 		}
 }
 window.onerror = function(e){
