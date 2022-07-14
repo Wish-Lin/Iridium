@@ -92,4 +92,7 @@ optimize PI to Math.PI        not necessary (2022/7/13)
 forbid mobile access??
 
 **change name when I move to v2. FNGplot (Faust & Gretchen)
+
 **change to AGPLv3 license
+
+arrow_pp() atan2 optimization???

@@ -291,11 +291,16 @@ v1.6.0: (release date: 2022/7/13)
 --[Minor]magnify() parameter slight modification (sx,sy,dx,dy now means bottom left instead of top left).
 --[Major]All math functions that accept function inputs can now accept '^' as exponent symbol.
 --[Minor]variable "ctx" declaration optimized.
---[Minor]some polygonal commands have an unnecessary line before closePath(). optimized.
+--[Minor]some polygonal commands draw an unnecessary line before closePath(). optimized.
 --[New Command]arrow_pp() beta test.
 --[New Function]_dist2D() now open for public use. (_dist2D() -> dist2D())
 --[New Function]dist3D(): Simple function for calculating distance.
 --[New Function]toDEG(): Radians to Degrees.
 --[New Function]toRAD(): Degrees to Radians.
 --[Minor]"clear" button added to "Quick Calculator".
+
+v1.6.1: 
+
+--[IMPORTANT]Iridium now licensed under AGPL-3.0 License.
+
 

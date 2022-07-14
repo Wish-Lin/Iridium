@@ -164,6 +164,9 @@ window.onload = function(){
 		document.getElementById("saveimage").addEventListener("click", function(){
 			downloadcanvas(document.getElementById('imagename').value);
 		});
+		if(mobileCheck() == true){
+			alert("on mobile");
+		}
 }
 window.onerror = function(e){
 	_system_display("Execution Failed","red");
@@ -171,4 +174,3 @@ window.onerror = function(e){
 window.onbeforeunload = function() {            //Page refresh warning
   return "Data will be lost if you leave the page, are you sure?";
 }
-
