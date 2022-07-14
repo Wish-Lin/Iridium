@@ -299,8 +299,9 @@ v1.6.0: (release date: 2022/7/13)
 --[New Function]toRAD(): Degrees to Radians.
 --[Minor]"clear" button added to "Quick Calculator".
 
-v1.6.1: 
+v1.6.0.1: (release date: 2022/7/14)
 
 --[IMPORTANT]Iridium now licensed under AGPL-3.0 License.
+--[Major]Mobile device users are now redirected from "index.html" to "mobile_redirect.html".
 
 
