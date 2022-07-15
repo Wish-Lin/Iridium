@@ -181,22 +181,6 @@ function point(x,y,size,color){ //print dot on canvas (real,real,real,"string") 
     ctx.arc(_real2pix_x(x),_real2pix_y(y),size, 0, 2 * Math.PI);
     ctx.fill();
 }
-function downloadcanvas(filename){ //download the entire canvas. [SYSTEM FUNC][USER FUNC]
-	// src: https://instructobit.com/tutorial/109/Downloading-and-saving-an-HTML-canvas-as-an-image-using-Javascript
-    // get canvas data  
-    var image = document.getElementById('myCanvas').toDataURL();  
-  
-    // create temporary link  
-    var tmpLink = document.createElement( 'a' );  
-    tmpLink.download = filename; // set the name of the download file 
-    tmpLink.href = image;  
-  
-    // temporarily add link to body and initiate the download  
-    document.body.appendChild( tmpLink );  
-    tmpLink.click();  
-    document.body.removeChild( tmpLink );  
-	_system_display(filename+".png downloaded","blue");
-}
 function transparency(percentage){ //change drawing transparency (real) [USER FUNC]
 	if(percentage < 0 || percentage > 100)
 		_system_display("transparency():  0<=percentage<=100","red");
@@ -210,17 +194,14 @@ function auto_init(xmax){ // Automatically initialize the system (real)[USER FUN
 		_system_display("Canvas size invalid!!","red");
 	}
 	else if(xmax <= 10){
-		clear();
 		setcanvas(600,600,"white");
 		ezsetgrid(xmax,3,"gray",1,1);
 	}
 	else if(xmax > 10 && xmax <= 50){
-		clear();
 		setcanvas(600+5*(xmax-10),600+5*(xmax-10),"white");
 		ezsetgrid(xmax,3,"gray",1,1);
 	}
 	else if(xmax >= 50){
-		clear();
 		setcanvas(600+3*(xmax-10),600+3*(xmax-10),"white");
 		ezsetgrid(xmax,3,"gray",1,1);
 		if(xmax >= 210){           //big canvas notification

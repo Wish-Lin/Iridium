@@ -22,6 +22,10 @@ var main_mode = false;                              //false = static image mode.
 
 
 window.onload = function(){
+	if(mobileAndTabletCheck() == true){ //if user is on mobile or tablet device
+		location.replace("https://wish-lin.github.io/Iridium/subwindows/mobile_redirect.html"); //redirect user to blank notice page.
+	}
+	else{
 		
         var canvas = document.getElementById("myCanvas");
         var context = canvas.getContext("2d");	
@@ -162,11 +166,9 @@ window.onload = function(){
 			_system_display(fname+".txt downloaded","blue");
 		}); 
 		document.getElementById("saveimage").addEventListener("click", function(){
-			downloadcanvas(document.getElementById('imagename').value);
+			downloadcanvas(document.getElementById('imagename').value,document.getElementById('imagetype').value);
 		});
-		if(mobileCheck() == true){ //if user is on mobile
-			location.replace("https://wish-lin.github.io/Iridium/subwindows/mobile_redirect.html");
-		}
+	}
 }
 window.onerror = function(e){
 	_system_display("Execution Failed","red");

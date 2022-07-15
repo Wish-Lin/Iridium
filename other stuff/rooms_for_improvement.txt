@@ -35,6 +35,8 @@ dist2D()
 dist3D()
 toRAD()
 toDEG()
+
+remove all traces of downloadcanvas() from HACKMD.
 -------------------------------------------------------------------------------------------------------------------------
 
 
@@ -55,6 +57,7 @@ _system_display:  Running timelines. --done
 a checkbox for disabling _system_display()
 
 add line_pp_ext()
+add bc_init()
 add arbitrary_point polygon
 add arrow function
 
@@ -90,9 +93,17 @@ optimize closePath()
 optimize PI to Math.PI        not necessary (2022/7/13)
 
 forbid mobile access??
+forbid tablet access as well.
 
-**change name when I move to v2. FNGplot (Faust & Gretchen)
 
 **change to AGPLv3 license
 
 arrow_pp() atan2 optimization???
+
+[Dangerous]plotting function last segment can have different length, so that the increment doesn't have to be precise?? Maybe add this in far future.
+
+//行政問題
+use github docs instead of hackmd??
+**change name when I move to v2. FNGplot (Faust & Gretchen)
+buy custom domain??
+release complete offline version???

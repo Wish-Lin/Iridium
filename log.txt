@@ -304,4 +304,12 @@ v1.6.0.1: (release date: 2022/7/14)
 --[IMPORTANT]Iridium now licensed under AGPL-3.0 License.
 --[Major]Mobile device users are now redirected from "index.html" to "mobile_redirect.html".
 
+v1.6.1: (release date: 2022/7/15)
+
+--[Minor]mobile device detection moved to top of window.onload().
+--[Minor]Small aesthetic changes.
+--[Major]downloadcanvas() removed from command list since user won't be using it in program anyways. Only the "Save Image" button uses it now. Code moved to "gui_driver.js".
+--[Minor]Mobile device AND tablet users are now both redirected from "index.html" to "mobile_redirect.html".
+--[Minor]auto_init() slight modification(removed "clear()" that was included in it).
+--[Major]static images can now be saved in JPG/JPEG format, in addition to the originally supported PNG format.
 

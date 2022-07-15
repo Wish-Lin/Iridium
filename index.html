@@ -36,7 +36,7 @@
     });
 </script>
 		
-		<div id="main_title" style="font: bold 30px Arial; text-align: center; background: #2ecc71;">Iridium v1.6.0</div><br>
+		<div id="main_title" style="font: bold 30px Arial; text-align: center; background: #2ecc71;">Iridium v1.6.1</div><br>
 		
 		<!-- This is the normally-hidden Cursor Position Tool(CPT) display interface -->
 		<div id="curpos_display">
@@ -83,8 +83,15 @@
 		<span style="font: bold 20px Verdana;">File</span>
 		<span style="font: 30px Arial; float:right; cursor: default; margin: 5px;" onclick="colaps_file_open()">&times;</span><br><br>
 		<span style="font: bold 17px Arial;">Upload script:</span><br><input type="file" id="fileselect"><br><br>
-		<span style="font: bold 17px Arial;">Save script:</span><br><input id="filename" type="text" value='script1' style = "font: 15px Consolas;"><span style="font: 15px Consolas;">.txt</span><br><button id = "savefile" class="generic_button" style = "margin-top: 4px;">Save</button><br><br>
-		<span style="font: bold 17px Arial;">Save image:</span><br><input id="imagename" type="text" value='pic1' style = "font: 15px Consolas;"><span style="font: 15px Consolas;">.png</span><br><button id = "saveimage" class="generic_button" style = "margin-top: 4px;">Save</button><br>
+		<span style="font: bold 17px Arial;">Save script:</span><br>
+		<input id="filename" type="text" value='script1' style = "font: 15px Consolas;"><span style="font: 15px Consolas;">.txt</span><br><button id = "savefile" class="generic_button" style = "margin-top: 4px;">Save</button><br><br>
+		<span style="font: bold 17px Arial;">Save image:</span><br>
+		<input id="imagename" type="text" value='pic1' style = "font: 15px Consolas;"><span style="font: 15px Consolas;">.</span>
+		<select id="imagetype" style="font: 15px Consolas; width:55px;">
+			<option selected>png</option>
+			<option>jpg</option>
+		</select><br>
+		<button id = "saveimage" class="generic_button" style = "margin-top: 4px;">Save</button><br>
 		</div>
 		<!--"File" side panel-->
 		
@@ -153,7 +160,7 @@
 			<button id = "static_mode_select" class="modebutton" onclick="switch_to_static()">Static Image</button>
 			<button id = "anim_mode_select" class="modebutton" onclick="switch_to_anim()">Animation</button>
 			
-			<button id = "symbol" class="menubutton" onclick = "insert_symbol()" style = "margin-left: 50px;">∯ Symbol</button>
+			<button id = "symbol" class="menubutton" onclick = "insert_symbol()" style = "margin-left: 40px;">∯ Symbol</button>
 			<button id = "function" class="menubutton" onclick = "insert_function()">𝑓(𝑥) Function</button>
 			<button id = "command" class="menubutton" onclick = "add_command()">&gt;_ Command</button><br>
 			
@@ -534,7 +541,6 @@
 				<option value="clear();">
 				<option value="display(str);">
 				<option value="dotline_pp(x1,y1,x2,y2,linewidth,linecap,color,dash,space);">
-				<option value="downloadcanvas(filename);">
 				<option value="drawimage(x,y,path);">
 				<option value="ellipse(c1x,c1y,c2x,c2y,a,width,color,fill);">
 				<option value="ezplot(func,start,end,width,color,increment,dash,space);">
