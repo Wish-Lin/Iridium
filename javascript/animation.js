@@ -13,6 +13,9 @@ var cmd_exe_control = new Array(15); //boolean array to store checkbox stats, in
 
 
 function set_animt1(){
+	document.getElementById("animt1_label").disabled = false;  //enable the commands
+	document.getElementById("run_animt1").disabled = false;
+	document.getElementById("reset_animt1").disabled = false;
 	var start = parseFloat(document.getElementById("animt1_start").value);
 	var end = parseFloat(document.getElementById("animt1_end").value);
 	var increment_count = parseInt(document.getElementById("animt1_increment_count").value);
@@ -22,6 +25,7 @@ function set_animt1(){
 	document.getElementById("animt1_framecount").innerHTML = framecount.toString();
 	document.getElementById("animt1_totaltime").innerHTML = totaltime.toFixed(4).toString();
 	ANIM_T1 = start;
+	_system_display("Animation Timeline 1 initialized:  [start,end,steps,fps] = ["+start+','+end+','+increment_count+','+fps+']',"green");
 }
 function run_animt1(){
 	var canvas = document.getElementById("myCanvas");
@@ -55,7 +59,17 @@ function run_animt1(){
 		}
 	}
 }
+function reset_animt1(){
+	var start = parseFloat(document.getElementById("animt1_start").value);
+	ANIM_T1 = start;
+	_system_display("ANIM_T1 successfully reset","green"); //this message stays on there if nothing bad happens
+	var script = document.getElementById("template").value + document.getElementById("input").value;
+	eval(script);
+}
 function set_animt2(){
+	document.getElementById("animt2_label").disabled = false;  //enable the commands
+	document.getElementById("run_animt2").disabled = false;
+	document.getElementById("reset_animt2").disabled = false;
 	var start = parseFloat(document.getElementById("animt2_start").value);
 	var end = parseFloat(document.getElementById("animt2_end").value);
 	var increment_count = parseInt(document.getElementById("animt2_increment_count").value);
@@ -65,6 +79,7 @@ function set_animt2(){
 	document.getElementById("animt2_framecount").innerHTML = framecount.toString();
 	document.getElementById("animt2_totaltime").innerHTML = totaltime.toFixed(4).toString();
 	ANIM_T2 = start;
+	_system_display("Animation Timeline 2 initialized:  [start,end,steps,fps] = ["+start+','+end+','+increment_count+','+fps+']',"green");
 }
 function run_animt2(){
 	var start = parseFloat(document.getElementById("animt2_start").value);
@@ -94,7 +109,17 @@ function run_animt2(){
 		}
 	}
 }
+function reset_animt2(){
+	var start = parseFloat(document.getElementById("animt2_start").value);
+	ANIM_T2 = start;
+	_system_display("ANIM_T2 successfully reset","green"); //this message stays on there if nothing bad happens
+	var script = document.getElementById("template").value + document.getElementById("input").value;
+	eval(script);
+}
 function set_animt3(){
+	document.getElementById("animt3_label").disabled = false;  //enable the commands
+	document.getElementById("run_animt3").disabled = false;
+	document.getElementById("reset_animt3").disabled = false;
 	var start = parseFloat(document.getElementById("animt3_start").value);
 	var end = parseFloat(document.getElementById("animt3_end").value);
 	var increment_count = parseInt(document.getElementById("animt3_increment_count").value);
@@ -104,6 +129,7 @@ function set_animt3(){
 	document.getElementById("animt3_framecount").innerHTML = framecount.toString();
 	document.getElementById("animt3_totaltime").innerHTML = totaltime.toFixed(4).toString();
 	ANIM_T3 = start;
+	_system_display("Animation Timeline 3 initialized:  [start,end,steps,fps] = ["+start+','+end+','+increment_count+','+fps+']',"green");
 }
 function run_animt3(){
 	var start = parseFloat(document.getElementById("animt3_start").value);
@@ -133,7 +159,17 @@ function run_animt3(){
 		}
 	}
 }
+function reset_animt3(){
+	var start = parseFloat(document.getElementById("animt3_start").value);
+	ANIM_T3 = start;
+	_system_display("ANIM_T3 successfully reset","green"); //this message stays on there if nothing bad happens
+	var script = document.getElementById("template").value + document.getElementById("input").value;
+	eval(script);
+}
 function set_animt4(){
+	document.getElementById("animt4_label").disabled = false;  //enable the commands
+	document.getElementById("run_animt4").disabled = false;
+	document.getElementById("reset_animt4").disabled = false;
 	var start = parseFloat(document.getElementById("animt4_start").value);
 	var end = parseFloat(document.getElementById("animt4_end").value);
 	var increment_count = parseInt(document.getElementById("animt4_increment_count").value);
@@ -143,6 +179,7 @@ function set_animt4(){
 	document.getElementById("animt4_framecount").innerHTML = framecount.toString();
 	document.getElementById("animt4_totaltime").innerHTML = totaltime.toFixed(4).toString();
 	ANIM_T4 = start;
+	_system_display("Animation Timeline 4 initialized:  [start,end,steps,fps] = ["+start+','+end+','+increment_count+','+fps+']',"green");
 }
 function run_animt4(){
 	var start = parseFloat(document.getElementById("animt4_start").value);
@@ -172,7 +209,17 @@ function run_animt4(){
 		}
 	}
 }
+function reset_animt4(){
+	var start = parseFloat(document.getElementById("animt4_start").value);
+	ANIM_T4 = start;
+	_system_display("ANIM_T4 successfully reset","green"); //this message stays on there if nothing bad happens
+	var script = document.getElementById("template").value + document.getElementById("input").value;
+	eval(script);
+}
 function set_animt5(){
+	document.getElementById("animt5_label").disabled = false;  //enable the commands
+	document.getElementById("run_animt5").disabled = false;
+	document.getElementById("reset_animt5").disabled = false;
 	var start = parseFloat(document.getElementById("animt5_start").value);
 	var end = parseFloat(document.getElementById("animt5_end").value);
 	var increment_count = parseInt(document.getElementById("animt5_increment_count").value);
@@ -182,6 +229,7 @@ function set_animt5(){
 	document.getElementById("animt5_framecount").innerHTML = framecount.toString();
 	document.getElementById("animt5_totaltime").innerHTML = totaltime.toFixed(4).toString();
 	ANIM_T5 = start;
+	_system_display("Animation Timeline 5 initialized:  [start,end,steps,fps] = ["+start+','+end+','+increment_count+','+fps+']',"green");
 }
 function run_animt5(){
 	var start = parseFloat(document.getElementById("animt5_start").value);
@@ -211,7 +259,17 @@ function run_animt5(){
 		}
 	}
 }
+function reset_animt5(){
+	var start = parseFloat(document.getElementById("animt5_start").value);
+	ANIM_T5 = start;
+	_system_display("ANIM_T5 successfully reset","green"); //this message stays on there if nothing bad happens
+	var script = document.getElementById("template").value + document.getElementById("input").value;
+	eval(script);
+}
 function set_animt6(){
+	document.getElementById("animt6_label").disabled = false;  //enable the commands
+	document.getElementById("run_animt6").disabled = false;
+	document.getElementById("reset_animt6").disabled = false;
 	var start = parseFloat(document.getElementById("animt6_start").value);
 	var end = parseFloat(document.getElementById("animt6_end").value);
 	var increment_count = parseInt(document.getElementById("animt6_increment_count").value);
@@ -221,6 +279,7 @@ function set_animt6(){
 	document.getElementById("animt6_framecount").innerHTML = framecount.toString();
 	document.getElementById("animt6_totaltime").innerHTML = totaltime.toFixed(4).toString();
 	ANIM_T6 = start;
+	_system_display("Animation Timeline 6 initialized:  [start,end,steps,fps] = ["+start+','+end+','+increment_count+','+fps+']',"green");
 }
 function run_animt6(){
 	var start = parseFloat(document.getElementById("animt6_start").value);
@@ -250,7 +309,17 @@ function run_animt6(){
 		}
 	}
 }
+function reset_animt6(){
+	var start = parseFloat(document.getElementById("animt6_start").value);
+	ANIM_T6 = start;
+	_system_display("ANIM_T6 successfully reset","green"); //this message stays on there if nothing bad happens
+	var script = document.getElementById("template").value + document.getElementById("input").value;
+	eval(script);
+}
 function set_animt7(){
+	document.getElementById("animt7_label").disabled = false;  //enable the commands
+	document.getElementById("run_animt7").disabled = false;
+	document.getElementById("reset_animt7").disabled = false;
 	var start = parseFloat(document.getElementById("animt7_start").value);
 	var end = parseFloat(document.getElementById("animt7_end").value);
 	var increment_count = parseInt(document.getElementById("animt7_increment_count").value);
@@ -260,6 +329,7 @@ function set_animt7(){
 	document.getElementById("animt7_framecount").innerHTML = framecount.toString();
 	document.getElementById("animt7_totaltime").innerHTML = totaltime.toFixed(4).toString();
 	ANIM_T7 = start;
+	_system_display("Animation Timeline 7 initialized:  [start,end,steps,fps] = ["+start+','+end+','+increment_count+','+fps+']',"green");
 }
 function run_animt7(){
 	var start = parseFloat(document.getElementById("animt7_start").value);
@@ -289,7 +359,17 @@ function run_animt7(){
 		}
 	}
 }
+function reset_animt7(){
+	var start = parseFloat(document.getElementById("animt7_start").value);
+	ANIM_T7 = start;
+	_system_display("ANIM_T7 successfully reset","green"); //this message stays on there if nothing bad happens
+	var script = document.getElementById("template").value + document.getElementById("input").value;
+	eval(script);
+}
 function set_animt8(){
+	document.getElementById("animt8_label").disabled = false;  //enable the commands
+	document.getElementById("run_animt8").disabled = false;
+	document.getElementById("reset_animt8").disabled = false;
 	var start = parseFloat(document.getElementById("animt8_start").value);
 	var end = parseFloat(document.getElementById("animt8_end").value);
 	var increment_count = parseInt(document.getElementById("animt8_increment_count").value);
@@ -299,6 +379,7 @@ function set_animt8(){
 	document.getElementById("animt8_framecount").innerHTML = framecount.toString();
 	document.getElementById("animt8_totaltime").innerHTML = totaltime.toFixed(4).toString();
 	ANIM_T8 = start;
+	_system_display("Animation Timeline 8 initialized:  [start,end,steps,fps] = ["+start+','+end+','+increment_count+','+fps+']',"green");
 }
 function run_animt8(){
 	var start = parseFloat(document.getElementById("animt8_start").value);
@@ -328,7 +409,17 @@ function run_animt8(){
 		}
 	}
 }
+function reset_animt8(){
+	var start = parseFloat(document.getElementById("animt8_start").value);
+	ANIM_T8 = start;
+	_system_display("ANIM_T8 successfully reset","green"); //this message stays on there if nothing bad happens
+	var script = document.getElementById("template").value + document.getElementById("input").value;
+	eval(script);
+}
 function set_animt9(){
+	document.getElementById("animt9_label").disabled = false;  //enable the commands
+	document.getElementById("run_animt9").disabled = false;
+	document.getElementById("reset_animt9").disabled = false;
 	var start = parseFloat(document.getElementById("animt9_start").value);
 	var end = parseFloat(document.getElementById("animt9_end").value);
 	var increment_count = parseInt(document.getElementById("animt9_increment_count").value);
@@ -338,6 +429,7 @@ function set_animt9(){
 	document.getElementById("animt9_framecount").innerHTML = framecount.toString();
 	document.getElementById("animt9_totaltime").innerHTML = totaltime.toFixed(4).toString();
 	ANIM_T9 = start;
+	_system_display("Animation Timeline 9 initialized:  [start,end,steps,fps] = ["+start+','+end+','+increment_count+','+fps+']',"green");
 }
 function run_animt9(){
 	var start = parseFloat(document.getElementById("animt9_start").value);
@@ -367,7 +459,17 @@ function run_animt9(){
 		}
 	}
 }
+function reset_animt9(){
+	var start = parseFloat(document.getElementById("animt9_start").value);
+	ANIM_T9 = start;
+	_system_display("ANIM_T9 successfully reset","green"); //this message stays on there if nothing bad happens
+	var script = document.getElementById("template").value + document.getElementById("input").value;
+	eval(script);
+}
 function set_animt10(){
+	document.getElementById("animt10_label").disabled = false;  //enable the commands
+	document.getElementById("run_animt10").disabled = false;
+	document.getElementById("reset_animt10").disabled = false;
 	var start = parseFloat(document.getElementById("animt10_start").value);
 	var end = parseFloat(document.getElementById("animt10_end").value);
 	var increment_count = parseInt(document.getElementById("animt10_increment_count").value);
@@ -377,6 +479,7 @@ function set_animt10(){
 	document.getElementById("animt10_framecount").innerHTML = framecount.toString();
 	document.getElementById("animt10_totaltime").innerHTML = totaltime.toFixed(4).toString();
 	ANIM_T10 = start;
+	_system_display("Animation Timeline 10 initialized:  [start,end,steps,fps] = ["+start+','+end+','+increment_count+','+fps+']',"green");
 }
 function run_animt10(){
 	var start = parseFloat(document.getElementById("animt10_start").value);
@@ -406,7 +509,13 @@ function run_animt10(){
 		}
 	}
 }
-
+function reset_animt10(){
+	var start = parseFloat(document.getElementById("animt10_start").value);
+	ANIM_T10 = start;
+	_system_display("ANIM_T10 successfully reset","green"); //this message stays on there if nothing bad happens
+	var script = document.getElementById("template").value + document.getElementById("input").value;
+	eval(script);
+}
 
 function run_all_indiv_command(){
 	eval(document.getElementById("template").value);  //run the blank template again(clear all previous stuff)

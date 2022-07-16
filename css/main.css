@@ -49,6 +49,11 @@
   background: #d3d3d3;
 }    
 
+.menubutton:disabled {
+  background: #e7e7e7;
+  color: #6e6e6e;
+}    
+
 .generic_button {
   font-size:15px;
   font-family:Arial;

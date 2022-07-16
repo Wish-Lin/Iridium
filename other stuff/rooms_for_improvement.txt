@@ -36,6 +36,11 @@ dist3D()
 toRAD()
 toDEG()
 
+setcanvas() now has transparent background option.
+
+line_pp_ext()
+dotline_pp_ext()
+
 remove all traces of downloadcanvas() from HACKMD.
 -------------------------------------------------------------------------------------------------------------------------
 
@@ -71,7 +76,7 @@ default values for many functions, so they can be used more easily.
 
 ***Animation arranger Window
 
-
+*weird margin appearing on quick_calculator's buttons.
 
 
 fetch('https://wish-lin.github.io/Iridium/other%20stuff/demo/cross.txt')
@@ -101,6 +106,14 @@ forbid tablet access as well.
 arrow_pp() atan2 optimization???
 
 [Dangerous]plotting function last segment can have different length, so that the increment doesn't have to be precise?? Maybe add this in far future.
+
+remove or modify drawimage()
+
+**all inserters change to draggable <div> using <iframe>
+
+
+
+
 
 //行政問題
 use github docs instead of hackmd??

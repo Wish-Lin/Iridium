@@ -36,7 +36,7 @@
     });
 </script>
 		
-		<div id="main_title" style="font: bold 30px Arial; text-align: center; background: #2ecc71;">Iridium v1.6.1</div><br>
+		<div id="main_title" style="font: bold 30px Arial; text-align: center; background: #2ecc71;">Iridium v1.6.2</div><br>
 		
 		<!-- This is the normally-hidden Cursor Position Tool(CPT) display interface -->
 		<div id="curpos_display">
@@ -90,7 +90,8 @@
 		<select id="imagetype" style="font: 15px Consolas; width:55px;">
 			<option selected>png</option>
 			<option>jpg</option>
-		</select><br>
+		</select>
+		<br>
 		<button id = "saveimage" class="generic_button" style = "margin-top: 4px;">Save</button><br>
 		</div>
 		<!--"File" side panel-->
@@ -191,6 +192,7 @@
 						<td>Time(s)</td>
 						<td>Label</td>
 						<td></td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>ANIM_T1</td>
@@ -212,8 +214,9 @@
 						<td><button id="set_animt1" onclick = "set_animt1()" class = "menubutton">→</td>
 						<td><span id="animt1_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt1_totaltime" class = "anim_setting_input"></span></td>
-						<td><input id = "animt1_label" value = "" class = "note_labels" onBlur="setId(this.id)"></td>
-						<td><button id = "run_animt1" class="menubutton" onclick="run_animt1()">▶ Run</button></td>
+						<td><input id = "animt1_label" value = "" class = "note_labels" onBlur="setId(this.id)" disabled></td>
+						<td><button id = "run_animt1" class="menubutton" onclick="run_animt1()" disabled>▶ Run</button></td>
+						<td><button id = "reset_animt1" class="menubutton" onclick="reset_animt1()" style = "font-size: 19px" disabled>&#10226;</button></td>
 					</tr>
 					<tr>
 						<td>ANIM_T2</td>
@@ -235,8 +238,9 @@
 						<td><button id="set_animt2" onclick = "set_animt2()" class = "menubutton">→</td>
 						<td><span id="animt2_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt2_totaltime" class = "anim_setting_input"></span></td>
-						<td><input id = "animt2_label" value = "" class = "note_labels" onBlur="setId(this.id)"></td>
-						<td><button class="menubutton" onclick="run_animt2()">▶ Run</button></td>
+						<td><input id = "animt2_label" value = "" class = "note_labels" onBlur="setId(this.id)" disabled></td>
+						<td><button id = "run_animt2" class="menubutton" onclick="run_animt2()" disabled>▶ Run</button></td>
+						<td><button id = "reset_animt2" class="menubutton" onclick="reset_animt2()" style = "font-size: 19px" disabled>&#10226;</button></td>
 					</tr>
 					<tr>
 						<td>ANIM_T3</td>
@@ -258,8 +262,9 @@
 						<td><button id="set_animt3" onclick = "set_animt3()" class = "menubutton">→</td>
 						<td><span id="animt3_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt3_totaltime" class = "anim_setting_input"></span></td>
-						<td><input id = "animt3_label" value = "" class = "note_labels" onBlur="setId(this.id)"></td>
-						<td><button class="menubutton" onclick="run_animt3()">▶ Run</button></td>
+						<td><input id = "animt3_label" value = "" class = "note_labels" onBlur="setId(this.id)" disabled></td>
+						<td><button id = "run_animt3" class="menubutton" onclick="run_animt3()" disabled>▶ Run</button></td>
+						<td><button id = "reset_animt3" class="menubutton" onclick="reset_animt3()" style = "font-size: 19px" disabled>&#10226;</button></td>
 					</tr>
 					<tr>
 						<td>ANIM_T4</td>
@@ -281,8 +286,9 @@
 						<td><button id="set_animt4" onclick = "set_animt4()" class = "menubutton">→</td>
 						<td><span id="animt4_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt4_totaltime" class = "anim_setting_input"></span></td>
-						<td><input id = "animt4_label" value = "" class = "note_labels" onBlur="setId(this.id)"></td>
-						<td><button class="menubutton" onclick="run_animt4()">▶ Run</button></td>
+						<td><input id = "animt4_label" value = "" class = "note_labels" onBlur="setId(this.id)" disabled></td>
+						<td><button id = "run_animt4" class="menubutton" onclick="run_animt4()" disabled>▶ Run</button></td>
+						<td><button id = "reset_animt4" class="menubutton" onclick="reset_animt4()" style = "font-size: 19px" disabled>&#10226;</button></td>
 					</tr>
 					<tr>
 						<td>ANIM_T5</td>
@@ -304,8 +310,9 @@
 						<td><button id="set_animt5" onclick = "set_animt5()" class = "menubutton">→</td>
 						<td><span id="animt5_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt5_totaltime" class = "anim_setting_input"></span></td>
-						<td><input id = "animt5_label" value = "" class = "note_labels" onBlur="setId(this.id)"></td>
-						<td><button class="menubutton" onclick="run_animt5()">▶ Run</button></td>
+						<td><input id = "animt5_label" value = "" class = "note_labels" onBlur="setId(this.id)" disabled></td>
+						<td><button id = "run_animt5" class="menubutton" onclick="run_animt5()" disabled>▶ Run</button></td>
+						<td><button id = "reset_animt5" class="menubutton" onclick="reset_animt5()" style = "font-size: 19px" disabled>&#10226;</button></td>
 					</tr>
 					<tr>
 						<td>ANIM_T6</td>
@@ -327,8 +334,9 @@
 						<td><button id="set_animt6" onclick = "set_animt6()" class = "menubutton">→</td>
 						<td><span id="animt6_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt6_totaltime" class = "anim_setting_input"></span></td>
-						<td><input id = "animt6_label" value = "" class = "note_labels" onBlur="setId(this.id)"></td>
-						<td><button class="menubutton" onclick="run_animt6()">▶ Run</button></td>
+						<td><input id = "animt6_label" value = "" class = "note_labels" onBlur="setId(this.id)" disabled></td>
+						<td><button id = "run_animt6" class="menubutton" onclick="run_animt6()" disabled>▶ Run</button></td>
+						<td><button id = "reset_animt6" class="menubutton" onclick="reset_animt6()" style = "font-size: 19px" disabled>&#10226;</button></td>
 					</tr>
 					<tr>
 						<td>ANIM_T7</td>
@@ -350,8 +358,9 @@
 						<td><button id="set_animt7" onclick = "set_animt7()" class = "menubutton">→</td>
 						<td><span id="animt7_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt7_totaltime" class = "anim_setting_input"></span></td>
-						<td><input id = "animt7_label" value = "" class = "note_labels" onBlur="setId(this.id)"></td>
-						<td><button class="menubutton" onclick="run_animt7()">▶ Run</button></td>
+						<td><input id = "animt7_label" value = "" class = "note_labels" onBlur="setId(this.id)" disabled></td>
+						<td><button id = "run_animt7" class="menubutton" onclick="run_animt7()" disabled>▶ Run</button></td>
+						<td><button id = "reset_animt7" class="menubutton" onclick="reset_animt7()" style = "font-size: 19px" disabled>&#10226;</button></td>
 					</tr>
 					<tr>
 						<td>ANIM_T8</td>
@@ -373,8 +382,9 @@
 						<td><button id="set_animt8" onclick = "set_animt8()" class = "menubutton">→</td>
 						<td><span id="animt8_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt8_totaltime" class = "anim_setting_input"></span></td>
-						<td><input id = "animt8_label" value = "" class = "note_labels" onBlur="setId(this.id)"></td>
-						<td><button class="menubutton" onclick="run_animt8()">▶ Run</button></td>
+						<td><input id = "animt8_label" value = "" class = "note_labels" onBlur="setId(this.id)" disabled></td>
+						<td><button id = "run_animt8" class="menubutton" onclick="run_animt8()" disabled>▶ Run</button></td>
+						<td><button id = "reset_animt8" class="menubutton" onclick="reset_animt8()" style = "font-size: 19px" disabled>&#10226;</button></td>
 					</tr>
 					<tr>
 						<td>ANIM_T9</td>
@@ -396,8 +406,9 @@
 						<td><button id="set_animt9" onclick = "set_animt9()" class = "menubutton">→</td>
 						<td><span id="animt9_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt9_totaltime" class = "anim_setting_input"></span></td>
-						<td><input id = "animt9_label" value = "" class = "note_labels" onBlur="setId(this.id)"></td>
-						<td><button class="menubutton" onclick="run_animt9()">▶ Run</button></td>
+						<td><input id = "animt9_label" value = "" class = "note_labels" onBlur="setId(this.id)" disabled></td>
+						<td><button id = "run_animt9" class="menubutton" onclick="run_animt9()" disabled>▶ Run</button></td>
+						<td><button id = "reset_animt9" class="menubutton" onclick="reset_animt9()" style = "font-size: 19px" disabled>&#10226;</button></td>
 					</tr>
 					<tr>
 						<td>ANIM_T10</td>
@@ -419,8 +430,9 @@
 						<td><button id="set_animt10" onclick = "set_animt10()" class = "menubutton">→</td>
 						<td><span id="animt10_framecount" class = "anim_setting_input"></span></td>
 						<td><span id="animt10_totaltime" class = "anim_setting_input"></span></td>
-						<td><input id = "animt10_label" value = "" class = "note_labels" onBlur="setId(this.id)"></td>
-						<td><button class="menubutton" onclick="run_animt10()">▶ Run</button></td>
+						<td><input id = "animt10_label" value = "" class = "note_labels" onBlur="setId(this.id)" disabled></td>
+						<td><button id = "run_animt10" class="menubutton" onclick="run_animt10()" disabled>▶ Run</button></td>
+						<td><button id = "reset_animt10" class="menubutton" onclick="reset_animt10()" style = "font-size: 19px" disabled>&#10226;</button></td>
 					</tr>
 					</table>
 					
@@ -541,6 +553,7 @@
 				<option value="clear();">
 				<option value="display(str);">
 				<option value="dotline_pp(x1,y1,x2,y2,linewidth,linecap,color,dash,space);">
+				<option value="dotline_pp_ext(x1,y1,x2,y2,linewidth,linecap,color,dash,space,d1,d2);">
 				<option value="drawimage(x,y,path);">
 				<option value="ellipse(c1x,c1y,c2x,c2y,a,width,color,fill);">
 				<option value="ezplot(func,start,end,width,color,increment,dash,space);">
@@ -552,6 +565,7 @@
 				<option value="la_line_pp(x1,y1,x2,y2,linewidth,linecap,color);">
 				<option value="la_rectangle(x,y,width,height,linewidth,color,fill);">
 				<option value="line_pp(x1,y1,x2,y2,linewidth,linecap,color);">
+				<option value="line_pp_ext(x1,y1,x2,y2,linewidth,linecap,color,d1,d2);">
 				<option value="line_ps(x,y,m,ll,rl,linewidth,linecap,color);">
 				<option value="magnify(sx,sy,sw,sh,dx,dy,dw,dh);">
 				<option value="n_derivative(fx,xpos);">

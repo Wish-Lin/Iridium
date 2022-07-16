@@ -377,7 +377,7 @@ function downloadcanvas(filename,filetype){
 	// src: https://instructobit.com/tutorial/109/Downloading-and-saving-an-HTML-canvas-as-an-image-using-Javascript
     // get canvas data  
 	if(filetype == "jpg")
-		var image = document.getElementById('myCanvas').toDataURL("image/jpeg");  //JPEG(.jpg)
+		var image = document.getElementById('myCanvas').toDataURL("image/jpeg",1.0);  //JPEG(.jpg) at FULL quality.
 	else if(filetype == "png")
 		var image = document.getElementById('myCanvas').toDataURL();  //default = PNG(.png)
   

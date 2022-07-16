@@ -313,3 +313,14 @@ v1.6.1: (release date: 2022/7/15)
 --[Minor]auto_init() slight modification(removed "clear()" that was included in it).
 --[Major]static images can now be saved in JPG/JPEG format, in addition to the originally supported PNG format.
 
+v1.6.2: (release date: 2022/7/16)
+
+--[Minor]Small aesthetic changes.
+--[Minor]JPG images are now downloaded at full quality(1.0) instead of browser default quality(0.92).
+--[Major]"reset button" added to all 10 animation timelines.
+--[Major]Animation Timeline commands are disabled until that timeline is set using the arrow button.
+--[Minor]setcanvas() can now accept "transparent" as background color. The resulting PNG will have transparent background but JPG will have black background instead.
+--[New Command]line_pp_ext() beta test.
+--[New Command]dotline_pp_ext() beta test.
+--[Major]All 10 animation timelines can now be reset.
+

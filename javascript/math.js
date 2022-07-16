@@ -69,17 +69,18 @@ function setcanvas(width,height,color){ //(nat,nat,string)(width >= 50px, height
 		if(!isNaN(color)){
 			_system_display("setcanvas(width,height,\"color\"): \"color\" invalid.","red");
 			color = "white";
-	}
-	//-------------------------------------
-	document.getElementById('canvas_cont').width = width;
-	document.getElementById('canvas_cont').height = height;
-	document.getElementById('myCanvas').width = width;
-	document.getElementById('myCanvas').height = height;
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
-	ctx.fillStyle = color;
-	ctx.fillRect(0, 0, canvas.width, canvas.height);
-	
+		}
+		//-------------------------------------
+		document.getElementById('canvas_cont').width = width;
+		document.getElementById('canvas_cont').height = height;
+		document.getElementById('myCanvas').width = width;
+		document.getElementById('myCanvas').height = height;
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+		if(color != "transparent"){
+			ctx.fillStyle = color;
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+		}
 	}
 }
 function ezsetgrid(xmax,linewidth,color,showtick,showaxis){ //(real,real,string,bool,bool) [USER FUNC]
@@ -1003,6 +1004,30 @@ function arrow_pp(x1,y1,x2,y2,linewidth,color){ //Draw arrow on canvas. (real,re
 	ctx.closePath();
 	ctx.fill();
 
+}
+function line_pp_ext(x1,y1,x2,y2,linewidth,linecap,color,d1,d2){// Draw line segment with extension between two points. (real,real,real,real,real,string,string,real,real)[USER FUNC]
+	//division point formula
+	var nx1 = x1+(x1-x2)*(d1/dist2D(x1,y1,x2,y2));
+	var nx2 = x2+(x2-x1)*(d2/dist2D(x1,y1,x2,y2));
+	var ny1 = y1+(y1-y2)*(d1/dist2D(x1,y1,x2,y2));
+	var ny2 = y2+(y2-y1)*(d2/dist2D(x1,y1,x2,y2));
+	console.log(nx1);
+	console.log(ny1);
+	console.log(nx2);
+	console.log(ny2);
+	line_pp(nx1,ny1,nx2,ny2,linewidth,linecap,color);
+}
+function dotline_pp_ext(x1,y1,x2,y2,linewidth,linecap,color,dash,space,d1,d2){// Draw dotted line segment with extension between two points. (real,real,real,real,real,string,string,real,real,real,real)[USER FUNC]
+	//division point formula
+	var nx1 = x1+(x1-x2)*(d1/dist2D(x1,y1,x2,y2));
+	var nx2 = x2+(x2-x1)*(d2/dist2D(x1,y1,x2,y2));
+	var ny1 = y1+(y1-y2)*(d1/dist2D(x1,y1,x2,y2));
+	var ny2 = y2+(y2-y1)*(d2/dist2D(x1,y1,x2,y2));
+	console.log(nx1);
+	console.log(ny1);
+	console.log(nx2);
+	console.log(ny2);
+	dotline_pp(nx1,ny1,nx2,ny2,linewidth,linecap,color,dash,space);
 }
 
 
