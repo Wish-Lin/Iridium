@@ -55,7 +55,7 @@ function dotline_pp(x1,y1,x2,y2,linewidth,linecap,color,dash,space){//(real,real
 	ctx.lineTo(_real2pix_x(x2),_real2pix_y(y2));       
 	ctx.stroke();                          
 }
-function setcanvas(width,height,color){ //(nat,nat,string)(width >= 50px, height >= 50px)(Exception handling done) [USER FUNC]
+function setcanvas(width,height,color,transparency){ //(nat,nat,"string","string",real)(width >= 50px, height >= 50px)(Exception handling done) [USER FUNC]
 	//---------Exception handling---------
 	if(_isnat(width) == 0)
 		_system_display("setcanvas(width,height,\"color\"): \"width\" is not a natural number","red");
@@ -70,6 +70,8 @@ function setcanvas(width,height,color){ //(nat,nat,string)(width >= 50px, height
 			_system_display("setcanvas(width,height,\"color\"): \"color\" invalid.","red");
 			color = "white";
 		}
+		if(transparency == null) //default: alpha = 1
+			transparency = 100;
 		//-------------------------------------
 		document.getElementById('canvas_cont').width = width;
 		document.getElementById('canvas_cont').height = height;
@@ -77,9 +79,11 @@ function setcanvas(width,height,color){ //(nat,nat,string)(width >= 50px, height
 		document.getElementById('myCanvas').height = height;
 		var canvas = document.getElementById("myCanvas");
 		var ctx = canvas.getContext("2d");
-		if(color != "transparent"){
+		if(transparency != 0){
 			ctx.fillStyle = color;
+			ctx.globalAlpha = transparency/100;
 			ctx.fillRect(0, 0, canvas.width, canvas.height);
+			ctx.globalAlpha = 1;
 		}
 	}
 }

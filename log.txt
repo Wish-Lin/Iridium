@@ -324,3 +324,8 @@ v1.6.2: (release date: 2022/7/16)
 --[New Command]dotline_pp_ext() beta test.
 --[Major]All 10 animation timelines can now be reset.
 
+v1.6.2.1: (release date: 2022/7/16)
+
+--[Minor]Small aesthetic changes.
+--[Major]setcanvas() now has a new parameter "transparency" ranging from 0 to 100. transparency = 0 indicates a transparent background. All relevant information updated.
+
