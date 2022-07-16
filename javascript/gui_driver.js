@@ -1,6 +1,7 @@
 var colaps_file_enabled = false;
 var colaps_help_enabled = false;
 var colaps_settings_enabled = false;
+var colaps_tools_enabled = false;
 var colaps_other_enabled = false;
 var insert_id = "input";	//This variable keeps the record of the "last" focused element (i.e, the textbox/textarea where the inserter should insert their stuff). Default is "input".
 
@@ -46,6 +47,18 @@ function colaps_settings_open() {
 }
 //-------------------------Collapsable side panel from W3School(settings)
 
+//-------------------------Collapsable side panel from W3School(tools)
+function colaps_tools_open() {
+  	if(colaps_tools_enabled == false){
+		document.getElementById("colaps_tools").style.width = "280px";
+		colaps_tools_enabled = true;
+	}
+	else if(colaps_tools_enabled == true){
+		document.getElementById("colaps_tools").style.width = "0px";
+		colaps_tools_enabled = false;
+	}
+}
+//-------------------------Collapsable side panel from W3School(tools)
 
 //-------------------------Collapsable side panel from W3School(other)
 function colaps_other_open() {

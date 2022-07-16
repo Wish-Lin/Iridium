@@ -329,3 +329,10 @@ v1.6.2.1: (release date: 2022/7/16)
 --[Minor]Small aesthetic changes.
 --[Major]setcanvas() now has a new parameter "transparency" ranging from 0 to 100. transparency = 0 indicates a transparent background. All relevant information updated.
 
+v1.6.3: (release date: 2022/7/16)
+
+--[Major]"Setting & Tools" side panel separated into two new side panels: "Settings" and "Tools".
+--[Major]The fetatures in "Setting & Tools" have been redistributed into the two new panels.
+--[Major]button hinter beta test. Most buttons on main page now has a small hinter. Their description WILL be updated and refined in the future, for those are hastily made.
+
+

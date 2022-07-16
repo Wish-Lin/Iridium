@@ -241,6 +241,39 @@
 
 /*-------------------------------------------------------------------------------------------------------*/
 
+/* The colaps_tools menu */
+.colaps_tools {
+  font-family: Consolas; 
+  font-size: 13px;
+  height: 350px; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  overflow-y: hidden;
+  transition: 0.5s; /* 0.5 second transition effect to slide in the colaps_tools */
+  background-color: AliceBlue;
+}
+
+.colaps_tools a {
+  text-decoration: none;
+  font-size: 20px;
+  font-family: Consolas; 
+  color: black;
+  transition: 0.3s;
+}
+
+/* Position and style the close button (top right corner) */
+.colaps_tools .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  background-color: AliceBlue;
+}
+
+/*-------------------------------------------------------------------------------------------------------*/
+
 /* The colaps_other menu */
 .colaps_other {
   font-family: Consolas; 

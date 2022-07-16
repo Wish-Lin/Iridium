@@ -79,7 +79,7 @@ function setcanvas(width,height,color,transparency){ //(nat,nat,"string","string
 		document.getElementById('myCanvas').height = height;
 		var canvas = document.getElementById("myCanvas");
 		var ctx = canvas.getContext("2d");
-		if(transparency != 0){
+		if(transparency != 0){ //if transparency = 0 then the following steps are completely unnecessary.
 			ctx.fillStyle = color;
 			ctx.globalAlpha = transparency/100;
 			ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -484,7 +484,6 @@ function fo_ode_euler(p_x,q_x,x0,y0,start,end,increment,width,color){ //numerica
 				ctx.moveTo(_real2pix_x(x__r[i]),_real2pix_y(y__r[i]));
 				ctx.lineTo(_real2pix_x(x__r[i+1]),_real2pix_y(y__r[i+1]));
 				ctx.stroke();
-				ctx.closePath();
 			}
 		}
 		//---------------------------------------------
@@ -510,7 +509,6 @@ function fo_ode_euler(p_x,q_x,x0,y0,start,end,increment,width,color){ //numerica
 				ctx.moveTo(_real2pix_x(x__l[i]),_real2pix_y(y__l[i]));
 				ctx.lineTo(_real2pix_x(x__l[i+1]),_real2pix_y(y__l[i+1]));
 				ctx.stroke();
-				ctx.closePath();
 			}
 		}
 		
