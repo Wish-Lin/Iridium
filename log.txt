@@ -333,6 +333,13 @@ v1.6.3: (release date: 2022/7/16)
 
 --[Major]"Setting & Tools" side panel separated into two new side panels: "Settings" and "Tools".
 --[Major]The fetatures in "Setting & Tools" have been redistributed into the two new panels.
---[Major]button hinter beta test. Most buttons on main page now has a small hinter. Their description WILL be updated and refined in the future, for those are hastily made.
+--[IMPORTANT]button hinter beta test. Most buttons on main page now has a small hinter. Their description WILL be updated and refined in the future, for those are hastily written.
 
+v1.7.0: (release date: 2022/7/17)
+
+--[Minor]Small aesthetic changes.
+--[Bug Fix]Function inserter typo fix (the newly added functions).
+--[Bug Fix]All 10 timelines bug fix(timelines doesn't go through t = start (should be frame 1)) + optimization by deleting unneeded variables.
+--[Major]Side panels are now horizontally aligned to their respective buttons & they now open downwards instead of sideways.
+--[IMPORTANT]GIF download feature beta test!!! I finally did it!!!!
 

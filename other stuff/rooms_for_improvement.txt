@@ -109,9 +109,10 @@ arrow_pp() atan2 optimization???
 
 remove or modify drawimage()
 
-**all inserters change to draggable <div> using <iframe>
+**all inserters change to draggable <div>s using <iframe>
 
 
+timelines doesn't go through start (frame 1), a small placement error of step-adding code.
 
 
 

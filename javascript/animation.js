@@ -35,8 +35,6 @@ function run_animt1(){
 	var end = parseFloat(document.getElementById("animt1_end").value);
 	var increment_count = parseInt(document.getElementById("animt1_increment_count").value);
 	var fps = parseInt(document.getElementById("animt1_fps").value);
-	var framecount = increment_count+1;
-	var totaltime = framecount/fps;
 	var script = document.getElementById("template").value + document.getElementById("input").value;
 	var step = (end-start)/increment_count;
 
@@ -47,15 +45,14 @@ function run_animt1(){
 	var i = 0
 	id = setInterval(frame,1000/fps);
 	function frame(){
-		if(i == increment_count){
+		if(i > increment_count){ //equivalent of "i == increment_count+1"
 			clearInterval(id);
 		}
 		else{
-			ANIM_T1+=step;
-			//console.log(end);
 			i++;
 			eval(script);
 			_system_display("Running Animation Timeline 1:  ["+start.toFixed(3)+' | '+ANIM_T1.toFixed(3)+' | '+end.toFixed(3)+']',"green");
+			ANIM_T1+=step;
 		}
 	}
 }
@@ -86,8 +83,6 @@ function run_animt2(){
 	var end = parseFloat(document.getElementById("animt2_end").value);
 	var increment_count = parseInt(document.getElementById("animt2_increment_count").value);
 	var fps = parseInt(document.getElementById("animt2_fps").value);
-	var framecount = increment_count+1;
-	var totaltime = framecount/fps;
 	var script = document.getElementById("template").value + document.getElementById("input").value;
 	var step = (end-start)/increment_count;
 
@@ -98,14 +93,14 @@ function run_animt2(){
 	var i = 0
 	id = setInterval(frame,1000/fps);
 	function frame(){
-		if(i == increment_count){
+		if(i > increment_count){
 			clearInterval(id);
 		}
 		else{
-			ANIM_T2+=step;
 			i++;
 			eval(script);
 			_system_display("Running Animation Timeline 2:  ["+start.toFixed(3)+' | '+ANIM_T2.toFixed(3)+' | '+end.toFixed(3)+']',"green");
+			ANIM_T2+=step;
 		}
 	}
 }
@@ -136,8 +131,6 @@ function run_animt3(){
 	var end = parseFloat(document.getElementById("animt3_end").value);
 	var increment_count = parseInt(document.getElementById("animt3_increment_count").value);
 	var fps = parseInt(document.getElementById("animt3_fps").value);
-	var framecount = increment_count+1;
-	var totaltime = framecount/fps;
 	var script = document.getElementById("template").value + document.getElementById("input").value;
 	var step = (end-start)/increment_count;
 
@@ -148,14 +141,14 @@ function run_animt3(){
 	var i = 0
 	id = setInterval(frame,1000/fps);
 	function frame(){
-		if(i == increment_count){
+		if(i > increment_count){
 			clearInterval(id);
 		}
 		else{
-			ANIM_T3+=step;
 			i++;
 			eval(script);
 			_system_display("Running Animation Timeline 3:  ["+start.toFixed(3)+' | '+ANIM_T3.toFixed(3)+' | '+end.toFixed(3)+']',"green");
+			ANIM_T3+=step;
 		}
 	}
 }
@@ -186,8 +179,6 @@ function run_animt4(){
 	var end = parseFloat(document.getElementById("animt4_end").value);
 	var increment_count = parseInt(document.getElementById("animt4_increment_count").value);
 	var fps = parseInt(document.getElementById("animt4_fps").value);
-	var framecount = increment_count+1;
-	var totaltime = framecount/fps;
 	var script = document.getElementById("template").value + document.getElementById("input").value;
 	var step = (end-start)/increment_count;
 
@@ -198,14 +189,14 @@ function run_animt4(){
 	var i = 0
 	id = setInterval(frame,1000/fps);
 	function frame(){
-		if(i == increment_count){
+		if(i > increment_count){
 			clearInterval(id);
 		}
 		else{
-			ANIM_T4+=step;
 			i++;
 			eval(script);
 			_system_display("Running Animation Timeline 4:  ["+start.toFixed(3)+' | '+ANIM_T4.toFixed(3)+' | '+end.toFixed(3)+']',"green");
+			ANIM_T4+=step;
 		}
 	}
 }
@@ -236,8 +227,6 @@ function run_animt5(){
 	var end = parseFloat(document.getElementById("animt5_end").value);
 	var increment_count = parseInt(document.getElementById("animt5_increment_count").value);
 	var fps = parseInt(document.getElementById("animt5_fps").value);
-	var framecount = increment_count+1;
-	var totaltime = framecount/fps;
 	var script = document.getElementById("template").value + document.getElementById("input").value;
 	var step = (end-start)/increment_count;
 
@@ -248,14 +237,14 @@ function run_animt5(){
 	var i = 0
 	id = setInterval(frame,1000/fps);
 	function frame(){
-		if(i == increment_count){
+		if(i > increment_count){
 			clearInterval(id);
 		}
 		else{
-			ANIM_T5+=step;
 			i++;
 			eval(script);
 			_system_display("Running Animation Timeline 5:  ["+start.toFixed(3)+' | '+ANIM_T5.toFixed(3)+' | '+end.toFixed(3)+']',"green");
+			ANIM_T5+=step;
 		}
 	}
 }
@@ -286,8 +275,6 @@ function run_animt6(){
 	var end = parseFloat(document.getElementById("animt6_end").value);
 	var increment_count = parseInt(document.getElementById("animt6_increment_count").value);
 	var fps = parseInt(document.getElementById("animt6_fps").value);
-	var framecount = increment_count+1;
-	var totaltime = framecount/fps;
 	var script = document.getElementById("template").value + document.getElementById("input").value;
 	var step = (end-start)/increment_count;
 
@@ -298,14 +285,14 @@ function run_animt6(){
 	var i = 0
 	id = setInterval(frame,1000/fps);
 	function frame(){
-		if(i == increment_count){
+		if(i > increment_count){
 			clearInterval(id);
 		}
 		else{
-			ANIM_T6+=step;
 			i++;
 			eval(script);
 			_system_display("Running Animation Timeline 6:  ["+start.toFixed(3)+' | '+ANIM_T6.toFixed(3)+' | '+end.toFixed(3)+']',"green");
+			ANIM_T6+=step;
 		}
 	}
 }
@@ -336,8 +323,6 @@ function run_animt7(){
 	var end = parseFloat(document.getElementById("animt7_end").value);
 	var increment_count = parseInt(document.getElementById("animt7_increment_count").value);
 	var fps = parseInt(document.getElementById("animt7_fps").value);
-	var framecount = increment_count+1;
-	var totaltime = framecount/fps;
 	var script = document.getElementById("template").value + document.getElementById("input").value;
 	var step = (end-start)/increment_count;
 
@@ -348,14 +333,14 @@ function run_animt7(){
 	var i = 0
 	id = setInterval(frame,1000/fps);
 	function frame(){
-		if(i == increment_count){
+		if(i > increment_count){
 			clearInterval(id);
 		}
 		else{
-			ANIM_T7+=step;
 			i++;
 			eval(script);
 			_system_display("Running Animation Timeline 7:  ["+start.toFixed(3)+' | '+ANIM_T7.toFixed(3)+' | '+end.toFixed(3)+']',"green");
+			ANIM_T7+=step;
 		}
 	}
 }
@@ -386,8 +371,6 @@ function run_animt8(){
 	var end = parseFloat(document.getElementById("animt8_end").value);
 	var increment_count = parseInt(document.getElementById("animt8_increment_count").value);
 	var fps = parseInt(document.getElementById("animt8_fps").value);
-	var framecount = increment_count+1;
-	var totaltime = framecount/fps;
 	var script = document.getElementById("template").value + document.getElementById("input").value;
 	var step = (end-start)/increment_count;
 
@@ -398,14 +381,14 @@ function run_animt8(){
 	var i = 0
 	id = setInterval(frame,1000/fps);
 	function frame(){
-		if(i == increment_count){
+		if(i > increment_count){
 			clearInterval(id);
 		}
 		else{
-			ANIM_T8+=step;
 			i++;
 			eval(script);
 			_system_display("Running Animation Timeline 8:  ["+start.toFixed(3)+' | '+ANIM_T8.toFixed(3)+' | '+end.toFixed(3)+']',"green");
+			ANIM_T8+=step;
 		}
 	}
 }
@@ -436,8 +419,6 @@ function run_animt9(){
 	var end = parseFloat(document.getElementById("animt9_end").value);
 	var increment_count = parseInt(document.getElementById("animt9_increment_count").value);
 	var fps = parseInt(document.getElementById("animt9_fps").value);
-	var framecount = increment_count+1;
-	var totaltime = framecount/fps;
 	var script = document.getElementById("template").value + document.getElementById("input").value;
 	var step = (end-start)/increment_count;
 
@@ -448,14 +429,14 @@ function run_animt9(){
 	var i = 0
 	id = setInterval(frame,1000/fps);
 	function frame(){
-		if(i == increment_count){
+		if(i > increment_count){
 			clearInterval(id);
 		}
 		else{
-			ANIM_T9+=step;
 			i++;
 			eval(script);
 			_system_display("Running Animation Timeline 9:  ["+start.toFixed(3)+' | '+ANIM_T9.toFixed(3)+' | '+end.toFixed(3)+']',"green");
+			ANIM_T9+=step;
 		}
 	}
 }
@@ -486,8 +467,6 @@ function run_animt10(){
 	var end = parseFloat(document.getElementById("animt10_end").value);
 	var increment_count = parseInt(document.getElementById("animt10_increment_count").value);
 	var fps = parseInt(document.getElementById("animt10_fps").value);
-	var framecount = increment_count+1;
-	var totaltime = framecount/fps;
 	var script = document.getElementById("template").value + document.getElementById("input").value;
 	var step = (end-start)/increment_count;
 
@@ -498,14 +477,14 @@ function run_animt10(){
 	var i = 0
 	id = setInterval(frame,1000/fps);
 	function frame(){
-		if(i == increment_count){
+		if(i > increment_count){
 			clearInterval(id);
 		}
 		else{
-			ANIM_T10+=step;
 			i++;
 			eval(script);
 			_system_display("Running Animation Timeline 10:  ["+start.toFixed(3)+' | '+ANIM_T10.toFixed(3)+' | '+end.toFixed(3)+']',"green");
+			ANIM_T10+=step;
 		}
 	}
 }

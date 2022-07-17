@@ -9,11 +9,11 @@ var insert_id = "input";	//This variable keeps the record of the "last" focused 
 //-------------------------Collapsable side panel from W3School(file)
 function colaps_file_open() {
 	if(colaps_file_enabled == false){
-		document.getElementById("colaps_file").style.width = "270px";
+		document.getElementById("colaps_file").style.height = "500px";
 		colaps_file_enabled = true;
 	}
 	else if(colaps_file_enabled == true){
-		document.getElementById("colaps_file").style.width = "0px";
+		document.getElementById("colaps_file").style.height = "0px";
 		colaps_file_enabled = false;
 	}
 }
@@ -23,11 +23,11 @@ function colaps_file_open() {
 //-------------------------Collapsable side panel from W3School(help)
 function colaps_help_open() {
   	if(colaps_help_enabled == false){
-		document.getElementById("colaps_help").style.width = "300px";
+		document.getElementById("colaps_help").style.height = "150px";
 		colaps_help_enabled = true;
 	}
 	else if(colaps_help_enabled == true){
-		document.getElementById("colaps_help").style.width = "0px";
+		document.getElementById("colaps_help").style.height = "0px";
 		colaps_help_enabled = false;
 	}
 }
@@ -37,11 +37,11 @@ function colaps_help_open() {
 //-------------------------Collapsable side panel from W3School(settings)
 function colaps_settings_open() {
   	if(colaps_settings_enabled == false){
-		document.getElementById("colaps_settings").style.width = "280px";
+		document.getElementById("colaps_settings").style.height = "350px";
 		colaps_settings_enabled = true;
 	}
 	else if(colaps_settings_enabled == true){
-		document.getElementById("colaps_settings").style.width = "0px";
+		document.getElementById("colaps_settings").style.height = "0px";
 		colaps_settings_enabled = false;
 	}
 }
@@ -50,11 +50,11 @@ function colaps_settings_open() {
 //-------------------------Collapsable side panel from W3School(tools)
 function colaps_tools_open() {
   	if(colaps_tools_enabled == false){
-		document.getElementById("colaps_tools").style.width = "280px";
+		document.getElementById("colaps_tools").style.height = "350px";
 		colaps_tools_enabled = true;
 	}
 	else if(colaps_tools_enabled == true){
-		document.getElementById("colaps_tools").style.width = "0px";
+		document.getElementById("colaps_tools").style.height = "0px";
 		colaps_tools_enabled = false;
 	}
 }
@@ -63,11 +63,11 @@ function colaps_tools_open() {
 //-------------------------Collapsable side panel from W3School(other)
 function colaps_other_open() {
   	if(colaps_other_enabled == false){
-		document.getElementById("colaps_other").style.width = "280px";
+		document.getElementById("colaps_other").style.height = "350px";
 		colaps_other_enabled = true;
 	}
 	else if(colaps_other_enabled == true){
-		document.getElementById("colaps_other").style.width = "0px";
+		document.getElementById("colaps_other").style.height = "0px";
 		colaps_other_enabled = false;
 	}
 }

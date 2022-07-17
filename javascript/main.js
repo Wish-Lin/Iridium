@@ -67,6 +67,7 @@ window.onload = function(){
 		document.getElementById('fileselect').addEventListener('input', function(){
             
             var fr=new FileReader();
+			fr.readAsText(this.files[0]);
             fr.onload=function(){
 				var data = fr.result.split("\n==============================\n");  //separate template, script and animation stuff
 				document.getElementById("template").value = data[0];
@@ -111,9 +112,8 @@ window.onload = function(){
 						cmd_exe_control[i] = true;
 					}
 				}
+				_system_display("Script file uploaded","blue");				
 			}
-			fr.readAsText(this.files[0]);
-			_system_display("Script file uploaded","blue");
 		});
 		document.getElementById("savefile").addEventListener("click", function(){ 
 			
@@ -165,9 +165,49 @@ window.onload = function(){
 			a.click();
 			_system_display(fname+".txt downloaded","blue");
 		}); 
-		document.getElementById("saveimage").addEventListener("click", function(){
+		document.getElementById("saveimage").addEventListener("click", function(){  //save PNG/JPG images
 			downloadcanvas(document.getElementById('imagename').value,document.getElementById('imagetype').value);
 		});
+		document.getElementById("savegif").addEventListener("click", function(){   //save GIF animation using "jsgif" GIF encoder by GitHub user "antimatter15".
+			
+			//record ANIM_T1 at 20fps, a good balance between speed and browser load.
+			var canvas = document.getElementById("myCanvas");
+			var ctx = canvas.getContext("2d");
+			var start = parseFloat(document.getElementById("animt1_start").value);
+			var end = parseFloat(document.getElementById("animt1_end").value);
+			var increment_count = parseInt(document.getElementById("animt1_increment_count").value);
+			var script = document.getElementById("template").value + document.getElementById("input").value;
+			var step = (end-start)/increment_count;
+
+			var id = null;
+			clearInterval(id);
+			
+			var repeat = document.getElementById('gif_repeat').value;
+			var delay = document.getElementById('gif_delay').value;
+			var encoder = new GIFEncoder();  //jsgif GIF encoder
+			encoder.setRepeat(repeat);
+			encoder.setDelay(delay);
+			encoder.start();
+			
+			ANIM_T1 = start;
+			var i = 0
+			id = setInterval(frame,50);
+			function frame(){
+				if(i > increment_count){ //equivalent of "i == increment_count+1"
+					clearInterval(id);
+					encoder.finish();
+					encoder.download(document.getElementById('gif_name').value+".gif");
+					document.getElementById('savegif_hint').innerHTML = "Recording complete.";
+				}
+				else{
+					eval(script);
+					encoder.addFrame(document.getElementById("myCanvas").getContext("2d")); //add frame to queue
+					ANIM_T1+=step;
+					document.getElementById('savegif_hint').innerHTML = "Recording: "+Math.ceil(i*100/(increment_count+1))+"%";
+					i++;
+				}
+			}
+		}); 
 	}
 }
 window.onerror = function(e){
