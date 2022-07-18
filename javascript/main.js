@@ -69,12 +69,20 @@ window.onload = function(){
             var fr=new FileReader();
 			fr.readAsText(this.files[0]);
             fr.onload=function(){
-				var data = fr.result.split("\n==============================\n");  //separate template, script and animation stuff
+				var unprocessed_data = fr.result;
+				//------Turn CRLF and CR into LF, if for some reason that happens
+				if(unprocessed_data.search(/\r\n/g) != -1){ //CRLF
+					unprocessed_data = unprocessed_data.replace(/\r\n/g,"\n");  //CRLF -> LF
+				}
+				else if(unprocessed_data.search(/\r/g) != -1){ //not CRLF, but pure CR
+					unprocessed_data = unprocessed_data.replace(/\r/g,"\n");    //CR -> LF
+				}
+				//------Turn CRLF and CR into LF, if for some reason that happens
+				var data = unprocessed_data.split("\n==============================\n");  //separate template, script and animation stuff
 				document.getElementById("template").value = data[0];
 				document.getElementById("input").value = data[1];
 				
 				//decode&load timeline
-				
 				var tl_dat = data[2].split("\n");  //raw timeline data array, split by return
 				var tl_dat_dat = "";  //variable for individual timeline
 				var id = "";   //variable for object id

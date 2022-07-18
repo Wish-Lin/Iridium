@@ -343,7 +343,7 @@ v1.7.0: (release date: 2022/7/17)
 --[Major]Side panels are now horizontally aligned to their respective buttons & they now open downwards instead of sideways.
 --[IMPORTANT]GIF download feature beta test!!! I finally did it!!!!
 
-v1.7.1:
+v1.7.1: (release date: 2022/7/18)
 
 --[Minor]Small aesthetic changes.
 --[Minor]Small README.md update (My English name typo fix).
@@ -355,3 +355,10 @@ v1.7.1:
 --[Minor]GIF encoder's max frame rate set to 50FPS(20ms delay between every frame), which is safe on most modern devices.
 --[IMPORTANT]New logo test. This is a test version of the future v2 logo.
 --[Minor]GIF encoder can now automatically update framerate setting when ANIM_T1's "FPS" setting is changed.
+
+v1.7.1.1: (release date: 2022/7/18)
+
+--[Bug Fix]CRLF and CR are replaced by LF before script files are processed.
+
+v1.7.2:
+
