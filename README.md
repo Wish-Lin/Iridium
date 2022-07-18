@@ -5,14 +5,14 @@
 ## What is Iridium?
 **Iridium** is an open-source, Javascript-based, fully customizable math plotter & animator that can satisfy most precalculus and basic calculus plotting needs. 
 
-Iridium is conceived, written and maintained by 林韋旭(Wish Lin) starting from April 2022.
+Iridium is conceived, written and maintained by 林韋旭(Wei-Hsu Lin) starting from April 2022.
 
 ## The purpose of this project
 
 After the COVID-19 pandemic, online courses, along with the convenience it brings to both students and teachers alike, are getting more and more attention around the world. Under such circumstances, it is forseeable that the demand in online math courses will rise as well. However, most softwares that can produce high quality math images(ex. MATLAB) are way too complicated and an absolute overkill for most pre-college courses. Thus, I believe creating a free tool that anyone can obtain, learn and use to create textbook level math content has never been this important. 
 
 ## Functions and Features (as of v1.5.0) 
-
+ 
 ### Functions
 
 **Iridium**'s functions covers almost all precalclus geometry/algebra plotting needs that I could think of, and almost all of the functions are **completely customizable**.

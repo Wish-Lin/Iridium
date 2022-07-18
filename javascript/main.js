@@ -184,6 +184,8 @@ window.onload = function(){
 			
 			var repeat = document.getElementById('gif_repeat').value;
 			var delay = document.getElementById('gif_delay').value;
+			if(delay < 20)  //safeguard (MAX frame rate set to 50fps, which is safe on most modern devices)
+				delay = 20;
 			var encoder = new GIFEncoder();  //jsgif GIF encoder
 			encoder.setRepeat(repeat);
 			encoder.setDelay(delay);
@@ -197,6 +199,7 @@ window.onload = function(){
 					clearInterval(id);
 					encoder.finish();
 					encoder.download(document.getElementById('gif_name').value+".gif");
+					_system_display(document.getElementById('gif_name').value+".gif downloaded","blue");
 					document.getElementById('savegif_hint').innerHTML = "Recording complete.";
 				}
 				else{

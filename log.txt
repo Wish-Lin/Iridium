@@ -172,7 +172,7 @@ v1.1.3: (release date: 2022/5/27)
 
 v1.2.0: (release date: 2022/6/18)
 
---[Major][New tool]In-program animation using setInterval() beta test. Animation control panel beta test.
+--[IMPORTANT][New tool]In-program animation using setInterval() beta test. Animation control panel beta test.
 --[Major]Start working on 2D linear transformation related features & functions.
 --[New Command]la_line_pp() beta test.
 --[New Command]la_rectangle() beta test.
@@ -249,10 +249,10 @@ v1.5.1: (release date: 2022/7/4)
 
 --[Minor]Small aesthetic changes.
 --[Minor]Uploading/Downloading files now has system display hint. Can't get filename of uploaded file, will fix in future.
---[Major]"symbol_ inserter.html" CSS upgrade + link to _system_display().
---[Major]"function_ inserter.html" CSS upgrade + link to _system_display().
---[Major]"template_list.html" CSS upgrade + link to _system_display().
---[Major]"add_command.html" CSS upgrade + link to _system_display().
+--[Major]"symbol_ inserter.html" CSS upgrade + linked to _system_display().
+--[Major]"function_ inserter.html" CSS upgrade + linked to _system_display().
+--[Major]"template_list.html" CSS upgrade + linked to _system_display().
+--[Major]"add_command.html" CSS upgrade + linked to _system_display().
 --[Minor]"Individual commands" input section linked to _system_display().
 
 v1.5.2: (release date: 2022/7/5)
@@ -343,3 +343,15 @@ v1.7.0: (release date: 2022/7/17)
 --[Major]Side panels are now horizontally aligned to their respective buttons & they now open downwards instead of sideways.
 --[IMPORTANT]GIF download feature beta test!!! I finally did it!!!!
 
+v1.7.1:
+
+--[Minor]Small aesthetic changes.
+--[Minor]Small README.md update (My English name typo fix).
+--[Minor]GIF encoder linked to _system_display().
+--[Minor]Blank command inserter now includes linebreak.
+--[Minor]Side panels now closes other panels when itself is opened, so atmost one panel is open at anytime.
+--[Minor]All 10 animation timelines can now be run at 50 FPS. After some testing, it seems that the browser can handle such speeds to some extent without failing.
+--[Minor]All 10 animation timelines CANNOT be run at 8 FPS anymore since it is actually impossible to have a GIF at this framerate(delay = 125ms).
+--[Minor]GIF encoder's max frame rate set to 50FPS(20ms delay between every frame), which is safe on most modern devices.
+--[IMPORTANT]New logo test. This is a test version of the future v2 logo.
+--[Minor]GIF encoder can now automatically update framerate setting when ANIM_T1's "FPS" setting is changed.

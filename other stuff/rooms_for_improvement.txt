@@ -114,7 +114,7 @@ remove or modify drawimage()
 
 timelines doesn't go through start (frame 1), a small placement error of step-adding code.
 
-
+add blank textbox foolproof (especially in "file" side panel)
 
 //行政問題
 use github docs instead of hackmd??

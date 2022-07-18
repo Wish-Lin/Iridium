@@ -10,7 +10,15 @@ var insert_id = "input";	//This variable keeps the record of the "last" focused 
 function colaps_file_open() {
 	if(colaps_file_enabled == false){
 		document.getElementById("colaps_file").style.height = "500px";
+		document.getElementById("colaps_help").style.height = "0px";
+		document.getElementById("colaps_settings").style.height = "0px";
+		document.getElementById("colaps_tools").style.height = "0px";
+		document.getElementById("colaps_other").style.height = "0px";
 		colaps_file_enabled = true;
+		colaps_help_enabled = false;
+		colaps_settings_enabled = false;
+		colaps_tools_enabled = false;
+		colaps_other_enabled = false;
 	}
 	else if(colaps_file_enabled == true){
 		document.getElementById("colaps_file").style.height = "0px";
@@ -23,8 +31,16 @@ function colaps_file_open() {
 //-------------------------Collapsable side panel from W3School(help)
 function colaps_help_open() {
   	if(colaps_help_enabled == false){
+		document.getElementById("colaps_file").style.height = "0px";
 		document.getElementById("colaps_help").style.height = "150px";
+		document.getElementById("colaps_settings").style.height = "0px";
+		document.getElementById("colaps_tools").style.height = "0px";
+		document.getElementById("colaps_other").style.height = "0px";
+		colaps_file_enabled = false;
 		colaps_help_enabled = true;
+		colaps_settings_enabled = false;
+		colaps_tools_enabled = false;
+		colaps_other_enabled = false;
 	}
 	else if(colaps_help_enabled == true){
 		document.getElementById("colaps_help").style.height = "0px";
@@ -37,8 +53,16 @@ function colaps_help_open() {
 //-------------------------Collapsable side panel from W3School(settings)
 function colaps_settings_open() {
   	if(colaps_settings_enabled == false){
+		document.getElementById("colaps_file").style.height = "0px";
+		document.getElementById("colaps_help").style.height = "0px";
 		document.getElementById("colaps_settings").style.height = "350px";
+		document.getElementById("colaps_tools").style.height = "0px";
+		document.getElementById("colaps_other").style.height = "0px";
+		colaps_file_enabled = false;
+		colaps_help_enabled = false;
 		colaps_settings_enabled = true;
+		colaps_tools_enabled = false;
+		colaps_other_enabled = false;
 	}
 	else if(colaps_settings_enabled == true){
 		document.getElementById("colaps_settings").style.height = "0px";
@@ -50,8 +74,16 @@ function colaps_settings_open() {
 //-------------------------Collapsable side panel from W3School(tools)
 function colaps_tools_open() {
   	if(colaps_tools_enabled == false){
+		document.getElementById("colaps_file").style.height = "0px";
+		document.getElementById("colaps_help").style.height = "0px";
+		document.getElementById("colaps_settings").style.height = "0px";
 		document.getElementById("colaps_tools").style.height = "350px";
+		document.getElementById("colaps_other").style.height = "0px";
+		colaps_file_enabled = false;
+		colaps_help_enabled = false;
+		colaps_settings_enabled = false;
 		colaps_tools_enabled = true;
+		colaps_other_enabled = false;
 	}
 	else if(colaps_tools_enabled == true){
 		document.getElementById("colaps_tools").style.height = "0px";
@@ -63,7 +95,15 @@ function colaps_tools_open() {
 //-------------------------Collapsable side panel from W3School(other)
 function colaps_other_open() {
   	if(colaps_other_enabled == false){
+		document.getElementById("colaps_file").style.height = "0px";
+		document.getElementById("colaps_help").style.height = "0px";
+		document.getElementById("colaps_settings").style.height = "0px";
+		document.getElementById("colaps_tools").style.height = "0px";
 		document.getElementById("colaps_other").style.height = "350px";
+		colaps_file_enabled = false;
+		colaps_help_enabled = false;
+		colaps_settings_enabled = false;
+		colaps_tools_enabled = false;
 		colaps_other_enabled = true;
 	}
 	else if(colaps_other_enabled == true){
@@ -376,7 +416,7 @@ function setId(id){
 
 //-------------------------Manual command insert
 function blank_cmd_insert(){
-	typeInTextarea(document.getElementById("blank_cmd_input").value);
+	typeInTextarea(document.getElementById("blank_cmd_input").value+'\n');
 	_system_display("Command \""+document.getElementById("blank_cmd_input").value+"\" inserted to \""+insert_id+"\"","#CD7F32");
 }
 //-------------------------Checks mobile AND tablet client
@@ -404,4 +444,9 @@ function downloadcanvas(filename,filetype){
     tmpLink.click();  
     document.body.removeChild( tmpLink );  
 	_system_display(filename+"."+filetype+" downloaded","blue");
+}
+//-------------------------Update GIF encoder's framerate when ANIM_T1 is changed.
+function update_gif_fps(){
+	document.getElementById('gif_fps').innerHTML = document.getElementById('animt1_fps').value;
+	document.getElementById('gif_delay').value = 1000/document.getElementById('animt1_fps').value;
 }

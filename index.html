@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Iridium Main Page</title>
-<link rel="icon" href="favicon.ico" type="image/x-icon" / >
+<link rel="icon" href="favicon.png" type="image/png">
 </head>
 <body style="background-color: #fffff8;"> 
 
@@ -36,7 +36,7 @@
     });
 </script>
 		
-		<div id="main_title" style="font: bold 30px Arial; text-align: center; background: #2ecc71;">Iridium v1.7.0</div><br>
+		<div id="main_title" style="font: bold 30px Arial; text-align: center; background: #2ecc71;">Iridium v1.7.1</div><br>
 		
 		<!-- This is the normally-hidden Cursor Position Tool(CPT) display interface -->
 		<div id="curpos_display">
@@ -96,11 +96,12 @@
 		<br>
 		<button id = "saveimage" class="generic_button" style = "margin-top: 4px;">Save</button><br>
 		<hr>
-		<span style="font: bold 17px Arial;">Save animation:</span><a href="https://github.com/antimatter15/jsgif" target="_blank" style = "font: 13px Consolas"> encoder src</a><br>
-		<span style="font: 15px Consolas; color:red">!!Records "ANIM_T1" only!!</span><br>
+		<span style="font: bold 17px Arial;">Save animation:</span><a href="https://github.com/antimatter15/jsgif" target="_blank" style = "font: 13px Consolas"> encoder src</a><br><br>
+		<span style="font: 15px Consolas; color:red">!!Records "ANIM_T1" only!!</span><br><br>
 		<input id="gif_name" type="text" value='anim1' style = "font: 15px Consolas;"><span style="font: 15px Consolas;">.gif</span><br>
 		<span style="font: 15px Consolas">Repeats(0 = infinte loop):</span><input id="gif_repeat" type="number" value='0' min = 0 step = 1 style = "font: 15px Consolas; width: 40px;">
-		<span style="font: 15px Consolas">Delay between frames:</span><input id="gif_delay" type="number" value='40' min = 10 step = 1 style = "font: 15px Consolas; width: 50px;"><span style="font: 15px Consolas">ms</span><br>
+		<span style="font: 15px Consolas">Delay:</span><input title = "Set this at ANIM_T1, not here" id="gif_delay" type="text" value='40' style = "font: 15px Consolas; width: 45px;" disabled> <!-- functioning as a textbox styled display-->
+		<span style="font: 15px Consolas">ms (=</span><span id = "gif_fps" style="font: 15px Consolas">25</span><span style="font: 15px Consolas">FPS)</span><br>
 		<button id = "savegif" class="generic_button" style = "margin-top: 4px;">Save</button><br>
 		<span id = "savegif_hint" style="font: bold 15px Consolas; color:blue"></span>
 		</div>
@@ -188,7 +189,7 @@
 				<button title="Choose from built-in template database" id = "load_template_only" class="generic_button" onclick = "load_template_only()">Choose Template</button>
 				<br>
 				<textarea id="template" rows="2" cols="65" style="font: 15px Consolas; resize: horizontal; margin-top: 5px; margin-bottom: 2px;" onBlur="setId(this.id)" placeholder="Enter template here......"></textarea><br>
-				<button title="collapse/expand template and script section" id = "temp_script_switch" class="generic_button" onclick = "t_s_switch()" style = "margin-top: 2px; margin-bottom: 4px;">↑↓</button><br>
+				<button title="switch template/script texarea size" id = "temp_script_switch" class="generic_button" onclick = "t_s_switch()" style = "margin-top: 2px; margin-bottom: 4px;">↑↓</button><br>
 				<span style="font: bold 15px Arial;">Script:</span><br>
 				<textarea id="input" rows="18" cols="65" style="font: 15px Consolas; resize: horizontal;" onBlur="setId(this.id)" placeholder="Enter script here......"></textarea><br>
 				<button title="Execute script and generate image" id = "Run" class="menubutton">▶ Run Script</button><br><br>
@@ -205,7 +206,7 @@
 						<td>End</td>
 						<td>Steps</td>
 						<td>FPS</td>
-						<td></td>
+						<td><strong>Set</strong></td>
 						<td>Frames</td>
 						<td>Time(s)</td>
 						<td>Label</td>
@@ -218,15 +219,15 @@
 						<td><input id="animt1_end" type="text" value='5' class = "anim_setting_input"></td>
 						<td><input id="animt1_increment_count" type="text" value='100' class = "anim_setting_input"></td>
 						<td>
-							<select id="animt1_fps" class = "anim_setting_dropdown">
+							<select id="animt1_fps" class = "anim_setting_dropdown" onchange="update_gif_fps()">
 								<option>1</option>
 								<option>2</option>
 								<option>4</option>
 								<option>5</option>
-								<option>8</option>
 								<option>10</option>
 								<option>20</option>
 								<option selected>25</option>
+								<option style = "color:red">50</option>
 							</select>
 						</td>
 						<td><button id="set_animt1" onclick = "set_animt1()" class = "menubutton">→</td>
@@ -247,10 +248,10 @@
 								<option>2</option>
 								<option>4</option>
 								<option>5</option>
-								<option>8</option>
 								<option>10</option>
 								<option>20</option>
 								<option selected>25</option>
+								<option style = "color:red">50</option>
 							</select>
 						</td>
 						<td><button id="set_animt2" onclick = "set_animt2()" class = "menubutton">→</td>
@@ -271,10 +272,10 @@
 								<option>2</option>
 								<option>4</option>
 								<option>5</option>
-								<option>8</option>
 								<option>10</option>
 								<option>20</option>
 								<option selected>25</option>
+								<option style = "color:red">50</option>
 							</select>
 						</td>
 						<td><button id="set_animt3" onclick = "set_animt3()" class = "menubutton">→</td>
@@ -295,10 +296,10 @@
 								<option>2</option>
 								<option>4</option>
 								<option>5</option>
-								<option>8</option>
 								<option>10</option>
 								<option>20</option>
 								<option selected>25</option>
+								<option style = "color:red">50</option>
 							</select>
 						</td>
 						<td><button id="set_animt4" onclick = "set_animt4()" class = "menubutton">→</td>
@@ -319,10 +320,10 @@
 								<option>2</option>
 								<option>4</option>
 								<option>5</option>
-								<option>8</option>
 								<option>10</option>
 								<option>20</option>
 								<option selected>25</option>
+								<option style = "color:red">50</option>
 							</select>
 						</td>
 						<td><button id="set_animt5" onclick = "set_animt5()" class = "menubutton">→</td>
@@ -343,10 +344,10 @@
 								<option>2</option>
 								<option>4</option>
 								<option>5</option>
-								<option>8</option>
 								<option>10</option>
 								<option>20</option>
 								<option selected>25</option>
+								<option style = "color:red">50</option>
 							</select>
 						</td>
 						<td><button id="set_animt6" onclick = "set_animt6()" class = "menubutton">→</td>
@@ -367,10 +368,10 @@
 								<option>2</option>
 								<option>4</option>
 								<option>5</option>
-								<option>8</option>
 								<option>10</option>
 								<option>20</option>
 								<option selected>25</option>
+								<option style = "color:red">50</option>
 							</select>
 						</td>
 						<td><button id="set_animt7" onclick = "set_animt7()" class = "menubutton">→</td>
@@ -391,10 +392,10 @@
 								<option>2</option>
 								<option>4</option>
 								<option>5</option>
-								<option>8</option>
 								<option>10</option>
 								<option>20</option>
 								<option selected>25</option>
+								<option style = "color:red">50</option>
 							</select>
 						</td>
 						<td><button id="set_animt8" onclick = "set_animt8()" class = "menubutton">→</td>
@@ -415,10 +416,10 @@
 								<option>2</option>
 								<option>4</option>
 								<option>5</option>
-								<option>8</option>
 								<option>10</option>
 								<option>20</option>
 								<option selected>25</option>
+								<option style = "color:red">50</option>
 							</select>
 						</td>
 						<td><button id="set_animt9" onclick = "set_animt9()" class = "menubutton">→</td>
@@ -439,10 +440,10 @@
 								<option>2</option>
 								<option>4</option>
 								<option>5</option>
-								<option>8</option>
 								<option>10</option>
 								<option>20</option>
 								<option selected>25</option>
+								<option style = "color:red">50</option>
 							</select>
 						</td>
 						<td><button id="set_animt10" onclick = "set_animt10()" class = "menubutton">→</td>
