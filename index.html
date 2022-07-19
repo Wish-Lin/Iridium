@@ -36,7 +36,7 @@
     });
 </script>
 		
-		<div id="main_title" style="font: bold 30px Arial; text-align: center; background: #2ecc71;">Iridium v1.7.1</div><br>
+		<div id="main_title" style="font: bold 30px Arial; text-align: center; background: #2ecc71;">Iridium v1.7.2</div><br>
 		
 		<!-- This is the normally-hidden Cursor Position Tool(CPT) display interface -->
 		<div id="curpos_display">
@@ -124,7 +124,15 @@
 		<span style="font: bold 20px Verdana;">Settings</span>
 		<span style="font: 30px Arial; float:right; cursor: default; margin: 5px;" onclick="colaps_settings_open()">&times;</span><br><br>
 		<span style="font: 20px consolas;">Textarea font size:<span><br>
-		<button onclick="textbox_font_smaller()" class="generic_button">&#8722;</button> <p id = "curfontsize"></p> <button onclick="textbox_font_bigger()" class="generic_button">&#43;</button><br>
+		<button onclick="textbox_font_smaller()" class="generic_button">&#8722;</button> <p id = "curfontsize"></p> <button onclick="textbox_font_bigger()" class="generic_button">&#43;</button>
+		<hr>
+		<span style="font: 20px consolas;">Background color:<span>
+		<select id="bkgd_color_select" style="font: 15px Consolas;" onchange="update_bkgd_color()">
+			<option value = "#fffff8" selected>Default</option>
+			<option value = "#fff8f8">Red</option>
+			<option value = "#f8f8ff">Blue</option>
+			<option value = "#f0fff0">Green</option>
+		</select>
 		<hr>
 		</div>
 		<!--"Settings" side panel-->

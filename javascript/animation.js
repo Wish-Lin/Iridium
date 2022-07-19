@@ -47,6 +47,7 @@ function run_animt1(){
 	function frame(){
 		if(i > increment_count){ //equivalent of "i == increment_count+1"
 			clearInterval(id);
+			ANIM_T1-=step;  //unwanted last add
 		}
 		else{
 			i++;
@@ -95,6 +96,7 @@ function run_animt2(){
 	function frame(){
 		if(i > increment_count){
 			clearInterval(id);
+			ANIM_T2-=step;  //unwanted last add
 		}
 		else{
 			i++;
@@ -143,6 +145,7 @@ function run_animt3(){
 	function frame(){
 		if(i > increment_count){
 			clearInterval(id);
+			ANIM_T3-=step;  //unwanted last add
 		}
 		else{
 			i++;
@@ -191,6 +194,7 @@ function run_animt4(){
 	function frame(){
 		if(i > increment_count){
 			clearInterval(id);
+			ANIM_T4-=step;  //unwanted last add
 		}
 		else{
 			i++;
@@ -239,6 +243,7 @@ function run_animt5(){
 	function frame(){
 		if(i > increment_count){
 			clearInterval(id);
+			ANIM_T5-=step;  //unwanted last add
 		}
 		else{
 			i++;
@@ -287,6 +292,7 @@ function run_animt6(){
 	function frame(){
 		if(i > increment_count){
 			clearInterval(id);
+			ANIM_T6-=step;  //unwanted last add
 		}
 		else{
 			i++;
@@ -335,6 +341,7 @@ function run_animt7(){
 	function frame(){
 		if(i > increment_count){
 			clearInterval(id);
+			ANIM_T7-=step;  //unwanted last add
 		}
 		else{
 			i++;
@@ -383,6 +390,7 @@ function run_animt8(){
 	function frame(){
 		if(i > increment_count){
 			clearInterval(id);
+			ANIM_T8-=step;  //unwanted last add
 		}
 		else{
 			i++;
@@ -431,6 +439,7 @@ function run_animt9(){
 	function frame(){
 		if(i > increment_count){
 			clearInterval(id);
+			ANIM_T9-=step;  //unwanted last add
 		}
 		else{
 			i++;
@@ -479,6 +488,7 @@ function run_animt10(){
 	function frame(){
 		if(i > increment_count){
 			clearInterval(id);
+			ANIM_T10-=step;  //unwanted last add
 		}
 		else{
 			i++;

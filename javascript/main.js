@@ -83,6 +83,7 @@ window.onload = function(){
 				document.getElementById("input").value = data[1];
 				
 				//decode&load timeline
+				
 				var tl_dat = data[2].split("\n");  //raw timeline data array, split by return
 				var tl_dat_dat = "";  //variable for individual timeline
 				var id = "";   //variable for object id
@@ -178,6 +179,8 @@ window.onload = function(){
 		});
 		document.getElementById("savegif").addEventListener("click", function(){   //save GIF animation using "jsgif" GIF encoder by GitHub user "antimatter15".
 			
+			document.getElementById("savegif").disabled = true;  //disable save button until download is complete.
+			
 			//record ANIM_T1 at 20fps, a good balance between speed and browser load.
 			var canvas = document.getElementById("myCanvas");
 			var ctx = canvas.getContext("2d");
@@ -209,6 +212,7 @@ window.onload = function(){
 					encoder.download(document.getElementById('gif_name').value+".gif");
 					_system_display(document.getElementById('gif_name').value+".gif downloaded","blue");
 					document.getElementById('savegif_hint').innerHTML = "Recording complete.";
+					document.getElementById("savegif").disabled = false;  //enable save button again
 				}
 				else{
 					eval(script);

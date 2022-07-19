@@ -450,3 +450,6 @@ function update_gif_fps(){
 	document.getElementById('gif_fps').innerHTML = document.getElementById('animt1_fps').value;
 	document.getElementById('gif_delay').value = 1000/document.getElementById('animt1_fps').value;
 }
+function update_bkgd_color(){
+	document.body.style.backgroundColor = document.getElementById('bkgd_color_select').value;
+}

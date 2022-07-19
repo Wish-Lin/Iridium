@@ -71,7 +71,11 @@
 .generic_button:hover {
   background: #d3d3d3;
 }
-  
+ 
+.generic_button:disabled {
+  background: #e7e7e7;
+  color: #6e6e6e;
+}    
 
 /*----------------------------Fancy CSS styled checkbox(currently unused)------------------------------------------------*/
 
@@ -214,7 +218,7 @@
   font-family: Consolas; 
   font-size: 13px;
   height: 0px; /* Specify a height */
-  width: 280px; 
+  width: 300px; 
   position: fixed; /* Stay in place */
   overflow-x: hidden; /* Disable horizontal scroll */
   overflow-y: hidden;

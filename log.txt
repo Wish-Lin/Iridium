@@ -358,7 +358,13 @@ v1.7.1: (release date: 2022/7/18)
 
 v1.7.1.1: (release date: 2022/7/18)
 
---[Bug Fix]CRLF and CR are replaced by LF before script files are processed.
+--[Bug Fix]CRLF and CR are all turned into LF before script files are processed and loaded. Bug Fixed.
 
-v1.7.2:
+v1.7.2: (release date: 2022/7/19)
 
+--[Minor]Small aesthetic changes.
+--[Bug Fix]All animation timelines produce an unwanted "add step" at the end of each run. Bug Fixed.
+--[Minor]GIF encoder save button is now disabled during the encoding process to prevent accidentally clicking it the second time.
+--[Minor]User can now change background color from "Settings" dropdown panel. (Formerly called "side panel" but they are not on the side anymore, so......yeah.)
+
+v1.7.3:
